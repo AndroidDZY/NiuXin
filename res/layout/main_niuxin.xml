@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+       <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+        </FrameLayout>
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#000000"
+        ></LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:background="#cc00ff">
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center"
+                  android:layout_marginTop="2dp"
+                  android:layout_marginLeft="2dp"
+                  android:layout_marginRight="2dp"
+                  android:layout_marginBottom="2dp"
+                  android:background="@drawable/edittext_search"
+                  android:hint="搜索"
+                 />
+        </LinearLayout>
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="140dp"
+            android:background="#ffffff"
+            >
+            <Button 
+               android:id="@+id/liaotian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="聊天"
+                android:clickable="true"
+                android:textSize="15dp"
+                />
+            <Button 
+                android:id="@+id/tongxunlu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="通讯录"
+                android:clickable="true"
+                android:textSize="15dp"/>
+            <Button 
+                android:id="@+id/pengyouquan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="朋友圈"
+                android:clickable="true"
+                android:textSize="15dp"/>
+        </LinearLayout>
+    
+   
+
+</TabHost>

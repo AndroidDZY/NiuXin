@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+        </FrameLayout>
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone" />
+        
+        <LinearLayout
+            android:id="@+id/console_line_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="#cc00ff"
+            android:orientation="horizontal" >
+               <Button
+                    android:id="@+id/main_tab_niuxin"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#cc00ff"
+                    android:layout_gravity="center"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:text="牛信" 
+                    />
+           
+                <Button
+                    android:id="@+id/main_tab_guqunguangchang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#cc00ff"
+                    android:layout_gravity="center"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:text="股权广场" />
+
+                <Button
+                    android:id="@+id/main_tab_gushirili"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#cc00ff"
+                    android:layout_gravity="center"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:text="股市日历" />
+
+                <Button
+                   android:id="@+id/main_tab_more"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:background="#cc00ff"
+                   android:layout_gravity="center"
+                   android:textSize="15dp"
+                   android:layout_weight="1"
+                   android:clickable="true"
+                   android:text="更多" 
+                   />
+
+            </LinearLayout>
+        
+    </LinearLayout>
+
+</TabHost>
