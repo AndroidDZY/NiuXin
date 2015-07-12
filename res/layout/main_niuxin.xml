@@ -51,9 +51,8 @@
             android:layout_height="27dp"
             android:layout_marginTop="111dp"
             android:background="#ffffff">
+            
         	
-			
-
             <Button 
                 android:id="@+id/liaotian"
                 android:layout_width="wrap_content"
@@ -89,6 +88,20 @@
                 android:textSize="13dp"
                 android:textColor="#313131"/>
         </LinearLayout>
+        
+            <LinearLayout 
+            	android:orientation="horizontal"
+        		android:layout_marginTop="140dp"
+        		android:layout_marginLeft="20dp"
+        		android:layout_width="280dp"
+        		android:layout_height="1dp"
+        		android:layout_gravity="bottom"
+        		android:background="#de4557">
+                
+            </LinearLayout>
+            
+       
+
     <ListView android:layout_width="match_parent"
               android:layout_height="wrap_content">
         
