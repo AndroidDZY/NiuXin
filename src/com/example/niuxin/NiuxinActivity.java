@@ -13,13 +13,26 @@ import android.widget.TabHost;
 @SuppressWarnings("deprecation")
 public class NiuxinActivity extends TabActivity {
 	private TabHost tabHost;
-	private Button liaotian,tongxunlu,pengyouquan;
+	private Button liaotian,tongxunlu,pengyouquan,createQun;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_niuxin);
 		init();
 		initTab();
+		//ÂàõÂª∫Áæ§ÁïåÈù¢Ë∑≥ËΩ¨
+		createQun=(Button)findViewById(R.id.createqun);
+		createQun.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent (NiuxinActivity.this, CreatequnActivity.class) );
+				//Intent intent=new Intent();
+				//intent.setClass(NiuxinActivity.this, CreatequnActivity.class);
+			}
+		});
+		
 	}
 
 	private void initTab() {
@@ -27,7 +40,7 @@ public class NiuxinActivity extends TabActivity {
 		liaotian=(Button)findViewById(R.id.liaotian);
 		tongxunlu=(Button)findViewById(R.id.tongxunlu);
 		pengyouquan=(Button)findViewById(R.id.pengyouquan);
-		//…Ë÷√º‡Ã˝
+		
 		liaotian.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {

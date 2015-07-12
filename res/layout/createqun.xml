@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#000000"
+        ></LinearLayout>
+    <TextView  android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:text="创建群组"
+        android:textSize="20dp"
+        android:gravity="center"/>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#ffffff"></LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:text="群组名称"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            />
+        <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="在此输入群组名称"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:text="群组类型"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            />
+        <Spinner 
+            android:id="@+id/qunzuleixing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:text="入群条件"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            />
+        <Spinner 
+            android:id="@+id/ruquncondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:text="个股标签"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            />
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="2">
+        <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="在此输入个股或板块代码"
+            android:textSize="12sp"/>
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加更多..."
+            
+            android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+     <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:text="添加描述"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            />
+        <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="在此添加描述"
+            android:textSize="12sp"/>
+    </LinearLayout>
+   <LinearLayout android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       >
+       <Button 
+           android:id="@+id/done"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="完成"
+           android:textSize="15sp"
+           />
+       <Button android:id="@+id/back"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="返回"
+           android:textSize="12sp"/>
+   </LinearLayout>
+   <include layout="@layout/activity_main"/>
+</LinearLayout>

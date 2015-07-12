@@ -30,6 +30,7 @@
         <activity android:name="com.example.niuxin.LiaotianActivity"></activity>
         <activity android:name="com.example.niuxin.TongxunluActivity"></activity>
         <activity android:name="com.example.niuxin.PengyouquanActivity"></activity>
+        <activity android:name="com.example.niuxin.CreatequnActivity"></activity>
     </application>
 
 </manifest>
