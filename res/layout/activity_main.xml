@@ -34,46 +34,46 @@
                <Button
                     android:id="@+id/main_tab_niuxin"
                     android:checked="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#cc00ff"
+                    android:layout_width="80dp"
+                    android:layout_height="33dp"
+                    android:background="#ff0000"
                     android:layout_gravity="center"
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    
                     android:clickable="true"
                     android:text="牛信" 
                     />
            
                 <Button
                     android:id="@+id/main_tab_guqunguangchang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#cc00ff"
+                    android:layout_width="80dp"
+                    android:layout_height="33dp"
+                    android:background="#FFFF00"
                     android:layout_gravity="center"
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    
                     android:clickable="true"
                     android:text="股权广场" />
 
                 <Button
                     android:id="@+id/main_tab_gushirili"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#cc00ff"
+                    android:layout_width="80dp"
+                    android:layout_height="33dp"
+                    android:background="#0000FF"
                     android:layout_gravity="center"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    
                     android:clickable="true"
                     android:text="股市日历" />
 
                 <Button
                    android:id="@+id/main_tab_more"
-                   android:layout_width="wrap_content"
+                   android:layout_width="80dp"
                    android:layout_height="wrap_content"
-                   android:background="#cc00ff"
+                   android:background="#00ff00"
                    android:layout_gravity="center"
-                   android:textSize="15dp"
-                   android:layout_weight="1"
+                   android:textSize="16sp"
+                   
                    android:clickable="true"
                    android:text="更多" 
                    />
