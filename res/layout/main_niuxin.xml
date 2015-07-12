@@ -19,46 +19,52 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="87dp"
         android:background="#000000"
         ></LinearLayout>
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="100dp"
-        android:background="#cc00ff">
+        android:layout_height="24dp"
+        android:layout_marginTop="87dp"
+        android:background="#de4557">
         <EditText android:layout_width="wrap_content"
                   android:id="@+id/search"
                   android:layout_weight="2"
                   android:layout_height="match_parent"
                   android:gravity="center"
                   android:background="@drawable/edittext_search"
+                  android:textSize="13sp"
                   android:hint="搜索"
                  />
-        <Button android:id="@+id/createqun"
+        <Button 
+            android:id="@+id/createqun"
             android:layout_weight="1"
             android:text="创建群"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:background="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         </LinearLayout>
+        
         <LinearLayout 
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="140dp"
-            android:background="#ffffff"
-            >
+            android:layout_height="27dp"
+            android:layout_marginTop="111dp"
+            android:background="#ffffff">
+        	
+			
+
             <Button 
-               android:id="@+id/liaotian"
+                android:id="@+id/liaotian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="聊天"
+                android:text="  聊 天"
                 android:clickable="true"
-                android:textSize="15dp"
+                android:textSize="13dp"
+                android:textColor="#313131"
                 />
             <Button 
                 android:id="@+id/tongxunlu"
@@ -67,9 +73,10 @@
                 android:background="#ffffff"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="通讯录"
+                android:text=" 通讯录  "
                 android:clickable="true"
-                android:textSize="15dp"/>
+                android:textSize="13dp"
+                android:textColor="#313131"/>
             <Button 
                 android:id="@+id/pengyouquan"
                 android:layout_width="wrap_content"
@@ -77,9 +84,10 @@
                 android:background="#ffffff"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="朋友圈"
+                android:text="股友圈  "
                 android:clickable="true"
-                android:textSize="15dp"/>
+                android:textSize="13dp"
+                android:textColor="#313131"/>
         </LinearLayout>
     <ListView android:layout_width="match_parent"
               android:layout_height="wrap_content">
