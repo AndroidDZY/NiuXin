@@ -16,57 +16,49 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:visibility="gone" />
-    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="87dp"
+        android:layout_height="100dp"
         android:background="#000000"
-        >
-            <Button 
-            	android:id="@+id/createqun"
-            	android:layout_weight="1"
-            	android:text="创建群"
-            	android:textSize="13sp"
-            	android:background="#FFFFFF"
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"/>
-        
-    </LinearLayout>
+        ></LinearLayout>
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_marginTop="87dp"
-        android:background="#de4557">
+        android:layout_height="40dp"
+        android:background="#cc00ff">
         <EditText android:layout_width="wrap_content"
                   android:id="@+id/search"
                   android:layout_weight="2"
                   android:layout_height="match_parent"
                   android:gravity="center"
                   android:background="@drawable/edittext_search"
-                  android:textSize="13sp"
                   android:hint="搜索"
                  />
-
+        <Button android:id="@+id/createqun"
+            android:layout_weight="1"
+            android:text="创建群"
+            android:textSize="12sp"
+            android:background="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         </LinearLayout>
-        
         <LinearLayout 
             android:layout_width="match_parent"
-            android:layout_height="27dp"
-            android:layout_marginTop="111dp"
-            android:background="#ffffff">
-            
-        	
+            android:layout_height="30dp"
+            android:background="#ffffff"
+            >
             <Button 
-                android:id="@+id/liaotian"
+               android:id="@+id/liaotian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="  聊 天"
+                android:text="聊天"
                 android:clickable="true"
-                android:textSize="13dp"
-                android:textColor="#313131"
+                android:textSize="15dp"
                 />
             <Button 
                 android:id="@+id/tongxunlu"
@@ -75,10 +67,9 @@
                 android:background="#ffffff"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text=" 通讯录  "
+                android:text="通讯录"
                 android:clickable="true"
-                android:textSize="13dp"
-                android:textColor="#313131"/>
+                android:textSize="15dp"/>
             <Button 
                 android:id="@+id/pengyouquan"
                 android:layout_width="wrap_content"
@@ -86,30 +77,18 @@
                 android:background="#ffffff"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="股友圈  "
+                android:text="朋友圈"
                 android:clickable="true"
-                android:textSize="13dp"
-                android:textColor="#313131"/>
+                android:textSize="15dp"/>
         </LinearLayout>
-        
-        <LinearLayout 
-        	android:layout_marginTop="140dp"
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	>
-            <View 
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#de4557"
-                />    
-        </LinearLayout>
-            
-       
-
-    <ListView android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-        
-    </ListView>
-   
-
+      <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <View  
+        android:layout_width="match_parent"  
+        android:layout_height="1dp" 
+        android:background="#CC0033"  />
+       </LinearLayout>
+    </LinearLayout>
 </TabHost>
