@@ -21,7 +21,17 @@
         android:layout_width="match_parent"
         android:layout_height="87dp"
         android:background="#000000"
-        ></LinearLayout>
+        >
+            <Button 
+            	android:id="@+id/createqun"
+            	android:layout_weight="1"
+            	android:text="创建群"
+            	android:textSize="13sp"
+            	android:background="#FFFFFF"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"/>
+        
+    </LinearLayout>
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="24dp"
@@ -36,14 +46,7 @@
                   android:textSize="13sp"
                   android:hint="搜索"
                  />
-        <Button 
-            android:id="@+id/createqun"
-            android:layout_weight="1"
-            android:text="创建群"
-            android:textSize="13sp"
-            android:background="#FFFFFF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
         </LinearLayout>
         
         <LinearLayout 
@@ -89,16 +92,17 @@
                 android:textColor="#313131"/>
         </LinearLayout>
         
-            <LinearLayout 
-            	android:orientation="horizontal"
-        		android:layout_marginTop="140dp"
-        		android:layout_marginLeft="20dp"
-        		android:layout_width="280dp"
-        		android:layout_height="1dp"
-        		android:layout_gravity="bottom"
-        		android:background="#de4557">
-                
-            </LinearLayout>
+        <LinearLayout 
+        	android:layout_marginTop="140dp"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	>
+            <View 
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#de4557"
+                />    
+        </LinearLayout>
             
        
 
