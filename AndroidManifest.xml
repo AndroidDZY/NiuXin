@@ -31,6 +31,7 @@
         <activity android:name="com.example.niuxin.TongxunluActivity"></activity>
         <activity android:name="com.example.niuxin.PengyouquanActivity"></activity>
         <activity android:name="com.example.niuxin.CreatequnActivity"></activity>
+        <activity android:name="com.example.niuxin.ChatActivity"></activity>
     </application>
 
 </manifest>

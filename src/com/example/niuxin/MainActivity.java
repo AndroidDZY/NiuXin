@@ -31,7 +31,7 @@ public class MainActivity extends TabActivity {
 		main_guqunguangchang=(Button)findViewById(R.id.main_tab_guqunguangchang);
 		main_gushirili=(Button)findViewById(R.id.main_tab_gushirili);
 		main_more=(Button)findViewById(R.id.main_tab_more);
-		//ÉèÖÃ¼àÌýÊÂ¼þ
+		//ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
 		main_niuxin.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
