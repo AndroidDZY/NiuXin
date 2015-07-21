@@ -63,7 +63,7 @@
         	android:layout_centerVertical="true"
         	android:text="表情" />
         <Button
-        	android:id="@+id/btn_send"
+        	android:id="@+id/more"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_alignParentRight="true"
