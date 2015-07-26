@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <LinearLayout 
+    
+     >
+    <RelativeLayout 
+        android:id="@+id/blackpang"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#000000"
-        ></LinearLayout>
+        ></RelativeLayout>
     <RelativeLayout 
         android:id="@+id/uplayout"
+        android:layout_below="@id/blackpang"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         >
@@ -25,52 +28,58 @@
     <RelativeLayout
         android:id="@+id/rl_bottom"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        >
-	    <Button 
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true">
+        <Button 
             android:id="@+id/btn_back" 
             android:gravity="center" 
-            android:layout_marginLeft="5dp" 
             android:textSize="12.0sp" 
             android:textColor="#ffffff"  
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content" 
-            android:text="返回" />
+            android:layout_width="50dp" 
+            android:layout_height="35dp" 
+            android:text="返回" 
+            android:layout_alignParentLeft="true"/>
 	     <EditText
 	        android:id="@+id/sendmessage"
-    	    android:layout_width="wrap_content"
+	        android:layout_toRightOf="@id/btn_back"
+    	    android:layout_width="fill_parent"
         	android:layout_height="40dp"
-        	android:layout_marginLeft="10dp"
-        	android:layout_marginRight="10dp"
+        	android:layout_marginRight="120dp"
         	android:layout_centerVertical="true"
         	android:singleLine="true"
-        	android:textSize="18sp"/>
+            android:textSize="12sp"/>
+	   <RelativeLayout android:id="@+id/btongp"
+	       android:layout_width="120dp"
+	       android:layout_height="40dp"
+	       android:layout_alignParentRight="true">
         <Button
         	android:id="@+id/btn_send"
-        	android:layout_width="60dp"
-        	android:layout_height="40dp"
         	android:layout_alignParentRight="true"
-        	android:layout_marginRight="10dp"
+        	android:layout_width="40dp"
+        	android:layout_height="40dp"
+        	android:layout_marginRight="80dp"
         	android:layout_centerVertical="true"
-        	android:text="发送d" />
+        	android:textSize="8sp"
+        	android:text="发送" />
         <Button
         	android:id="@+id/emotion"
-        	android:layout_width="60dp"
+        	android:layout_width="40dp"
         	android:layout_height="40dp"
         	android:layout_alignParentRight="true"
-        	android:layout_marginRight="10dp"
+        	android:layout_marginRight="40dp"
         	android:layout_centerVertical="true"
-        	android:text="表情" />
+        	android:text="表情"
+        	android:textSize="8sp" />
         <Button
-        	android:id="@+id/btn_send"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:id="@+id/gengduo"
+        	android:layout_width="40dp"
+        	android:layout_height="40dp"
         	android:layout_alignParentRight="true"
-        	android:layout_marginRight="10dp"
+        	android:layout_marginRight="0dp"
         	android:layout_centerVertical="true"
+        	android:textSize="8sp" 
         	android:text="更多" />
-       
+        </RelativeLayout>
     </RelativeLayout>
     <ListView android:id="@+id/listview"
     	android:layout_below="@id/uplayout"
@@ -80,11 +89,11 @@
     	android:layout_marginLeft="10.0dip" 
 		android:layout_marginTop="10.0dip" 
 		android:layout_marginRight="10.0dip"
-		android:layout_marginBottom="30dp"
+		android:layout_marginBottom="10dp"
     	android:divider="@null"
     	android:dividerHeight="5dp"
     	android:scrollbars="none"
     	android:cacheColorHint="#00000000"></ListView>
     
 
-</LinearLayout>
+</RelativeLayout>
