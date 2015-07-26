@@ -71,10 +71,10 @@
         	android:text="表情"
         	android:textSize="8sp" />
         <Button
-        	android:id="@+id/gengduo"
+	        android:id="@+id/gengduo"
         	android:layout_width="40dp"
         	android:layout_height="40dp"
-        	android:layout_alignParentRight="true"
+            android:layout_alignParentRight="true"
         	android:layout_marginRight="0dp"
         	android:layout_centerVertical="true"
         	android:textSize="8sp" 

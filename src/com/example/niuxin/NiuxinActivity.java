@@ -44,6 +44,9 @@ public class NiuxinActivity extends TabActivity {
 		liaotian.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
+					liaotian.setTextColor(0xffde4557); // 设置字体颜色红
+					tongxunlu.setTextColor(0xff000000); // 设置字体颜色黑
+					pengyouquan.setTextColor(0xff000000); // 设置字体颜色黑
 				tabHost.setCurrentTabByTag("liaotian");
 
 			}
@@ -51,6 +54,9 @@ public class NiuxinActivity extends TabActivity {
 		tongxunlu.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
+				liaotian.setTextColor(0xff000000); 
+				tongxunlu.setTextColor(0xffde4557); 
+				pengyouquan.setTextColor(0xff000000); 
 				tabHost.setCurrentTabByTag("tongxunlu");
 
 			}
@@ -58,6 +64,9 @@ public class NiuxinActivity extends TabActivity {
 		pengyouquan.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
+				liaotian.setTextColor(0xff000000); 
+				tongxunlu.setTextColor(0xff000000); 
+				pengyouquan.setTextColor(0xffde4557); 
 				tabHost.setCurrentTabByTag("pengyouquan");
 
 			}

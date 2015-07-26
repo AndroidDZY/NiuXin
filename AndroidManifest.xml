@@ -32,6 +32,7 @@
         <activity android:name="com.example.niuxin.PengyouquanActivity"></activity>
         <activity android:name="com.example.niuxin.CreatequnActivity"></activity>
         <activity android:name="com.example.niuxin.ChatActivity"></activity>
+        <activity android:name="com.example.niuxin.zixuan_addActivity"></activity>
     </application>
 
 </manifest>
