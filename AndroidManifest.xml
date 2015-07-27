@@ -33,6 +33,8 @@
         <activity android:name="com.example.niuxin.CreatequnActivity"></activity>
         <activity android:name="com.example.niuxin.ChatActivity"></activity>
         <activity android:name="com.example.niuxin.zixuan_addActivity"></activity>
+        <activity android:name="com.example.niuxin.kanpan_wudangActivity"></activity>
+        <activity android:name="com.example.niuxin.edit_zixuanActivity"></activity>
     </application>
 
 </manifest>

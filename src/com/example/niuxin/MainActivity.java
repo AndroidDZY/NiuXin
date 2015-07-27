@@ -14,7 +14,7 @@ import android.widget.TabHost;
 public class MainActivity extends TabActivity {
 	private TabHost tabHost;
     private Button main_niuxin,main_guqunguangchang,
-                   main_gushirili,main_more; 
+                   main_gushirili,main_more,zhankai,edit; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,6 +31,8 @@ public class MainActivity extends TabActivity {
 		main_guqunguangchang=(Button)findViewById(R.id.main_tab_guqunguangchang);
 		main_gushirili=(Button)findViewById(R.id.main_tab_gushirili);
 		main_more=(Button)findViewById(R.id.main_tab_more);
+		zhankai=(Button)findViewById(R.id.btn_open);
+		edit=(Button)findViewById(R.id.btn_edit);
 		//���ü����¼�
 		main_niuxin.setOnClickListener(new OnClickListener() {
 
@@ -58,6 +60,24 @@ public class MainActivity extends TabActivity {
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("more");
 
+			}
+		});
+		
+		/* 点击展开按钮跳转到看盘详情页五档 */
+		zhankai.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent (MainActivity.this, kanpan_wudangActivity.class) );
+			}
+		});
+		
+		/* 点击编辑自选按钮跳转到编辑自选界面 */
+		edit.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent (MainActivity.this, edit_zixuanActivity.class) );
 			}
 		});
 	}

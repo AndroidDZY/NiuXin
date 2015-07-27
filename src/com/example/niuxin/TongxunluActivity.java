@@ -23,6 +23,7 @@ public class TongxunluActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		//719修改
 		setContentView(R.layout.tongxunlu);
+		//获取ListView
 		listView=(ListView)findViewById(R.id.zixuanlist);
 		SimpleAdapter zixuanAdapter= new SimpleAdapter(this, getData(),R.layout.zixuanlistview, 
 				new String[]{"image","title"},
