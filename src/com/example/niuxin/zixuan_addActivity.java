@@ -72,6 +72,7 @@ public class zixuan_addActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 				isadd = !isadd;
 				if (isadd == true) {
 					add_flag=R.drawable.add_flag02;
