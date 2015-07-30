@@ -84,10 +84,11 @@ public class zixuan_addActivity extends Activity {
 	}
 	
 	private List<Map<String, Object>> getList() {
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Map<String, Object>
 
+	//	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map = new HashMap<String, Object>();
+
 		map.put("id", 1);
 		map.put("name", "海螺水泥");
 		map.put("num", "600585");
