@@ -18,12 +18,14 @@
 			android:layout_marginLeft="110dp"
             android:textColor="#ffffff"
             android:textSize="20sp"/>
-        <ImageButton 
-            android:id="@+id/ibtn_edit_add"
+        <Button 
+            android:id="@+id/btn_edit_add11"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="90dp"
-            android:src="@drawable/edit_add"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:clickable="true"
+            android:checked="true"
+            android:text="123"
             />
      </LinearLayout>
      <LinearLayout 
@@ -72,7 +74,7 @@
      	android:background="#de4557"
      	android:orientation="horizontal" >
      	<Button
-     		android:id="@+id/edit_cancle"
+     		android:id="@+id/btn_edit_cancle"
          	android:checked="true"
          	android:layout_width="0dp"
          	android:layout_height="match_parent"
@@ -84,7 +86,7 @@
          	android:clickable="true"
          	android:text="取消" 
          	/>
-    	<ImageButton
+    	<Button
      		android:id="@+id/edit_delete"
          	android:checked="true"
          	android:layout_width="0dp"
@@ -94,7 +96,6 @@
 			android:src="@drawable/edit_delete"
          	android:layout_weight="1"
          	android:clickable="true"
-         	android:text="取消" 
          	/>
      	<Button
          	android:id="@+id/edit_finish"
