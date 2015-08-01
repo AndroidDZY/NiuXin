@@ -32,7 +32,7 @@
      	android:id="@+id/addlist"
      	android:layout_below="@+id/LinearLayout1"
     	android:layout_width="match_parent"
-    	android:layout_height="fill_parent"
+    	android:layout_height="wrap_content"
      >
      </ListView>
      <LinearLayout

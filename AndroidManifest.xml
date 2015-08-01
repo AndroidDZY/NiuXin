@@ -35,6 +35,9 @@
         <activity android:name="com.example.niuxin.zixuan_addActivity"></activity>
         <activity android:name="com.example.niuxin.kanpan_wudangActivity"></activity>
         <activity android:name="com.example.niuxin.edit_zixuanActivity"></activity>
+        <activity android:name="com.example.niuxin.K_lineActivity"></activity>
+        <activity android:name="com.example.niuxin.K_line_dayActivity"></activity>
+        <activity android:name="com.example.niuxin.K_line_setActivity"></activity>
     </application>
 
 </manifest>

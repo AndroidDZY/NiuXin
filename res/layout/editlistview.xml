@@ -9,43 +9,43 @@
     >
     
     <ImageView 
-        android:id="@+id/edit_flag"
+        android:id="@+id/img_edit_flag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
    		<LinearLayout 
-   		    android:layout_width="match_parent"
+   		    android:layout_width="wrap_content"
    		    android:layout_height="wrap_content"
-   		    android:orientation="vertical"></LinearLayout>
+   		    android:orientation="vertical">
    			<TextView 
    		    	android:id="@+id/edit_name"
-   		    	android:textSize="20sp"
-   		    	android:textColor="#7f7f7f"
+   		    	android:textSize="15sp"
    		    	android:layout_width="wrap_content"
        			android:layout_height="wrap_content"
-       			android:layout_marginLeft="40dp"
+       			android:layout_marginLeft="20dp"
        		/>
    			
    		    <TextView 
    		    	android:id="@+id/edit_num"
-   		    	android:textSize="20sp"
+   		    	android:textSize="15sp"
    		    	android:textColor="#7f7f7f"
    		    	android:layout_width="wrap_content"
        			android:layout_height="wrap_content"
-       			android:layout_marginLeft="40dp"
+       			android:layout_marginLeft="20dp"
        		/>
+   		</LinearLayout>
 		<ImageView 
-		    android:id="@+id/edit_top"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
+		    android:id="@+id/img_edit_top"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
 		    android:layout_marginLeft="70dp"
 		    />
 		
 		<ImageView 
-		    android:id="@+id/edit_move"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:layout_marginLeft="70dp"
+		    android:id="@+id/img_edit_move"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="50dp"
 		    />
 
 

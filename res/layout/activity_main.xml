@@ -9,31 +9,148 @@
         android:layout_height="match_parent"
         android:background="#f7f7f7"
         android:orientation="vertical" >
-    <RelativeLayout 
+    <!-- 顶部缩略图区域 -->
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="87dp"
-        android:background="#000000"
-        >
-        <Button
-            android:id="@+id/btn_open"
+        android:layout_height="100dp"
+        android:background="#000000" >
+        
+		<LinearLayout
+		    android:id="@+id/LinearLayout01"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_alignParentTop="true"
+		    android:orientation="vertical"
+		    android:layout_marginRight="-5dp" >
+
+		    <Button
+		        android:id="@+id/btn_edit"
+		        android:layout_width="wrap_content"
+		        android:layout_height="35dp"
+		        android:text="编辑"
+		       	android:textColor="#ffffff"
+		    	android:background="@drawable/buttonstyle01"
+		        android:textSize="12sp" />
+
+		    <Button
+		        android:id="@+id/btn_open"
+		        android:layout_width="wrap_content"
+		        android:layout_height="35dp"
+		        android:text="展开"
+		        android:textColor="#ffffff"
+		    	android:background="@drawable/buttonstyle01"
+		        android:textSize="12sp" />
+		</LinearLayout>
+
+
+
+		<HorizontalScrollView
+		    android:id="@+id/scrollview"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentBottom="true"
+		    android:scrollbars="none" >
+
+		    <LinearLayout
+		        android:id="@+id/LinearLayout02"
+		        android:layout_width="match_parent"
+		        android:layout_height="30dp"
+		        android:layout_alignParentBottom="true"
+		        android:orientation="horizontal" >
+		        
+		 <Button
+		    android:id="@+id/btn01"
+		    android:layout_width="wrap_content"
+		    android:layout_height="30dp"
+		    android:layout_alignParentBottom="true"
+		    android:layout_alignParentLeft="true"
+		    android:text=" 添加自选股 "
+		    android:textColor="#ffffff"
+		    android:background="@drawable/buttonstyle01"
+		    android:textSize="12sp" />
+
+		 <Button
+		    android:id="@+id/btn02"
+		    android:layout_width="wrap_content"
+		    android:layout_height="30dp"
+		    android:layout_alignParentBottom="true"
+		    android:text=" 添加自选股 "
+		    android:textColor="#ffffff"
+		    android:background="@drawable/buttonstyle01"
+		    android:textSize="12sp" />
+
+		<Button
+		    android:id="@+id/btn03"
+		    android:layout_width="wrap_content"
+		    android:layout_height="30dp"
+		    android:layout_alignParentBottom="true"
+		    android:text=" 添加自选股 "
+		    android:textColor="#ffffff"
+		    android:background="@drawable/buttonstyle01"
+		    android:textSize="12sp" />
+
+		<Button
+		    android:id="@+id/btn04"
+		    android:layout_width="wrap_content"
+		    android:layout_height="30dp"
+		    android:layout_alignParentBottom="true"
+		    android:text=" 添加自选股 "
+		    android:textColor="#ffffff"
+		    android:background="@drawable/buttonstyle01"
+		    android:textSize="12sp" />
+		<Button
+		    android:id="@+id/btn05"
+		    android:layout_width="wrap_content"
+		    android:layout_height="30dp"
+		    android:layout_alignParentBottom="true"
+		    android:text=" 添加自选股 "
+		    android:textColor="#ffffff"
+		    android:background="@drawable/buttonstyle01"
+		    android:textSize="12sp" />
+
+		<Button
+		    android:id="@+id/btn06"
+		    android:layout_width="wrap_content"
+		    android:layout_height="30dp"
+		    android:layout_alignParentBottom="true"
+		    android:text=" 添加自选股 "
+		    android:textColor="#ffffff"
+		    android:background="@drawable/buttonstyle01"
+		    android:textSize="12sp" />
+
+		<Button
+		    android:id="@+id/btn07"
+		    android:layout_width="wrap_content"
+		    android:layout_height="30dp"
+		    android:layout_alignParentBottom="true"
+		    android:text=" 添加自选股 "
+		    android:textColor="#ffffff"
+		    android:background="@drawable/buttonstyle01"
+		    android:textSize="12sp" />
+
+		<Button
+		    android:id="@+id/btn08"
+		    android:layout_width="wrap_content"
+		    android:layout_height="30dp"
+		    android:layout_alignParentBottom="true"
+		    android:text=" 添加自选股 "
+		    android:textColor="#ffffff"
+		    android:background="@drawable/buttonstyle01"
+		    android:textSize="12sp" />
+		    </LinearLayout>
+		</HorizontalScrollView>
+        
+        <ImageView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="展开看盘"
-            android:textSize="20sp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            />
-        <Button
-            android:id="@+id/btn_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="编辑自选"
-            android:textSize="20sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            />
-            
-    </RelativeLayout> 
+            android:src="@drawable/suolue"
+            android:scaleType="fitXY"
+            android:layout_toLeftOf="@id/LinearLayout01"
+            android:layout_above="@id/scrollview"
+            android:layout_marginRight="-5dp"/>
+   </RelativeLayout> 
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"

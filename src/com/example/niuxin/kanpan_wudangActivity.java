@@ -6,6 +6,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TabHost;
 import android.app.Activity;
+import android.content.Intent;
 
 
 public class kanpan_wudangActivity extends Activity {
@@ -30,7 +31,7 @@ public class kanpan_wudangActivity extends Activity {
         
         // 获取Button对象  
         Button btn_back=(Button)findViewById(R.id.btn_back);
-        Button btn_finish=(Button)findViewById(R.id.btn_finish);
+        Button btn_K=(Button)findViewById(R.id.btn_K);
         // 返回按钮返回上一个窗口
         btn_back.setOnClickListener(new OnClickListener() {
 
@@ -39,11 +40,13 @@ public class kanpan_wudangActivity extends Activity {
 
 			}
 		});
-        // 完成按钮返回上一个窗口
-        btn_finish.setOnClickListener(new OnClickListener() {
+        // K线按钮跳转到K线显示图
+        btn_K.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
-				finish();
+				Intent intent = new Intent(kanpan_wudangActivity.this,K_lineActivity.class);
+				startActivity(intent);
+				//finish();
 
 			}
 		});
