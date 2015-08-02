@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:layout_marginTop="55dp">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:background="#de4557">
+        <EditText android:background="@drawable/edittext_search"
+            android:layout_width="wrap_content"
+            android:layout_weight="3"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"
+            android:hint="请输入名称关键字或股票代码"
+            android:textSize="12sp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#de4557"
+            android:text="查找"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+        <Button
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#de4557"
+            android:text="取消"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+       </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="群组类型"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"/>
+        <Spinner android:id="@+id/qunzuleixing"
+            android:layout_weight="1"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="排行类型"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"/>
+        <Spinner android:id="@+id/paihangleixing"
+            android:layout_weight="1"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="收费类型"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"/>
+        <Spinner android:id="@+id/shoufeileixing"
+            android:layout_weight="1"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="群组人数"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"/>
+        <Spinner android:id="@+id/qunzurenshu"
+            android:layout_weight="1"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            />
+    </LinearLayout>
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="群组评分"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"/>
+        <Spinner android:id="@+id/qunzupingfen"
+            android:layout_weight="1"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp"
+            />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <View  
+        android:layout_width="match_parent"  
+        android:layout_height="1dp" 
+        android:background="#de4557"  />
+   </LinearLayout>
+   <LinearLayout android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+        <TextView android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="为您推荐"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:textSize="16sp" />
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal" 
+    >
+    <LinearLayout android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="25dp">
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <TextView android:text="中兴证券讨论组"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                />
+            <Button android:text="五角星"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp"
+                android:textSize="10dp"
+                />
+        </LinearLayout>
+        
+       <LinearLayout android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView android:text="中兴证券综合讨论，分析买入卖出时机"
+                android:lines="2"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                />
+         </LinearLayout>
+        
+       <LinearLayout android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView android:text="个股  ①"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                />
+            <TextView android:text="12/25"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="50dp"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp">
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <TextView android:text="中兴证券讨论组"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                />
+            <Button android:text="五角星"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp"
+                android:textSize="10dp"
+                />
+        </LinearLayout>
+        
+       <LinearLayout android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView android:text="中兴证券综合讨论，分析买入卖出时机"
+                android:lines="2"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                />
+         </LinearLayout>
+        
+       <LinearLayout android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView android:text="个股  ①"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                />
+            <TextView android:text="12/25"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="50dp"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+    
+</LinearLayout>
+<RelativeLayout 
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#de4557">
+    <Button android:id="@+id/searchuser_cancel"
+        android:text="取消"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#de4557"
+        android:textColor="#ffffff"/>
+    <Button android:id="@+id/searchuser_done"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_height="match_parent"
+        android:text="完成"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:background="#de4557"
+        />
+</RelativeLayout>
+
+</RelativeLayout>

@@ -41,6 +41,9 @@ public class TongxunluActivity extends Activity {
 				case 0: //点击第一个item
 					startActivity(new Intent(TongxunluActivity.this,zixuan_addActivity.class));
 					break;
+				case 2: //点击第3个item
+					startActivity(new Intent(TongxunluActivity.this,SearchuserActivity.class));
+					break;
 				}
 			}
 	
