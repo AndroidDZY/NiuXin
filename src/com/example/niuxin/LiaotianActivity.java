@@ -48,13 +48,32 @@ public class LiaotianActivity extends Activity {
 		List<Map<String, Object>> listLiaoTian= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("img", R.drawable.i1);
-		map.put("qunname", "中兴证券讨论组");
-		map.put("lastmes", "听说杨总又换女友了");
-		map.put("time","12:30");
+		map.put("img", R.drawable.head_01);
+		map.put("qunname", "中信证券讨论组");
+		map.put("lastmes", "汪总：今天又要涨停");
+		map.put("time","13:20");
 		map.put("quntag", "个股");
-		map.put("renshu", "12/20");
+		map.put("renshu", "12/50");
 		listLiaoTian.add(map);
+		
+		map = new HashMap<String, Object>();
+		map.put("img", R.drawable.head_01);
+		map.put("qunname", "老汪的股市学校");
+		map.put("lastmes", "汪总：今天又要涨停");
+		map.put("time","13:20");
+		map.put("quntag", "教学");
+		map.put("renshu", "12/50");
+		listLiaoTian.add(map);
+		
+		map = new HashMap<String, Object>();
+		map.put("img", R.drawable.head_01);
+		map.put("qunname", "创业板选股讨论");
+		map.put("lastmes", "汪总：今天又要涨停");
+		map.put("time","13:20");
+		map.put("quntag", "板块");
+		map.put("renshu", "12/50");
+		listLiaoTian.add(map);
+		
 		return listLiaoTian;
 	}
 

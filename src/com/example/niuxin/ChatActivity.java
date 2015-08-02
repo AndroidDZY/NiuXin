@@ -12,19 +12,24 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class ChatActivity extends Activity implements OnClickListener{
 	private Button mBtnSend,mButtonBiaoqing,mButtonBack,mButtonMore;
+	private ImageButton btn_collect,btn_share;
 	private EditText mEditText;
 	private ListView mListView;
+	private LinearLayout layout_more;
+	private int count=0;
 	//定义适配器
 	private ChatMsgViewAdapter mAdapter;
 	//聊天数据
 	private List<ChatMsgEntity> mDataArrays = new ArrayList<ChatMsgEntity>();
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.chat);
 		initView();
 		initData();
@@ -33,15 +38,22 @@ public class ChatActivity extends Activity implements OnClickListener{
 	//初始化视图
 	private void initView() {
 		// TODO Auto-generated method stub
+		//获取各种控件
 		mListView = (ListView) findViewById(R.id.listview);
 		mButtonBack = (Button) findViewById(R.id.btn_back);
 		mBtnSend = (Button) findViewById(R.id.btn_send);
 		mButtonBiaoqing = (Button) findViewById(R.id.emotion);
 		mButtonMore = (Button) findViewById(R.id.gengduo);
 		mEditText = (EditText) findViewById(R.id.sendmessage);
+		layout_more = (LinearLayout) findViewById(R.id.layout_more);
+		btn_collect = (ImageButton) findViewById(R.id.btn_collect);
+		btn_share = (ImageButton) findViewById(R.id.btn_share);
 		
 		mButtonBack.setOnClickListener(this);
 		mBtnSend.setOnClickListener(this);
+		mButtonMore.setOnClickListener(this);
+		btn_collect.setOnClickListener(this);
+		btn_share.setOnClickListener(this);
 		
 	}
 	private String[] msgArray = new String[]{"我刚刚交了一个女朋友", 
@@ -83,9 +95,30 @@ public class ChatActivity extends Activity implements OnClickListener{
 			case R.id.btn_send:
 				send();
 				break;
+			case R.id.gengduo:
+				more();
+				break;
+			case R.id.btn_collect:
+				break;
+			case R.id.btn_share:
+				break;
 			}
 		}
-        
+		
+		//展开更多
+		private void more() {
+			// TODO Auto-generated method stub
+			count ++;
+			if(count % 2 == 1)
+			{
+				layout_more.setVisibility(View.VISIBLE);//显示more
+			}
+			else
+			{
+				layout_more.setVisibility(View.GONE);//隐藏more
+			}
+		}
+
 		//发送消息
 		private void send() {
 			// TODO Auto-generated method stub
@@ -104,6 +137,12 @@ public class ChatActivity extends Activity implements OnClickListener{
 			}
 			
 		}
+		
+		private void back() {
+			// TODO Auto-generated method stub
+			finish();//返回结束事件
+		}
+		
 		//获取日期
 		private String getDate() {
 	        Calendar c = Calendar.getInstance();
@@ -117,9 +156,6 @@ public class ChatActivity extends Activity implements OnClickListener{
 	        return sbBuffer.toString();
 	    }
 
-		private void back() {
-			// TODO Auto-generated method stub
-			finish();//返回结束事件
-		}
+
 		
 }
