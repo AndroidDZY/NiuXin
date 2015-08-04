@@ -6,7 +6,10 @@ import java.util.List;
 import com.niuxin.bean.ChatMsgEntity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -15,8 +18,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 public class ChatActivity extends Activity implements OnClickListener{
+	
+	private PopupMenu popup = null;
 	private Button mBtnSend,mButtonBiaoqing,mButtonBack,mButtonMore;
 	private ImageButton btn_collect,btn_share;
 	private EditText mEditText;
@@ -99,12 +106,26 @@ public class ChatActivity extends Activity implements OnClickListener{
 				more();
 				break;
 			case R.id.btn_collect:
+				collect();
 				break;
 			case R.id.btn_share:
+				share();
 				break;
 			}
 		}
-		
+		//展开分享
+		private void share() {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(ChatActivity.this,ShareActivity.class);
+			startActivity(intent);
+		}
+
+		//展开收藏
+		private void collect() {
+			// TODO Auto-generated method stub
+			
+		}
+
 		//展开更多
 		private void more() {
 			// TODO Auto-generated method stub
@@ -155,7 +176,44 @@ public class ChatActivity extends Activity implements OnClickListener{
 	        sbBuffer.append(year + "-" + month + "-" + day + " " + hour + ":" + mins); 
 	        return sbBuffer.toString();
 	    }
+		
+		
+		public void onPopupButtonClick(View btn_collect)
+		  {
+		    //创建PopupMenu对象
+		      popup=new PopupMenu(this,btn_collect);
+		    //将R.menu.popup_menu菜单资源加载到popup菜单中
+		    getMenuInflater().inflate(R.menu.popup_menu,popup.getMenu());
+		    //为popup菜单的菜单项单击事件绑定事件监听器
+		    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
 
-
+		      @Override
+		      public boolean onMenuItemClick(MenuItem item) {
+		        switch(item.getItemId())
+		        {
+		        case R.id.exit:
+		          //隐藏该对话框
+		          popup.dismiss();
+		          break;
+		        default:
+		          //使用Toast显示用户单击的菜单项
+		          Toast.makeText(ChatActivity.this, "您单击了【"+item.getTitle()+"】菜单项",Toast.LENGTH_SHORT).show();
+		        
+		        }
+		        // TODO Auto-generated method stub
+		        return false;
+		      }
+		      
+		    });
+		    popup.show();
+		  }
+		  
+		  
+		  @Override
+		  public boolean onCreateOptionsMenu(Menu menu) {
+		    // Inflate the menu; this adds items to the action bar if it is present.
+		    getMenuInflater().inflate(R.menu.popup_menu_test, menu);
+		    return true;
+		  }
 		
 }
