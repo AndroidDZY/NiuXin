@@ -45,6 +45,8 @@
         <activity android:name="com.example.niuxin.PaihangActivity"></activity>
         <activity android:name="com.example.niuxin.SearchuserActivity"></activity>
         
+        <uses-library android:name="android.test.runner"/>  
     </application>
 
+      <instrumentation android:targetPackage="com.example.niuxin" android:name="android.test.InstrumentationTestRunner" android:label="NiuXin"/> 
 </manifest>
