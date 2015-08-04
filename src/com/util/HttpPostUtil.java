@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -28,7 +29,7 @@ public class HttpPostUtil implements Runnable {
     
     private static final int NO_SERVER_ERROR=1000;
     //服务器地址
-    public static final String URL = "";
+    public String URL = "";
     //一些请求类型
     public final static String ADD = "/add";
     public final static String UPDATE = "/update";
@@ -45,7 +46,11 @@ public class HttpPostUtil implements Runnable {
     private HttpPost httpPost;
     private HttpResponse httpResponse;
     private OnReceiveDataListener onReceiveDataListener;
-    private int statusCode;
+    public OnReceiveDataListener getOnReceiveDataListener() {
+		return onReceiveDataListener;
+	}
+
+	private int statusCode;
 
     /**
      * 构造函数，初始化一些可以重复使用的变量
@@ -72,7 +77,10 @@ public class HttpPostUtil implements Runnable {
      * @param nameValuePairs
      *            需要传递的参数
      */
-    public void iniRequest(String requestType, JSONObject jsonObject) {
+    public void setUrl(String str){
+    	this.URL = str;
+    }
+    public void setRequest(String requestType, JSONObject jsonObject) {
         httpPost.addHeader("Content-Type", "text/json");
         httpPost.addHeader("charset", "UTF-8");
 
@@ -82,7 +90,8 @@ public class HttpPostUtil implements Runnable {
         HttpConnectionParams.setSoTimeout(httpParameters, socketTimeout);
         httpPost.setParams(httpParameters);
         try {
-            httpPost.setURI(new URI(URL + requestType));
+          //  httpPost.setURI(new URI(URL + requestType));
+            httpPost.setURI(new URI(URL));
             httpPost.setEntity(new StringEntity(jsonObject.toString(),HTTP.UTF_8));
         } catch (URISyntaxException e1) {
             e1.printStackTrace();
@@ -118,16 +127,21 @@ public class HttpPostUtil implements Runnable {
     @Override
     public void run() {
         httpResponse = null;
-        try {
+        try {      	
             httpResponse = httpClient.execute(httpPost);
-            strResult = EntityUtils.toString(httpResponse.getEntity());
+            HttpEntity entity = httpResponse.getEntity();
+            strResult = EntityUtils.toString(entity);
+            System.out.println("strResult>>>>>>>>>>>>>>>>>>>"+strResult);
         } catch (ClientProtocolException e1) {
             strResult = null;
             e1.printStackTrace();
         } catch (IOException e1) {
             strResult = null;
             e1.printStackTrace();
-        } finally {
+        }catch (Exception e1) {
+            strResult = null;
+            e1.printStackTrace();
+        }  finally {
             if (httpResponse != null) {
                 statusCode = httpResponse.getStatusLine().getStatusCode();
             }
@@ -167,15 +181,5 @@ public class HttpPostUtil implements Runnable {
 
 
 /*
-代码使用了观察者模式，任何需要接收http请求结果的类，都要实现OnReceiveDataListener接口的抽象方法，同时PostRequest实例调用setOnReceiveDataListener方法，注册该监听器。完整调用步骤如下：
-
-1.创建PostRequest对象，实现onReceiveData接口，编写自己的onReceiveData方法
-
-2.注册监听器
-
-3.调用PostRequest的iniRequest方法，初始化本次request
-
-4.调用PostRequest的execute方法
-
 http://www.cnblogs.com/hrlnw/p/4118480.html
 */
