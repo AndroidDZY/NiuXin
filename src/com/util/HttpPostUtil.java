@@ -129,6 +129,7 @@ public class HttpPostUtil implements Runnable {
         httpResponse = null;
         try {      	
             httpResponse = httpClient.execute(httpPost);
+            httpResponse.get
             HttpEntity entity = httpResponse.getEntity();
             strResult = EntityUtils.toString(entity);
             System.out.println("strResult>>>>>>>>>>>>>>>>>>>"+strResult);
