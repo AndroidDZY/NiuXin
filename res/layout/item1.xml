@@ -17,10 +17,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 />
-            <Button android:text="五角星"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginRight="5dp"
+            <Button android:background="@drawable/xingxing"
+                android:layout_width="25dp"
+                
+                android:layout_height="15dp"
+                android:layout_marginLeft="25dp"
                 android:textSize="8sp"
                 />
         </LinearLayout>
