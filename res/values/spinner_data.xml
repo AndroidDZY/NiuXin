@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="messages">  
+    	<item>所有</item>  
+    	<item>聊天记录</item>  
+    	<item>股友圈</item>  
+    	<item>推送消息</item>  
+	</string-array>
+
+	<string-array name="tags">  
+    	<item>所有</item>  
+    	<item>标签1</item>  
+    	<item>标签2</item>  
+    	<item>标签3</item>  
+	</string-array>    
+</resources>
