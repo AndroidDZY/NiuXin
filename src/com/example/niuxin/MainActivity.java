@@ -14,8 +14,10 @@ import android.widget.TabHost;
 public class MainActivity extends TabActivity  {
 	private TabHost tabHost;
     private Button main_niuxin,main_guqunguangchang,
-                   main_gushirili,main_more,zhankai,edit,
-                   btn01,btn02,btn03,btn04,btn05,btn06,btn07,btn08;
+                   main_gushirili,main_more;
+    // 在此类中引用SuoluetuActivity类
+    SuoluetuActivity suoluetu = new SuoluetuActivity();
+ //   private Button zhankai,edit,btn01,btn02,btn03,btn04,btn05,btn06,btn07,btn08;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,16 +34,16 @@ public class MainActivity extends TabActivity  {
 		main_guqunguangchang=(Button)findViewById(R.id.main_tab_guqunguangchang);
 		main_gushirili=(Button)findViewById(R.id.main_tab_gushirili);
 		main_more=(Button)findViewById(R.id.main_tab_more);
-		zhankai=(Button)findViewById(R.id.btn_open);
-		edit=(Button)findViewById(R.id.btn_edit);
-		btn01=(Button)findViewById(R.id.btn01);
-		btn02=(Button)findViewById(R.id.btn02);
-		btn03=(Button)findViewById(R.id.btn03);
-		btn04=(Button)findViewById(R.id.btn04);
-		btn05=(Button)findViewById(R.id.btn05);
-		btn06=(Button)findViewById(R.id.btn06);
-		btn07=(Button)findViewById(R.id.btn07);
-		btn08=(Button)findViewById(R.id.btn08);
+		//zhankai=(Button)findViewById(R.id.btn_open);
+		//edit=(Button)findViewById(R.id.btn_edit);
+		//btn01=(Button)findViewById(R.id.btn01);
+		//btn02=(Button)findViewById(R.id.btn02);
+		//btn03=(Button)findViewById(R.id.btn03);
+		//btn04=(Button)findViewById(R.id.btn04);
+		//btn05=(Button)findViewById(R.id.btn05);
+		//btn06=(Button)findViewById(R.id.btn06);
+		//btn07=(Button)findViewById(R.id.btn07);
+		//btn08=(Button)findViewById(R.id.btn08);
 		//���ü����¼�
 		main_niuxin.setOnClickListener(new OnClickListener() {
 

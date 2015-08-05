@@ -1,9 +1,14 @@
 package com.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -18,6 +23,8 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -25,15 +32,11 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.Handler;
 
-public class HttpPostUtil implements Runnable {
+public class HttpPostUtil implements Runnable{
     
     private static final int NO_SERVER_ERROR=1000;
     //服务器地址
     public String URL = "";
-    //一些请求类型
-    public final static String ADD = "/add";
-    public final static String UPDATE = "/update";
-    public final static String PING = "/ping";
     //一些参数
     private static int connectionTimeout = 60000;
     private static int socketTimeout = 60000;
@@ -70,17 +73,13 @@ public class HttpPostUtil implements Runnable {
     }
 
     /**
-     * 根据不同的请求类型来初始化httppost
-     * 
-     * @param requestType
-     *            请求类型
      * @param nameValuePairs
      *            需要传递的参数
      */
     public void setUrl(String str){
     	this.URL = str;
     }
-    public void setRequest(String requestType, JSONObject jsonObject) {
+    public void setRequest(JSONObject jsonObject) {
         httpPost.addHeader("Content-Type", "text/json");
         httpPost.addHeader("charset", "UTF-8");
 
@@ -127,12 +126,17 @@ public class HttpPostUtil implements Runnable {
     @Override
     public void run() {
         httpResponse = null;
+        StringBuffer sb = new StringBuffer();
         try {      	
             httpResponse = httpClient.execute(httpPost);
+
 //            httpResponse.get
 //            HttpEntity entity = httpResponse.getEntity();
 //            strResult = EntityUtils.toString(entity);
             System.out.println("strResult>>>>>>>>>>>>>>>>>>>"+strResult);
+
+            strResult = EntityUtils.toString(httpResponse.getEntity());
+
         } catch (ClientProtocolException e1) {
             strResult = null;
             e1.printStackTrace();
@@ -152,29 +156,40 @@ public class HttpPostUtil implements Runnable {
             }
             if(onReceiveDataListener!=null)
             {
-                //将注册的监听器的onReceiveData方法加入到消息队列中去执行
+            	//将注册的监听器的onReceiveData方法加入到消息队列中去执行
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        onReceiveDataListener.onReceiveData(strResult, statusCode);
+                    		onReceiveDataListener.onReceiveData(strResult);                    	
                     }
                 });
+                
             }
         }
+    }
+    
+    private static ArrayList<HashMap<String, Object>> Analysis(String jsonStr) throws JSONException {
+        /******************* 解析 ***********************/
+        JSONArray jsonArray = null;
+        // 初始化list数组对象
+        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+        jsonArray = new JSONArray(jsonStr);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            // 初始化map数组对象
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("username", jsonObject.getString("username"));          
+            list.add(map);
+        }
+        return list;
     }
 
     /**
      * 用于接收并处理http请求结果的监听器
      *
      */
-    public interface OnReceiveDataListener {
-        /**
-         * the callback function for receiving the result data
-         * from post request, and further processing will be done here
-         * @param strResult the result in string style.
-         * @param StatusCode the status of the post
-         */
-        public abstract void onReceiveData(String strResult,int StatusCode);
+    public interface OnReceiveDataListener {       
+        public abstract void onReceiveData(String strResult);
     }
 
 }

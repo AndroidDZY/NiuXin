@@ -36,6 +36,7 @@
         <activity android:name="com.example.niuxin.CollectActivity"></activity>
         <activity android:name="com.example.niuxin.ShareActivity"></activity>
         <activity android:name="com.example.niuxin.Tag_ManageActivity"></activity>
+        <activity android:name="com.example.niuxin.SuoluetuActivity"></activity>
 
         <activity android:name="com.example.niuxin.kanpan_wudangActivity"></activity>
         <activity android:name="com.example.niuxin.edit_zixuanActivity"></activity>

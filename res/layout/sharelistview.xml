@@ -12,14 +12,14 @@
         android:layout_weight="2"
         >
     	<ImageView 
-        	android:id="@+id/img_collect"
+        	android:id="@+id/img_share"
         	android:layout_width="60dp"
         	android:layout_height="60dp"
         	android:scaleType="fitCenter"
         	android:padding="5dp"
        	 />
     	 <TextView 
-            android:id="@+id/xiaoxiyuan"
+            android:id="@+id/xiaoxiyuan01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
@@ -33,21 +33,21 @@
         android:layout_weight="5"
         >
         <TextView 
-            android:id="@+id/collect_title"
+            android:id="@+id/share_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="#000000"
             />
         <TextView
-            android:id="@+id/collect_context" 
+            android:id="@+id/share_context" 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#696969"
             android:textSize="12sp"/>
     </LinearLayout>
     <TextView 
-        android:id="@+id/collect_date"
+        android:id="@+id/share_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
@@ -55,7 +55,7 @@
         android:textColor="#000000"
         />
      <TextView 
-        android:id="@+id/collect_time"
+        android:id="@+id/share_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
