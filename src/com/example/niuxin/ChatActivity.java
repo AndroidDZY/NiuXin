@@ -2,7 +2,9 @@ package com.example.niuxin;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 import com.niuxin.bean.ChatMsgEntity;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -32,6 +34,7 @@ public class ChatActivity extends Activity implements OnClickListener{
 	private ListView mListView;
 	private LinearLayout layout_more;
 	private int count=0;
+	private SuoluetuActivity suolue;
 	//定义适配器
 	private ChatMsgViewAdapter mAdapter;
 	//聊天数据
@@ -41,7 +44,7 @@ public class ChatActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		//requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.chat);
-		
+		suolue = new SuoluetuActivity(this);
 		initView();
 		initData();
 	}
@@ -67,7 +70,7 @@ public class ChatActivity extends Activity implements OnClickListener{
 		mButtonMore.setOnClickListener(this);
 		btn_collect.setOnClickListener(this);
 		btn_share.setOnClickListener(this);
-		
+	
 	}
 	private String[] msgArray = new String[]{"我刚刚交了一个女朋友", 
 			"那是好事情啊", 
