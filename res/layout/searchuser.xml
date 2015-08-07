@@ -6,7 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:layout_marginTop="55dp">
+    >
+    <!-- 顶部缩略图 -->
+	<include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/> 
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="30dp"
         android:orientation="horizontal"
@@ -17,6 +21,7 @@
             android:layout_marginLeft="5dp"
             android:layout_height="match_parent"
             android:hint="请输入名称关键字或股票代码"
+            android:gravity="center"
             android:textSize="12sp"
             />
 
@@ -251,28 +256,36 @@
     </LinearLayout>
     
 </LinearLayout>
-<RelativeLayout 
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#de4557">
-    <Button android:id="@+id/searchuser_cancel"
-        android:text="取消"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="#de4557"
-        android:textColor="#ffffff"/>
-    <Button android:id="@+id/searchuser_done"
-        android:layout_width="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_height="match_parent"
-        android:text="完成"
-        android:textSize="12sp"
-        android:textColor="#ffffff"
-        android:background="#de4557"
-        />
-</RelativeLayout>
+     <LinearLayout
+     	android:layout_width="match_parent"
+     	android:layout_height="33dp"
+      	android:layout_alignParentBottom="true"
+     	android:background="#de4557"
+     	android:orientation="horizontal" >
+     	<Button
+     		android:id="@+id/btn_searchuser_cancle"
+         	android:checked="true"
+         	android:layout_width="0dp"
+         	android:layout_height="match_parent"
+         	android:background="#de4557"
+         	android:layout_gravity="center"
+         	android:textSize="15sp"
+         	android:textColor="#ffffff"
+         	android:layout_weight="1"
+         	android:clickable="true"
+         	android:text="取消" 
+         	/>
+     	<Button
+         	android:id="@+id/btn_searchuser_finish"
+         	android:layout_width="0dp"
+         	android:layout_height="match_parent"
+         	android:background="#de4557"
+         	android:layout_gravity="center"
+         	android:textSize="15sp"
+         	android:textColor="#ffffff"
+         	android:layout_weight="1"
+         	android:clickable="true"
+         	android:text="完成" />
+    </LinearLayout> 
 
 </RelativeLayout>
