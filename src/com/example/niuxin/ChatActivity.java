@@ -5,8 +5,13 @@ import java.util.List;
 
 import com.niuxin.bean.ChatMsgEntity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -15,26 +20,37 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
+import android.widget.Toast;
 
 public class ChatActivity extends Activity implements OnClickListener{
+	
+	PopupMenu popupMenu;
+	Menu menu;
 	private Button mBtnSend,mButtonBiaoqing,mButtonBack,mButtonMore;
 	private ImageButton btn_collect,btn_share;
 	private EditText mEditText;
 	private ListView mListView;
 	private LinearLayout layout_more;
 	private int count=0;
+	private SuoluetuActivity suolue;
 	//定义适配器
 	private ChatMsgViewAdapter mAdapter;
 	//聊天数据
 	private List<ChatMsgEntity> mDataArrays = new ArrayList<ChatMsgEntity>();
+	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.chat);
+		suolue = new SuoluetuActivity(this);
 		initView();
 		initData();
 	}
 	
+
+
 	//初始化视图
 	private void initView() {
 		// TODO Auto-generated method stub
@@ -54,7 +70,7 @@ public class ChatActivity extends Activity implements OnClickListener{
 		mButtonMore.setOnClickListener(this);
 		btn_collect.setOnClickListener(this);
 		btn_share.setOnClickListener(this);
-		
+	
 	}
 	private String[] msgArray = new String[]{"我刚刚交了一个女朋友", 
 			"那是好事情啊", 
@@ -99,12 +115,60 @@ public class ChatActivity extends Activity implements OnClickListener{
 				more();
 				break;
 			case R.id.btn_collect:
+				collect();
 				break;
 			case R.id.btn_share:
+				share();
 				break;
 			}
 		}
-		
+		//展开分享
+		private void share() {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(ChatActivity.this,ShareActivity.class);
+			startActivity(intent);
+		}
+
+		//展开收藏
+		@SuppressLint("NewApi")
+		private void collect() {
+			//TODO Auto-generated method stub
+			// 创建PopupMenu对象，按钮btn_collect为触发该弹出菜单的组件
+			popupMenu = new PopupMenu(this, btn_collect);
+			// 通过XML文件将R.menu.popupmenu资源填充到popup菜单中
+			getMenuInflater().inflate(R.menu.popupmenu, popupMenu.getMenu());
+			// 监听事件
+			popupMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+				@Override
+				public boolean onMenuItemClick(MenuItem item) {
+					switch (item.getItemId()) {
+					case R.id.check:
+						// 跳转到已收藏界面
+						Intent intent = new Intent(ChatActivity.this,CollectActivity.class);
+						startActivity(intent);
+						break;
+					case R.id.batch:
+						// 暂无
+						break;
+					case R.id.manage:
+						// 跳转到标签管理界面
+						Intent intent1 = new Intent(ChatActivity.this,Tag_ManageActivity.class);
+						startActivity(intent1);
+						break;
+					case R.id.back:
+						// 隐藏该菜单
+						popupMenu.dismiss();
+						break;
+					default:
+						break;
+					}
+					return false;
+				}
+			});
+			popupMenu.show();
+		}
+
 		//展开更多
 		private void more() {
 			// TODO Auto-generated method stub
@@ -155,7 +219,5 @@ public class ChatActivity extends Activity implements OnClickListener{
 	        sbBuffer.append(year + "-" + month + "-" + day + " " + hour + ":" + mins); 
 	        return sbBuffer.toString();
 	    }
-
-
-		
+		  
 }

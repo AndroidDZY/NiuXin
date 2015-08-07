@@ -19,7 +19,7 @@
         <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="我的收藏"
+	        android:text="我的分享"
 	        android:textSize="20sp"
 	        android:textColor="#ffffff"
 	        android:layout_centerInParent="true"
@@ -117,7 +117,7 @@
 	</LinearLayout>	
     </LinearLayout> 	
     <ListView 
-     	android:id="@+id/collectlist"
+     	android:id="@+id/sharelist"
      	android:layout_below="@id/collect_LinearLayout02"
      	android:layout_above="@id/collect_LinearLayout01"
     	android:layout_width="match_parent"
@@ -126,5 +126,6 @@
      </ListView>
 
 </RelativeLayout>
+
 
 

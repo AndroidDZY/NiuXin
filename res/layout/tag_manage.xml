@@ -10,7 +10,7 @@
 		layout="@layout/suolue"/> 
 		
 	<RelativeLayout 
-        android:id="@+id/collect_RelativeLayout"
+        android:id="@+id/tag_RelativeLayout01"
         android:layout_below="@id/include"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="我的收藏"
+	        android:text="标签管理"
 	        android:textSize="20sp"
 	        android:textColor="#ffffff"
 	        android:layout_centerInParent="true"
@@ -28,14 +28,14 @@
 
 
      <LinearLayout
-        android:id="@+id/collect_LinearLayout01"
+        android:id="@+id/tag_LinearLayout"
      	android:layout_width="match_parent"
      	android:layout_height="33dp"
       	android:layout_alignParentBottom="true"
      	android:background="#de4557"
      	android:orientation="horizontal" >
      	<Button
-     		android:id="@+id/btn_collect_cancle"
+     		android:id="@+id/btn_tag_cancle"
          	android:checked="true"
          	android:layout_width="0dp"
          	android:layout_height="match_parent"
@@ -48,7 +48,7 @@
          	android:text="取消" 
          	/>
     	<ImageButton
-     		android:id="@+id/btn_collect_delete"
+     		android:id="@+id/btn_tag_delete"
          	android:checked="true"
          	android:layout_width="0dp"
          	android:layout_height="match_parent"
@@ -59,7 +59,7 @@
          	android:clickable="true"
          	/>
      	<Button
-         	android:id="@+id/btn_collect_finish"
+         	android:id="@+id/btn_tag_finish"
          	android:layout_width="0dp"
          	android:layout_height="match_parent"
          	android:background="#de4557"
@@ -70,61 +70,31 @@
          	android:clickable="true"
          	android:text="完成" />
     </LinearLayout> 
-    <LinearLayout 
-        android:id="@+id/collect_LinearLayout02"
-		android:layout_below="@id/collect_RelativeLayout"
+    <RelativeLayout 
+        android:id="@+id/tag_RelativeLayout02"
+		android:layout_above="@id/tag_LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="#f7f7f7"
         >
-	<LinearLayout
-	    android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1"
-	>
-		<TextView  
-			android:id="@+id/messageLabel"  
-			android:layout_width="fill_parent"  
-			android:layout_height="wrap_content"  
-			android:textSize="15sp" 
-			android:text="消息来源" />  
-		<Spinner  
-			android:id="@+id/message"  
-			android:layout_width="fill_parent"  
-			android:layout_height="wrap_content"
-			android:entries="@array/messages"/> 
-	</LinearLayout>	
-
-	<LinearLayout
-	    android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1"
-	>
-		<TextView  
-			android:id="@+id/tagLabel"  
-			android:layout_width="fill_parent"  
-			android:layout_height="wrap_content"
-			android:textSize="15sp"  
-			android:text="标签" />  
-		<Spinner  
-			android:id="@+id/tag"  
-			android:layout_width="fill_parent"  
-			android:layout_height="wrap_content" 
-			android:entries="@array/tags"/> 
-	</LinearLayout>	
-    </LinearLayout> 	
+     	<ImageButton 
+         	android:id="@+id/btn_tag_add"
+         	android:layout_width="wrap_content"
+         	android:layout_height="wrap_content"
+         	
+         	android:background="#de4557"
+         	android:layout_alignParentRight="true"
+         	android:src="@drawable/tag_add"
+         	/>
+    </RelativeLayout> 	
     <ListView 
-     	android:id="@+id/collectlist"
-     	android:layout_below="@id/collect_LinearLayout02"
-     	android:layout_above="@id/collect_LinearLayout01"
+     	android:id="@+id/taglist"
+     	android:layout_below="@id/tag_RelativeLayout01"
+     	android:layout_above="@id/tag_LinearLayout"
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
      >
      </ListView>
 
 </RelativeLayout>
-
 

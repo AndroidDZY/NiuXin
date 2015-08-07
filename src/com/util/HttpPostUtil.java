@@ -129,7 +129,14 @@ public class HttpPostUtil implements Runnable{
         StringBuffer sb = new StringBuffer();
         try {      	
             httpResponse = httpClient.execute(httpPost);
+
+//            httpResponse.get
+//            HttpEntity entity = httpResponse.getEntity();
+//            strResult = EntityUtils.toString(entity);
+            System.out.println("strResult>>>>>>>>>>>>>>>>>>>"+strResult);
+
             strResult = EntityUtils.toString(httpResponse.getEntity());
+
         } catch (ClientProtocolException e1) {
             strResult = null;
             e1.printStackTrace();

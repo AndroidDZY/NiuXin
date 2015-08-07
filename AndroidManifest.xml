@@ -33,6 +33,10 @@
         <activity android:name="com.example.niuxin.CreatequnActivity"></activity>
         <activity android:name="com.example.niuxin.ChatActivity"></activity>
         <activity android:name="com.example.niuxin.zixuan_addActivity"></activity>
+        <activity android:name="com.example.niuxin.CollectActivity"></activity>
+        <activity android:name="com.example.niuxin.ShareActivity"></activity>
+        <activity android:name="com.example.niuxin.Tag_ManageActivity"></activity>
+        <activity android:name="com.example.niuxin.SuoluetuActivity"></activity>
 
         <activity android:name="com.example.niuxin.kanpan_wudangActivity"></activity>
         <activity android:name="com.example.niuxin.edit_zixuanActivity"></activity>
@@ -45,7 +49,12 @@
         <activity android:name="com.example.niuxin.PaihangActivity"></activity>
         <activity android:name="com.example.niuxin.SearchuserActivity"></activity>
         
+
+        
+        
+
         <uses-library android:name="android.test.runner"/>  
+
     </application>
 
       <instrumentation android:targetPackage="com.example.niuxin" android:name="android.test.InstrumentationTestRunner" android:label="NiuXin"/> 
