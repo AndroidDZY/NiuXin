@@ -33,4 +33,10 @@
     	<item>免费</item>  
     	<item>收费</item>  
 	</string-array>  
+	
+	<string-array name="qun_score">  
+    	<item>五颗星</item>  
+    	<item>三颗星</item>
+    	<item>一颗星</item>    
+	</string-array> 
 </resources>
