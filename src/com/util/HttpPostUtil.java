@@ -102,8 +102,8 @@ public class HttpPostUtil implements Runnable{
     /**
      * 新开一个线程发送http请求
      */
-    public void execute() {
-        executorService.execute(this);
+    public void execute() { 
+        executorService.execute(this);  
     }
 
     /**
@@ -125,18 +125,13 @@ public class HttpPostUtil implements Runnable{
      */
     @Override
     public void run() {
+    	System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         httpResponse = null;
         StringBuffer sb = new StringBuffer();
-        try {      	
+        try { 
             httpResponse = httpClient.execute(httpPost);
-
-//            httpResponse.get
-//            HttpEntity entity = httpResponse.getEntity();
-//            strResult = EntityUtils.toString(entity);
-            System.out.println("strResult>>>>>>>>>>>>>>>>>>>"+strResult);
-
             strResult = EntityUtils.toString(httpResponse.getEntity());
-
+         //  System.out.println(strResult+"strResult>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         } catch (ClientProtocolException e1) {
             strResult = null;
             e1.printStackTrace();
@@ -160,9 +155,17 @@ public class HttpPostUtil implements Runnable{
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                    	System.out.println("准备执行回调函数>>>>>>>>>>>");
                     		onReceiveDataListener.onReceiveData(strResult);                    	
                     }
                 });
+                
+                try {
+        			Thread.sleep(2000);
+        		} catch (InterruptedException e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		}
                 
             }
         }
