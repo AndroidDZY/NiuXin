@@ -63,8 +63,8 @@ public class HttpPostUtil {
 	}
 
 	
-	public void setUrl(String str) {
-		this.URL = str;
+	public void setUrl(String str) {		
+		this.URL = ConfigProperties.getIp()+str;
 	}
 
 	public void setRequest(JSONObject jsonObject) {
