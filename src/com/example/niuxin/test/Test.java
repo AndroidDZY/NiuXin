@@ -1,24 +1,27 @@
+
 package com.example.niuxin.test;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.test.AndroidTestCase;
+/*
 import com.util.HttpPostUtil;
 import com.util.HttpPostUtil.OnReceiveDataListener;
 
 class TestResult implements OnReceiveDataListener{
+	//6.
+	@Override
 	public void onReceiveData(String strResult) {		
-		System.out.println("调用回调函数》》》》》》》》》》》》》》》》》》");		
-		System.out.println("调用回调函数》》》》》》》》》》》》》》》》》》");	
-		System.out.println("调用回调函数》》》》》》》》》》》》》》》》》》");	
-		System.out.println("调用回调函数》》》》》》》》》》》》》》》》》》");	
+		System.out.println("调用回调函数》》》》》》》》》》》》》》》》》》");			
 	}
 }
-
+*/
 public class Test extends AndroidTestCase  {
 
 	
 	public static void test(){	
+		/*
 		//1.
 		HttpPostUtil postUtil = new HttpPostUtil();
 		//2.
@@ -33,19 +36,19 @@ public class Test extends AndroidTestCase  {
 			e.printStackTrace();
 		}  
 		//3.
-		postUtil.setUrl("http://192.168.1.112:8080/NiuXinServer/user/action_countAll.do");
+		postUtil.setUrl("http://172.20.1.120:8080/NiuXinServer/user/action_countAll.do");
 		postUtil.setOnReceiveDataListener (new TestResult());
 		//4.
 		postUtil.setRequest(jsonObject);
 		//5.
 		postUtil.execute();	
-	//	postUtil.run();
-		 try {
-			Thread.sleep(2000);
+		try {
+			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		*/
 	}
 }
+
