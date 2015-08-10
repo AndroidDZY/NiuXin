@@ -1,8 +1,11 @@
+
 package com.example.niuxin.test;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.test.AndroidTestCase;
+/*
 import com.util.HttpPostUtil;
 import com.util.HttpPostUtil.OnReceiveDataListener;
 
@@ -13,11 +16,12 @@ class TestResult implements OnReceiveDataListener{
 		System.out.println("调用回调函数》》》》》》》》》》》》》》》》》》");			
 	}
 }
-
+*/
 public class Test extends AndroidTestCase  {
 
 	
 	public static void test(){	
+		/*
 		//1.
 		HttpPostUtil postUtil = new HttpPostUtil();
 		//2.
@@ -38,6 +42,13 @@ public class Test extends AndroidTestCase  {
 		postUtil.setRequest(jsonObject);
 		//5.
 		postUtil.execute();	
-		
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 	}
 }
+
