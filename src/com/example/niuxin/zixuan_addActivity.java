@@ -96,56 +96,7 @@ public class zixuan_addActivity extends Activity {
 			}
 		});
 	}
-	
-	private List<Map<String, Object>> getList() {
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("id", 1);
-		map.put("name", "海螺水泥");
-		map.put("num", "600585");
-		map.put("add_flag", add_flag);
-		list.add(map);
-		
-		map = new HashMap<String, Object>();
-		map.put("id", 2);
-		map.put("name", "大秦铁路");
-		map.put("num", "601006");
-		map.put("add_flag", add_flag);
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("id", 3);
-		map.put("name", "太钢不锈");
-		map.put("num", "000825");
-		map.put("add_flag", add_flag);
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("id", 4);
-		map.put("name", "沪深300 ");
-		map.put("num", "399300");
-		map.put("add_flag", add_flag);
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("id", 5);
-		map.put("name", "首创股份");
-		map.put("num", "600008");
-		map.put("add_flag", add_flag);
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("id", 6);
-		map.put("name", "百大集团");
-		map.put("num", "600865");
-		map.put("add_flag", add_flag);
-		list.add(map);
-
-		return list;
-	}
-
-	
 	class TestThread extends Thread{
     	
     	@Override
