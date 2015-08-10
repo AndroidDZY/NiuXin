@@ -102,19 +102,9 @@ public class zixuan_addActivity extends Activity {
     	@Override
     	public void run(){
     		//从网络上取回数据   		
-    		HttpPostUtil postUtil = new HttpPostUtil(handler);
-    		JSONObject jsonObject = new JSONObject();	
-    		 try {
-    			jsonObject.put("username", "huangwuyi");
-    			  jsonObject.put("sex", "男");
-    		        jsonObject.put("QQ", "413425430");
-    		        jsonObject.put("Min.score", new Integer(99));
-    		        jsonObject.put("nickname", "梦中心境");
-    		} catch (JSONException e) {
-    			e.printStackTrace();
-    		}  
-    		postUtil.setUrl("http://172.20.1.120:8080/NiuXinServer/user/action_countAll.do");
-    		postUtil.setRequest(jsonObject);
+    		HttpPostUtil postUtil = new HttpPostUtil(handler);    		
+    		postUtil.setUrl("/NiuXinServer/user/action_countAll.do");
+    		postUtil.setRequest(null);
     		String res = postUtil.run();	
 			// 从数据库获取数据结束
     		
@@ -148,10 +138,7 @@ public class zixuan_addActivity extends Activity {
     		map.put("num", "399300");
     		map.put("add_flag", add_flag);
     		list1.add(map);   
-///////////////////////////////////////////////////////////
-    		
-    		
-    		
+
     		list = list1;   		
     		Runnable r = new Runnable(){
 				@Override
@@ -161,8 +148,7 @@ public class zixuan_addActivity extends Activity {
 		    				new String[]{"name","num","add_flag"},
 		    				new int[]{R.id.name,R.id.num,R.id.add_flag});
 		    		listView.setAdapter(addAdapter);//为listView设置适配器
-				}
-    			
+				}    			
     		};
     		    		
     		handler.post(r);

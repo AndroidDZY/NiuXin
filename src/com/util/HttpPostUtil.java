@@ -1,21 +1,11 @@
 
 package com.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -24,8 +14,6 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -35,7 +23,6 @@ import android.os.Handler;
 
 public class HttpPostUtil {
 
-	private static final int NO_SERVER_ERROR = 1000;
 	// 服务器地址
 	public String URL = "";
 	// 一些参数
@@ -43,8 +30,7 @@ public class HttpPostUtil {
 	private static int socketTimeout = 60000;
 	// 类静态变量
 	private static HttpClient httpClient = new DefaultHttpClient();
-	private static ExecutorService executorService = Executors
-			.newCachedThreadPool();
+	
 
 	// 变量
 	private String strResult;
@@ -65,7 +51,7 @@ public class HttpPostUtil {
 
 	
 	public void setUrl(String str) {		
-		this.URL = ConfigProperties.getIp()+str;
+		this.URL = ConfigProperties.getIP()+":"+ConfigProperties.getPORT()+str;
 	}
 
 	public void setRequest(JSONObject jsonObject) {
