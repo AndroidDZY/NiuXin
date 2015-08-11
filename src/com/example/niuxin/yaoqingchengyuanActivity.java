@@ -8,6 +8,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class yaoqingchengyuanActivity extends Activity{
 	Button cancle;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.yaoqingchengyuan);
 		//2
 		suolue = new SuoluetuActivity(this);

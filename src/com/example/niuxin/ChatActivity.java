@@ -42,7 +42,7 @@ public class ChatActivity extends Activity implements OnClickListener{
 	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.chat);
 		suolue = new SuoluetuActivity(this);
 		initView();
@@ -70,6 +70,8 @@ public class ChatActivity extends Activity implements OnClickListener{
 		mButtonMore.setOnClickListener(this);
 		btn_collect.setOnClickListener(this);
 		btn_share.setOnClickListener(this);
+		//设置EditText光标位置
+		//mEditText.setSelection(5);
 	
 	}
 	private String[] msgArray = new String[]{"我刚刚交了一个女朋友", 

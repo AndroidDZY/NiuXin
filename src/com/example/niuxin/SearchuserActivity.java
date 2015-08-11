@@ -13,7 +13,7 @@ public class SearchuserActivity  extends Activity{
 	private SuoluetuActivity suolue;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.searchuser);
 		//2
 		suolue = new SuoluetuActivity(this);

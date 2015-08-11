@@ -11,12 +11,14 @@ import org.json.JSONObject;
 
 
 
+
 import com.util.HttpPostUtil;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -45,7 +47,7 @@ public class zixuan_addActivity extends Activity {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.zixuan_add);//设置zixuan_addActivity采用zixuan_add.xml布局文件进行布局
 		
 		// 获取EditText对象

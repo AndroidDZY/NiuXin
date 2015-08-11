@@ -6,17 +6,18 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 @SuppressLint("Instantiatable")
 public class SuoluetuActivity {
 	
 	
-    public Button getZhankai() {
+    public ImageButton getZhankai() {
 		return zhankai;
 	}
 
-	public void setZhankai(Button zhankai) {
+	public void setZhankai(ImageButton zhankai) {
 		this.zhankai = zhankai;
 	}
 
@@ -92,10 +93,11 @@ public class SuoluetuActivity {
 		this.btn08 = btn08;
 	}
 
-	private Button zhankai,edit,btn01,btn02,btn03,btn04,btn05,btn06,btn07,btn08;
+	private Button edit,btn01,btn02,btn03,btn04,btn05,btn06,btn07,btn08;
+	private ImageButton zhankai;
 	public SuoluetuActivity(final Activity act) {
 
-		zhankai=(Button)act.findViewById(R.id.btn_open);
+		zhankai=(ImageButton)act.findViewById(R.id.btn_open);
 		edit=(Button)act.findViewById(R.id.btn_edit);
 		btn01=(Button)act.findViewById(R.id.btn01);
 		btn02=(Button)act.findViewById(R.id.btn02);
