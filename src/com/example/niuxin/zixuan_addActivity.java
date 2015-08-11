@@ -162,7 +162,7 @@ public class zixuan_addActivity extends Activity {
     		} catch (JSONException e) {
     			e.printStackTrace();
     		}  
-    		postUtil.setUrl("http://172.20.1.120:8080/NiuXinServer/user/action_countAll.do");
+    		postUtil.setUrl("/user/action_countAll.do");
     		postUtil.setRequest(jsonObject);
     		String res = postUtil.run();	
 			// 从数据库获取数据结束

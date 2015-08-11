@@ -49,12 +49,7 @@ public class HttpPostUtil {
 	private String strResult;
 	private HttpPost httpPost;
 	private HttpResponse httpResponse;
-	
 
-
-	/**
-	 * 构造函数，初始化一些可以重复使用的变量
-	 */
 	public HttpPostUtil(Handler handler) {
 
 		strResult = null;
@@ -64,7 +59,7 @@ public class HttpPostUtil {
 
 	
 	public void setUrl(String str) {		
-		this.URL = ConfigProperties.getIp()+str;
+		this.URL = ConfigProperties.getIP()+str;
 	}
 
 	public void setRequest(JSONObject jsonObject) {
