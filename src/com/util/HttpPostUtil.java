@@ -46,11 +46,7 @@ public class HttpPostUtil {
 
 	
 	public void setUrl(String str) {		
-<<<<<<< HEAD
 		this.URL = ConfigProperties.getIP()+str;
-=======
-		this.URL = ConfigProperties.getIP()+":"+ConfigProperties.getPORT()+str;
->>>>>>> 34bd0cf1a5e5327ee45e3548f151a6b6879c8568
 	}
 
 	public void setRequest(JSONObject jsonObject) {
