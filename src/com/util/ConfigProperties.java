@@ -1,6 +1,5 @@
 package com.util;
 
-import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigProperties {
@@ -10,10 +9,7 @@ public class ConfigProperties {
 	static {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>ip>>>>>>>>>>");
 		Properties props = new Properties();
-		try {		
-		//	InputStream in = ConfigProperties.class.getResourceAsStream("/assets/database.properties");
-		//	props.load(in);
-			
+		try {				
 			props.load(ConfigProperties.class.getResourceAsStream("database.properties"));
 		} catch (Exception e1) {			
 			e1.printStackTrace();
