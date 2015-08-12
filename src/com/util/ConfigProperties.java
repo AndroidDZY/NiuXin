@@ -1,37 +1,29 @@
 package com.util;
 
-
-
 import java.util.Properties;
 
 public class ConfigProperties {
-    private static String propertiesName = "src/com/config/database.properties";
+	private static Properties urlProps;
+	private static String IP;
 
-    private static String ip;
-   
-
-    static {
-        try {
-            Properties prop = new Properties();
-            prop.load(Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream(propertiesName));
-
-            ip = prop.getProperty("ip");
-          
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-	public static String getIp() {
-		return ip;
+	static {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>ip>>>>>>>>>>");
+		Properties props = new Properties();
+		try {				
+			props.load(ConfigProperties.class.getResourceAsStream("database.properties"));
+		} catch (Exception e1) {			
+			e1.printStackTrace();
+		}
+		urlProps = props;
+		IP = urlProps.getProperty("ip");
+		System.out.println(IP+">>>>>>>ip>>>>>>>>>>");
 	}
 
-
-	public static void setIp(String ip) {
-		ConfigProperties.ip = ip;
+	public static String getIP() {
+		return IP;
 	}
 
-   
+	public static void setIP(String iP) {
+		IP = iP;
+	}
 }
