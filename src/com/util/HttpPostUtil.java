@@ -30,7 +30,7 @@ public class HttpPostUtil {
 	private static int socketTimeout = 60000;
 	// 类静态变量
 	private static HttpClient httpClient = new DefaultHttpClient();
-	
+	private static ConfigProperties con = new ConfigProperties();
 
 	// 变量
 	private String strResult;
@@ -46,7 +46,7 @@ public class HttpPostUtil {
 
 	
 	public void setUrl(String str) {		
-		this.URL = ConfigProperties.getIP()+str;
+		this.URL = ConfigProperties.IP+str;
 	}
 
 	public void setRequest(JSONObject jsonObject) {
@@ -62,8 +62,12 @@ public class HttpPostUtil {
 		try {
 			// httpPost.setURI(new URI(URL + requestType));
 			httpPost.setURI(new URI(URL));
+			if(jsonObject!=null)
 			httpPost.setEntity(new StringEntity(jsonObject.toString(),
 					HTTP.UTF_8));
+			else
+				httpPost.setEntity(new StringEntity("".toString(),
+						HTTP.UTF_8));
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
