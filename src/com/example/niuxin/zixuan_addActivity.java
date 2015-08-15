@@ -11,7 +11,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.util.DialogFactory;
 import com.util.HttpPostUtil;
+
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +26,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.app.Activity;
+import android.app.Dialog;
 
 
 public class zixuan_addActivity extends Activity {
@@ -32,13 +35,14 @@ public class zixuan_addActivity extends Activity {
 	Button add_cancle, add_finish;
 	ListView listView;
 	SimpleAdapter addAdapter;
+	public static Activity act = null;
 	// 实例化一个LinkedList类(LinkedList集合中的对象是一个个Map对象,而这个Map对象的键是String类型,值是Object类型)的对象list
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	EditText gupiao;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		act = this;
 		setContentView(R.layout.zixuan_add);// 设置zixuan_addActivity采用zixuan_add.xml布局文件进行布局
 
 		// 获取EditText对象
@@ -89,7 +93,7 @@ public class zixuan_addActivity extends Activity {
 		});
 	}
 	class TestThread extends Thread {
-
+		private Dialog mDialog = null;
 		@Override
 		public void run() {
 			// 新建工具类，向服务器发送Http请求
@@ -108,6 +112,14 @@ public class zixuan_addActivity extends Activity {
 			}
 			postUtil.setRequest(jsonObject);
 			*/
+			/*
+			boolean isNetwork= postUtil.checkNetState(act);
+			if(!isNetwork){
+				mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
+				mDialog.show();
+				return;
+			}*/
+			
 			//设置发送的url 和服务器端的struts.xml文件对应
 			postUtil.setUrl("/share/share_selectAll.do");
 			//不向服务器发送数据
