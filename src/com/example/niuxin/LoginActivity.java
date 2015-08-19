@@ -234,7 +234,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 					finish();
 					Toast.makeText(getApplicationContext(), "登录成功", 0).show();
 				} else {
-					DialogFactory.ToastDialog(LoginActivity.this, "QQ登录",
+					DialogFactory.ToastDialog(LoginActivity.this, "牛信登录",
 							"亲！您的帐号或密码错误哦");
 					if (mDialog.isShowing())
 						mDialog.dismiss();
@@ -271,7 +271,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 
 	@Override
 	public void onBackPressed() {// 捕获返回按键
-		exitDialog(LoginActivity.this, "QQ提示", "亲！您真的要退出吗？");
+		exitDialog(LoginActivity.this, "牛信提示", "亲！您真的要退出吗？");
 	}
 
 	/**
