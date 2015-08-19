@@ -1,6 +1,6 @@
 package com.util;
 
-import com.example.niuxin.R;
+
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,6 +8,8 @@ import android.content.Context;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.example.niuxin.R;
 
 public class DialogFactory {
 
