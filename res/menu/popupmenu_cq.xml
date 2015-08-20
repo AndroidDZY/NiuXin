@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/add"
+        android:title="添加好友/加入群组"/>
+    <item
+        android:id="@+id/create"
+        android:title="创建群组"/>
+
+</menu>

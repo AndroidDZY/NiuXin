@@ -54,6 +54,7 @@
                 	android:layout_width="40dp"
                 	android:layout_height="40dp"
                 	android:layout_weight="2"
+                	android:onClick="popupmenu"
                 	android:background="@drawable/chat_collect"/>
             	<TextView 
             	    android:layout_width="wrap_content"
@@ -159,8 +160,10 @@
         	android:layout_height="30dp"
         	android:layout_weight="6" 
         	android:layout_margin="2dp"
+        	android:gravity="center"
         	android:background="@drawable/edittext_search"
         	android:singleLine="true"
+        	android:cursorVisible="false"
             android:textSize="15sp"/>
         <Button
         	android:id="@+id/btn_send"
@@ -200,5 +203,4 @@
     	android:dividerHeight="5dp"
     	android:scrollbars="none"
     	android:cacheColorHint="#00000000"></ListView>
-         
 </RelativeLayout>

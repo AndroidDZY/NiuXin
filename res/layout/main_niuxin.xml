@@ -21,22 +21,27 @@
 
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="24dp"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
         android:background="#de4557">
-        <EditText android:layout_width="wrap_content"
-                  android:id="@+id/search"
-                  android:layout_weight="2"
-                  android:layout_height="match_parent"
-                  android:gravity="center"
-                  android:background="@drawable/edittext_search"
-                  android:hint="搜索"
-                  android:textSize="13sp"/>
-        <Button android:id="@+id/createqun"
+        <EditText 
+            android:id="@+id/search"
+            android:layout_weight="6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:gravity="center"
+            android:background="@drawable/edittext_search"
+            android:hint="搜索"
+            android:textSize="13sp"/>
+        <Button 
+            android:id="@+id/createqun"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:text="+"
-            android:textSize="13sp"
-            android:background="#FFFFFF"
-            android:layout_width="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:background="#de4557"
             android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout 

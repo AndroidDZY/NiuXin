@@ -3,12 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:layout_marginTop="55dp">
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="120dp"
+    android:layout_marginTop="65dp">
+    <View  
+    	android:layout_width="match_parent"  
+    	android:layout_height="1dp" 
+    	android:background="#de4557"  />
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
         <TextView android:layout_width="match_parent"
-            android:layout_height="20dp"
+			android:layout_height="20dp"
             android:text="为您推荐"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
@@ -16,19 +22,17 @@
         <android.support.v4.view.ViewPager
 	        android:id="@+id/myviewpager1"
 	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"/>
+	        android:layout_height="wrap_content"
+	        />
     </LinearLayout>
+    <View  
+    	android:layout_width="match_parent"  
+    	android:layout_height="1dp" 
+    	android:background="#de4557"  />
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <View  
-        android:layout_width="match_parent"  
-        android:layout_height="1dp" 
-        android:background="#de4557"  />
-       </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
         <TextView android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -41,18 +45,14 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"/>
     </LinearLayout>
+    <View  
+    	android:layout_width="match_parent"  
+    	android:layout_height="1dp" 
+    	android:background="#de4557"  />
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <View  
-        android:layout_width="match_parent"  
-        android:layout_height="1dp" 
-        android:background="#de4557"  />
-       </LinearLayout>
-    
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
         <TextView android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -65,14 +65,5 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"/>
     </LinearLayout>
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <View  
-        android:layout_width="match_parent"  
-        android:layout_height="1dp" 
-        android:background="#de4557"  />
-       </LinearLayout>
     
 </LinearLayout>

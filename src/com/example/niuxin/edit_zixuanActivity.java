@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,11 +23,14 @@ public class edit_zixuanActivity extends Activity{
 	ImageButton btn_edit_add;
 	ListView listView;
 	private int edit_flag = R.drawable.edit_flag01;
+
 	//实例化一个LinkedList类(LinkedList集合中的对象是一个个Map对象,而这个Map对象的键是String类型,值是Object类型)的对象list
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.edit_zixuan);
+		
 		
 		//获取Button
 		btn_edit_add = (ImageButton)findViewById(R.id.btn_edit_add);

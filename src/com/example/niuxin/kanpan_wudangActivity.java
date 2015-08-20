@@ -2,6 +2,7 @@ package com.example.niuxin;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TabHost;
@@ -13,6 +14,7 @@ public class kanpan_wudangActivity extends Activity {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.kanpan_wudang);
 		// 获取TabHost对象  
         TabHost tabHost = (TabHost) findViewById(R.id.tabhost);

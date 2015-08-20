@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <LinearLayout 
-        android:id="@+id/LinearLayout01"
+    <RelativeLayout 
+        android:id="@+id/edit_RelativeLayout01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="编辑自选"
-			android:layout_marginLeft="110dp"
+			android:layout_centerHorizontal="true"
             android:textColor="#ffffff"
             android:textSize="20sp"/>
      <ImageButton 
@@ -24,13 +24,13 @@
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:background="#de4557"
-         android:layout_marginLeft="80dp"
+         android:layout_alignParentRight="true"
          android:src="@drawable/edit_add"
          />
-     </LinearLayout>
+     </RelativeLayout>
      <LinearLayout 
         android:id="@+id/LinearLayout02"
-        android:layout_below="@id/LinearLayout01"
+        android:layout_below="@id/edit_RelativeLayout01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

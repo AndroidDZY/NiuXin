@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <!-- 顶部缩略图 -->
+	<include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/> 
+		
+	<RelativeLayout 
+        android:id="@+id/tag_RelativeLayout01"
+        android:layout_below="@id/include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#de4557"
+        >
+        <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="标签管理"
+	        android:textSize="20sp"
+	        android:textColor="#ffffff"
+	        android:layout_centerInParent="true"
+	        />
+    </RelativeLayout> 
+
+
+     <LinearLayout
+        android:id="@+id/tag_LinearLayout"
+     	android:layout_width="match_parent"
+     	android:layout_height="33dp"
+      	android:layout_alignParentBottom="true"
+     	android:background="#de4557"
+     	android:orientation="horizontal" >
+     	<Button
+     		android:id="@+id/btn_tag_cancle"
+         	android:checked="true"
+         	android:layout_width="0dp"
+         	android:layout_height="match_parent"
+         	android:background="#de4557"
+         	android:layout_gravity="center"
+         	android:textSize="15sp"
+         	android:textColor="#ffffff"
+         	android:layout_weight="1"
+         	android:clickable="true"
+         	android:text="取消" 
+         	/>
+    	<ImageButton
+     		android:id="@+id/btn_tag_delete"
+         	android:checked="true"
+         	android:layout_width="0dp"
+         	android:layout_height="match_parent"
+         	android:background="#de4557"
+         	android:layout_gravity="center"
+			android:src="@drawable/edit_delete"
+         	android:layout_weight="1"
+         	android:clickable="true"
+         	/>
+     	<Button
+         	android:id="@+id/btn_tag_finish"
+         	android:layout_width="0dp"
+         	android:layout_height="match_parent"
+         	android:background="#de4557"
+         	android:layout_gravity="center"
+         	android:textSize="15sp"
+         	android:textColor="#ffffff"
+         	android:layout_weight="1"
+         	android:clickable="true"
+         	android:text="完成" />
+    </LinearLayout> 
+    <RelativeLayout 
+        android:id="@+id/tag_RelativeLayout02"
+		android:layout_above="@id/tag_LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f7f7f7"
+        >
+     	<ImageButton 
+         	android:id="@+id/btn_tag_add"
+         	android:layout_width="wrap_content"
+         	android:layout_height="wrap_content"
+         	
+         	android:background="#de4557"
+         	android:layout_alignParentRight="true"
+         	android:src="@drawable/tag_add"
+         	/>
+    </RelativeLayout> 	
+    <ListView 
+     	android:id="@+id/taglist"
+     	android:layout_below="@id/tag_RelativeLayout01"
+     	android:layout_above="@id/tag_LinearLayout"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+     >
+     </ListView>
+
+</RelativeLayout>
+

@@ -15,35 +15,25 @@
 	            android:layout_height="wrap_content"
 	           	/>
 	    </LinearLayout>
-	    <RelativeLayout
+	    <LinearLayout
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="5dp" >
+	        android:orientation="horizontal"
+	        android:gravity="center_vertical">
 	         	<ImageView 
 		           android:id="@+id/iv_userhead" 
 		           android:layout_width="wrap_content"
 		           android:layout_height="wrap_content"
 		           android:focusable="false" 
-		           android:layout_alignParentLeft="true" 
-                   android:layout_alignParentTop="true" 
-                   android:background="@drawable/mini_avatar_shadow"
+                   android:background="@drawable/head_left"
 		           />
  				<TextView 
 	            android:id="@+id/tv_chatcontent" 
-	            android:layout_toRightOf="@id/iv_userhead"
 	            android:layout_marginLeft="10dp"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:background="@drawable/chatfrom_bg_focused" 
 	          	style="@style/chat_content_date_style"
 	            />   
-	            <TextView 
-	            android:id="@+id/tv_username" 
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_below="@id/iv_userhead"
-	            android:layout_alignParentLeft="true"
-	            android:layout_toLeftOf="@id/tv_chatcontent"
-	            />
-	    </RelativeLayout>
+	    </LinearLayout>
 </LinearLayout>

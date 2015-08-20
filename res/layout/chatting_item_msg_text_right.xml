@@ -15,10 +15,9 @@
             android:id="@+id/tv_sendtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2dp"
             android:textColor="#ffffff"
             android:textSize="12sp"
-            android:background="#bfbfbf"/>
+            android:background="#ff919191"/>
 	        
 	    </LinearLayout>
 	
@@ -35,7 +34,7 @@
 	           android:focusable="false" 
 	           android:layout_alignParentRight="true" 
                android:layout_alignParentTop="true" 
-               android:background="@drawable/mini_avatar_shadow"
+               android:background="@drawable/head_right"
 	           />
  				
  				<TextView 
@@ -53,16 +52,6 @@
 	            android:clickable="true"
 	            android:focusable="true"/>   
 	                  
-	            <TextView 
-	            android:id="@+id/tv_username" 
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_below="@id/iv_userhead"
-	            android:layout_alignParentRight="true"
-	            android:layout_toRightOf="@id/tv_chatcontent"
-	            android:textSize="15sp"
-	            android:gravity="center"
-	            android:textColor="#818181"/>
 	        
 	    </RelativeLayout>
 

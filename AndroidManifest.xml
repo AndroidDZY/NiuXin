@@ -7,22 +7,46 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
-
+    
+       <!-- 手机振动的权限 -->
+    <uses-permission android:name="android.permission.VIBRATE"/>  
+    <!-- 指定添加安装快捷方式的权限 -->
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
+         android:name="com.example.niuxin.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.example.niuxin.MainActivity"
-            
-            android:label="@string/app_name" >
+       
+        
+        
+          <activity
+            android:name="com.example.niuxin.WelcomeActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.niuxin.LoginActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateVisible" >
+        </activity>
+        <activity
+            android:name="com.example.niuxin.RegisterActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateVisible" >
+        </activity>
+
+        <service android:name="com.example.niuxin.GetMsgService" >
+        </service>
+        
+         <activity android:name="com.example.niuxin.MainActivity"> </activity>
         <activity android:name="com.example.niuxin.NiuxinActivity"></activity>
         <activity android:name="com.example.niuxin.GunqunguangchangActivity"></activity>
         <activity android:name="com.example.niuxin.GushiriliActivity"></activity>
@@ -33,6 +57,11 @@
         <activity android:name="com.example.niuxin.CreatequnActivity"></activity>
         <activity android:name="com.example.niuxin.ChatActivity"></activity>
         <activity android:name="com.example.niuxin.zixuan_addActivity"></activity>
+        <activity android:name="com.example.niuxin.CollectActivity"></activity>
+        <activity android:name="com.example.niuxin.ShareActivity"></activity>
+        <activity android:name="com.example.niuxin.Tag_ManageActivity"></activity>
+        <activity android:name="com.example.niuxin.SuoluetuActivity"></activity>
+        <activity android:name="com.example.niuxin.yaoqingchengyuanActivity"></activity>
 
         <activity android:name="com.example.niuxin.kanpan_wudangActivity"></activity>
         <activity android:name="com.example.niuxin.edit_zixuanActivity"></activity>
@@ -45,6 +74,13 @@
         <activity android:name="com.example.niuxin.PaihangActivity"></activity>
         <activity android:name="com.example.niuxin.SearchuserActivity"></activity>
         
+
+        
+        
+
+        <uses-library android:name="android.test.runner"/>  
+
     </application>
 
+      <instrumentation android:targetPackage="com.example.niuxin" android:name="android.test.InstrumentationTestRunner" android:label="NiuXin"/> 
 </manifest>
