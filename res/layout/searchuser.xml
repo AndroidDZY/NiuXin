@@ -18,6 +18,7 @@
         android:background="#de4557"
         android:gravity="center">
         <EditText 
+            android:id="@+id/su_edittext"
             android:background="@drawable/edittext_search"
             android:layout_width="0dp"
             android:layout_weight="4"
@@ -28,6 +29,7 @@
             android:textSize="12sp"
             />
         <Button
+            android:id="@+id/su_search"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
@@ -36,6 +38,7 @@
             android:textColor="#ffffff"
             android:textSize="12sp" />
         <Button
+            android:id="@+id/su_searchcancel"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
@@ -62,7 +65,7 @@
             android:text="群组类型"
             android:textSize="15sp"
 			/>
-        <Spinner android:id="@+id/qunzuleixing"
+        <Spinner android:id="@+id/su_qunzuleixing"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -74,7 +77,7 @@
             android:text="排行类型"
             android:textSize="15sp"
 		/>
-        <Spinner android:id="@+id/paihangleixing"
+        <Spinner android:id="@+id/su_paihangleixing"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -92,7 +95,7 @@
             android:text="收费类型"
             android:textSize="15sp"
 			/>
-        <Spinner android:id="@+id/shoufeileixing"
+        <Spinner android:id="@+id/su_shoufeileixing"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -104,7 +107,7 @@
             android:text="群组人数"
             android:textSize="15sp"
 		/>
-        <Spinner android:id="@+id/qunzurenshu"
+        <Spinner android:id="@+id/su_qunzurenshu"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -122,7 +125,7 @@
             android:text="群组评分"
             android:textSize="15sp"
 		/>
-        <Spinner android:id="@+id/qunzupingfen"
+        <Spinner android:id="@+id/su_qunzupingfen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/qun_score"

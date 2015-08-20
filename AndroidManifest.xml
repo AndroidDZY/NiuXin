@@ -73,7 +73,7 @@
         <activity android:name="com.example.niuxin.ShoucangActivity"></activity>
         <activity android:name="com.example.niuxin.PaihangActivity"></activity>
         <activity android:name="com.example.niuxin.SearchuserActivity"></activity>
-        
+        <activity android:name="com.example.niuxin.SearchresultActivity"></activity>
 
         
         
