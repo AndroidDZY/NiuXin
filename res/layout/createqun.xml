@@ -37,6 +37,7 @@
             android:textSize="15sp"
             />
         <EditText 
+            android:id="@+id/cq_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -64,7 +65,7 @@
             android:textSize="15sp"
             />
         <Spinner 
-            android:id="@+id/qunzuleixing"
+            android:id="@+id/cq_qunzuleixing"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_weight="3"
@@ -89,7 +90,7 @@
             android:textSize="15sp"
             />
         <Spinner 
-            android:id="@+id/ruquncondition"
+            android:id="@+id/cq_condition"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_weight="3"
@@ -116,12 +117,14 @@
             android:orientation="vertical"
             android:layout_weight="3"
 			>
-        <EditText android:layout_width="match_parent"
+        <EditText android:id="@+id/cq_gegutag"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="请输入个股或板块代码"
             android:background="@drawable/edittext_03"
             android:textSize="15sp"/>
-        <Button android:layout_width="wrap_content"
+        <Button android:id="@+id/cq_tianjiamore"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="#00000000"
             android:text="添加更多..."
@@ -147,6 +150,8 @@
             android:textSize="15sp"
             />
         <EditText 
+            android:maxLength="60"
+            android:id="@+id/cq_qunmiaoshu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -173,7 +178,7 @@
             android:textSize="15sp"
             />
         <Spinner 
-            android:id="@+id/shoufeimoshi"
+            android:id="@+id/cq_shoufeimoshi"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_weight="3"
