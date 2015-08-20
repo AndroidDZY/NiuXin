@@ -2,7 +2,7 @@ package com.example.niuxin;
 
 
 
-import com.util.MyDate;
+import com.niuxin.util.MyDate;
 
 import android.content.Context;
 import android.util.AttributeSet;

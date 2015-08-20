@@ -1,4 +1,4 @@
-package com.util;
+package com.niuxin.util;
 
 
 
@@ -34,9 +34,9 @@ public class UserDB {
 		SQLiteDatabase db = helper.getWritableDatabase();
 		for (User u : list) {
 			db.execSQL(
-					"insert into user (id,userName,img,isOnline) values(?,?,?,?)",
+					"insert into user (id,name,img,isOnline) values(?,?,?,?)",
 					new Object[] { u.getId(), u.getUserName(), u.getImg(),
-							u.getIsOnline()});
+							u.getIsOnline() });
 		}
 		db.close();
 	}
@@ -55,7 +55,7 @@ public class UserDB {
 		while (c.moveToNext()) {
 			User u = new User();
 			u.setId(c.getInt(c.getColumnIndex("id")));
-			u.setUserName(c.getString(c.getColumnIndex("name")));
+			u.setUserName(c.getString(c.getColumnIndex("userName")));
 			u.setImg(c.getInt(c.getColumnIndex("img")));
 			u.setIsOnline(c.getInt(c.getColumnIndex("isOnline")));
 			list.add(u);

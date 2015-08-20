@@ -5,7 +5,7 @@ package com.example.niuxin;
 import java.util.List;
 
 import com.niuxin.bean.User;
-import com.util.GroupFriend;
+import com.niuxin.util.GroupFriend;
 
 import android.content.Context;
 import android.content.Intent;
@@ -95,7 +95,7 @@ public class MyExAdapter extends BaseExpandableListAdapter {
 				.findViewById(R.id.imageView_item);// 显示用户头像，其实还可以判断是否在线，选择黑白和彩色头像，我这里未处理，没资源，呵呵
 
 		final String name = group.get(groupPosition).getChild(childPosition)
-				.getName();
+				.getUserName();
 		final String id = group.get(groupPosition).getChild(childPosition)
 				.getId()
 				+ "";
@@ -110,7 +110,7 @@ public class MyExAdapter extends BaseExpandableListAdapter {
 			public void onClick(View v) {
 				// 下面是切换到聊天界面处理
 				User u = new User();
-				u.setName(name);
+				u.setUserName(name);
 				u.setId(Integer.parseInt(id));
 				u.setImg(img);
 				Intent intent = new Intent(context, ChatActivity.class);

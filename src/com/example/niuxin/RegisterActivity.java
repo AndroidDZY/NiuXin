@@ -5,10 +5,10 @@ package com.example.niuxin;
 import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
-import com.util.DialogFactory;
-import com.util.Encode;
-import com.util.TranObject;
-import com.util.TranObjectType;
+import com.niuxin.util.DialogFactory;
+import com.niuxin.util.Encode;
+import com.niuxin.util.TranObject;
+import com.niuxin.util.TranObjectType;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -117,18 +117,18 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 							TranObjectType.REGISTER);
 					User u = new User();
 					u.setEmail(email);
-					u.setName(name);
-					u.setPassword(Encode.getEncode("MD5", passwd));
+					u.setUserName(name);
+					u.setPassWord(Encode.getEncode("MD5", passwd));
 					o.setObject(u);
 					out.setMsg(o);
 				} else {
 					if (mDialog.isShowing())
 						mDialog.dismiss();
-					DialogFactory.ToastDialog(this, "QQ注册", "亲！服务器暂未开放哦");
+					DialogFactory.ToastDialog(this, "牛信注册", "亲！服务器暂未开放哦");
 				}
 
 			} else {
-				DialogFactory.ToastDialog(RegisterActivity.this, "QQ注册",
+				DialogFactory.ToastDialog(RegisterActivity.this, "牛信注册",
 						"亲！您两次输入的密码不同哦");
 			}
 		}

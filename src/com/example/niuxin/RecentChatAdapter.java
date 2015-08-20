@@ -96,7 +96,7 @@ public class RecentChatAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// 下面是切换到聊天界面处理
 				User u = new User();
-				u.setName(entity.getName());
+				u.setUserName(entity.getName());
 				u.setId(entity.getId());
 				u.setImg(entity.getImg());
 				Intent intent = new Intent(context, ChatActivity.class);

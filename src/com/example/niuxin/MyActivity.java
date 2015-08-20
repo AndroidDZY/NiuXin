@@ -2,8 +2,8 @@ package com.example.niuxin;
 
 
 
-import com.util.Constants;
-import com.util.TranObject;
+import com.niuxin.util.Constants;
+import com.niuxin.util.TranObject;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;

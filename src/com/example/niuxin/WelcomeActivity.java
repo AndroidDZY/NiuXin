@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.util.Constants;
-import com.util.SharePreferenceUtil;
+import com.niuxin.util.Constants;
+import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -10,15 +10,15 @@ import com.niuxin.bean.User;
 import com.niuxin.client.ClientInputThread;
 import com.niuxin.client.ClientOutputThread;
 import com.niuxin.client.MessageListener;
-import com.util.Constants;
-import com.util.GroupFriend;
-import com.util.MessageDB;
-import com.util.MyDate;
-import com.util.SharePreferenceUtil;
-import com.util.TextMessage;
-import com.util.TranObject;
-import com.util.TranObjectType;
-import com.util.UserDB;
+import com.niuxin.util.Constants;
+import com.niuxin.util.GroupFriend;
+import com.niuxin.util.MessageDB;
+import com.niuxin.util.MyDate;
+import com.niuxin.util.SharePreferenceUtil;
+import com.niuxin.util.TextMessage;
+import com.niuxin.util.TranObject;
+import com.niuxin.util.TranObjectType;
+import com.niuxin.util.UserDB;
 
 import android.app.AlertDialog;
 import android.app.NotificationManager;
@@ -157,8 +157,8 @@ public class FriendListActivity extends MyActivity implements OnClickListener {
 			List<User> child = new ArrayList<User>();// 装小组成员的list
 			GroupFriend groupInfo = new GroupFriend(groupName[i], child);// 我们自定义的大组成员对象
 			for (User u : list) {
-				if (u.getGroup() == i)// 判断一下是属于哪个大组
-					child.add(u);
+	//			if (u.getGroup() == i)// 判断一下是属于哪个大组
+	//				child.add(u);
 			}
 			group.add(groupInfo);// 把自定义大组成员对象放入一个list中，传递给适配器
 		}
@@ -198,7 +198,7 @@ public class FriendListActivity extends MyActivity implements OnClickListener {
 		cursor = (ImageView) findViewById(R.id.tab2_bg);
 
 		myHeadImage.setImageResource(imgs[list.get(0).getImg()]);
-		myName.setText(list.get(0).getName());
+		myName.setText(list.get(0).getUserName());
 		layout_body_activity.setFocusable(true);
 
 		mPager = (ViewPager) findViewById(R.id.viewPager);
@@ -327,7 +327,7 @@ public class FriendListActivity extends MyActivity implements OnClickListener {
 			MediaPlayer.create(this, R.raw.msg).start();// 声音提示
 			User user2 = userDB.selectInfo(msg.getFromUser());// 通过id查询对应数据库该好友信息
 			RecentChatEntity entity2 = new RecentChatEntity(msg.getFromUser(),
-					user2.getImg(), newNum, user2.getName(), MyDate.getDate(),
+					user2.getImg(), newNum, user2.getUserName(), MyDate.getDate(),
 					message);
 			application.getmRecentAdapter().remove(entity2);// 先移除该对象，目的是添加到首部
 			application.getmRecentList().addFirst(entity2);// 再添加到首部

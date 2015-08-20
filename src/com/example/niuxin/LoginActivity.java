@@ -7,13 +7,13 @@ import java.util.List;
 import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
-import com.util.Constants;
-import com.util.DialogFactory;
-import com.util.Encode;
-import com.util.SharePreferenceUtil;
-import com.util.TranObject;
-import com.util.TranObjectType;
-import com.util.UserDB;
+import com.niuxin.util.Constants;
+import com.niuxin.util.DialogFactory;
+import com.niuxin.util.Encode;
+import com.niuxin.util.SharePreferenceUtil;
+import com.niuxin.util.TranObject;
+import com.niuxin.util.TranObjectType;
+import com.niuxin.util.UserDB;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -94,8 +94,8 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 		if (mAutoSavePassword.isChecked()) {
 			SharePreferenceUtil util = new SharePreferenceUtil(
 					LoginActivity.this, Constants.SAVE_USER);
-			mAccounts.setText(util.getId());
-			mPassword.setText(util.getPasswd());
+			mAccounts.setText(util.getUserName());
+			mPassword.setText(util.getPassWord());
 		}
 	}
 
@@ -164,18 +164,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 	/**
 	 * 提交账号密码信息到服务器
 	 */
-	private void submit() {
-		
-		
-		Intent i = new Intent(LoginActivity.this,
-				MainActivity.class);	
-		startActivity(i);
-		finish();
-		Toast.makeText(getApplicationContext(), "登录成功", 0).show();
-		
-		
-		
-		/*
+	private void submit() {	
 		String accounts = mAccounts.getText().toString();
 		String password = mPassword.getText().toString();
 		if (accounts.length() == 0 || password.length() == 0) {
@@ -188,18 +177,18 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 				ClientOutputThread out = client.getClientOutputThread();
 				TranObject<User> o = new TranObject<User>(TranObjectType.LOGIN);
 				User u = new User();
-				u.setId(Integer.parseInt(accounts));
-				u.setPassword(Encode.getEncode("MD5", password));
+				u.setUserName(accounts);
+				u.setPassWord(Encode.getEncode("MD5", password));
 				o.setObject(u);
 				out.setMsg(o);
 			} else {
 				if (mDialog.isShowing())
 					mDialog.dismiss();
-				DialogFactory.ToastDialog(LoginActivity.this, "QQ登录",
+				DialogFactory.ToastDialog(LoginActivity.this, "牛信登录",
 						"亲！服务器暂未开放哦");
 			}
 		}
-		*/
+		
 	}
 
 	@Override
@@ -215,17 +204,16 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 					// 保存用户信息
 					SharePreferenceUtil util = new SharePreferenceUtil(
 							LoginActivity.this, Constants.SAVE_USER);
-					util.setId(mAccounts.getText().toString());
-					util.setPasswd(mPassword.getText().toString());
+					util.setUserName(mAccounts.getText().toString());
+					util.setPassWord(mPassword.getText().toString());
 					util.setEmail(list.get(0).getEmail());
-					util.setName(list.get(0).getName());
 					util.setImg(list.get(0).getImg());
 
 					UserDB db = new UserDB(LoginActivity.this);
 					db.addUser(list);
 					
 					Intent i = new Intent(LoginActivity.this,
-							FriendListActivity.class);
+							MainActivity.class);
 					i.putExtra(Constants.MSGKEY, msg);
 					startActivity(i);
 
@@ -261,7 +249,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 			setDialog();
 			break;
 		case R.id.login_menu_exit:
-			exitDialog(LoginActivity.this, "QQ提示", "亲！您真的要退出吗？");
+			exitDialog(LoginActivity.this, "牛信提示", "亲！您真的要退出吗？");
 			break;
 		default:
 			break;

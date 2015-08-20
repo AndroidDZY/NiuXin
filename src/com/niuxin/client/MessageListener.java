@@ -1,6 +1,6 @@
 package com.niuxin.client;
 
-import com.util.TranObject;
+import com.niuxin.util.TranObject;
 
 /**
  * 消息监听接口

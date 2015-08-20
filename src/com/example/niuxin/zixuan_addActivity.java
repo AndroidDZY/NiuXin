@@ -11,9 +11,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.util.DialogFactory;
-import com.util.HttpPostUtil;
-
+import com.niuxin.util.DialogFactory;
+import com.niuxin.util.HttpPostUtil;
 
 import android.os.Bundle;
 import android.os.Handler;

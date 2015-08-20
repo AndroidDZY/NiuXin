@@ -1,6 +1,7 @@
 package com.niuxin.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 public class User implements Serializable {
@@ -8,15 +9,65 @@ public class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;// QQ号码
-	private String name;// 昵称
+	private int id;
+	private String userName;// 昵称
 	private String email;// 邮箱
-	private String password;// 密码
+	private String passWord;// 密码
 	private int isOnline;// 是否在线
 	private int img;// 头像图标
-	private int group;// 哪一个分组
 	private String ip;
-	private int port;
+	private int port;	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	private Integer status;
+	private Date createTime;
+	private Date updateTime;
+
+
+	
+	
 
 	public int getId() {
 		return id;
@@ -25,7 +76,7 @@ public class User implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+/*
 	public int getGroup() {
 		return group;
 	}
@@ -33,14 +84,8 @@ public class User implements Serializable {
 	public void setGroup(int group) {
 		this.group = group;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+*/
+	
 
 	public String getIp() {
 		return ip;
@@ -66,13 +111,7 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 
 	public int getIsOnline() {
 		return isOnline;
@@ -102,7 +141,7 @@ public class User implements Serializable {
 
 		return false;
 	}
-
+/*
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email
@@ -110,4 +149,7 @@ public class User implements Serializable {
 				+ ", img=" + img + ", ip=" + ip + ", port=" + port + ", group="
 				+ group + "]";
 	}
+	*/
+
+	
 }

@@ -3,8 +3,8 @@ package com.example.niuxin;
 import java.util.LinkedList;
 
 import com.niuxin.client.Client;
-import com.util.Constants;
-import com.util.SharePreferenceUtil;
+import com.niuxin.util.Constants;
+import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Application;
 import android.app.NotificationManager;

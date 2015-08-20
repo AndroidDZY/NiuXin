@@ -6,13 +6,13 @@ import com.niuxin.client.Client;
 import com.niuxin.client.ClientInputThread;
 import com.niuxin.client.ClientOutputThread;
 import com.niuxin.client.MessageListener;
-import com.util.Constants;
-import com.util.MessageDB;
-import com.util.MyDate;
-import com.util.SharePreferenceUtil;
-import com.util.TextMessage;
-import com.util.TranObject;
-import com.util.TranObjectType;
+import com.niuxin.util.Constants;
+import com.niuxin.util.MessageDB;
+import com.niuxin.util.MyDate;
+import com.niuxin.util.SharePreferenceUtil;
+import com.niuxin.util.TextMessage;
+import com.niuxin.util.TranObject;
+import com.niuxin.util.TranObjectType;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -94,7 +94,7 @@ public class GetMsgService extends Service {
 							FriendListActivity.class);
 					PendingIntent contentIntent = PendingIntent.getActivity(
 							mContext, 0, intent, 0);
-					mNotification.setLatestEventInfo(mContext, util.getName()
+					mNotification.setLatestEventInfo(mContext, util.getUserName()
 							+ " (" + newMsgNum + "条新消息)", content,
 							contentIntent);
 				}
@@ -207,7 +207,7 @@ public class GetMsgService extends Service {
 
 		RemoteViews contentView = new RemoteViews(mContext.getPackageName(),
 				R.layout.notify_view);
-		contentView.setTextViewText(R.id.notify_name, util.getName());
+		contentView.setTextViewText(R.id.notify_name, util.getUserName());
 		contentView.setTextViewText(R.id.notify_msg, "手机QQ正在后台运行");
 		contentView.setTextViewText(R.id.notify_time, MyDate.getDate());
 		// 指定个性化视图
