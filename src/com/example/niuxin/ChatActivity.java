@@ -3,12 +3,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+
 import com.niuxin.bean.ChatMsgEntity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +38,7 @@ public class ChatActivity extends Activity implements OnClickListener{
 	private LinearLayout layout_more;
 	private int count=0;
 	private SuoluetuActivity suolue;
+	LinearLayout layout;
 	//定义适配器
 	private ChatMsgViewAdapter mAdapter;
 	//聊天数据
@@ -44,20 +48,57 @@ public class ChatActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.chat);
-		suolue = new SuoluetuActivity(this);
 		initView();
 		initData();
+		layout=(LinearLayout)findViewById(R.id.linear);
+		suolue = new SuoluetuActivity(this);
+		final Button button=new Button(ChatActivity.this);
+		
+		button.setBackgroundResource(R.drawable.chat_audio);
+		layout.addView(button);
+		mEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+				// TODO Auto-generated method stub
+				if (arg0.length()<=0) {
+					button.setBackgroundResource(R.drawable.chat_audio);
+					 } 
+				else {
+					button.setBackgroundResource(R.drawable.chatsend);
+				}
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		button.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				send();
+			}
+		});
 	}
-	
-
-
 	//初始化视图
 	private void initView() {
 		// TODO Auto-generated method stub
 		//获取各种控件
 		mListView = (ListView) findViewById(R.id.listview);
 		mButtonBack = (Button) findViewById(R.id.btn_back);
-		mBtnSend = (Button) findViewById(R.id.btn_send);
+		//mBtnSend = (Button) findViewById(R.id.btn_send);
 		mButtonBiaoqing = (Button) findViewById(R.id.emotion);
 		mButtonMore = (Button) findViewById(R.id.gengduo);
 		mEditText = (EditText) findViewById(R.id.sendmessage);
@@ -66,13 +107,13 @@ public class ChatActivity extends Activity implements OnClickListener{
 		btn_share = (ImageButton) findViewById(R.id.btn_share);
 		
 		mButtonBack.setOnClickListener(this);
-		mBtnSend.setOnClickListener(this);
+		//mBtnSend.setOnClickListener(this);
 		mButtonMore.setOnClickListener(this);
 		btn_collect.setOnClickListener(this);
 		btn_share.setOnClickListener(this);
 		//设置EditText光标位置
 		//mEditText.setSelection(5);
-	
+		
 	}
 	private String[] msgArray = new String[]{"我刚刚交了一个女朋友", 
 			"那是好事情啊", 
@@ -110,9 +151,9 @@ public class ChatActivity extends Activity implements OnClickListener{
 			case R.id.btn_back:
 				back();
 				break;
-			case R.id.btn_send:
-				send();
-				break;
+//			case R.id.linear:
+//				send();
+//				break;
 			case R.id.gengduo:
 				more();
 				break;
