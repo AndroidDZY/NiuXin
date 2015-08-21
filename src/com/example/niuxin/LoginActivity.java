@@ -2,6 +2,7 @@ package com.example.niuxin;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.niuxin.bean.User;
@@ -165,12 +166,12 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 	 * 提交账号密码信息到服务器
 	 */
 	private void submit() {	
-		Intent i = new Intent(LoginActivity.this,
+	/*	Intent i = new Intent(LoginActivity.this,
 				MainActivity.class);
 		startActivity(i);
 		finish();
+	*/	
 		
-		/*
 		String accounts = mAccounts.getText().toString();
 		String password = mPassword.getText().toString();
 		if (accounts.length() == 0 || password.length() == 0) {
@@ -194,7 +195,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 						"亲！服务器暂未开放哦");
 			}
 		}
-		*/
+	
 	}
 
 	@Override
@@ -204,20 +205,21 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 			// System.out.println("Login:" + msg);
 			switch (msg.getType()) {
 			case LOGIN:// LoginActivity只处理登录的消息
-				List<User> list = (List<User>) msg.getObject();
-				if (list.size() > 0) {
-					
+				User user = (User) msg.getObject();
+				if (user!=null) {					
+					/*
 					// 保存用户信息
 					SharePreferenceUtil util = new SharePreferenceUtil(
 							LoginActivity.this, Constants.SAVE_USER);
 					util.setUserName(mAccounts.getText().toString());
 					util.setPassWord(mPassword.getText().toString());
-					util.setEmail(list.get(0).getEmail());
-					util.setImg(list.get(0).getImg());
-
+					util.setEmail(user.getEmail());
+					util.setImg(user.getImg());
+					List<User> list = new ArrayList<User>();
+					list.add(user);
 					UserDB db = new UserDB(LoginActivity.this);
 					db.addUser(list);
-					
+					*/
 					Intent i = new Intent(LoginActivity.this,
 							MainActivity.class);
 					i.putExtra(Constants.MSGKEY, msg);
