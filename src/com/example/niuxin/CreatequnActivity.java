@@ -111,17 +111,21 @@ public class CreatequnActivity extends Activity {
 			HttpPostUtil postUtil = new HttpPostUtil(handler);
 			// 向服务器发送数据，如果没有，可以不发送
 			JSONObject jsonObject = new JSONObject();
-			try {			
-				jsonObject.put("name", name);
-				jsonObject.put("mark", mark);
-				jsonObject.put("description", description);
-				jsonObject.put("type", type);
-				jsonObject.put("enter_grade",enter_grade);
-				
-				jsonObject.put("isfree", isfree);
+			try {
+				if (name != null)
+					jsonObject.put("name", name);
+				if (mark != null)
+					jsonObject.put("mark", mark);
+				if (description != null)
+					jsonObject.put("description", description);
+				if (type != null)
+					jsonObject.put("type", type);
+				if (enter_grade != null)
+					jsonObject.put("enter_grade", enter_grade);
+				if (isfree != null)
+					jsonObject.put("isfree", isfree);
 				jsonObject.put("totalNumber", totalNumber);
-				jsonObject.put("currentNumber",currentNumber);
-				jsonObject.put("createTime",createTime);
+				jsonObject.put("currentNumber", currentNumber);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -149,19 +153,19 @@ public class CreatequnActivity extends Activity {
 			}
 			Boolean isSuccess = null;
 			try {
-			 isSuccess = myjObject.getBoolean("success");
+				isSuccess = myjObject.getBoolean("success");
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-		///////////////////////////// 解析数据完成
-			if(isSuccess==true){
-				//如果成功了
+
+			///////////////////////////// 解析数据完成
+			if (isSuccess == true) {
+				// 如果成功了
 				Intent intent = new Intent(CreatequnActivity.this, yaoqingchengyuanActivity.class);
 				startActivity(intent);
-				finish();				
-			}else{
+				finish();
+			} else {
 				Runnable r = new Runnable() {
 					@Override
 					public void run() {
