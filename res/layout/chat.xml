@@ -165,14 +165,21 @@
         	android:singleLine="true"
         	android:cursorVisible="false"
             android:textSize="15sp"/>
-        <Button
+	     <LinearLayout android:layout_width="0dp"
+	         android:layout_height="30dp"
+	         android:id="@+id/linear"
+	         android:orientation="horizontal"
+	         android:layout_weight="1"
+	         ></LinearLayout>
+   <!--     <Button
         	android:id="@+id/btn_send"
         	android:layout_width="0dp"
         	android:layout_weight="1" 
         	android:layout_height="30dp"
         	android:layout_margin="2dp"
-        	android:background="@drawable/chat_audio"/>
-        <Button
+        	android:background="@drawable/chat_send"/>  -->
+        	
+         <Button
         	android:id="@+id/emotion"
         	android:layout_width="0dp"
         	android:layout_weight="1" 
