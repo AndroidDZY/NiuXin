@@ -1,10 +1,5 @@
 package com.example.niuxin;
 
-
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
@@ -14,8 +9,6 @@ import com.niuxin.util.Encode;
 import com.niuxin.util.SharePreferenceUtil;
 import com.niuxin.util.TranObject;
 import com.niuxin.util.TranObjectType;
-import com.niuxin.util.UserDB;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -166,12 +159,6 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 	 * 提交账号密码信息到服务器
 	 */
 	private void submit() {	
-	/*	Intent i = new Intent(LoginActivity.this,
-				MainActivity.class);
-		startActivity(i);
-		finish();
-	*/	
-		
 		String accounts = mAccounts.getText().toString();
 		String password = mPassword.getText().toString();
 		if (accounts.length() == 0 || password.length() == 0) {
@@ -195,7 +182,6 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 						"亲！服务器暂未开放哦");
 			}
 		}
-	
 	}
 
 	@Override
