@@ -1,9 +1,5 @@
 package com.example.niuxin;
 
-
-
-import java.util.List;
-
 import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
@@ -13,8 +9,6 @@ import com.niuxin.util.Encode;
 import com.niuxin.util.SharePreferenceUtil;
 import com.niuxin.util.TranObject;
 import com.niuxin.util.TranObjectType;
-import com.niuxin.util.UserDB;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -194,7 +188,9 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 						"亲！服务器暂未开放哦");
 			}
 		}
+
 		*/
+
 	}
 
 	@Override
@@ -204,20 +200,21 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 			// System.out.println("Login:" + msg);
 			switch (msg.getType()) {
 			case LOGIN:// LoginActivity只处理登录的消息
-				List<User> list = (List<User>) msg.getObject();
-				if (list.size() > 0) {
-					
+				User user = (User) msg.getObject();
+				if (user!=null) {					
+					/*
 					// 保存用户信息
 					SharePreferenceUtil util = new SharePreferenceUtil(
 							LoginActivity.this, Constants.SAVE_USER);
 					util.setUserName(mAccounts.getText().toString());
 					util.setPassWord(mPassword.getText().toString());
-					util.setEmail(list.get(0).getEmail());
-					util.setImg(list.get(0).getImg());
-
+					util.setEmail(user.getEmail());
+					util.setImg(user.getImg());
+					List<User> list = new ArrayList<User>();
+					list.add(user);
 					UserDB db = new UserDB(LoginActivity.this);
 					db.addUser(list);
-					
+					*/
 					Intent i = new Intent(LoginActivity.this,
 							MainActivity.class);
 					i.putExtra(Constants.MSGKEY, msg);
