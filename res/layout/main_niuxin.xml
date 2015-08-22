@@ -30,17 +30,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:background="@drawable/edittext_search"
-            android:hint="搜索"
-            android:textSize="13sp"/>
+            android:drawableLeft="@drawable/search_icon01"
+            android:drawableRight="@drawable/voice_icon"
+            android:paddingRight="10dp"
+            android:paddingLeft="105dp"
+            android:hint="@string/search"
+            android:focusable="false"
+            android:textSize="14sp"/>
         <Button 
             android:id="@+id/createqun"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="+"
             android:textColor="#ffffff"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:background="#de4557"
             android:layout_height="wrap_content"/>
         </LinearLayout>

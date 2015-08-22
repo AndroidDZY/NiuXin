@@ -15,7 +15,7 @@
        android:background="#de4557"
        android:gravity="center">
        <EditText 
-           android:id="@+id/sr_edittext"
+           android:id="@+id/sf_edittext"
            android:background="@drawable/edittext_search"
            android:layout_width="0dp"
            android:layout_weight="5"
@@ -31,7 +31,7 @@
            android:textSize="13sp"
            />
        <Button
-           android:id="@+id/sr_searchcancel"
+           android:id="@+id/sf_searchcancel"
            android:layout_width="0dp"
            android:layout_height="30dp"
            android:layout_weight="1"
@@ -42,7 +42,7 @@
    </LinearLayout>
     <ListView android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchresult"></ListView>
+        android:id="@+id/searchfriend"></ListView>
     
 
 </LinearLayout>

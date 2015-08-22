@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="search">搜索</string>
+    <string name="search_zx">请输入股票代码/简拼</string>
+    <string name="search_qun">请输入名称、关键字或股票代码</string>
     <string name="app_name">Niuxin</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -56,7 +59,7 @@
     <string name="account_setting">状态管理</string>
     <string name="account_setting2">帐号设置</string>
     <string name="login">登 录</string>
-    <string name="account">输入QQ号码</string>
+    <string name="account">输入牛信号码</string>
     <string name="password">输入密码</string>
     <string name="login_prompt">正在验证帐号…</string>
     <string name="timeout_prompt">操作超时！</string>

@@ -17,6 +17,7 @@ import com.niuxin.util.HttpPostUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -41,6 +42,7 @@ public class zixuan_addActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		act = this;
 		setContentView(R.layout.zixuan_add);// 设置zixuan_addActivity采用zixuan_add.xml布局文件进行布局
 
