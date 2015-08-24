@@ -182,7 +182,7 @@ public class GetMsgService extends Service {
 			ClientOutputThread out = client.getClientOutputThread();
 			TranObject<User> o = new TranObject<User>(TranObjectType.LOGOUT);
 			User u = new User();
-			u.setId(Integer.parseInt(util.getId()));
+			u.setId(util.getId());
 			o.setObject(u);
 			out.setMsg(o);
 			// 发送完之后，关闭client

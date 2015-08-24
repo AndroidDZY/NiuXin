@@ -10,7 +10,9 @@ import org.json.JSONObject;
 
 import com.example.niuxin.zixuan_addActivity.TestThread;
 import com.niuxin.bean.Qun;
+import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
+import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -41,9 +43,8 @@ public class CreatequnActivity extends Activity {
 	String type = null;
 	String enter_grade = null;
 	String isfree = null;
-	int totalNumber = 200;// 群能拥有的最多人数
-	int currentNumber = 1;// 群目前拥有的人数
 	Date createTime = new Date();// 创建时间
+	private boolean clickmark = false;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,17 +80,37 @@ public class CreatequnActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-
-				// TaskThread thread = new TaskThread();
-				// thread.start();
-
 				// 从控件中读取到相关的字符串
 				name = qunzuname.getText().toString();// 群名称
+				if (name == null && name.trim() == null) {
+					Toast.makeText(getApplicationContext(), "群名称不能为空!!!", 0).show();
+					return;
+				}
 				mark = gegutag.getText().toString();// 个股标签 可能多个
+				if (mark == null && mark.trim() == null) {
+					Toast.makeText(getApplicationContext(), "群标签不能为空!!!", 0).show();
+					return;
+				}
 				description = tianjiamiaoshu.getText().toString();
+				if (description == null && description.trim() == null) {
+					Toast.makeText(getApplicationContext(), "群描述不能为空!!!", 0).show();
+					return;
+				}
 				type = qunzuleixing.getSelectedItem().toString();
+				if (type == null && type.trim() == null) {
+					Toast.makeText(getApplicationContext(), "群类型不能为空!!!", 0).show();
+					return;
+				}
 				enter_grade = ruquncondition.getSelectedItem().toString();
+				if (type == null && type.trim() == null) {
+					Toast.makeText(getApplicationContext(), "入群等级不能为空!!!", 0).show();
+					return;
+				}
 				isfree = shoufeimodel.getSelectedItem().toString();
+				if (isfree == null && isfree.trim() == null) {
+					Toast.makeText(getApplicationContext(), "收费模式不能为空!!!", 0).show();
+					return;
+				}
 				if (isfree.equals("收费")) {
 					Toast.makeText(getApplicationContext(), "目前无法建立收费群!!!", 0).show();
 					return;
@@ -107,8 +128,13 @@ public class CreatequnActivity extends Activity {
 
 		@Override
 		public void run() {
+			if(clickmark==true)
+				return;
+			clickmark = true;
 			// 新建工具类，向服务器发送Http请求
 			HttpPostUtil postUtil = new HttpPostUtil(handler);
+			// 设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/qun/qun_insert.do");
 			// 向服务器发送数据，如果没有，可以不发送
 			JSONObject jsonObject = new JSONObject();
 			try {
@@ -124,9 +150,14 @@ public class CreatequnActivity extends Activity {
 					jsonObject.put("enter_grade", enter_grade);
 				if (isfree != null)
 					jsonObject.put("isfree", isfree);
-				jsonObject.put("totalNumber", totalNumber);
-				jsonObject.put("currentNumber", currentNumber);
+		//		jsonObject.put("totalNumber", totalNumber);
+		//		jsonObject.put("currentNumber", currentNumber);
+				SharePreferenceUtil util = new SharePreferenceUtil(CreatequnActivity.this, Constants.SAVE_USER);
+				Integer id = util.getId();
+				if (id != null)
+					jsonObject.put("id", id);
 			} catch (JSONException e) {
+				clickmark = false;
 				e.printStackTrace();
 			}
 			postUtil.setRequest(jsonObject);
@@ -136,14 +167,9 @@ public class CreatequnActivity extends Activity {
 			 * mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
 			 * mDialog.show(); return; }
 			 */
-
-			// 设置发送的url 和服务器端的struts.xml文件对应
-			postUtil.setUrl("/qun/qun_insert.do");
-			// 不向服务器发送数据
-
 			// 从服务器获取数据
 			String res = postUtil.run();
-
+			clickmark = false;
 			// 对从服务器获取数据进行解析
 			JSONObject myjObject = null;
 			try {
@@ -151,31 +177,34 @@ public class CreatequnActivity extends Activity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			Boolean isSuccess = null;
+		   Boolean isSuccess = null;
 			try {
 				isSuccess = myjObject.getBoolean("success");
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			
 			///////////////////////////// 解析数据完成
-			if (isSuccess == true) {
-				// 如果成功了
-				Intent intent = new Intent(CreatequnActivity.this, yaoqingchengyuanActivity.class);
-				startActivity(intent);
-				finish();
-			} else {
+			final boolean succ = isSuccess; 
 				Runnable r = new Runnable() {
 					@Override
 					public void run() {
-						Toast.makeText(getApplicationContext(), "创建群组失败!!!", 0).show();
-						return;
+						if (succ == true) {
+							Toast.makeText(getApplicationContext(), "创建群组成功!!!", 0).show();
+									// 如果成功了
+							Intent intent = new Intent(CreatequnActivity.this, MainActivity.class);
+							startActivity(intent);
+							finish();
+							}else{
+							Toast.makeText(getApplicationContext(), "创建群组失败!!!", 0).show();
+							return;
+						}
 					}
+
 				};
 				handler.post(r);
 			}
 		}
 	}
 
-}

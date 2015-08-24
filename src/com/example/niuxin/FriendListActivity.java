@@ -435,7 +435,7 @@ public class FriendListActivity extends MyActivity implements OnClickListener {
 						ClientOutputThread out = application.getClient()
 								.getClientOutputThread();
 						TranObject o = new TranObject(TranObjectType.REFRESH);
-						o.setFromUser(Integer.parseInt(util.getId()));
+						o.setFromUser(util.getId());
 						out.setMsg(o);
 						// 为了及时收到服务器发过来的消息，我这里直接通过监听收消息线程，获取好友列表，就不通过接收广播了
 						ClientInputThread in = application.getClient()

@@ -63,7 +63,7 @@ public class HttpPostUtil {
 			// httpPost.setURI(new URI(URL + requestType));
 			httpPost.setURI(new URI(URL));
 			if(jsonObject!=null)
-			httpPost.setEntity(new StringEntity(jsonObject.toString(),
+			httpPost.setEntity(new StringEntity(new String(jsonObject.toString().getBytes(), "UTF-8"),
 					HTTP.UTF_8));
 			else
 				httpPost.setEntity(new StringEntity("".toString(),

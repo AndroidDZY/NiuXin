@@ -27,13 +27,13 @@ public class SharePreferenceUtil {
 	}
 
 	// 用户的id
-	public void setId(String id) {
-		editor.putString("id", id);
+	public void setId(Integer id) {
+		editor.putInt("id", id);
 		editor.commit();
 	}
 
-	public String getId() {
-		return sp.getString("id", "");
+	public Integer getId() {
+		return sp.getInt("id", -1);
 	}
 
 	// 用户的昵称
