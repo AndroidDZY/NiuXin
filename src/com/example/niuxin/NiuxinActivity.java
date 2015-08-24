@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TabHost;
 import android.widget.PopupMenu.OnMenuItemClickListener;
@@ -20,6 +21,7 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 public class NiuxinActivity extends TabActivity {
 	private TabHost tabHost;
 	private Button liaotian,tongxunlu,pengyouquan,createQun;
+	private EditText mEditText;
 	PopupMenu popupMenu;
 	Menu menu;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,17 @@ public class NiuxinActivity extends TabActivity {
 				add();
 			}
 		});
-		
+		//定义搜索框点击事件
+		mEditText=(EditText)findViewById(R.id.search);
+		mEditText.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//跳转到搜索结果界面
+				startActivity(new Intent(NiuxinActivity.this,SearchresultActivity.class));
+			}
+		});
 	}
 
 	private void initTab() {
@@ -111,8 +123,13 @@ public class NiuxinActivity extends TabActivity {
 					Intent intent = new Intent(NiuxinActivity.this,CreatequnActivity.class);
 					startActivity(intent);
 					break;
+				case R.id.join:
+					// 跳转到查找群组界面
+					startActivity(new Intent(NiuxinActivity.this,SearchuserActivity.class));
+					break;
 				case R.id.add:
-					// 暂无
+					// 跳转到添加好友界面
+					startActivity(new Intent(NiuxinActivity.this,SearchFriendActivity.class));
 					break;
 				default:
 					break;

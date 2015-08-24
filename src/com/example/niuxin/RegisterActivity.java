@@ -85,7 +85,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 	}
 
 	private void toast(Context context) {
-		new AlertDialog.Builder(context).setTitle("QQ注册")
+		new AlertDialog.Builder(context).setTitle("牛信注册")
 				.setMessage("亲！您真的不注册了吗？")
 				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
@@ -103,7 +103,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 		String passwd2 = mPasswdEt2.getText().toString();
 		if (email.equals("") || name.equals("") || passwd.equals("")
 				|| passwd2.equals("")) {
-			DialogFactory.ToastDialog(RegisterActivity.this, "QQ注册",
+			DialogFactory.ToastDialog(RegisterActivity.this, "牛信注册",
 					"亲！带*项是不能为空的哦");
 		} else {
 			if (passwd.equals(passwd2)) {
@@ -146,15 +146,15 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 					mDialog.dismiss();
 					mDialog = null;
 				}
-				DialogFactory.ToastDialog(RegisterActivity.this, "QQ注册",
-						"亲！请牢记您的登录QQ哦：" + id);
+				DialogFactory.ToastDialog(RegisterActivity.this, "牛信注册",
+						"亲！请牢记您的登录牛信哦：" + id);
 			} else {
 				if (mDialog != null) {
 					mDialog.dismiss();
 					mDialog = null;
 				}
-				DialogFactory.ToastDialog(RegisterActivity.this, "QQ注册",
-						"亲！很抱歉！QQ号暂时缺货哦");
+				DialogFactory.ToastDialog(RegisterActivity.this, "牛信注册",
+						"亲！很抱歉！牛信号暂时缺货哦");
 			}
 			break;
 

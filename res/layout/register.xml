@@ -9,7 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/title_bar"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        >
 
         <Button
             android:id="@+id/reg_back_btn"

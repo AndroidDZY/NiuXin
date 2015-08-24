@@ -3,6 +3,7 @@ package com.niuxin.util;
 
 
 public class Constants {
+
 	public static final String SERVER_IP = "172.20.1.120";// 服务器ip
 	public static final int SERVER_PORT = 8083;// 服务器端口
 

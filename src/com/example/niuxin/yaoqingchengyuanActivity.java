@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class yaoqingchengyuanActivity extends Activity{
 	ListView listView;
 	private int yq_flag = R.drawable.edit_flag01;
+	private EditText mEditText;
 	//实例化一个LinkedList类(LinkedList集合中的对象是一个个Map对象,而这个Map对象的键是String类型,值是Object类型)的对象list
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	//1
@@ -32,6 +35,7 @@ public class yaoqingchengyuanActivity extends Activity{
 		suolue = new SuoluetuActivity(this);
 		//获取各种控件
 		cancle = (Button)findViewById(R.id.btn_yq_cancle);
+		mEditText = (EditText)findViewById(R.id.yq_search);
 		
 		//定义按钮事件
 		//取消按钮
@@ -41,6 +45,15 @@ public class yaoqingchengyuanActivity extends Activity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				finish();
+			}
+		});
+		//点击搜索框跳转到添加好友界面
+		mEditText.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(yaoqingchengyuanActivity.this,SearchFriendActivity.class));
 			}
 		});
 		

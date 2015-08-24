@@ -13,26 +13,23 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="#de4557"
+        android:gravity="center_vertical"
         android:focusable="true" 
 		android:focusableInTouchMode="true">
         <EditText 
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:id="@+id/yq_search"
-            android:layout_weight="5"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_height="30dp"
             android:background="@drawable/edittext_search"
-            android:hint="搜索"
-            android:textSize="15sp"/>
-        <Button 
-            android:id="@+id/btn_yq_search_cancle"
-            android:layout_weight="1"
-            android:text="取消"
-            android:textSize="15sp"
-            android:textColor="#ffffff"
-            android:background="#00000000"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:hint="@string/search"
+            android:paddingLeft="130dp"
+            android:drawableLeft="@drawable/search_icon01" 
+            android:drawableRight="@drawable/voice_icon"
+            android:paddingRight="12dp" 
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:focusable="false"
+            android:textSize="13sp"/>
      </LinearLayout>
      <LinearLayout 
         android:id="@+id/yq_LinearLayout02"

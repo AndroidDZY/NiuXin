@@ -164,6 +164,12 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 	 * 提交账号密码信息到服务器
 	 */
 	private void submit() {	
+		Intent i = new Intent(LoginActivity.this,
+				MainActivity.class);
+		startActivity(i);
+		finish();
+		
+		/*
 		String accounts = mAccounts.getText().toString();
 		String password = mPassword.getText().toString();
 		if (accounts.length() == 0 || password.length() == 0) {
@@ -187,6 +193,9 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 						"亲！服务器暂未开放哦");
 			}
 		}
+
+		*/
+
 	}
 
 	@Override
