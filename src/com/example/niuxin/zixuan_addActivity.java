@@ -1,7 +1,6 @@
 
 package com.example.niuxin;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,22 +10,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.niuxin.util.DialogFactory;
 import com.niuxin.util.HttpPostUtil;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
-import android.app.Activity;
-import android.app.Dialog;
 
 
 public class zixuan_addActivity extends Activity {

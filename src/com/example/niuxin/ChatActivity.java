@@ -1,19 +1,23 @@
 package com.example.niuxin;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 
-
 import com.niuxin.bean.ChatMsgEntity;
+import com.niuxin.bean.User;
+import com.niuxin.util.MessageDB;
+import com.niuxin.util.MyDate;
+import com.niuxin.util.TextMessage;
+import com.niuxin.util.TranObject;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,7 +31,7 @@ import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.Toast;
 
-public class ChatActivity extends Activity implements OnClickListener{
+public class ChatActivity extends MyActivity implements OnClickListener{
 	
 	PopupMenu popupMenu;
 	Menu menu;
@@ -38,7 +42,11 @@ public class ChatActivity extends Activity implements OnClickListener{
 	private LinearLayout layout_more;
 	private int count=0;
 	private SuoluetuActivity suolue;
+//	private EditText groupNameText;
 	LinearLayout layout;
+	private User user;
+	private MessageDB messageDB;
+	private MyApplication application;
 	//定义适配器
 	private ChatMsgViewAdapter mAdapter;
 	//聊天数据
@@ -48,12 +56,19 @@ public class ChatActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.chat);
+		Intent intent=getIntent();
+		String groupId=intent.getStringExtra("id");//获取传过来的群组ID
+		String groupName=intent.getStringExtra("name");//获取传过来的群组ID
+		user = (User) getIntent().getSerializableExtra("user");//获取用户，还没有验证是否可行
+		messageDB = new MessageDB(this);
+		
 		initView();
 		initData();
+		
+	//	groupNameText.setText(groupName);//设置聊天的标题
 		layout=(LinearLayout)findViewById(R.id.linear);
 		suolue = new SuoluetuActivity(this);
-		final Button button=new Button(ChatActivity.this);
-		
+		final Button button=new Button(ChatActivity.this);		
 		button.setBackgroundResource(R.drawable.chat_audio);
 		layout.addView(button);
 		mEditText.addTextChangedListener(new TextWatcher() {
@@ -105,7 +120,8 @@ public class ChatActivity extends Activity implements OnClickListener{
 		layout_more = (LinearLayout) findViewById(R.id.layout_more);
 		btn_collect = (ImageButton) findViewById(R.id.btn_collect);
 		btn_share = (ImageButton) findViewById(R.id.btn_share);
-		
+				
+//		groupNameText = (EditText) findViewById(R.id.groupName);
 		mButtonBack.setOnClickListener(this);
 		//mBtnSend.setOnClickListener(this);
 		mButtonMore.setOnClickListener(this);
@@ -115,17 +131,18 @@ public class ChatActivity extends Activity implements OnClickListener{
 		//mEditText.setSelection(5);
 		
 	}
-	private String[] msgArray = new String[]{"我刚刚交了一个女朋友", 
-			"那是好事情啊", 
-			"可是我家里衣柜抽屉里还有一个啊！", 
-			"大哥把衣柜抽屉里面的那个给我吧，反正你用不着了" 
-			};
-	private final static int COUNT = 4;
+	
+	
 	
 	//初始化数据
 		private void initData() {
+		    List<String> msgArray = new LinkedList<String>();
+			msgArray.add("我刚刚交了一个女朋友");
+			msgArray.add("那是好事情啊");
+			msgArray.add("可是我家里衣柜抽屉里还有一个啊！");
+			msgArray.add("大哥把衣柜抽屉里面的那个给我吧，反正你用不着了");
 			// TODO Auto-generated method stub
-			for(int i = 0; i < COUNT; i++) {
+			for(int i = 0; i < msgArray.size(); i++) {
 				ChatMsgEntity entity = new ChatMsgEntity();
 	    		if (i % 2 == 0)
 	    		{
@@ -136,7 +153,7 @@ public class ChatActivity extends Activity implements OnClickListener{
 	    			entity.setMsgType(false);
 	    		}
 	    		
-	    		entity.setText(msgArray[i]);
+	    		entity.setText(msgArray.get(i));
 	    		mDataArrays.add(entity);
 			}
 			mAdapter = new ChatMsgViewAdapter(this, mDataArrays);
@@ -262,5 +279,51 @@ public class ChatActivity extends Activity implements OnClickListener{
 	        sbBuffer.append(year + "-" + month + "-" + day + " " + hour + ":" + mins); 
 	        return sbBuffer.toString();
 	    }
+		
+		@Override
+		public void getMessage(TranObject msg) {
+
+			// TODO Auto-generated method stub
+			switch (msg.getType()) {
+			case MESSAGE:
+				TextMessage tm = (TextMessage) msg.getObject();
+				String message = tm.getMessage();
+				ChatMsgEntity entity = new ChatMsgEntity(user.getUserName(),
+						MyDate.getDateEN(), message, user.getImg(), true);// 收到的消息
+				if (msg.getFromUser() == user.getId() || msg.getFromUser() == 0) {// 如果是正在聊天的好友的消息，或者是服务器的消息
+
+					messageDB.saveMsg(user.getId(), entity);
+
+					mDataArrays.add(entity);
+					mAdapter.notifyDataSetChanged();
+					mListView.setSelection(mListView.getCount() - 1);
+					MediaPlayer.create(this, R.raw.msg).start();
+				} else {
+					messageDB.saveMsg(msg.getFromUser(), entity);// 保存到数据库
+					Toast.makeText(ChatActivity.this,
+							"您有新的消息来自：" + msg.getFromUser() + ":" + message, 0)
+							.show();// 其他好友的消息，就先提示，并保存到数据库
+					MediaPlayer.create(this, R.raw.msg).start();
+				}
+				break;
+				/*
+			case LOGIN:
+				User loginUser = (User) msg.getObject();
+				Toast.makeText(ChatActivity.this, loginUser.getId() + "上线了", 0)
+						.show();
+				MediaPlayer.create(this, R.raw.msg).start();
+				break;
+			case LOGOUT:
+				User logoutUser = (User) msg.getObject();
+				Toast.makeText(ChatActivity.this, logoutUser.getId() + "下线了", 0)
+						.show();
+				MediaPlayer.create(this, R.raw.msg).start();
+				break;
+				*/
+			default:
+				break;
+			}
+			
+		}
 		  
 }
