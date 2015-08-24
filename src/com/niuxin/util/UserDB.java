@@ -34,9 +34,9 @@ public class UserDB {
 		SQLiteDatabase db = helper.getWritableDatabase();
 		for (User u : list) {
 			db.execSQL(
-					"insert into user (id,name,img,isOnline) values(?,?,?,?)",
-					new Object[] { u.getId(), u.getUserName(), u.getImg(),
-							u.getIsOnline() });
+					"insert into user (id,userName,img) values(?,?,?)",
+					new Object[] { u.getId(), u.getUserName(), u.getImg()
+							});
 		}
 		db.close();
 	}
@@ -57,7 +57,7 @@ public class UserDB {
 			u.setId(c.getInt(c.getColumnIndex("id")));
 			u.setUserName(c.getString(c.getColumnIndex("userName")));
 			u.setImg(c.getInt(c.getColumnIndex("img")));
-			u.setIsOnline(c.getInt(c.getColumnIndex("isOnline")));
+			//u.setIsOnline(c.getInt(c.getColumnIndex("isOnline")));
 			list.add(u);
 		}
 		c.close();

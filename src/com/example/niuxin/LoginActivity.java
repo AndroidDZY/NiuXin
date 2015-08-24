@@ -1,5 +1,8 @@
 package com.example.niuxin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
@@ -9,6 +12,8 @@ import com.niuxin.util.Encode;
 import com.niuxin.util.SharePreferenceUtil;
 import com.niuxin.util.TranObject;
 import com.niuxin.util.TranObjectType;
+import com.niuxin.util.UserDB;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -193,7 +198,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 			case LOGIN:// LoginActivity只处理登录的消息
 				User user = (User) msg.getObject();
 				if (user!=null) {					
-					/*
+					
 					// 保存用户信息
 					SharePreferenceUtil util = new SharePreferenceUtil(
 							LoginActivity.this, Constants.SAVE_USER);
@@ -204,8 +209,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 					List<User> list = new ArrayList<User>();
 					list.add(user);
 					UserDB db = new UserDB(LoginActivity.this);
-					db.addUser(list);
-					*/
+					db.addUser(list);					
 					Intent i = new Intent(LoginActivity.this,
 							MainActivity.class);
 					i.putExtra(Constants.MSGKEY, msg);
