@@ -22,7 +22,7 @@ import android.widget.EditText;
 
 
 public class RegisterActivity extends MyActivity implements OnClickListener {
-
+	private boolean registersuccessflag;//注册成功标记
 	private Button mBtnRegister;
 	private Button mRegBack;
 	private EditText mEmailEt, mNameEt, mPasswdEt, mPasswdEt2;
@@ -73,6 +73,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.register_btn:
+			registersuccessflag = false;
 			// showRequestDialog();
 			estimate();
 			break;
@@ -95,6 +96,21 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 					}
 				}).setNegativeButton("取消", null).create().show();
 	}
+	
+	private void toastsuccess(Context context) {
+		new AlertDialog.Builder(context).setTitle("牛信注册")
+				.setMessage("亲！请牢记您的登录牛信号哦！")
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						finish();
+					}
+				}).setNegativeButton("", null).create().show();
+	}	
+
+	
+
 
 	private void estimate() {
 		String email = mEmailEt.getText().toString();
@@ -107,7 +123,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 					"亲！带*项是不能为空的哦");
 		} else {
 			if (passwd.equals(passwd2)) {
-				showRequestDialog();
+				showRequestDialog();//显示等待注册完成对话框
 				// 提交注册信息
 				if (application.isClientStart()) {// 如果已连接上服务器
 					Client client = application.getClient();
@@ -135,6 +151,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 	}
 
 	@Override
+	//服务器返回信息后处理
 	public void getMessage(TranObject msg) {
 		// TODO Auto-generated method stub
 		switch (msg.getType()) {
@@ -146,8 +163,9 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 					mDialog.dismiss();
 					mDialog = null;
 				}
-				DialogFactory.ToastDialog(RegisterActivity.this, "牛信注册",
-						"亲！请牢记您的登录牛信哦：" + id);
+				//DialogFactory.ToastDialog(RegisterActivity.this, "牛信注册",
+						//"亲！请牢记您的登录牛信号哦：" + id);
+				toastsuccess(RegisterActivity.this);
 			} else {
 				if (mDialog != null) {
 					mDialog.dismiss();

@@ -59,7 +59,7 @@
     <string name="account_setting">状态管理</string>
     <string name="account_setting2">帐号设置</string>
     <string name="login">登 录</string>
-    <string name="account">输入牛信号码</string>
+    <string name="account">输入用户名</string>
     <string name="password">输入密码</string>
     <string name="login_prompt">正在验证帐号…</string>
     <string name="timeout_prompt">操作超时！</string>

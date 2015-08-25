@@ -39,14 +39,14 @@
             android:hint="@string/search"
             android:focusable="false"
             android:textSize="14sp"/>
-        <Button 
+        <ImageButton 
             android:id="@+id/createqun"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="+"
-            android:textColor="#ffffff"
-            android:textSize="18sp"
+            android:layout_margin="5dp"
             android:background="#de4557"
+            android:src="@drawable/btn_add03"
+            android:scaleType="centerInside"
             android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout 

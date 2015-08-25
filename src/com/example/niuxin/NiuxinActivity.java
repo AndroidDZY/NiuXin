@@ -12,7 +12,9 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnDismissListener;
 import android.widget.TabHost;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 
@@ -20,7 +22,8 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 @SuppressWarnings("deprecation")
 public class NiuxinActivity extends TabActivity {
 	private TabHost tabHost;
-	private Button liaotian,tongxunlu,pengyouquan,createQun;
+	private Button liaotian,tongxunlu,pengyouquan;
+	private ImageButton createQun;
 	private EditText mEditText;
 	PopupMenu popupMenu;
 	Menu menu;
@@ -31,7 +34,7 @@ public class NiuxinActivity extends TabActivity {
 		init();
 		initTab();
 		//定义+按钮事件
-		createQun=(Button)findViewById(R.id.createqun);
+		createQun=(ImageButton)findViewById(R.id.createqun);
 		createQun.setOnClickListener(new OnClickListener() {
 			
 			@Override

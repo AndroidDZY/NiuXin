@@ -159,7 +159,7 @@ public class zixuan_addActivity extends Activity {
 				public void run() {
 					// 这里可以写上更新UI的代码
 					addAdapter = new SimpleAdapter(zixuan_addActivity.this, list, R.layout.addlistview,
-							new String[] { "name", "num", "add_flag" },
+							new String[] { "name", "number", "add_flag" },
 							new int[] { R.id.name, R.id.num, R.id.add_flag });
 					listView.setAdapter(addAdapter);// 为listView设置适配器
 				}
