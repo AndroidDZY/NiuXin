@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.niuxin.LiaotianActivity.GroupThread;
 import com.niuxin.util.HttpPostUtil;
 
 import android.app.Activity;
@@ -38,6 +39,15 @@ public class zixuan_addActivity extends Activity {
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	EditText gupiao;
 
+	
+	@Override  
+	protected void onResume() {
+		 super.onResume();  
+			//准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
+			TestThread thread = new TestThread();
+			thread.start();
+	}
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -63,9 +73,12 @@ public class zixuan_addActivity extends Activity {
 		});
 		listView = (ListView) findViewById(R.id.addlist);// 获取ListView
 		
-		//准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
-		TestThread thread = new TestThread();
-		thread.start();
+		addAdapter = new SimpleAdapter(zixuan_addActivity.this, list, R.layout.addlistview,
+				new String[] { "name", "num", "add_flag" },
+				new int[] { R.id.name, R.id.num, R.id.add_flag });
+		listView.setAdapter(addAdapter);// 为listView设置适配器
+		
+	
 
 		// 实现点击不同的item，奇数偶数次点击更换imageview显示
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -133,6 +146,7 @@ public class zixuan_addActivity extends Activity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}	
+			list.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {				
 				try {
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
@@ -156,10 +170,7 @@ public class zixuan_addActivity extends Activity {
 				@Override
 				public void run() {
 					// 这里可以写上更新UI的代码
-					addAdapter = new SimpleAdapter(zixuan_addActivity.this, list, R.layout.addlistview,
-							new String[] { "name", "num", "add_flag" },
-							new int[] { R.id.name, R.id.num, R.id.add_flag });
-					listView.setAdapter(addAdapter);// 为listView设置适配器
+					addAdapter.notifyDataSetChanged();
 				}
 
 			};

@@ -17,7 +17,7 @@ public class TranObject<T> implements Serializable {
 
 	private int fromUser;// 来自哪个用户
 	private int toUser;// 发往哪个用户
-
+	private int istoGroup;//1代表发给群组 0
 	private T object;// 传输的对象
 
 	public TranObject(TranObjectType type) {
@@ -54,7 +54,15 @@ public class TranObject<T> implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TranObject [type=" + type + ", fromUser=" + fromUser
-				+ ", toUser=" + toUser + ", object=" + object + "]";
+		return "TranObject [type=" + type + ", fromUser=" + fromUser + ", toUser=" + toUser + ", object=" + object
+				+ "]";
+	}
+
+	public int getIstoGroup() {
+		return istoGroup;
+	}
+
+	public void setIstoGroup(int istoGroup) {
+		this.istoGroup = istoGroup;
 	}
 }

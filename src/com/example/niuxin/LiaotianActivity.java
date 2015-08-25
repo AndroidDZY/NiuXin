@@ -9,23 +9,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.niuxin.zixuan_addActivity.TestThread;
 import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -35,6 +31,24 @@ public class LiaotianActivity extends Activity {
 	public static Activity act = null;
 	SimpleAdapter liaotianAdapter = null;
 	List<Map<String, Object>> listLiaoTian= new ArrayList<Map<String,Object>>();
+	
+	@Override  
+	protected void onResume() {
+		 super.onResume();  
+		 GroupThread thread = new GroupThread();
+		 thread.start();
+	}
+
+	@Override  
+	protected void onRestart() {
+		super.onRestart();
+	}
+
+	@Override  
+	public void onStart() {
+		 super.onStart();  		
+	}
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -43,8 +57,14 @@ public class LiaotianActivity extends Activity {
 		setContentView(R.layout.liaotian);
 		listView=(ListView)findViewById(R.id.qunlist);
 		
-		GroupThread thread = new GroupThread();
-		thread.start();
+		liaotianAdapter= new SimpleAdapter(LiaotianActivity.this,listLiaoTian,
+					R.layout.qunlistview, new String[]{"img","name","lastmes",
+							"time","type","renshu"},new int[]{R.id.img,R.id.qunname,
+				             R.id.lastmes,R.id.time,R.id.quntag,R.id.renshu});
+		listView.setAdapter(liaotianAdapter);
+		
+	//	GroupThread thread = new GroupThread();
+	//	thread.start();
 		//跳转到聊天界面
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -52,22 +72,10 @@ public class LiaotianActivity extends Activity {
 					long arg3) {
 
 				Intent intent=new Intent();
-				intent.putExtra("id", listLiaoTian.get(position).get("id").toString());
+				intent.putExtra("groupid", listLiaoTian.get(position).get("id").toString());
 				intent.putExtra("name", listLiaoTian.get(position).get("name").toString());
 				intent.setClass(LiaotianActivity.this, ChatActivity.class);
-				startActivity(intent);	
-				
-			//	startActivity(new Intent(LiaotianActivity.this,ChatActivity.class));
-			
-			
-					
-					/*
-				取值：					
-					Intent intent=getIntent();
-					String StringE=intent.getStringExtra("extra");
-					TextView text2=(TextView)findViewById(R.id.textView2);
-					text2.setText(StringE);
-				 */
+				startActivity(intent);		
 			}
 		});
 
@@ -110,6 +118,7 @@ public class LiaotianActivity extends Activity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}	
+			listLiaoTian.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {				
 				try {
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
@@ -141,12 +150,7 @@ public class LiaotianActivity extends Activity {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
-					// 这里可以写上更新UI的代码
-					 liaotianAdapter= new SimpleAdapter(LiaotianActivity.this,listLiaoTian,
-							R.layout.qunlistview, new String[]{"img","name","lastmes",
-									"time","type","renshu"},new int[]{R.id.img,R.id.qunname,
-						             R.id.lastmes,R.id.time,R.id.quntag,R.id.renshu});
-					listView.setAdapter(liaotianAdapter);
+					 liaotianAdapter.notifyDataSetChanged();
 				}
 
 			};

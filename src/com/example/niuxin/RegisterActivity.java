@@ -147,7 +147,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 					mDialog = null;
 				}
 				DialogFactory.ToastDialog(RegisterActivity.this, "牛信注册",
-						"亲！请牢记您的登录牛信哦：" + id);
+						"亲！请牢记您的登录牛信哦!");
 			} else {
 				if (mDialog != null) {
 					mDialog.dismiss();

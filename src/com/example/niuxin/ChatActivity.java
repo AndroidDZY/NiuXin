@@ -2,16 +2,14 @@ package com.example.niuxin;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.niuxin.zixuan_addActivity.TestThread;
+import com.example.niuxin.LiaotianActivity.GroupThread;
 import com.niuxin.bean.ChatMsgEntity;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
@@ -33,6 +31,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,8 +43,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.SimpleAdapter;
 import android.widget.PopupMenu.OnMenuItemClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ChatActivity extends MyActivity implements OnClickListener {
@@ -59,39 +58,54 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	private LinearLayout layout_more;
 	private int count = 0;
 	private SuoluetuActivity suolue;
-	private EditText groupNameText;
+	private TextView groupNameText;
 	LinearLayout layout;
-	//private User user;
+	// private User user;
 	private MessageDB messageDB;
 	private MyApplication application;
 	// 定义适配器
 	private ChatMsgViewAdapter mAdapter;
-	private SharePreferenceUtil util;
-	String groupId = null;
-	String groupName = null;
+	private SharePreferenceUtil util =null;
+	String groupId = null;//群组Id
+	String groupName = null;//群组名称
+	String sendtoUserId = null;
+	String sendtoUserName = null;
 	private Handler handler = new Handler();
 	public static Activity act = null;
+	
 	// 聊天数据
 	private List<ChatMsgEntity> mDataArrays = new ArrayList<ChatMsgEntity>();
+	
+	@Override  
+	protected void onResume() {
+		 super.onResume(); 
+		 suolue = new SuoluetuActivity(this);
+		 
+		 Intent intent = getIntent();		 	
+		groupId = intent.getStringExtra("groupid");// 获取传过来的群组ID
+		groupName = intent.getStringExtra("name");// 如果是群聊 就获取传过来的群组ID
+		sendtoUserId = intent.getStringExtra("sendtoUserId");											
+		sendtoUserName = intent.getStringExtra("sendtoUserName");
+			// 获取用户，还没有验证是否可行
+		messageDB = new MessageDB(this);
+		initData();
 
+		if(groupName!=null){
+			groupNameText.setText(groupName);// 设置聊天的标题 如果是群聊 就设置成群名称
+		}else
+			groupNameText.setText(sendtoUserName);//如果是个人聊天，就设置成对方的用户名
+		
+	}
 	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.chat);
-		Intent intent = getIntent();
-		 groupId = intent.getStringExtra("id");// 获取传过来的群组ID
-		 groupName = intent.getStringExtra("name");// 如果是群聊  就获取传过来的群组ID  否则就获取个人聊天的接收的用户
-	//	user = (User) getIntent().getSerializableExtra("user");// 获取用户，还没有验证是否可行
-		messageDB = new MessageDB(this);
-
-		initView();
-		initData();
-
-		groupNameText.setText(groupName);// 设置聊天的标题
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		initView();
+		
 		layout = (LinearLayout) findViewById(R.id.linear);
-		suolue = new SuoluetuActivity(this);
+		
 		final Button button = new Button(ChatActivity.this);
 		button.setBackgroundResource(R.drawable.chat_audio);
 		layout.addView(button);
@@ -144,7 +158,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		btn_collect = (ImageButton) findViewById(R.id.btn_collect);
 		btn_share = (ImageButton) findViewById(R.id.btn_share);
 
-		groupNameText = (EditText) findViewById(R.id.groupName);
+		groupNameText = (TextView) findViewById(R.id.groupName);
 		mButtonBack.setOnClickListener(this);
 		// mBtnSend.setOnClickListener(this);
 		mButtonMore.setOnClickListener(this);
@@ -152,36 +166,14 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		btn_share.setOnClickListener(this);
 		// 设置EditText光标位置
 		// mEditText.setSelection(5);
-
+		mAdapter = new ChatMsgViewAdapter(ChatActivity.this, mDataArrays);
+		mListView.setAdapter(mAdapter);
 	}
 
 	// 初始化数据
 	private void initData() {
 		InitDataThread thread = new InitDataThread();
 		thread.start();
-		
-		//从服务器获取到的数据
-		List<String> msgArray = new LinkedList<String>();
-		msgArray.add("我刚刚交了一个女朋友");
-		msgArray.add("那是好事情啊");
-		msgArray.add("可是我家里衣柜抽屉里还有一个啊！");
-		msgArray.add("大哥把衣柜抽屉里面的那个给我吧，反正你用不着了");
-		// TODO Auto-generated method stub
-		for (int i = 0; i < msgArray.size(); i++) {
-			ChatMsgEntity entity = new ChatMsgEntity();
-			if (i % 2 == 0) {
-				entity.setName("丁总");
-				entity.setMsgType(true);
-			} else {
-				entity.setName("杨总");
-				entity.setMsgType(false);
-			}
-
-			entity.setText(msgArray.get(i));
-			mDataArrays.add(entity);
-		}
-		mAdapter = new ChatMsgViewAdapter(this, mDataArrays);
-		mListView.setAdapter(mAdapter);
 	}
 
 	// 定义按钮事件
@@ -288,8 +280,14 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 				TextMessage message = new TextMessage();
 				message.setMessage(contString);
 				o.setObject(message);
-				o.setFromUser(util.getId());//谁发送的
-				o.setToUser(Integer.valueOf(groupId));//谁接收的  这边发送给群id
+				o.setFromUser(util.getId());// 谁发送的
+				if(groupId!=null){
+					o.setIstoGroup(1);
+					o.setToUser(Integer.valueOf(groupId));// 谁接收的 这边发送给群id
+				}else{
+					o.setIstoGroup(0);
+					o.setToUser(Integer.valueOf(sendtoUserId));//  这边发送给用户id	
+				}								
 				out.setMsg(o);
 			}
 		}
@@ -297,7 +295,6 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	}
 
 	private void back() {
-		// TODO Auto-generated method stub
 		finish();// 返回结束事件
 	}
 
@@ -351,9 +348,10 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		}
 
 	}
-	
+
 	class InitDataThread extends Thread {
 		private Dialog mDialog = null;
+
 		@Override
 		public void run() {
 			// 新建工具类，向服务器发送Http请求
@@ -362,8 +360,16 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			// 向服务器发送数据，如果没有，可以不发送
 			JSONObject jsonObject = new JSONObject();
 			try {
-				jsonObject.put("sendUserId", util.getId());
-				jsonObject.put("groupid", groupId);				
+				jsonObject.put("sendUserId", util.getId());//发送者的ID
+				if(groupId!=null){
+					jsonObject.put("groupId", groupId);	
+					jsonObject.put("sendtoUserId", "-1");
+				}else{
+					jsonObject.put("sendtoUserId", sendtoUserId);	
+					jsonObject.put("groupId", "-1");
+				}
+					
+						
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -378,12 +384,12 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			}*/
 			
 			//设置发送的url 和服务器端的struts.xml文件对应
-			postUtil.setUrl("/share/share_selectAll.do");
+			postUtil.setUrl("/chatrecord/chatrecord_select.do");
 			//不向服务器发送数据
 			postUtil.setRequest(jsonObject);
 			
 			// 从服务器获取数据
-			String res = postUtil.run();
+			String res = postUtil.run();			
 			// 对从服务器获取数据进行解析
 			JSONArray jsonArray = null;			
 			try {
@@ -391,29 +397,49 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}	
-			List<String> msgArray = new LinkedList<String>();
+			
+			
+			try {
+				if(jsonArray.getJSONObject(0).getString("hasdata").equals("nodata")){
+					return;
+				}
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+			mDataArrays.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {				
 				try {
+					ChatMsgEntity entity = new ChatMsgEntity();
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
-					
-				//	msgArray.add("我刚刚交了一个女朋友");
-				
+					int senduserid = myjObject.getInt("senduserid");
+					String sendUsername = myjObject.getString("sendUsername");
+			//		int receiveuserid = myjObject.getInt("receiveuserid");
+			//		int receivegroupid = myjObject.getInt("receivegroupid");
+					String message = myjObject.getString("message");
+			//		String createtime =  myjObject.getString("createtime");	
+					entity.setName(sendUsername);
+					if (senduserid == util.getId()) {//判断发送的Id和当前用户的Id是否一致							
+						entity.setMsgType(false);
+					} else 
+						entity.setMsgType(true);
+					entity.setText(message);
+					mDataArrays.add(entity);				
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-			}/////////////////////////////解析数据完成
-			
-			
-			Runnable r = new Runnable() {
+			}
+
+		Runnable r = new Runnable() {
 				@Override
 				public void run() {
-					
+					mAdapter.notifyDataSetChanged();
 				}
 
 			};
 			handler.post(r);
-		}
 	}
+}
 
-
+	
+	
 }
