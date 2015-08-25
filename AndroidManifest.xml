@@ -32,12 +32,13 @@
         <activity
             android:name="com.example.niuxin.LoginActivity"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateVisible" >
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            >
         </activity>
         <activity
             android:name="com.example.niuxin.RegisterActivity"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateVisible" >
+             >
         </activity>
 
         <receiver android:name="com.niuxin.util.NetworkStateReceiver" >
