@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -18,12 +19,13 @@ public class SearchuserActivity  extends Activity{
 	EditText editText;
 	//1
 	private SuoluetuActivity suolue;
+	public Handler handler = new Handler();
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.searchuser);
 		//2
-		suolue = new SuoluetuActivity(this);
+		suolue = new SuoluetuActivity(this,handler);
 		//获取各种控件
 		cancle = (Button)findViewById(R.id.btn_searchuser_cancle);
 		done = (Button)findViewById(R.id.btn_searchuser_finish);

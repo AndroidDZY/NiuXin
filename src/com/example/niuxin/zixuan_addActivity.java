@@ -10,8 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.niuxin.LiaotianActivity.GroupThread;
+import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
+import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -39,7 +40,7 @@ public class zixuan_addActivity extends Activity {
 	// 实例化一个LinkedList类(LinkedList集合中的对象是一个个Map对象,而这个Map对象的键是String类型,值是Object类型)的对象list
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	EditText gupiao;
-
+	private SharePreferenceUtil util =null;
 	
 	@Override  
 	protected void onResume() {
@@ -52,9 +53,9 @@ public class zixuan_addActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
-		act = this;
+		act = zixuan_addActivity.this;
 		setContentView(R.layout.zixuan_add);// 设置zixuan_addActivity采用zixuan_add.xml布局文件进行布局
-
+		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		// 获取EditText对象
 		gupiao = (EditText) findViewById(R.id.et_gupiao);
 		// 获取Button对象
@@ -205,17 +206,14 @@ public class zixuan_addActivity extends Activity {
 			if(Integer.valueOf(list.get(i).get("add_flag").toString())==R.drawable.add_flag02){
 				JSONObject jsonObject = new JSONObject();
 				try {
-					jsonObject.put("id", Integer.valueOf(list.get(i).get("id").toString()));
+					jsonObject.put("ShareId", Integer.valueOf(list.get(i).get("id").toString()));
+					jsonObject.put("UserId", util.getId());
 					jArray.put(jsonObject);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}
-			}
-			
-			// 向服务器发送数据，如果没有，可以不发送
-			
-		
+			}	
 			/*
 			boolean isNetwork= postUtil.checkNetState(act);
 			if(!isNetwork){
@@ -227,8 +225,7 @@ public class zixuan_addActivity extends Activity {
 			//设置发送的url 和服务器端的struts.xml文件对应
 			postUtil.setUrl("/share/share_insert.do");
 			//不向服务器发送数据
-			postUtil.setRequest(jArray);
-			
+			postUtil.setRequest(jArray);			
 			// 从服务器获取数据
 			String res = postUtil.run();									
 		}

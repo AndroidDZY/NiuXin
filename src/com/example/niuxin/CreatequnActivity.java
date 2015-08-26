@@ -45,14 +45,13 @@ public class CreatequnActivity extends Activity {
 	String isfree = null;
 	Date createTime = new Date();// 创建时间
 	private boolean clickmark = false;
-
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.createqun);
 
 		// 2
-		suolue = new SuoluetuActivity(this);
+		suolue = suolue = new SuoluetuActivity(this,handler);
 		// 获取各种控件
 		cancle = (Button) findViewById(R.id.btn_cq_cancle);
 		finish = (Button) findViewById(R.id.btn_cq_finish);

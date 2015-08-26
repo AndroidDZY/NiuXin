@@ -2,6 +2,10 @@ package com.example.niuxin;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+
+import com.example.niuxin.zixuan_addActivity.TestThread;
+
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
@@ -18,15 +22,23 @@ public class MainActivity extends TabActivity  {
                    main_gushirili,main_more;
     //1
     private SuoluetuActivity suolue;
+    public Handler handler = new Handler();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_main);
 		//2
-		suolue = new SuoluetuActivity(this);
+		suolue = new SuoluetuActivity(this,handler);
 		init();
 		initTab();
+		
+	}
+	
+	@Override  
+	protected void onResume() {
+		 super.onResume();  
+			//准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
 		
 	}
 

@@ -8,6 +8,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -26,13 +27,14 @@ public class yaoqingchengyuanActivity extends Activity{
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	//1
 	private SuoluetuActivity suolue;
+	public Handler handler = new Handler();
 	Button cancle;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.yaoqingchengyuan);
 		//2
-		suolue = new SuoluetuActivity(this);
+		suolue = new SuoluetuActivity(this,handler);
 		//获取各种控件
 		cancle = (Button)findViewById(R.id.btn_yq_cancle);
 		mEditText = (EditText)findViewById(R.id.yq_search);

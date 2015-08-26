@@ -80,7 +80,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	@Override  
 	protected void onResume() {
 		 super.onResume(); 
-		 suolue = new SuoluetuActivity(this);		 
+		 suolue = new SuoluetuActivity(this,handler);	 
 		 Intent intent = getIntent();		 	
 		groupId = intent.getStringExtra("groupid");// 获取传过来的群组ID
 		groupName = intent.getStringExtra("name");// 如果是群聊 就获取传过来的群组ID

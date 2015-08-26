@@ -7,6 +7,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -17,6 +18,7 @@ import android.widget.SimpleAdapter;
 public class CollectActivity extends Activity{
 	ListView listView;
 	Button cancle;
+	private Handler handler = new Handler();
     //1
     private SuoluetuActivity suolue;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class CollectActivity extends Activity{
 		setContentView(R.layout.collect);
 		
 		//2
-		suolue = new SuoluetuActivity(this);
+		suolue = new SuoluetuActivity(this,handler);
 		//获取各种控件
 		cancle = (Button)findViewById(R.id.btn_collect_cancle);
 		listView=(ListView)findViewById(R.id.collectlist);
