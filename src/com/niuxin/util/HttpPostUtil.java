@@ -14,6 +14,7 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -49,7 +50,7 @@ public class HttpPostUtil {
 		this.URL = ConfigProperties.IP+str;
 	}
 
-	public void setRequest(JSONObject jsonObject) {
+	public void setRequest(JSONArray jsonObject) { //这边
 		httpPost.addHeader("Content-Type", "text/json");
 		httpPost.addHeader("charset", "UTF-8");
 

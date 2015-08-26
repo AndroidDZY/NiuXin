@@ -160,7 +160,9 @@ public class CreatequnActivity extends Activity {
 				clickmark = false;
 				e.printStackTrace();
 			}
-			postUtil.setRequest(jsonObject);
+			JSONArray js = new JSONArray();
+			js.put(jsonObject);
+			postUtil.setRequest(js);
 
 			/*
 			 * boolean isNetwork= postUtil.checkNetState(act); if(!isNetwork){

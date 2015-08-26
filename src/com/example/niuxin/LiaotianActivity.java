@@ -108,9 +108,14 @@ public class LiaotianActivity extends Activity {
 			//设置发送的url 和服务器端的struts.xml文件对应
 			postUtil.setUrl("/group/group_listGroupById.do");
 			//向服务器发送数据
-			postUtil.setRequest(jsonObject);
+			JSONArray js = new JSONArray();
+			js.put(jsonObject);
+			postUtil.setRequest(js);
 			// 从服务器获取数据
 			String res = postUtil.run();
+			if(res==null){
+				return;
+			}
 			// 对从服务器获取数据进行解析
 			JSONArray jsonArray = null;			
 			try {

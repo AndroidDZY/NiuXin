@@ -380,7 +380,9 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			//设置发送的url 和服务器端的struts.xml文件对应
 			postUtil.setUrl("/chatrecord/chatrecord_select.do");
 			//不向服务器发送数据
-			postUtil.setRequest(jsonObject);
+			JSONArray js = new JSONArray();
+			js.put(jsonObject);
+			postUtil.setRequest(js);
 			
 			// 从服务器获取数据
 			String res = postUtil.run();	

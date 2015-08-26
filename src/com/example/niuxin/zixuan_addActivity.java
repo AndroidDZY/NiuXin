@@ -35,6 +35,7 @@ public class zixuan_addActivity extends Activity {
 	ListView listView;
 	SimpleAdapter addAdapter;
 	public static Activity act = null;
+	private int postMark = 0;
 	// 实例化一个LinkedList类(LinkedList集合中的对象是一个个Map对象,而这个Map对象的键是String类型,值是Object类型)的对象list
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	EditText gupiao;
@@ -68,6 +69,17 @@ public class zixuan_addActivity extends Activity {
 		// 完成按钮返回上一个窗口
 		add_finish.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
+				if(postMark==1)
+					return;
+				PostThread pThread = new PostThread();
+				pThread.run();
+				try {
+					pThread.join();
+				} catch (InterruptedException e) {
+					postMark = 0;
+					e.printStackTrace();					
+				}
+				postMark = 0;
 				finish();
 			}
 		});
@@ -153,7 +165,7 @@ public class zixuan_addActivity extends Activity {
 					Map<String, Object> map = new HashMap<String, Object>();
 					// 获取每一个对象中的值
 					int id = myjObject.getInt("id");
-					int number = myjObject.getInt("number");
+					String number = myjObject.getString("number");
 					String name = myjObject.getString("name");
 					map.put("id", id);
 					map.put("number", number);
@@ -163,9 +175,7 @@ public class zixuan_addActivity extends Activity {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-			}/////////////////////////////解析数据完成
-			
-			
+			}
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
@@ -184,7 +194,45 @@ public class zixuan_addActivity extends Activity {
 			handler.post(r);
 		}
 	}
+	class PostThread extends Thread {
+		@Override
+		public void run() {
+			// 新建工具类，向服务器发送Http请求
+			HttpPostUtil postUtil = new HttpPostUtil(handler);
 
+			JSONArray jArray = new JSONArray();
+			for(int i=0;i<list.size();i++){
+			if(Integer.valueOf(list.get(i).get("add_flag").toString())==R.drawable.add_flag02){
+				JSONObject jsonObject = new JSONObject();
+				try {
+					jsonObject.put("id", Integer.valueOf(list.get(i).get("id").toString()));
+					jArray.put(jsonObject);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			}
+			
+			// 向服务器发送数据，如果没有，可以不发送
+			
+		
+			/*
+			boolean isNetwork= postUtil.checkNetState(act);
+			if(!isNetwork){
+				mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
+				mDialog.show();
+				return;
+			}*/
+			
+			//设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/share/share_insert.do");
+			//不向服务器发送数据
+			postUtil.setRequest(jArray);
+			
+			// 从服务器获取数据
+			String res = postUtil.run();									
+		}
+	}
 
 }
 
