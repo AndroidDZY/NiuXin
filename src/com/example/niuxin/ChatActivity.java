@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.example.niuxin.LiaotianActivity.GroupThread;
 import com.niuxin.bean.ChatMsgEntity;
+import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
 import com.niuxin.util.Constants;
@@ -79,8 +80,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	@Override  
 	protected void onResume() {
 		 super.onResume(); 
-		 suolue = new SuoluetuActivity(this);
-		 
+		 suolue = new SuoluetuActivity(this);		 
 		 Intent intent = getIntent();		 	
 		groupId = intent.getStringExtra("groupid");// 获取传过来的群组ID
 		groupName = intent.getStringExtra("name");// 如果是群聊 就获取传过来的群组ID
@@ -263,7 +263,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		String contString = mEditText.getText().toString();
 		if (contString.length() > 0) {
 			ChatMsgEntity entity = new ChatMsgEntity();
-			entity.setDate(getDate());
+			entity.setDate(MyDate.getDateEN());
 			entity.setName("");
 			entity.setMsgType(false);
 			entity.setText(contString);
@@ -298,19 +298,6 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		finish();// 返回结束事件
 	}
 
-	// 获取日期
-	private String getDate() {
-		Calendar c = Calendar.getInstance();
-		String year = String.valueOf(c.get(Calendar.YEAR));
-		String month = String.valueOf(c.get(Calendar.MONTH));
-		String day = String.valueOf(c.get(Calendar.DAY_OF_MONTH) + 1);
-		String hour = String.valueOf(c.get(Calendar.HOUR_OF_DAY));
-		String mins = String.valueOf(c.get(Calendar.MINUTE));
-		StringBuffer sbBuffer = new StringBuffer();
-		sbBuffer.append(year + "-" + month + "-" + day + " " + hour + ":" + mins);
-		return sbBuffer.toString();
-	}
-
 	@Override
 	public void getMessage(TranObject msg) {
 
@@ -318,13 +305,16 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		switch (msg.getType()) {
 		case MESSAGE:
 			TextMessage tm = (TextMessage) msg.getObject();
+			if(msg.getFromUser() == util.getId()){
+				return;
+			}
+			
 			String message = tm.getMessage();
 			ChatMsgEntity entity = new ChatMsgEntity(util.getUserName(), MyDate.getDateEN(), message, util.getImg(),
 					true);// 收到的消息
-			if (msg.getFromUser() == util.getId() || msg.getFromUser() == 0) {// 如果是正在聊天的好友的消息，或者是服务器的消息
+			if (msg.getFromUser() != util.getId() || msg.getFromUser() == 0) {// 如果是正在聊天的好友的消息，或者是服务器的消息
 
 				messageDB.saveMsg(util.getId(), entity);
-
 				mDataArrays.add(entity);
 				mAdapter.notifyDataSetChanged();
 				mListView.setSelection(mListView.getCount() - 1);
@@ -335,14 +325,18 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 				MediaPlayer.create(this, R.raw.msg).start();
 			}
 			break;
-		/*
-		 * case LOGIN: User loginUser = (User) msg.getObject();
-		 * Toast.makeText(ChatActivity.this, loginUser.getId() + "上线了", 0)
-		 * .show(); MediaPlayer.create(this, R.raw.msg).start(); break; case
-		 * LOGOUT: User logoutUser = (User) msg.getObject();
-		 * Toast.makeText(ChatActivity.this, logoutUser.getId() + "下线了", 0)
-		 * .show(); MediaPlayer.create(this, R.raw.msg).start(); break;
-		 */
+		
+		 case LOGIN: 
+		//	 User loginUser = (User) msg.getObject();
+		//  Toast.makeText(ChatActivity.this, loginUser.getId() + "上线了", 0).show(); 
+		  //MediaPlayer.create(this, R.raw.msg).start();
+		  break; 
+		  case LOGOUT:
+		//	 User logoutUser = (User) msg.getObject();
+		//  Toast.makeText(ChatActivity.this, logoutUser.getId() + "下线了", 0).show(); 
+		//  MediaPlayer.create(this, R.raw.msg).start(); 
+		  break;
+		 
 		default:
 			break;
 		}
@@ -389,29 +383,29 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			postUtil.setRequest(jsonObject);
 			
 			// 从服务器获取数据
-			String res = postUtil.run();			
+			String res = postUtil.run();	
+
 			// 对从服务器获取数据进行解析
 			JSONArray jsonArray = null;			
 			try {
+				System.out.println(res);
 				jsonArray = new JSONArray(res);
+				
 			} catch (JSONException e) {
 				e.printStackTrace();
+				return;
 			}	
-			
-			
 			try {
-				if(jsonArray.getJSONObject(0).getString("hasdata").equals("nodata")){
-					return;
-				}
-			} catch (JSONException e1) {
-				e1.printStackTrace();
-			}
+			if(jsonArray.getJSONObject(0).getString("hasdata").equals("nodata")){
+				return;
+			}}catch (JSONException e) {
+			}	
 			mDataArrays.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {				
 				try {
 					ChatMsgEntity entity = new ChatMsgEntity();
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
-					int senduserid = myjObject.getInt("senduserid");
+					int senduserid = myjObject.getInt("sendUserId");
 					String sendUsername = myjObject.getString("sendUsername");
 			//		int receiveuserid = myjObject.getInt("receiveuserid");
 			//		int receivegroupid = myjObject.getInt("receivegroupid");
