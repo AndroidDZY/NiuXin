@@ -36,14 +36,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal" >
-        
+       
+         <!--   android:lines="2"  --> 
  <Button
     android:id="@+id/btn01"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:text=" 海螺水泥\n1.00% 6.53"
-    android:lines="2"
-    android:textColor="#de4557"
+    android:text=" +\n 添加自选股"
+    android:textColor="#ffffff"
     android:background="@drawable/buttonstyle01"
     android:textSize="12sp" />
 

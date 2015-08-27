@@ -28,7 +28,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-
 public class zixuan_addActivity extends Activity {
 	private int add_flag = R.drawable.add_flag01;
 	private Handler handler = new Handler();
@@ -36,23 +35,22 @@ public class zixuan_addActivity extends Activity {
 	ListView listView;
 	SimpleAdapter addAdapter;
 	public static Activity act = null;
-	private int postMark = 0;
 	// 实例化一个LinkedList类(LinkedList集合中的对象是一个个Map对象,而这个Map对象的键是String类型,值是Object类型)的对象list
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	EditText gupiao;
-	private SharePreferenceUtil util =null;
-	
-	@Override  
+	private SharePreferenceUtil util = null;
+
+	@Override
 	protected void onResume() {
-		 super.onResume();  
-			//准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
-			TestThread thread = new TestThread();
-			thread.start();
+		super.onResume();
+		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
+		TestThread thread = new TestThread();
+		thread.start();
 	}
-	
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		act = zixuan_addActivity.this;
 		setContentView(R.layout.zixuan_add);// 设置zixuan_addActivity采用zixuan_add.xml布局文件进行布局
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
@@ -70,28 +68,15 @@ public class zixuan_addActivity extends Activity {
 		// 完成按钮返回上一个窗口
 		add_finish.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-				if(postMark==1)
-					return;
 				PostThread pThread = new PostThread();
-				pThread.run();
-				try {
-					pThread.join();
-				} catch (InterruptedException e) {
-					postMark = 0;
-					e.printStackTrace();					
-				}
-				postMark = 0;
-				finish();
+				pThread.start();
+
 			}
 		});
 		listView = (ListView) findViewById(R.id.addlist);// 获取ListView
-		
 		addAdapter = new SimpleAdapter(zixuan_addActivity.this, list, R.layout.addlistview,
-				new String[] { "name", "num", "add_flag" },
-				new int[] { R.id.name, R.id.num, R.id.add_flag });
+				new String[] { "name", "num", "add_flag" }, new int[] { R.id.name, R.id.num, R.id.add_flag });
 		listView.setAdapter(addAdapter);// 为listView设置适配器
-		
-	
 
 		// 实现点击不同的item，奇数偶数次点击更换imageview显示
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -117,50 +102,44 @@ public class zixuan_addActivity extends Activity {
 			}
 		});
 	}
+
 	class TestThread extends Thread {
 		private Dialog mDialog = null;
+
 		@Override
 		public void run() {
 			// 新建工具类，向服务器发送Http请求
 			HttpPostUtil postUtil = new HttpPostUtil(handler);
 			/*
-			// 向服务器发送数据，如果没有，可以不发送
-			JSONObject jsonObject = new JSONObject();
-			try {
-				jsonObject.put("username", "huangwuyi");
-				jsonObject.put("sex", "男");
-				jsonObject.put("QQ", "413425430");
-				jsonObject.put("Min.score", new Integer(99));
-				jsonObject.put("nickname", "梦中心境");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			postUtil.setRequest(jsonObject);
-			*/
+			 * // 向服务器发送数据，如果没有，可以不发送 JSONObject jsonObject = new JSONObject();
+			 * try { jsonObject.put("username", "huangwuyi");
+			 * jsonObject.put("sex", "男"); jsonObject.put("QQ", "413425430");
+			 * jsonObject.put("Min.score", new Integer(99));
+			 * jsonObject.put("nickname", "梦中心境"); } catch (JSONException e) {
+			 * e.printStackTrace(); } postUtil.setRequest(jsonObject);
+			 */
 			/*
-			boolean isNetwork= postUtil.checkNetState(act);
-			if(!isNetwork){
-				mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
-				mDialog.show();
-				return;
-			}*/
-			
-			//设置发送的url 和服务器端的struts.xml文件对应
+			 * boolean isNetwork= postUtil.checkNetState(act); if(!isNetwork){
+			 * mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
+			 * mDialog.show(); return; }
+			 */
+
+			// 设置发送的url 和服务器端的struts.xml文件对应
 			postUtil.setUrl("/share/share_selectAll.do");
-			//不向服务器发送数据
+			// 不向服务器发送数据
 			postUtil.setRequest(null);
-			
+
 			// 从服务器获取数据
 			String res = postUtil.run();
 			// 对从服务器获取数据进行解析
-			JSONArray jsonArray = null;			
+			JSONArray jsonArray = null;
 			try {
 				jsonArray = new JSONArray(res);
 			} catch (JSONException e) {
 				e.printStackTrace();
-			}	
+			}
 			list.clear();
-			for (int i = 0; i < jsonArray.length(); i++) {				
+			for (int i = 0; i < jsonArray.length(); i++) {
 				try {
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
 					Map<String, Object> map = new HashMap<String, Object>();
@@ -181,12 +160,12 @@ public class zixuan_addActivity extends Activity {
 				@Override
 				public void run() {
 					// 这里可以写上更新UI的代码
-
+/*
 					addAdapter = new SimpleAdapter(zixuan_addActivity.this, list, R.layout.addlistview,
 							new String[] { "name", "number", "add_flag" },
 							new int[] { R.id.name, R.id.num, R.id.add_flag });
 					listView.setAdapter(addAdapter);// 为listView设置适配器
-
+*/
 					addAdapter.notifyDataSetChanged();
 
 				}
@@ -195,6 +174,7 @@ public class zixuan_addActivity extends Activity {
 			handler.post(r);
 		}
 	}
+
 	class PostThread extends Thread {
 		@Override
 		public void run() {
@@ -202,34 +182,38 @@ public class zixuan_addActivity extends Activity {
 			HttpPostUtil postUtil = new HttpPostUtil(handler);
 
 			JSONArray jArray = new JSONArray();
-			for(int i=0;i<list.size();i++){
-			if(Integer.valueOf(list.get(i).get("add_flag").toString())==R.drawable.add_flag02){
-				JSONObject jsonObject = new JSONObject();
-				try {
-					jsonObject.put("ShareId", Integer.valueOf(list.get(i).get("id").toString()));
-					jsonObject.put("UserId", util.getId());
-					jArray.put(jsonObject);
-				} catch (JSONException e) {
-					e.printStackTrace();
+			for (int i = 0; i < list.size(); i++) {
+				if (Integer.valueOf(list.get(i).get("add_flag").toString()) == R.drawable.add_flag02) {
+					JSONObject jsonObject = new JSONObject();
+					try {
+						jsonObject.put("ShareId", Integer.valueOf(list.get(i).get("id").toString()));
+						jsonObject.put("UserId", util.getId());
+						jArray.put(jsonObject);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
 			}
-			}	
 			/*
-			boolean isNetwork= postUtil.checkNetState(act);
-			if(!isNetwork){
-				mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
-				mDialog.show();
-				return;
-			}*/
-			
-			//设置发送的url 和服务器端的struts.xml文件对应
+			 * boolean isNetwork= postUtil.checkNetState(act); if(!isNetwork){
+			 * mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
+			 * mDialog.show(); return; }
+			 */
+
+			// 设置发送的url 和服务器端的struts.xml文件对应
 			postUtil.setUrl("/share/share_insert.do");
-			//不向服务器发送数据
-			postUtil.setRequest(jArray);			
+			// 不向服务器发送数据
+			postUtil.setRequest(jArray);
 			// 从服务器获取数据
-			String res = postUtil.run();									
+			 postUtil.run();
+			Runnable r = new Runnable() {
+				@Override
+				public void run() {
+					finish();
+				}
+
+			};
+			handler.post(r);
 		}
 	}
-
 }
-
