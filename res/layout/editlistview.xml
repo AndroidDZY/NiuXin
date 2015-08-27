@@ -10,11 +10,13 @@
     
     <ImageView 
         android:id="@+id/img_edit_flag"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"/>
 
    		<LinearLayout 
-   		    android:layout_width="wrap_content"
+        	android:layout_width="0dp"
+       		android:layout_weight="3"
    		    android:layout_height="wrap_content"
    		    android:orientation="vertical">
    			<TextView 
@@ -22,7 +24,6 @@
    		    	android:textSize="15sp"
    		    	android:layout_width="wrap_content"
        			android:layout_height="wrap_content"
-       			android:layout_marginLeft="20dp"
        		/>
    			
    		    <TextView 
@@ -31,25 +32,21 @@
    		    	android:textColor="#7f7f7f"
    		    	android:layout_width="wrap_content"
        			android:layout_height="wrap_content"
-       			android:layout_marginLeft="20dp"
        		/>
    		</LinearLayout>
 		<ImageView 
 		    android:id="@+id/img_edit_top"
-		    android:layout_width="wrap_content"
+        	android:layout_width="0dp"
+       		android:layout_weight="2"
 		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="70dp"
 		    />
 		
 		<ImageView 
 		    android:id="@+id/img_edit_move"
-		    android:layout_width="wrap_content"
+        	android:layout_width="0dp"
+       		android:layout_weight="2"
 		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="50dp"
 		    />
-
-
-    
 
 </LinearLayout>
 

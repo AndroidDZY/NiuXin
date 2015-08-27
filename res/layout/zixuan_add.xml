@@ -19,20 +19,38 @@
             android:text="添加自选"
             android:textColor="#ffffff"
             android:textSize="20sp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+        
         <EditText 
             android:id="@+id/et_gupiao"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="8"
             android:layout_height="30dp"
             android:gravity="center_vertical"
             android:background="@drawable/edittext_search"
             android:hint="@string/search_zx"
-            android:paddingLeft="75dp"
+            android:paddingLeft="55dp"
             android:drawableLeft="@drawable/search_icon01" 
             android:drawableRight="@drawable/voice_icon"
             android:paddingRight="12dp" 
             android:singleLine="true"
             android:textSize="13sp"
 			/>
+        <Button 
+            android:id="@+id/add_search"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#de4557"
+            android:textColor="#ffffff"
+            android:text="查找"
+            android:textSize="15sp"
+            />"
+        </LinearLayout>
      </LinearLayout>  
      <ListView 
      	android:id="@+id/addlist"

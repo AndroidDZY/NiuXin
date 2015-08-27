@@ -18,7 +18,7 @@
        		android:layout_marginLeft="5dp"
        		/>
    		<TextView 
-   		    android:id="@+id/num"
+   		    android:id="@+id/number"
    		    android:textSize="20sp"
    		    android:textColor="#7f7f7f"
    		    android:layout_width="0dp"

@@ -7,10 +7,13 @@
 
     <ListView android:id="@+id/zixuanlist"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       
+       android:layout_height="wrap_content"      
         >
     </ListView>
+    <View  
+        android:layout_width="match_parent"  
+        android:layout_height="1dp" 
+        android:background="#de4557"  />
      <LinearLayout
          android:orientation="horizontal" 
      	 android:layout_width="match_parent"
@@ -39,4 +42,9 @@
              android:clickable="true"
              android:textSize="15sp"/>
      </LinearLayout>
+      <ListView android:id="@+id/tonglist"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"      
+        >
+    </ListView>
 </LinearLayout>

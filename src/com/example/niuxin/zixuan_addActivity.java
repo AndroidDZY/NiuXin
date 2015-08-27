@@ -31,7 +31,7 @@ import android.widget.SimpleAdapter;
 public class zixuan_addActivity extends Activity {
 	private int add_flag = R.drawable.add_flag01;
 	private Handler handler = new Handler();
-	Button add_cancle, add_finish;
+	Button add_cancle, add_finish,add_search;
 	ListView listView;
 	SimpleAdapter addAdapter;
 	public static Activity act = null;
@@ -59,6 +59,7 @@ public class zixuan_addActivity extends Activity {
 		// 获取Button对象
 		add_cancle = (Button) findViewById(R.id.add_cancle);
 		add_finish = (Button) findViewById(R.id.add_finish);
+		add_search = (Button) findViewById(R.id.add_search);
 		// 取消按钮返回上一个窗口
 		add_cancle.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
@@ -73,9 +74,17 @@ public class zixuan_addActivity extends Activity {
 
 			}
 		});
+		
+		// 查找按钮完成查找
+		add_search.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				
+			}
+		});
+		
 		listView = (ListView) findViewById(R.id.addlist);// 获取ListView
 		addAdapter = new SimpleAdapter(zixuan_addActivity.this, list, R.layout.addlistview,
-				new String[] { "name", "num", "add_flag" }, new int[] { R.id.name, R.id.num, R.id.add_flag });
+				new String[] { "name", "number", "add_flag" }, new int[] { R.id.name, R.id.number, R.id.add_flag });
 		listView.setAdapter(addAdapter);// 为listView设置适配器
 
 		// 实现点击不同的item，奇数偶数次点击更换imageview显示

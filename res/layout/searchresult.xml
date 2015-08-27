@@ -18,7 +18,7 @@
            android:id="@+id/sr_edittext"
            android:background="@drawable/edittext_search"
            android:layout_width="0dp"
-           android:layout_weight="5"
+           android:layout_weight="6"
            android:layout_marginLeft="5dp"
            android:layout_height="30dp"
            android:hint="@string/search"
@@ -31,6 +31,15 @@
            android:textSize="13sp"
            />
        <Button
+           android:id="@+id/sr_search"
+           android:layout_width="0dp"
+           android:layout_height="30dp"
+           android:layout_weight="1"
+           android:background="#de4557"
+           android:text="查找"
+           android:textColor="#ffffff"
+           android:textSize="15sp" />
+       <Button
            android:id="@+id/sr_searchcancel"
            android:layout_width="0dp"
            android:layout_height="30dp"
@@ -42,7 +51,5 @@
    </LinearLayout>
     <ListView android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchresult"></ListView>
-    
-
+        android:id="@+id/searchresult_list"></ListView>
 </LinearLayout>
