@@ -9,19 +9,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.SimpleAdapter;
 
 
 @SuppressLint("Instantiatable")
@@ -33,10 +33,14 @@ public class SuoluetuActivity {
 	private ImageButton zhankai;
 	private Activity act;
 	private List<Button> btList = new LinkedList<Button>();
-	public SuoluetuActivity(final Activity act,Handler handler) {
+	public SuoluetuActivity(final Activity act,Handler handler) {	
 		this.act = act;
+		util = new SharePreferenceUtil(act, Constants.SAVE_USER);
 		this.handler = handler;
 		initbind();
+		
+		TestThread thread = new TestThread();
+		thread.start();
 	}
 	
 	
@@ -77,6 +81,9 @@ public class SuoluetuActivity {
 
 					for (int i = 0; i < jsonArray.length(); i++) {
 						try {
+							if(i>6){
+								break;
+							}
 							JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
 							Map<Integer, String> map = new HashMap<Integer, String>();
 							// 获取每一个对象中的值
@@ -88,7 +95,7 @@ public class SuoluetuActivity {
 							list.add(map);
 							btList.get(i).setText(str); //		
 							btList.get(i).setLines(2);
-							btList.get(i).setTextColor(0xde4557);
+							btList.get(i).setTextColor(Color.parseColor("#de4557"));
 						
 						} catch (JSONException e) {
 							e.printStackTrace();
