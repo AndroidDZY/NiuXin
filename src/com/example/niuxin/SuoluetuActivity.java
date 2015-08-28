@@ -49,7 +49,7 @@ public class SuoluetuActivity {
 		public void run() {
 			
 			// 新建工具类，向服务器发送Http请求
-			HttpPostUtil postUtil = new HttpPostUtil(handler);
+			HttpPostUtil postUtil = new HttpPostUtil();
 			JSONArray jArray = new JSONArray();
 			JSONObject jsonObject = new JSONObject();
 			try {
@@ -72,6 +72,9 @@ public class SuoluetuActivity {
 				public void run() {
 					// 这里可以写上更新UI的代码
 					// 对从服务器获取数据进行解析
+					if(res==null||"".equals(res)){
+						return;
+					}
 					JSONArray jsonArray = null;
 					try {
 						jsonArray = new JSONArray(res);

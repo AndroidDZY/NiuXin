@@ -29,6 +29,7 @@ public class NiuxinActivity extends TabActivity {
 	Menu menu;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		System.out.println("NiuxinActivity>>>>>>>>>>>>>>>onCreate>>>>>>>>>");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.main_niuxin);
 		init();

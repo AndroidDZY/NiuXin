@@ -30,7 +30,7 @@ public class HttpPostUtil {
 	private static int connectionTimeout = 60000;
 	private static int socketTimeout = 60000;
 	// 类静态变量
-	private static HttpClient httpClient = new DefaultHttpClient();
+	private   HttpClient httpClient = new DefaultHttpClient();
 	private static ConfigProperties con = new ConfigProperties();
 
 	// 变量
@@ -38,7 +38,18 @@ public class HttpPostUtil {
 	private HttpPost httpPost;
 	private HttpResponse httpResponse;
 
-	public HttpPostUtil(Handler handler) {
+	/*
+	   private static HttpPostUtil postUtil=null;  
+	      //静态工厂方法   
+	      public static HttpPostUtil getInstance(Handler handler) {  
+	           if (postUtil == null) {    
+	        	   postUtil = new HttpPostUtil(handler);  
+	          }    
+	          return postUtil;  
+	       }  
+	*/
+	
+	public HttpPostUtil() {
 
 		strResult = null;
 		httpResponse = null;
