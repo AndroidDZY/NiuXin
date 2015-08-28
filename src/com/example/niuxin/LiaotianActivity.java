@@ -31,7 +31,7 @@ public class LiaotianActivity extends Activity {
 	public static Activity act = null;
 	SimpleAdapter liaotianAdapter = null;
 	List<Map<String, Object>> listLiaoTian= new ArrayList<Map<String,Object>>();
-	
+	SharePreferenceUtil util;
 	@Override  
 	protected void onResume() {
 		 super.onResume();  
@@ -39,20 +39,11 @@ public class LiaotianActivity extends Activity {
 		 thread.start();
 	}
 
-	@Override  
-	protected void onRestart() {
-		super.onRestart();
-	}
-
-	@Override  
-	public void onStart() {
-		 super.onStart();  		
-	}
-	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		act = this;
+		 util = new SharePreferenceUtil(LiaotianActivity.this, Constants.SAVE_USER);
 		//719修改
 		setContentView(R.layout.liaotian);
 		listView=(ListView)findViewById(R.id.qunlist);
@@ -62,9 +53,6 @@ public class LiaotianActivity extends Activity {
 							"time","type","renshu"},new int[]{R.id.img,R.id.qunname,
 				             R.id.lastmes,R.id.time,R.id.quntag,R.id.renshu});
 		listView.setAdapter(liaotianAdapter);
-		
-	//	GroupThread thread = new GroupThread();
-	//	thread.start();
 		//跳转到聊天界面
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -82,16 +70,15 @@ public class LiaotianActivity extends Activity {
 	}
 
 	class GroupThread extends Thread {
-		private Dialog mDialog = null;
 		@Override
 		public void run() {
 			// 新建工具类，向服务器发送Http请求
-			HttpPostUtil postUtil = new HttpPostUtil(handler);
+			HttpPostUtil postUtil = new HttpPostUtil();
 
 			// 向服务器发送数据，如果没有，可以不发送
 			JSONObject jsonObject = new JSONObject();
 			try {
-				SharePreferenceUtil util = new SharePreferenceUtil(LiaotianActivity.this, Constants.SAVE_USER);
+				
 				Integer id = util.getId();			
 				jsonObject.put("id", id);			
 			} catch (JSONException e) {
@@ -112,7 +99,7 @@ public class LiaotianActivity extends Activity {
 			js.put(jsonObject);
 			postUtil.setRequest(js);
 			// 从服务器获取数据
-			String res = postUtil.run();
+			String res = postUtil.run();	
 			if(res==null){
 				return;
 			}

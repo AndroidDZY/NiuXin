@@ -131,7 +131,7 @@ public class CreatequnActivity extends Activity {
 				return;
 			clickmark = true;
 			// 新建工具类，向服务器发送Http请求
-			HttpPostUtil postUtil = new HttpPostUtil(handler);
+			HttpPostUtil postUtil = new HttpPostUtil();
 			// 设置发送的url 和服务器端的struts.xml文件对应
 			postUtil.setUrl("/qun/qun_insert.do");
 			// 向服务器发送数据，如果没有，可以不发送

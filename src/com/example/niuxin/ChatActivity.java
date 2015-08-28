@@ -349,7 +349,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		@Override
 		public void run() {
 			// 新建工具类，向服务器发送Http请求
-			HttpPostUtil postUtil = new HttpPostUtil(handler);
+			HttpPostUtil postUtil = new HttpPostUtil();
 			
 			// 向服务器发送数据，如果没有，可以不发送
 			JSONObject jsonObject = new JSONObject();
