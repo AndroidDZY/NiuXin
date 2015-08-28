@@ -49,7 +49,175 @@
            android:textColor="#ffffff"
            android:textSize="15sp" />
    </LinearLayout>
-    <ListView android:layout_width="match_parent"
+
+    <ScrollView
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:scrollbars="none" >
+       
+        <LinearLayout 
+    		android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:orientation="vertical"
+    		android:background="#ffffff"
+   	 	>
+    
+    <!-- 群组及联系人 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchresult_list"></ListView>
+        android:orientation="vertical"
+        >
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="群组及联系人"
+            android:textSize="12sp"
+            android:padding="8dp"/>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#de4557"/>
+        <ListView 
+            android:id="@+id/contacts_list"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"></ListView>
+        <LinearLayout
+            android:id="@+id/layout1" 
+            android:layout_width="match_parent"
+        	android:layout_height="30dp"
+        	android:background="#ffffff"
+        	android:gravity="center_vertical"
+        	android:orientation="horizontal"
+        	android:clickable="true">
+        	<ImageView 
+        	    android:layout_width="0dp"
+        	    android:layout_weight="1"
+        	    android:layout_height="wrap_content"
+        	    android:src="@drawable/search_icon"/>
+        	<TextView 
+            	android:layout_width="0dp"
+        	    android:layout_weight="7"
+            	android:layout_height="wrap_content"
+            	android:text="查看更多群组及联系人"
+            	android:textColor="#000099"
+            	android:textSize="15sp"/>
+        	<ImageView 
+        	    android:layout_width="0dp"
+        	    android:layout_weight="1"
+        	    android:layout_height="wrap_content"
+        	    android:src="@drawable/group_fold_arrow"/>
+        </LinearLayout>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#de4557"/>
+    </LinearLayout>
+    
+    <!-- 聊天记录 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="聊天记录"
+            android:textSize="12sp"
+            android:padding="8dp"/>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#de4557"/>
+        <ListView 
+            android:id="@+id/chatlog_list"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"></ListView>
+        <LinearLayout
+            android:id="@+id/layout2" 
+            android:layout_width="match_parent"
+        	android:layout_height="30dp"
+        	android:background="#ffffff"
+        	android:gravity="center_vertical"
+        	android:orientation="horizontal"
+        	android:clickable="true">
+        	<ImageView 
+        	    android:layout_width="0dp"
+        	    android:layout_weight="1"
+        	    android:layout_height="wrap_content"
+        	    android:src="@drawable/search_icon"/>
+        	<TextView 
+            	android:layout_width="0dp"
+        	    android:layout_weight="7"
+            	android:layout_height="wrap_content"
+            	android:text="查看更多聊天记录"
+            	android:textColor="#000099"
+            	android:textSize="15sp"/>
+        	<ImageView 
+        	    android:layout_width="0dp"
+        	    android:layout_weight="1"
+        	    android:layout_height="wrap_content"
+        	    android:src="@drawable/group_fold_arrow"/>
+        </LinearLayout>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#de4557"/>
+    </LinearLayout>
+    
+    <!-- 收藏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="收藏"
+            android:textSize="12sp"
+            android:padding="8dp"/>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#de4557"/>
+        <ListView 
+            android:id="@+id/collect_list"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"></ListView>
+        <LinearLayout
+            android:id="@+id/layout3" 
+            android:layout_width="match_parent"
+        	android:layout_height="30dp"
+        	android:background="#ffffff"
+        	android:gravity="center_vertical"
+        	android:orientation="horizontal"
+        	android:clickable="true">
+        	<ImageView 
+        	    android:layout_width="0dp"
+        	    android:layout_weight="1"
+        	    android:layout_height="wrap_content"
+        	    android:src="@drawable/search_icon"/>
+        	<TextView 
+            	android:layout_width="0dp"
+        	    android:layout_weight="7"
+            	android:layout_height="wrap_content"
+            	android:text="查看更多收藏"
+            	android:textColor="#000099"
+            	android:textSize="15sp"/>
+        	<ImageView 
+        	    android:layout_width="0dp"
+        	    android:layout_weight="1"
+        	    android:layout_height="wrap_content"
+        	    android:src="@drawable/group_fold_arrow"/>
+        </LinearLayout>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#de4557"/>
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>
+
 </LinearLayout>
