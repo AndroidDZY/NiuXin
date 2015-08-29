@@ -60,9 +60,15 @@ public class LiaotianActivity extends Activity {
 					long arg3) {
 
 				Intent intent=new Intent();
-				intent.putExtra("groupid", listLiaoTian.get(position).get("id").toString());
-				intent.putExtra("name", listLiaoTian.get(position).get("name").toString());
+			//	intent.putExtra("groupid", listLiaoTian.get(position).get("id").toString());
+			//	intent.putExtra("name", listLiaoTian.get(position).get("name").toString());
+			//	intent.setClass(LiaotianActivity.this, ChatActivity.class);
+				
+				intent.putExtra("group_friend_type", listLiaoTian.get(position).get("chattype").toString());//类型 1代表群聊天  类型2代表个人聊天
+				intent.putExtra("group_friend_id", listLiaoTian.get(position).get("id").toString());//群id 或者将要接收信息的人的id
+				intent.putExtra("group_friend_name", listLiaoTian.get(position).get("name").toString());//群名  或者将要接受消息人的名字
 				intent.setClass(LiaotianActivity.this, ChatActivity.class);
+				
 				startActivity(intent);		
 			}
 		});
@@ -93,7 +99,7 @@ public class LiaotianActivity extends Activity {
 			}*/
 			
 			//设置发送的url 和服务器端的struts.xml文件对应
-			postUtil.setUrl("/group/group_listGroupById.do");
+			postUtil.setUrl("/group/group_listChatRecord.do");
 			//向服务器发送数据
 			JSONArray js = new JSONArray();
 			js.put(jsonObject);
@@ -115,25 +121,37 @@ public class LiaotianActivity extends Activity {
 				try {
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
 					Map<String, Object> map = new HashMap<String, Object>();
+					String chattype = myjObject.getString("chattype");
 					// 获取每一个对象中的值
-					int id = myjObject.getInt("id");
-					String name = myjObject.getString("name");
-					String type = myjObject.getString("type");
-					String lastmes = myjObject.getString("lastmes");
-					String time = myjObject.getString("time");
-					//currentNumber
-					String currentNumber = myjObject.getString("currentNumber");
-					String totalNumber = myjObject.getString("totalNumber");
-					String renshu = currentNumber+"/"+ totalNumber;
-					map.put("img", R.drawable.head010);
-					map.put("id", id);
-					map.put("name", name);
-					map.put("lastmes", lastmes);//"汪总：今天又要涨停"
-					map.put("time",time);//"13:20"
-					map.put("type", type);
-					map.put("renshu", renshu);
-					map.put("grade", 2);   //入群等级，假数据
-					listLiaoTian.add(map);
+					if(Integer.valueOf(chattype)==1){
+						//String chattype = myjObject.getString("chattype");
+						int id = myjObject.getInt("id");
+						String name = myjObject.getString("name");
+						String type = myjObject.getString("type");
+						String lastmes = myjObject.getString("lastmes");
+						String time = myjObject.getString("time");
+						Integer img = myjObject.getInt("img");
+						
+						String grade = myjObject.getString("grade");
+						//currentNumber
+						String currentNumber = myjObject.getString("currentNumber");
+						String totalNumber = myjObject.getString("totalNumber");
+						String renshu = currentNumber+"/"+ totalNumber;
+						map.put("img", img);//R.drawable.head010
+						map.put("id", id);
+						map.put("name", name);
+						map.put("chattype", chattype);
+						map.put("lastmes", lastmes);
+						map.put("time",time);
+						map.put("type", type);
+						map.put("renshu", renshu);
+						map.put("grade", grade);   //入群等级，
+						listLiaoTian.add(map);
+					}else{
+						
+					}
+					
+					
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

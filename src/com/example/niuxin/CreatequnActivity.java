@@ -149,6 +149,7 @@ public class CreatequnActivity extends Activity {
 					jsonObject.put("enter_grade", enter_grade);
 				if (isfree != null)
 					jsonObject.put("isfree", isfree);
+				jsonObject.put("img", R.drawable.addresslist_01);//群图标 暂时都设置成1
 		//		jsonObject.put("totalNumber", totalNumber);
 		//		jsonObject.put("currentNumber", currentNumber);
 				SharePreferenceUtil util = new SharePreferenceUtil(CreatequnActivity.this, Constants.SAVE_USER);

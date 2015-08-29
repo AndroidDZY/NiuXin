@@ -64,13 +64,18 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	// private User user;
 	private MessageDB messageDB;
 	private MyApplication application;
+	private User userlogin = null;
 	// 定义适配器
 	private ChatMsgViewAdapter mAdapter;
 	private SharePreferenceUtil util =null;
-	String groupId = null;//群组Id
-	String groupName = null;//群组名称
-	String sendtoUserId = null;
-	String sendtoUserName = null;
+//	String groupId = null;//群组Id
+//	String groupName = null;//群组名称
+//	String sendtoUserId = null;
+//	String sendtoUserName = null;
+	
+	Integer group_friend_type = null;
+	String group_friend_id = null;
+	String group_friend_name = null;
 	private Handler handler = new Handler();
 	public static Activity act = null;
 	
@@ -81,19 +86,26 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	protected void onResume() {
 		 super.onResume(); 
 		 suolue = new SuoluetuActivity(this,handler);	 
-		 Intent intent = getIntent();		 	
-		groupId = intent.getStringExtra("groupid");// 获取传过来的群组ID
-		groupName = intent.getStringExtra("name");// 如果是群聊 就获取传过来的群组ID
-		sendtoUserId = intent.getStringExtra("sendtoUserId");											
-		sendtoUserName = intent.getStringExtra("sendtoUserName");
+		 Intent intent = getIntent();	
+		 
+		 group_friend_type  = Integer.valueOf(intent.getStringExtra("group_friend_type"));// 聊天类型
+		 group_friend_id = intent.getStringExtra("group_friend_id");
+		 group_friend_name  = intent.getStringExtra("group_friend_name");
+		 
+	//	 groupId = intent.getStringExtra("groupid");// 获取传过来的群组ID
+	//	groupName = intent.getStringExtra("name");// 如果是群聊 就获取传过来的群组ID
+		
+	//	sendtoUserId = intent.getStringExtra("sendtoUserId");											
+	//	sendtoUserName = intent.getStringExtra("sendtoUserName");
 			// 获取用户，还没有验证是否可行
 		messageDB = new MessageDB(this);
 		initData();
 
-		if(groupName!=null){
-			groupNameText.setText(groupName);// 设置聊天的标题 如果是群聊 就设置成群名称
-		}else
-			groupNameText.setText(sendtoUserName);//如果是个人聊天，就设置成对方的用户名
+		groupNameText.setText(group_friend_name);
+	//	if(groupName!=null){
+	//		groupNameText.setText(groupName);// 设置聊天的标题 如果是群聊 就设置成群名称
+	//	}else
+	//		groupNameText.setText(sendtoUserName);//如果是个人聊天，就设置成对方的用户名
 		
 	}
 	@SuppressLint("NewApi")
@@ -267,6 +279,11 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			entity.setName("");
 			entity.setMsgType(false);
 			entity.setText(contString);
+			if(userlogin!=null){
+				entity.setImg(userlogin.getImg());
+			}else
+				entity.setImg(util.getImg());
+			
 			mDataArrays.add(entity);
 			mAdapter.notifyDataSetChanged();
 			mEditText.setText("");
@@ -281,13 +298,9 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 				message.setMessage(contString);
 				o.setObject(message);
 				o.setFromUser(util.getId());// 谁发送的
-				if(groupId!=null){
-					o.setIstoGroup(1);
-					o.setToUser(Integer.valueOf(groupId));// 谁接收的 这边发送给群id
-				}else{
-					o.setIstoGroup(0);
-					o.setToUser(Integer.valueOf(sendtoUserId));//  这边发送给用户id	
-				}								
+
+				o.setIstoGroup(group_friend_type);
+				o.setToUser(Integer.valueOf(group_friend_id));//  这边发送给用户id	
 				out.setMsg(o);
 			}
 		}
@@ -310,7 +323,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			}
 			
 			String message = tm.getMessage();
-			ChatMsgEntity entity = new ChatMsgEntity(util.getUserName(), MyDate.getDateEN(), message, util.getImg(),
+			ChatMsgEntity entity = new ChatMsgEntity(util.getUserName(), MyDate.getDateEN(), message, msg.getImg(),
 					true);// 收到的消息
 			if (msg.getFromUser() != util.getId() || msg.getFromUser() == 0) {// 如果是正在聊天的好友的消息，或者是服务器的消息
 
@@ -327,9 +340,9 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			break;
 		
 		 case LOGIN: 
-		//	 User loginUser = (User) msg.getObject();
-		//  Toast.makeText(ChatActivity.this, loginUser.getId() + "上线了", 0).show(); 
-		  //MediaPlayer.create(this, R.raw.msg).start();
+			  userlogin = (User) msg.getObject();
+		 // Toast.makeText(ChatActivity.this, loginUser.getId() + "上线了", 0).show(); 
+		//  MediaPlayer.create(this, R.raw.msg).start();
 		  break; 
 		  case LOGOUT:
 		//	 User logoutUser = (User) msg.getObject();
@@ -355,11 +368,12 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			JSONObject jsonObject = new JSONObject();
 			try {
 				jsonObject.put("sendUserId", util.getId());//发送者的ID
-				if(groupId!=null){
-					jsonObject.put("groupId", groupId);	
+
+				if(group_friend_type==1){
+					jsonObject.put("groupId", group_friend_id);	
 					jsonObject.put("sendtoUserId", "-1");
 				}else{
-					jsonObject.put("sendtoUserId", sendtoUserId);	
+					jsonObject.put("sendtoUserId", group_friend_id);	
 					jsonObject.put("groupId", "-1");
 				}
 					
@@ -390,7 +404,6 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			// 对从服务器获取数据进行解析
 			JSONArray jsonArray = null;			
 			try {
-				System.out.println(res);
 				jsonArray = new JSONArray(res);
 				
 			} catch (JSONException e) {
@@ -412,7 +425,8 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			//		int receiveuserid = myjObject.getInt("receiveuserid");
 			//		int receivegroupid = myjObject.getInt("receivegroupid");
 					String message = myjObject.getString("message");
-			//		String createtime =  myjObject.getString("createtime");	
+			//		String createtime =  myjObject.getString("createtime");
+					entity.setImg(myjObject.getInt("img"));
 					entity.setName(sendUsername);
 					if (senduserid == util.getId()) {//判断发送的Id和当前用户的Id是否一致							
 						entity.setMsgType(false);

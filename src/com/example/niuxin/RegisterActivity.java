@@ -135,6 +135,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 					u.setEmail(email);
 					u.setUserName(name);
 					u.setPassWord(Encode.getEncode("MD5", passwd));
+					u.setImg(R.drawable.addresslist_02);
 					o.setObject(u);
 					out.setMsg(o);
 				} else {

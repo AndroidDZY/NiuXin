@@ -1,6 +1,9 @@
 package com.niuxin.util;
 
+
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 传输的对象,直接通过Socket传输的最大对象
@@ -14,12 +17,13 @@ public class TranObject<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private TranObjectType type;// 发送的消息类型
-
+	private int istoGroup;//1代表发给群组 0
 	private int fromUser;// 来自哪个用户
 	private int toUser;// 发往哪个用户
-	private int istoGroup;//1代表发给群组 0
-	private T object;// 传输的对象
+	private int img;// 这个字段传送群组或者 个人用户的img
 
+	private T object;// 传输的对象，这个对象我们可以自定义任何
+	
 	public TranObject(TranObjectType type) {
 		this.type = type;
 	}
@@ -52,17 +56,19 @@ public class TranObject<T> implements Serializable {
 		return type;
 	}
 
-	@Override
-	public String toString() {
-		return "TranObject [type=" + type + ", fromUser=" + fromUser + ", toUser=" + toUser + ", object=" + object
-				+ "]";
-	}
-
 	public int getIstoGroup() {
 		return istoGroup;
 	}
 
 	public void setIstoGroup(int istoGroup) {
 		this.istoGroup = istoGroup;
+	}
+
+	public int getImg() {
+		return img;
+	}
+
+	public void setImg(int img) {
+		this.img = img;
 	}
 }
