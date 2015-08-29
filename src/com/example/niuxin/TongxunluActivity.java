@@ -73,22 +73,23 @@ public class TongxunluActivity extends Activity {
 
 	}
 
+	// 这里的数据不需要从数据库读
 	private List<Map<String, Object>> getData() {
 		// TODO Auto-generated method stub
 		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("image", R.drawable.addresslist_01);
+		map.put("image", R.drawable.tongxunlu01);
 		map.put("title", "添加自选股");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("image", R.drawable.addresslist_02);
+		map.put("image", R.drawable.tongxunlu02);
 		map.put("title", "公众号");
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-		map.put("image", R.drawable.addresslist_03);
+		map.put("image", R.drawable.tongxunlu03);
 		map.put("title", "查找用户及群组");
 		list.add(map);
 		
@@ -102,17 +103,17 @@ private List<Map<String, Object>> getData_u() {
 	List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 	Map<String, Object> map = new HashMap<String, Object>();
 	
-	map.put("image", R.drawable.head_left);
+	map.put("image", R.drawable.head001);
 	map.put("title", "中信证券讨论组");
 	list.add(map);
 	
 	map = new HashMap<String, Object>();
-	map.put("image", R.drawable.head_right);
+	map.put("image", R.drawable.head002);
 	map.put("title", "汪总");
 	list.add(map);	
 	
 	map = new HashMap<String, Object>();
-	map.put("image", R.drawable.head_left);
+	map.put("image", R.drawable.head003);
 	map.put("title", "海螺水泥群组");
 	list.add(map);
 	

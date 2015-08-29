@@ -200,17 +200,21 @@
     </LinearLayout> 
     
     <!-- 对话部分 -->  
-        <ListView android:id="@+id/listview"
-    	android:layout_below="@id/uplayout"
-    	android:layout_above="@id/rl_bottom"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_marginLeft="10.0dip" 
-		android:layout_marginTop="10.0dip" 
-		android:layout_marginRight="10.0dip"
-		android:layout_marginBottom="10dp"
-    	android:divider="@null"
-    	android:dividerHeight="5dp"
-    	android:scrollbars="none"
-    	android:cacheColorHint="#00000000"></ListView>
+        <ListView 
+            android:id="@+id/listview"
+    		android:layout_below="@id/uplayout"
+    		android:layout_above="@id/rl_bottom"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_marginLeft="10.0dip" 
+			android:layout_marginTop="10.0dip" 
+			android:layout_marginRight="10.0dip"
+			android:layout_marginBottom="10dp"
+    		android:divider="@null"
+    		android:dividerHeight="5dp"
+    		android:scrollbars="none"
+    		android:cacheColorHint="#00000000"
+    		android:stackFromBottom="true"  
+        	android:transcriptMode="alwaysScroll" 
+        	></ListView>
 </RelativeLayout>

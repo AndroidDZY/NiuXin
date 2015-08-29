@@ -50,8 +50,8 @@ public class LiaotianActivity extends Activity {
 		
 		liaotianAdapter= new SimpleAdapter(LiaotianActivity.this,listLiaoTian,
 					R.layout.qunlistview, new String[]{"img","name","lastmes",
-							"time","type","renshu"},new int[]{R.id.img,R.id.qunname,
-				             R.id.lastmes,R.id.time,R.id.quntag,R.id.renshu});
+							"time","type","renshu","grade"},new int[]{R.id.img,R.id.qunname,
+				             R.id.lastmes,R.id.time,R.id.quntag,R.id.renshu,R.id.grade});
 		listView.setAdapter(liaotianAdapter);
 		//跳转到聊天界面
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -125,13 +125,14 @@ public class LiaotianActivity extends Activity {
 					String currentNumber = myjObject.getString("currentNumber");
 					String totalNumber = myjObject.getString("totalNumber");
 					String renshu = currentNumber+"/"+ totalNumber;
-					map.put("img", R.drawable.head_01);
+					map.put("img", R.drawable.head010);
 					map.put("id", id);
 					map.put("name", name);
 					map.put("lastmes", lastmes);//"汪总：今天又要涨停"
 					map.put("time",time);//"13:20"
 					map.put("type", type);
 					map.put("renshu", renshu);
+					map.put("grade", 2);   //入群等级，假数据
 					listLiaoTian.add(map);
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -148,5 +149,28 @@ public class LiaotianActivity extends Activity {
 			};
 			handler.post(r);
 		}
+	}
+	
+	// ListView假数据
+	private List<Map<String, Object>> getData_u() {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("image", R.drawable.head001);
+		map.put("title", "中信证券讨论组");
+		list.add(map);
+		
+		map = new HashMap<String, Object>();
+		map.put("image", R.drawable.head002);
+		map.put("title", "汪总");
+		list.add(map);	
+		
+		map = new HashMap<String, Object>();
+		map.put("image", R.drawable.head003);
+		map.put("title", "海螺水泥群组");
+		list.add(map);
+		
+		return list;
 	}
 }

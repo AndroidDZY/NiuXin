@@ -134,17 +134,17 @@ public class SearchresultActivity extends Activity {
 		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("image_contacts", R.drawable.f1);
+		map.put("image_contacts", R.drawable.head001);
 		map.put("title_contacts", "汪总");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("image_contacts", R.drawable.f2);
+		map.put("image_contacts", R.drawable.head002);
 		map.put("title_contacts", "中信证券讨论组");
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-		map.put("image_contacts", R.drawable.f3);
+		map.put("image_contacts", R.drawable.head003);
 		map.put("title_contacts", "海螺水泥群组");
 		list.add(map);
 		
@@ -157,19 +157,19 @@ public class SearchresultActivity extends Activity {
 		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("image_chatlog", R.drawable.f1);
+		map.put("image_chatlog", R.drawable.head004);
 		map.put("title_chatlog", "汪总");
 		map.put("content_chatlog", "今天又要涨停了");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("image_chatlog", R.drawable.f2);
+		map.put("image_chatlog", R.drawable.head005);
 		map.put("title_chatlog", "中信证券讨论组");
 		map.put("content_chatlog", "一路飘红啊");
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-		map.put("image_chatlog", R.drawable.f3);
+		map.put("image_chatlog", R.drawable.head006);
 		map.put("title_chatlog", "海螺水泥群组");
 		map.put("content_chatlog", "海螺水泥是一只自选股");
 		list.add(map);
@@ -183,19 +183,19 @@ public class SearchresultActivity extends Activity {
 		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("image_collect", R.drawable.f1);
+		map.put("image_collect", R.drawable.head007);
 		map.put("title_collect", "军工板块暴涨近7%领涨两市");
 		map.put("content_collect", "周五军工股大涨近7%，领涨两市，截至发稿，际华集团、拓尔思、长春一东、中航...");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("image_collect", R.drawable.f2);
+		map.put("image_collect", R.drawable.head008);
 		map.put("title_collect", "人社部：约2万亿元养老金可投资");
 		map.put("content_collect", "周五上午10时，人力资源社会保障部副部长和财政部副部...");
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-		map.put("image_collect", R.drawable.f3);
+		map.put("image_collect", R.drawable.head009);
 		map.put("title_collect", "海螺水泥群组");
 		map.put("content_collect", "海螺水泥是一只自选股");
 		list.add(map);

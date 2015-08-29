@@ -81,7 +81,7 @@
         <ListView 
             android:id="@+id/contacts_list"
             android:layout_width="match_parent"
-            android:layout_height="150dp"></ListView>
+            android:layout_height="152dp"></ListView>
         <LinearLayout
             android:id="@+id/layout1" 
             android:layout_width="match_parent"
@@ -133,7 +133,7 @@
         <ListView 
             android:id="@+id/chatlog_list"
             android:layout_width="match_parent"
-            android:layout_height="150dp"></ListView>
+            android:layout_height="152dp"></ListView>
         <LinearLayout
             android:id="@+id/layout2" 
             android:layout_width="match_parent"
@@ -185,7 +185,7 @@
         <ListView 
             android:id="@+id/collect_list"
             android:layout_width="match_parent"
-            android:layout_height="150dp"></ListView>
+            android:layout_height="152dp"></ListView>
         <LinearLayout
             android:id="@+id/layout3" 
             android:layout_width="match_parent"

@@ -53,19 +53,19 @@ public class Chatlog_detailedActivity extends Activity{
 		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("image_chatlog_detailed", R.drawable.f1);
+		map.put("image_chatlog_detailed", R.drawable.head004);
 		map.put("title_chatlog_detailed", "汪总");
 		map.put("content_chatlog_detailed", "今天又要涨停了");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("image_chatlog_detailed", R.drawable.f2);
+		map.put("image_chatlog_detailed", R.drawable.head005);
 		map.put("title_chatlog_detailed", "中信证券讨论组");
 		map.put("content_chatlog_detailed", "一路飘红啊");
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-		map.put("image_chatlog_detailed", R.drawable.f3);
+		map.put("image_chatlog_detailed", R.drawable.head006);
 		map.put("title_chatlog_detailed", "海螺水泥群组");
 		map.put("content_chatlog_detailed", "海螺水泥是一只自选股");
 		list.add(map);

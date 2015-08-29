@@ -53,19 +53,19 @@ public class Collect_detailedActivity extends Activity{
 		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("image_collect_detailed", R.drawable.f1);
+		map.put("image_collect_detailed", R.drawable.head007);
 		map.put("title_collect_detailed", "军工板块暴涨近7%领涨两市");
 		map.put("content_collect_detailed", "周五军工股大涨近7%，领涨两市，截至发稿，际华集团、拓尔思、长春一东、中航...");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("image_collect_detailed", R.drawable.f2);
+		map.put("image_collect_detailed", R.drawable.head008);
 		map.put("title_collect_detailed", "人社部：约2万亿元养老金可投资");
 		map.put("content_collect_detailed", "周五上午10时，人力资源社会保障部副部长和财政部副部...");
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-		map.put("image_collect_detailed", R.drawable.f3);
+		map.put("image_collect_detailed", R.drawable.head009);
 		map.put("title_collect_detailed", "海螺水泥群组");
 		map.put("content_collect_detailed", "海螺水泥是一只自选股");
 		list.add(map);

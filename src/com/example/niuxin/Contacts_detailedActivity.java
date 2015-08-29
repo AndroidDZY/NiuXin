@@ -53,17 +53,17 @@ public class Contacts_detailedActivity extends Activity{
 		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("image_contacts_detailed", R.drawable.f1);
+		map.put("image_contacts_detailed", R.drawable.head001);
 		map.put("title_contacts_detailed", "汪总");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("image_contacts_detailed", R.drawable.f2);
+		map.put("image_contacts_detailed", R.drawable.head002);
 		map.put("title_contacts_detailed", "中信证券讨论组");
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-		map.put("image_contacts_detailed", R.drawable.f3);
+		map.put("image_contacts_detailed", R.drawable.head003);
 		map.put("title_contacts_detailed", "海螺水泥群组");
 		list.add(map);
 		

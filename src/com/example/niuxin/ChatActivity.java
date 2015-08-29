@@ -117,7 +117,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 				if (arg0.length() <= 0) {
 					button.setBackgroundResource(R.drawable.chat_audio);
 				} else {
-					button.setBackgroundResource(R.drawable.chatsend);
+					button.setBackgroundResource(R.drawable.btn_chat_send);
 				}
 			}
 
