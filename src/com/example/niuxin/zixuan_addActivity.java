@@ -31,7 +31,7 @@ import android.widget.SimpleAdapter;
 public class zixuan_addActivity extends Activity {
 	private int add_flag = R.drawable.add_flag01;
 	private Handler handler = new Handler();
-	Button add_cancle, add_finish,add_search;
+	Button add_cancle, add_finish, add_search;
 	ListView listView;
 	SimpleAdapter addAdapter;
 	public static Activity act = null;
@@ -74,14 +74,15 @@ public class zixuan_addActivity extends Activity {
 
 			}
 		});
-		
+
 		// 查找按钮完成查找
 		add_search.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-				
+				SearchThread sthread = new SearchThread();
+				sthread.start();
 			}
 		});
-		
+
 		listView = (ListView) findViewById(R.id.addlist);// 获取ListView
 		addAdapter = new SimpleAdapter(zixuan_addActivity.this, list, R.layout.addlistview,
 				new String[] { "name", "number", "add_flag" }, new int[] { R.id.name, R.id.number, R.id.add_flag });
@@ -169,12 +170,90 @@ public class zixuan_addActivity extends Activity {
 				@Override
 				public void run() {
 					// 这里可以写上更新UI的代码
-/*
-					addAdapter = new SimpleAdapter(zixuan_addActivity.this, list, R.layout.addlistview,
-							new String[] { "name", "number", "add_flag" },
-							new int[] { R.id.name, R.id.num, R.id.add_flag });
-					listView.setAdapter(addAdapter);// 为listView设置适配器
-*/
+					/*
+					 * addAdapter = new SimpleAdapter(zixuan_addActivity.this,
+					 * list, R.layout.addlistview, new String[] { "name",
+					 * "number", "add_flag" }, new int[] { R.id.name, R.id.num,
+					 * R.id.add_flag }); listView.setAdapter(addAdapter);//
+					 * 为listView设置适配器
+					 */
+					addAdapter.notifyDataSetChanged();
+
+				}
+
+			};
+			handler.post(r);
+		}
+	}
+
+	class SearchThread extends Thread {
+		@Override
+		public void run() {
+			String sharename = gupiao.getText().toString();
+			// 新建工具类，向服务器发送Http请求
+			HttpPostUtil postUtil = new HttpPostUtil();
+			JSONArray jArray = new JSONArray();
+			JSONObject jsonObject = new JSONObject();
+			// 向服务器发送数据，如果没有，可以不发送 JSONObject jsonObject = new JSONObject();
+			try {
+				jsonObject.put("sharename", sharename);
+				jsonObject.put("userid", util.getId());
+			
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			jArray.put(jsonObject);
+		
+
+			/*
+			 * boolean isNetwork= postUtil.checkNetState(act); if(!isNetwork){
+			 * mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
+			 * mDialog.show(); return; }
+			 */
+
+			// 设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/share/share_selectAllByShareName.do");
+			// 向服务器发送数据
+			postUtil.setRequest(jArray);
+
+			// 从服务器获取数据
+			String res = postUtil.run();
+			// 对从服务器获取数据进行解析
+			JSONArray jsonArray = null;
+			try {
+				jsonArray = new JSONArray(res);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			list.clear();
+			for (int i = 0; i < jsonArray.length(); i++) {
+				try {
+					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+					Map<String, Object> map = new HashMap<String, Object>();
+					// 获取每一个对象中的值
+					int id = myjObject.getInt("id");
+					String number = myjObject.getString("number");
+					String name = myjObject.getString("name");
+					map.put("id", id);
+					map.put("number", number);
+					map.put("name", name);
+					map.put("add_flag", add_flag);
+					list.add(map);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			Runnable r = new Runnable() {
+				@Override
+				public void run() {
+					// 这里可以写上更新UI的代码
+					/*
+					 * addAdapter = new SimpleAdapter(zixuan_addActivity.this,
+					 * list, R.layout.addlistview, new String[] { "name",
+					 * "number", "add_flag" }, new int[] { R.id.name, R.id.num,
+					 * R.id.add_flag }); listView.setAdapter(addAdapter);//
+					 * 为listView设置适配器
+					 */
 					addAdapter.notifyDataSetChanged();
 
 				}
@@ -214,7 +293,7 @@ public class zixuan_addActivity extends Activity {
 			// 不向服务器发送数据
 			postUtil.setRequest(jArray);
 			// 从服务器获取数据
-			 postUtil.run();
+			postUtil.run();
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {

@@ -4,6 +4,7 @@ package com.niuxin.util;
 
 public class Constants {
 
+
 	public static final String SERVER_IP = "192.168.1.145"; // 服务器ip  115.28.242.139
 	public static final int SERVER_PORT = 8083;// 服务器端口
 
