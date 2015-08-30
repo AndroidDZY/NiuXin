@@ -4,17 +4,20 @@
     android:layout_height="100dp"
     android:orientation="horizontal" 
     android:layout_marginTop="75dp">
-    <RelativeLayout android:layout_width="150dp"
+    <RelativeLayout 
+        android:layout_width="150dp"
         android:background="@drawable/kaungdi1"
         android:layout_height="90dp"
         android:orientation="vertical"
         android:layout_marginLeft="20dp"
         android:layout_weight="1">
-        <RelativeLayout android:layout_width="match_parent"
+        <RelativeLayout 
+            android:layout_width="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             >
-            <TextView android:text="中兴证券讨论组"
+            <TextView 
+                android:id="@+id/item2_title1"
                 android:textSize="14sp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="5dp"
@@ -22,13 +25,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <Button android:background="@drawable/star1"
+            <CheckBox 
+                android:id="@+id/item2_star1"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="25dp"
+                android:button="@null"
                 />
         </RelativeLayout>
         
@@ -38,31 +43,32 @@
             android:layout_marginLeft="5dp"
             android:orientation="horizontal"
             >
-            <TextView android:text="中兴证券综合讨论，分析买入卖出时机"
+            <TextView 
+                android:id="@+id/item2_summary1"
                 android:lines="2"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 />
          </RelativeLayout>
 
        <RelativeLayout
            android:layout_width="match_parent"
-           android:layout_height="30dp"
+           android:layout_height="25dp"
            android:layout_alignParentBottom="true" >
 
            <TextView
-               android:id="@+id/textView1"
+               android:id="@+id/item2_type1"
                android:layout_width="wrap_content"
                android:layout_height="20dp"
                android:layout_alignParentBottom="true"
                android:layout_alignParentLeft="true"
                android:layout_marginLeft="22dp"
                android:layout_weight="1"
-               android:text="个股  ①"
                android:textSize="12sp" />
 
            <TextView
+               android:id="@+id/item2_people1"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_alignParentBottom="true"
@@ -70,7 +76,7 @@
                android:layout_weight="2"
                android:layout_marginRight="5dp"
                android:layout_marginBottom="2dp"
-               android:text="12/25" />
+                />
 
        </RelativeLayout>
 
@@ -85,9 +91,10 @@
         android:layout_weight="1">
         <RelativeLayout android:layout_width="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             >
-            <TextView android:text="中兴证券讨论组"
+            <TextView 
+                android:id="@+id/item2_title2"
                 android:textSize="14sp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="5dp"
@@ -95,13 +102,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <Button android:background="@drawable/star1"
+            <CheckBox android:id="@+id/item2_star2"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="25dp"
+                android:button="@null"
                 />
         </RelativeLayout>
         
@@ -111,7 +119,7 @@
             android:layout_marginLeft="5dp"
             android:orientation="horizontal"
             >
-            <TextView android:text="中兴证券综合讨论，分析买入卖出时机"
+            <TextView android:id="@+id/item2_summary2"
                 android:lines="2"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
@@ -121,21 +129,21 @@
 
        <RelativeLayout
            android:layout_width="match_parent"
-           android:layout_height="30dp"
+           android:layout_height="25dp"
            android:layout_alignParentBottom="true" >
 
            <TextView
-               android:id="@+id/textView02"
+               android:id="@+id/item2_type2"
                android:layout_width="wrap_content"
                android:layout_height="20dp"
                android:layout_alignParentBottom="true"
                android:layout_alignParentLeft="true"
                android:layout_marginLeft="22dp"
                android:layout_weight="1"
-               android:text="个股  ①"
                android:textSize="12sp" />
 
            <TextView
+               android:id="@+id/item2_people2"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_alignParentBottom="true"
@@ -143,7 +151,7 @@
                android:layout_weight="2"
                android:layout_marginRight="5dp"
                android:layout_marginBottom="2dp"
-               android:text="12/25" />
+                />
 
        </RelativeLayout>
 

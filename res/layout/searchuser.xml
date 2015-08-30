@@ -177,7 +177,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <LinearLayout 
+            <CheckBox 
                 android:orientation="horizontal"
                 android:id="@+id/searchuser_relativelayout1_star1"
                 android:layout_alignParentRight="true"
@@ -185,7 +185,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="25dp"></LinearLayout>
+                android:button="@null"
+                android:layout_marginLeft="25dp"></CheckBox>
             
         </RelativeLayout>
         
@@ -255,7 +256,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <LinearLayout 
+            <CheckBox 
                 android:orientation="horizontal"
                 android:id="@+id/searchuser_relativelayout2_star2"
                 android:layout_alignParentRight="true"
@@ -263,7 +264,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="25dp"></LinearLayout>
+                android:button="@null"
+                android:layout_marginLeft="25dp"></CheckBox>
             
         </RelativeLayout>
         

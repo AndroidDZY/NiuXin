@@ -11,6 +11,9 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -23,6 +26,7 @@ public class SearchuserActivity  extends Activity{
     TextView title1,title2,summary1,summary2,type1,type2,people1,people2;
     Button cancle,done,search,searchcancel;
 	EditText editText;
+	CheckBox checkBox3,checkBox4;
 	//1
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
@@ -41,8 +45,8 @@ public class SearchuserActivity  extends Activity{
 		//8月28号改动 增加群组推荐的各个部分的监听
 		relativeLayout1=(RelativeLayout)findViewById(R.id.searchuser_relativelayout1);
 		relativeLayout2=(RelativeLayout)findViewById(R.id.searchuser_relativelayout2);
-		linearLayout1=(LinearLayout)findViewById(R.id.searchuser_relativelayout1_star1);
-		linearLayout2=(LinearLayout)findViewById(R.id.searchuser_relativelayout2_star2);
+		checkBox3=(CheckBox)findViewById(R.id.searchuser_relativelayout1_star1);
+		checkBox4=(CheckBox)findViewById(R.id.searchuser_relativelayout2_star2);
         title1=(TextView)findViewById(R.id.searchuser_relativelayout1_title1);
         title2=(TextView)findViewById(R.id.searchuser_relativelayout2_title2);
         summary1=(TextView)findViewById(R.id.searchuser_relativelayout1_summary1);
@@ -59,30 +63,33 @@ public class SearchuserActivity  extends Activity{
         type2.setText("个股  ①");
         people1.setText("12/25");
         people2.setText("12/25");
-        //动态添加button按钮到线性布局中
-        final Button button1 = new Button(SearchuserActivity.this);
-        final Button button2 = new Button(SearchuserActivity.this);
-		button1.setBackgroundResource(R.drawable.star1);
-		button2.setBackgroundResource(R.drawable.star2);
-		linearLayout1.addView(button1);
-		linearLayout2.addView(button2);
-		//定义按钮事件
-        //监听整个相对布局，当点击的时候加载黄色星星
-		relativeLayout1.setOnClickListener(new OnClickListener() {
+        //定义check完成点击选中收藏
+        checkBox3.setBackgroundResource(R.drawable.star1);
+        checkBox4.setBackgroundResource(R.drawable.star1);
+
+        //监听checkbox，当点击的时候加载黄色星星
+		checkBox3.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
-			public void onClick(View arg0) {
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
-				button1.setBackgroundResource(R.drawable.star2);
-				
+				if (arg1) {
+					checkBox3.setBackgroundResource(R.drawable.star2);
+				} else {
+                    checkBox3.setBackgroundResource(R.drawable.star1);
+				}
 			}
 		});
-        relativeLayout2.setOnClickListener(new OnClickListener() {
+		checkBox4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
-			public void onClick(View arg0) {
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
-				button2.setBackgroundResource(R.drawable.star2);
+				if (arg1) {
+					checkBox4.setBackgroundResource(R.drawable.star2);
+				} else {
+					checkBox4.setBackgroundResource(R.drawable.star1);
+				}
 			}
 		});
 		cancle.setOnClickListener(new OnClickListener() {
