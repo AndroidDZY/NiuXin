@@ -19,36 +19,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:orientation="horizontal"
-        android:background="#de4557">
-        <EditText 
-            android:id="@+id/search"
-            android:layout_weight="6"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/edittext_search"
-            android:drawableLeft="@drawable/search_icon01"
-            android:drawableRight="@drawable/voice_icon"
-            android:paddingRight="10dp"
-            android:paddingLeft="105dp"
-            android:hint="@string/search"
-            android:singleLine="true"
-            android:textSize="14sp"/>
-        <Button 
-            android:id="@+id/createqun"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="+"
-            android:textColor="#ffffff"
-            android:textSize="18sp"
-            android:background="#de4557"
-            android:layout_height="wrap_content"/>
-        </LinearLayout>
         <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="30dp"

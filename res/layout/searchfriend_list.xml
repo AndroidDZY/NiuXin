@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical" >
+    
+   		<ImageView
+   		    android:id="@+id/image_sfriend" 
+   		    android:layout_height="50dp"
+   		    android:layout_width="50dp"
+       		android:layout_marginLeft="5dp"
+       		android:scaleType="fitCenter"
+       		android:padding="5dp"/>
+
+
+   		<TextView 
+   		    android:id="@+id/title_sfriend"
+   		    android:layout_width="0dp"
+   		    android:layout_weight="5"
+       		android:layout_height="wrap_content"
+       		android:textSize="15sp"
+       		android:textColor="#000000"
+       		/>
+		<ImageView 
+		    android:id="@+id/flag_sfriend"
+   		    android:layout_width="0dp"
+   		    android:layout_weight="1"
+		    android:layout_height="wrap_content"
+		    
+		    />
+
+
+</LinearLayout>
+

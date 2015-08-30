@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical" >
     
     <!-- 顶部缩略图 -->
@@ -9,11 +10,15 @@
 		android:id="@+id/include"  
 		layout="@layout/suolue"/> 
     <LinearLayout 
+       android:id="@+id/layout_sfriend_search"
        android:layout_width="match_parent"
        android:layout_height="40dp"
+       android:layout_below="@id/include"
        android:orientation="horizontal"
        android:background="#de4557"
-       android:gravity="center">
+       android:gravity="center"
+       android:focusable="true" 
+	   android:focusableInTouchMode="true">
        <EditText 
            android:id="@+id/sf_edittext"
            android:background="@drawable/edittext_search"
@@ -31,18 +36,51 @@
            android:textSize="13sp"
            />
        <Button
-           android:id="@+id/sf_searchcancel"
+           android:id="@+id/btn_sf_search"
            android:layout_width="0dp"
            android:layout_height="30dp"
            android:layout_weight="1"
            android:background="#de4557"
-           android:text="取消"
+           android:text="查找"
            android:textColor="#ffffff"
            android:textSize="15sp" />
    </LinearLayout>
-    <ListView android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchfriend"></ListView>
+     <LinearLayout
+        android:id="@+id/layout_sfriend_btn"
+     	android:layout_width="match_parent"
+     	android:layout_height="33dp"
+      	android:layout_alignParentBottom="true"
+     	android:background="#de4557"
+     	android:orientation="horizontal" >
+     	<Button
+     		android:id="@+id/btn_sfriend_cancle"
+         	android:checked="true"
+         	android:layout_width="0dp"
+         	android:layout_height="match_parent"
+         	android:background="#de4557"
+         	android:layout_gravity="center"
+         	android:textSize="15sp"
+         	android:textColor="#ffffff"
+         	android:layout_weight="1"
+         	android:clickable="true"
+         	android:text="取消" 
+         	/>
     
-
-</LinearLayout>
+     	<Button
+         	android:id="@+id/btn_sfriend_finish"
+         	android:layout_width="0dp"
+         	android:layout_height="match_parent"
+         	android:background="#de4557"
+         	android:layout_gravity="center"
+         	android:textSize="15sp"
+         	android:textColor="#ffffff"
+         	android:layout_weight="1"
+         	android:clickable="true"
+         	android:text="完成" />
+     	   </LinearLayout>
+     <ListView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_sfriend_btn"
+        android:layout_below="@id/layout_sfriend_search"
+        android:id="@+id/searchfriend_list"></ListView>   
+</RelativeLayout>
