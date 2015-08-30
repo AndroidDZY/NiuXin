@@ -132,27 +132,22 @@ public class FenleiActivity extends Activity{
 			textView2.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView3.setText("个股  ①");
 			textView4.setText("12/25");
-			
 			textView5.setText("中兴证券讨论组");
 			textView6.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView7.setText("个股  ①");
 			textView8.setText("12/25");
-			
 			textView9.setText("中兴证券讨论组");
 			textView10.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView11.setText("个股  ①");
 			textView12.setText("12/25");
-			
 			textView13.setText("中兴证券讨论组");
 			textView14.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView15.setText("个股  ①");
 			textView16.setText("12/25");
-			
 			textView17.setText("中兴证券讨论组");
 			textView18.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView19.setText("个股  ①");
 			textView20.setText("12/25");
-			
 			textView21.setText("中兴证券讨论组");
 			textView22.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView23.setText("个股  ①");
@@ -161,17 +156,14 @@ public class FenleiActivity extends Activity{
 			textView26.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView27.setText("个股  ①");
 			textView28.setText("12/25");
-			
 			textView29.setText("中兴证券讨论组");
 			textView30.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView31.setText("个股  ①");
 			textView32.setText("12/25");
-			
 			textView33.setText("中兴证券讨论组");
 			textView34.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView35.setText("个股  ①");
 			textView36.setText("12/25");
-			
 			textView37.setText("中兴证券讨论组");
 			textView38.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView39.setText("个股  ①");
@@ -179,13 +171,11 @@ public class FenleiActivity extends Activity{
 			textView41.setText("中兴证券讨论组");
 			textView42.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView43.setText("个股  ①");
-			
 			textView44.setText("12/25");
 			textView45.setText("中兴证券讨论组");
 			textView46.setText("中兴证券综合讨论，分析买入卖出时机");
 			textView47.setText("个股  ①");
 			textView48.setText("12/25");
-			
 			checkBox1.setBackgroundResource(R.drawable.star1);
 			checkBox2.setBackgroundResource(R.drawable.star1);
 			checkBox3.setBackgroundResource(R.drawable.star1);
