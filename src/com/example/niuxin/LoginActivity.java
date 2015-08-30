@@ -201,7 +201,6 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 						"亲！服务器暂未开放哦");
 			}
 		}
-		
 	}
 
 	@Override
