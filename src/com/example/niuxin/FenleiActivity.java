@@ -23,12 +23,20 @@ public class FenleiActivity extends Activity {
 	LayoutInflater mInflater;
 	private View view1, view2, view3, view4, view5, view6;
 	// 8月29号改动，增加相应按钮的事件监听
-	TextView textView1, textView2, textView3, textView4, textView5, textView6, textView7, textView8, textView9,
-			textView10, textView11, textView12, textView13, textView14, textView15, textView16, textView17, textView18,
-			textView19, textView20, textView21, textView22, textView23, textView24, textView25, textView26, textView27,
-			textView28, textView29, textView30, textView31, textView32, textView33, textView34, textView35, textView36,
-			textView37, textView38, textView39, textView40, textView41, textView42, textView43, textView44, textView45,
-			textView46, textView47, textView48;
+	TextView textView1_title1, textView1_summary1, textView1_type1, textView1_people1, //第一组数据
+	         textView1_title2, textView1_summary2, textView1_type2, textView1_people2, //第二组数据
+	         textView2_title1, textView2_summary1, textView2_type1, textView2_people1, //第三组数据
+	         textView2_title2, textView2_summary2, textView2_type2, textView2_people2, //第四组数据
+	         textView3_title1, textView3_summary1, textView3_type1, textView3_people1, //第五组数据
+	         textView3_title2, textView3_summary2, textView3_type2, textView3_people2, //第六组数据
+	         textView4_title1, textView4_summary1, textView4_type1, textView4_people1, //第七组数据
+	         textView4_title2, textView4_summary2, textView4_type2, textView4_people2, //第八组数据
+	         textView5_title1, textView5_summary1, textView5_type1, textView5_people1, //第九组数据
+	         textView5_title2, textView5_summary2, textView5_type2, textView5_people2, //第十组数据
+	         textView6_title1, textView6_summary1, textView6_type1, textView6_people1, //第十一组数据
+	         textView6_title2, textView6_summary2, textView6_type2, textView6_people2 ;//第十二组数据
+	        
+	        
 	CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8, checkBox9,
 			checkBox10, checkBox11, checkBox12;
 
@@ -65,64 +73,65 @@ public class FenleiActivity extends Activity {
 		/*
 		 * 30号改动，添加滑动界面各个控件的监听。
 		 */
-		textView1 = (TextView) view1.findViewById(R.id.item1_title1);
-		textView2 = (TextView) view1.findViewById(R.id.item1_summary1);
-		textView3 = (TextView) view1.findViewById(R.id.item1_type1);
-		textView4 = (TextView) view1.findViewById(R.id.item1_people1);
+		textView1_title1 = (TextView) view1.findViewById(R.id.item1_title1);
+		textView1_summary1 = (TextView) view1.findViewById(R.id.item1_summary1);
+		textView1_type1 = (TextView) view1.findViewById(R.id.item1_type1);
+		textView1_people1 = (TextView) view1.findViewById(R.id.item1_people1);
 		
-		textView5 = (TextView) view1.findViewById(R.id.item1_title2);
-		textView6 = (TextView) view1.findViewById(R.id.item1_summary2);
-		textView7 = (TextView) view1.findViewById(R.id.item1_type2);
-		textView8 = (TextView) view1.findViewById(R.id.item1_people2);
+		textView1_title2 = (TextView) view1.findViewById(R.id.item1_title2);
+		textView1_summary2 = (TextView) view1.findViewById(R.id.item1_summary2);
+		textView1_type2 = (TextView) view1.findViewById(R.id.item1_type2);
+		textView1_people2 = (TextView) view1.findViewById(R.id.item1_people2);
 		
-		textView9 = (TextView) view2.findViewById(R.id.item2_title1);
-		textView10 = (TextView) view2.findViewById(R.id.item2_summary1);
-		textView11 = (TextView) view2.findViewById(R.id.item2_type1);
-		textView12 = (TextView) view2.findViewById(R.id.item2_people1);
+		textView2_title1 = (TextView) view2.findViewById(R.id.item2_title1);
+		textView2_summary1 = (TextView) view2.findViewById(R.id.item2_summary1);
+		textView2_type1 = (TextView) view2.findViewById(R.id.item2_type1);
+		textView2_people1 = (TextView) view2.findViewById(R.id.item2_people1);
 		
-		textView13 = (TextView) view2.findViewById(R.id.item2_title2);
-		textView14 = (TextView) view2.findViewById(R.id.item2_summary2);
-		textView15 = (TextView) view2.findViewById(R.id.item2_type2);
-		textView16 = (TextView) view2.findViewById(R.id.item2_people2);
+		textView2_title2 = (TextView) view2.findViewById(R.id.item2_title2);
+		textView2_summary2 = (TextView) view2.findViewById(R.id.item2_summary2);
+		textView2_type2 = (TextView) view2.findViewById(R.id.item2_type2);
+		textView2_people2 = (TextView) view2.findViewById(R.id.item2_people2);
 		
-		textView17 = (TextView) view3.findViewById(R.id.item3_title1);
-		textView18 = (TextView) view3.findViewById(R.id.item3_summary1);
-		textView19 = (TextView) view3.findViewById(R.id.item3_type1);
-		textView20 = (TextView) view3.findViewById(R.id.item3_people1);
+		textView3_title1 = (TextView) view3.findViewById(R.id.item3_title1);
+		textView3_summary1 = (TextView) view3.findViewById(R.id.item3_summary1);
+		textView3_type1 = (TextView) view3.findViewById(R.id.item3_type1);
+		textView3_people1 = (TextView) view3.findViewById(R.id.item3_people1);
 		
-		textView21 = (TextView) view3.findViewById(R.id.item3_title2);
-		textView22 = (TextView) view3.findViewById(R.id.item3_summary2);
-		textView23 = (TextView) view3.findViewById(R.id.item3_type2);
-		textView24 = (TextView) view3.findViewById(R.id.item3_people2);
+		textView3_title2 = (TextView) view3.findViewById(R.id.item3_title2);
+		textView3_summary2 = (TextView) view3.findViewById(R.id.item3_summary2);
+		textView3_type2 = (TextView) view3.findViewById(R.id.item3_type2);
+		textView3_people2 = (TextView) view3.findViewById(R.id.item3_people2);
 		
-		textView25 = (TextView) view4.findViewById(R.id.item4_title1);
-		textView26 = (TextView) view4.findViewById(R.id.item4_summary1);
-		textView27 = (TextView) view4.findViewById(R.id.item4_type1);
-		textView28 = (TextView) view4.findViewById(R.id.item4_people1);
+		textView4_title1 = (TextView) view4.findViewById(R.id.item4_title1);
+		textView4_summary1 = (TextView) view4.findViewById(R.id.item4_summary1);
+		textView4_type1 = (TextView) view4.findViewById(R.id.item4_type1);
+		textView4_people1 = (TextView) view4.findViewById(R.id.item4_people1);
 		
-		textView29 = (TextView) view4.findViewById(R.id.item4_title2);
-		textView30 = (TextView) view4.findViewById(R.id.item4_summary2);
-		textView31 = (TextView) view4.findViewById(R.id.item4_type2);
-		textView32 = (TextView) view4.findViewById(R.id.item4_people2);
-		textView33 = (TextView) view5.findViewById(R.id.item5_title1);
+		textView4_title2 = (TextView) view4.findViewById(R.id.item4_title2);
+		textView4_summary2 = (TextView)view4.findViewById(R.id.item4_summary2);
+		textView4_type2 = (TextView)view4.findViewById(R.id.item4_type2);
+		textView4_people2 = (TextView)view4.findViewById(R.id.item4_people2);
 		
-		textView34 = (TextView) view5.findViewById(R.id.item5_summary1);
-		textView35 = (TextView) view5.findViewById(R.id.item5_type1);
-		textView36 = (TextView) view5.findViewById(R.id.item5_people1);
-		textView37 = (TextView) view5.findViewById(R.id.item5_title2);
-		textView38 = (TextView) view5.findViewById(R.id.item5_summary2);
+		textView5_title1 = (TextView)view5.findViewById(R.id.item5_title1);
+		textView5_summary1 = (TextView)view5.findViewById(R.id.item5_summary1);
+		textView5_type1 = (TextView)view5.findViewById(R.id.item5_type1);
+		textView5_people1 = (TextView)view5.findViewById(R.id.item5_people1);
 		
-		textView39 = (TextView) view5.findViewById(R.id.item5_type2);
-		textView40 = (TextView) view5.findViewById(R.id.item5_people2);
-		textView41 = (TextView) view6.findViewById(R.id.item6_title1);
-		textView42 = (TextView) view6.findViewById(R.id.item6_summary1);
-		textView43 = (TextView) view6.findViewById(R.id.item6_type1);
+		textView5_title2 = (TextView)view5.findViewById(R.id.item5_title2);
+		textView5_summary2 = (TextView)view5.findViewById(R.id.item5_summary2);
+		textView5_type2 = (TextView)view5.findViewById(R.id.item5_type2);
+		textView5_people2 = (TextView)view5.findViewById(R.id.item5_people2);
 		
-		textView44 = (TextView) view6.findViewById(R.id.item6_people1);
-		textView45 = (TextView) view6.findViewById(R.id.item6_title2);
-		textView46 = (TextView) view6.findViewById(R.id.item6_summary2);
-		textView47 = (TextView) view6.findViewById(R.id.item6_type2);
-		textView48 = (TextView) view6.findViewById(R.id.item6_people2);
+		textView6_title1 = (TextView)view6.findViewById(R.id.item6_title1);
+		textView6_summary1 = (TextView)view6.findViewById(R.id.item6_summary1);
+		textView6_type1 = (TextView)view6.findViewById(R.id.item6_type1);
+		textView6_people1 = (TextView) view6.findViewById(R.id.item6_people1);
+		
+		textView6_title2 = (TextView) view6.findViewById(R.id.item6_title2);
+		textView6_summary2 = (TextView)view6.findViewById(R.id.item6_summary2);
+		textView6_type2 = (TextView)view6.findViewById(R.id.item6_type2);
+		textView6_people2 = (TextView)view6.findViewById(R.id.item6_people2);
 		
 		checkBox1 = (CheckBox) view1.findViewById(R.id.item1_star1);
 		checkBox2 = (CheckBox) view1.findViewById(R.id.item1_star2);
@@ -136,65 +145,66 @@ public class FenleiActivity extends Activity {
 		checkBox10 = (CheckBox) view5.findViewById(R.id.item5_star2);
 		checkBox11 = (CheckBox) view6.findViewById(R.id.item6_star1);
 		checkBox12 = (CheckBox) view6.findViewById(R.id.item6_star2);
-		
-		textView1.setText("中兴证券讨论组");
-		textView2.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView3.setText("个股  ①");
-		textView4.setText("12/25");
-
-		textView5.setText("中兴证券讨论组");
-		textView6.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView7.setText("个股  ①");
-		textView8.setText("12/25");
-
-		textView9.setText("中兴证券讨论组");
-		textView10.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView11.setText("个股  ①");
-		textView12.setText("12/25");
-
-		textView13.setText("中兴证券讨论组");
-		textView14.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView15.setText("个股  ①");
-		textView16.setText("12/25");
-
-		textView17.setText("中兴证券讨论组");
-		textView18.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView19.setText("个股  ①");
-		textView20.setText("12/25");
-
-		textView21.setText("中兴证券讨论组");
-		textView22.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView23.setText("个股  ①");
-		textView24.setText("12/25");
-		
-		textView25.setText("中兴证券讨论组");
-		textView26.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView27.setText("个股  ①");
-		textView28.setText("12/25");
-
-		textView29.setText("中兴证券讨论组");
-		textView30.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView31.setText("个股  ①");
-		textView32.setText("12/25");
-
-		textView33.setText("中兴证券讨论组");
-		textView34.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView35.setText("个股  ①");
-		textView36.setText("12/25");
-
-		textView37.setText("中兴证券讨论组");
-		textView38.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView39.setText("个股  ①");
-		textView40.setText("12/25");
-		textView41.setText("中兴证券讨论组");
-		textView42.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView43.setText("个股  ①");
-
-		textView44.setText("12/25");
-		textView45.setText("中兴证券讨论组");
-		textView46.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView47.setText("个股  ①");
-		textView48.setText("12/25");
+		//为您推荐，第一组数据
+		textView1_title1.setText("中兴证券讨论组");
+		textView1_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView1_type1.setText("个股  ①");
+		textView1_people1.setText("12/25");
+        //为您推荐，第二组数据
+		textView1_title2.setText("中兴证券讨论组");
+		textView1_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView1_type2.setText("个股  ①");
+		textView1_people2.setText("12/25");
+        //为您推荐，第三组数据
+		textView2_title1.setText("中兴证券讨论组");
+		textView2_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView2_type1.setText("个股  ①");
+		textView2_people1.setText("12/25");
+        //为您推荐，第四组数据
+		textView2_title2.setText("中兴证券讨论组");
+		textView2_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView2_type2.setText("个股  ①");
+		textView2_people2.setText("12/25");
+        //24小时最热，第一组数据
+		textView3_title1.setText("中兴证券讨论组");
+		textView3_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView3_type1.setText("个股  ①");
+		textView3_people1.setText("12/25");
+        //24小时最热，第二组数据
+		textView3_title2.setText("中兴证券讨论组");
+		textView3_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView3_type2.setText("个股  ①");
+		textView3_people2.setText("12/25");
+		//24小时最热，第三组数据
+		textView4_title1.setText("中兴证券讨论组");
+		textView4_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView4_type1.setText("个股  ①");
+		textView4_people1.setText("12/25");
+        //24小时最热，第四组数据
+		textView4_title2.setText("中兴证券讨论组");
+		textView4_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView4_type2.setText("个股  ①");
+		textView4_people2.setText("12/25");
+        //股市学堂，第一组数据
+		textView5_title1.setText("中兴证券讨论组");
+		textView5_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView5_type1.setText("个股  ①");
+		textView5_people1.setText("12/25");
+        //股市学堂，第二组数据
+		textView5_title2.setText("中兴证券讨论组");
+		textView5_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView5_type2.setText("个股  ①");
+		textView5_people2.setText("12/25");
+		//股市学堂，第三组数据
+		textView6_title1.setText("中兴证券讨论组");
+		textView6_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView6_type1.setText("个股  ①");
+        textView6_people1.setText("12/25");
+        //股市学堂，第四组数据
+		textView6_title2.setText("中兴证券讨论组");
+		textView6_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView6_type2.setText("个股  ①");
+		textView6_people2.setText("12/25");
 
 		checkBox1.setBackgroundResource(R.drawable.star1);
 		checkBox2.setBackgroundResource(R.drawable.star1);
@@ -225,7 +235,8 @@ public class FenleiActivity extends Activity {
 		// mPageViews.add(mInflater.inflate(R.layout.item1, null));
 		// mPageViews.add(mInflater.inflate(R.layout.item2, null));
 		/*
-		 * 点击星星变成黄色，总共有12个星星可以点击
+		 * 点击星星变成黄色，总共有12个星星可以点击，前四个为为您推荐对应的星星，中间的为24小时最热四组数据对应的星星，
+		 * 最后四个为股市学堂四组数据对应的星星，可以在这里面点击以后星星变色，同时传递相应的数据。
 		 */
 		checkBox1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
