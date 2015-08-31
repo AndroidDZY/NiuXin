@@ -14,12 +14,12 @@ import android.widget.TextView;
 public class NiuXinAdapter extends BaseAdapter{
 
 	//数据源
-	 private List<HashMap<String,String>> list;
+	 private List<HashMap<String,Object>> list;
 	 private Context context;
-	 private int []type;
+	 private List<Integer> type;
 	 
 	 //构造函数
-	public NiuXinAdapter (Context context,List<HashMap<String,String>> list, int[] type){
+	public NiuXinAdapter (Context context,List<HashMap<String,Object>> list, List<Integer> type){
 		  this.context = context;
 		  this.list = list;
 		  this.type=type;
@@ -51,10 +51,10 @@ public class NiuXinAdapter extends BaseAdapter{
 		//产生一个View
 		View view = null;
 		//根据type不同的数据类型构造不同的View
-		if(type[position]==0){
+		if(type.get(position)==0){
 			view = mInflater.inflate(R.layout.qunlistview, null);//选择群聊布局显示
 			//从适配器获取群聊数据
-			String content=list.get(position).get("data");
+			String content=list.get(position).get("data").toString();
 			//分离数据
 			String []items=content.split(",");
 			//设置群聊控件显示内容
@@ -77,7 +77,7 @@ public class NiuXinAdapter extends BaseAdapter{
 		}else{
 			view = mInflater.inflate(R.layout.person_list, null);//选择个人聊天布局显示	
 			//从适配器获取个人聊天数据
-			String content=list.get(position).get("data");
+			String content=list.get(position).get("data").toString();
 			//分离数据
 			String []items=content.split(",");
 			//设置个人聊天控件显示内容
