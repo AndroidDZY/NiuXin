@@ -6,46 +6,77 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.niuxin.util.Constants;
+import com.niuxin.util.HttpPostUtil;
+import com.niuxin.util.SharePreferenceUtil;
+
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class Contacts_detailedActivity extends Activity{
 	private Button mButton;
 	ListView listView_contacts_detailed;
+	SimpleAdapter contacts_detailedAdapter = null;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.contacts_detailed);
 		
+
 		//获取控件及点击事件
 		mButton = (Button)findViewById(R.id.btn_cancle_cdl);
-		mButton.setOnClickListener(new OnClickListener() {
-			
+		mButton.setOnClickListener(new OnClickListener() {			
 			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+			public void onClick(View arg0) {				
 				finish();
 			}
 		});
-		
-		//获取ListView
-		//创建适配器
-		//第二个参数：list集合中的每一个Map对象对应生成一个列表项
-		//第三个参数：表明使用contacts_detailed_list.xml文件作为列表项组件
-		//第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
-		//第五个参数：决定使用contacts_detailed_list.xml文件中的哪些组件来填充列表项
+
 		listView_contacts_detailed=(ListView)findViewById(R.id.contacts_detailed_list);
-		SimpleAdapter contacts_detailedAdapter= new SimpleAdapter(this, getData_contacts_detailed(),R.layout.contacts_detailed_list, 
+		 contacts_detailedAdapter= new SimpleAdapter(this, getData_contacts_detailed(),R.layout.contacts_detailed_list, 
 				new String[]{"image_contacts_detailed","title_contacts_detailed"},
 				new int[]{R.id.image_contacts_detailed,R.id.title_contacts_detailed});
 		listView_contacts_detailed.setAdapter(contacts_detailedAdapter);
+	/*	
+		listView_contacts_detailed.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				Intent intent = new Intent();
+				intent.putExtra("group_friend_type", list.get(position).get("chattype").toString());// 类型																							// 类型2代表个人聊天
+				intent.putExtra("group_friend_id", list.get(position).get("id").toString());// 群id																										// 或者将要接收信息的人的id
+				intent.putExtra("group_friend_name", list.get(position).get("title_contacts_detailed").toString());// 群名																											// 或者将要接受消息人的名字
+				intent.setClass(Contacts_detailedActivity.this, ChatActivity.class);
+				startActivity(intent);
+			}
+		});
+		*/
+
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	// 群组及联系人listview的数据
 	private List<Map<String, Object>> getData_contacts_detailed() {

@@ -2,6 +2,10 @@ package com.example.niuxin;
 
 
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
 import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
@@ -26,7 +30,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 	private Button mBtnRegister;
 	private Button mRegBack;
 	private EditText mEmailEt, mNameEt, mPasswdEt, mPasswdEt2;
-	
+	private List<Integer> imglist = new LinkedList<Integer>();
 	private MyApplication application;
 
 	@Override
@@ -50,6 +54,16 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 		mPasswdEt = (EditText) findViewById(R.id.reg_password);
 		mPasswdEt2 = (EditText) findViewById(R.id.reg_password2);
 
+		imglist.add(R.drawable.head001);
+		imglist.add(R.drawable.head002);
+		imglist.add(R.drawable.head003);
+		imglist.add(R.drawable.head004);
+		imglist.add(R.drawable.head005);
+		imglist.add(R.drawable.head006);
+		imglist.add(R.drawable.head007);
+		imglist.add(R.drawable.head008);
+		imglist.add(R.drawable.head009);
+		imglist.add(R.drawable.head010);
 	}
 
 	private Dialog mDialog = null;
@@ -135,7 +149,13 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 					u.setEmail(email);
 					u.setUserName(name);
 					u.setPassWord(Encode.getEncode("MD5", passwd));
-					u.setImg(R.drawable.addresslist_02);
+					
+					Random rand = new Random();
+					int i = rand.nextInt(10) + 1;
+
+					u.setImg(imglist.get(i));
+					
+					
 					o.setObject(u);
 					out.setMsg(o);
 				} else {

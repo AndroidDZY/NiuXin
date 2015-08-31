@@ -61,7 +61,7 @@ public class SearchFriendActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				 searchtext = text.getText().toString(); 
-				if (searchtext == null && searchtext.trim() == null) {
+				if (searchtext == null || searchtext.trim() == null) {
 					Toast.makeText(getApplicationContext(), "搜索条件不能为空!!!", 0).show();
 					return;
 				}

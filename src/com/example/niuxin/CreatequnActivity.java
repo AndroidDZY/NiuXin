@@ -2,7 +2,10 @@ package com.example.niuxin;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +39,7 @@ public class CreatequnActivity extends Activity {
 	private SuoluetuActivity suolue;
 	private Handler handler = new Handler();
 	public static Activity act = null;
-
+	private List<Integer> imglist = new LinkedList<Integer>();
 	String name = null;// 群名称
 	String mark = null;// 个股标签 可能多个
 	String description = null;
@@ -63,6 +66,18 @@ public class CreatequnActivity extends Activity {
 		ruquncondition = (Spinner) findViewById(R.id.cq_condition);
 		shoufeimodel = (Spinner) findViewById(R.id.cq_shoufeimoshi);
 
+		
+		imglist.add(R.drawable.head001);
+		imglist.add(R.drawable.head002);
+		imglist.add(R.drawable.head003);
+		imglist.add(R.drawable.head004);
+		imglist.add(R.drawable.head005);
+		imglist.add(R.drawable.head006);
+		imglist.add(R.drawable.head007);
+		imglist.add(R.drawable.head008);
+		imglist.add(R.drawable.head009);
+		imglist.add(R.drawable.head010);
+		
 		// 定义按钮事件
 		// 取消按钮
 		cancle.setOnClickListener(new OnClickListener() {
@@ -81,32 +96,32 @@ public class CreatequnActivity extends Activity {
 			public void onClick(View arg0) {
 				// 从控件中读取到相关的字符串
 				name = qunzuname.getText().toString();// 群名称
-				if (name == null && name.trim() == null) {
+				if (name == null || name.trim() == null) {
 					Toast.makeText(getApplicationContext(), "群名称不能为空!!!", 0).show();
 					return;
 				}
 				mark = gegutag.getText().toString();// 个股标签 可能多个
-				if (mark == null && mark.trim() == null) {
+				if (mark == null || mark.trim() == null) {
 					Toast.makeText(getApplicationContext(), "群标签不能为空!!!", 0).show();
 					return;
 				}
 				description = tianjiamiaoshu.getText().toString();
-				if (description == null && description.trim() == null) {
+				if (description == null || description.trim() == null) {
 					Toast.makeText(getApplicationContext(), "群描述不能为空!!!", 0).show();
 					return;
 				}
 				type = qunzuleixing.getSelectedItem().toString();
-				if (type == null && type.trim() == null) {
+				if (type == null || type.trim() == null) {
 					Toast.makeText(getApplicationContext(), "群类型不能为空!!!", 0).show();
 					return;
 				}
 				enter_grade = ruquncondition.getSelectedItem().toString();
-				if (type == null && type.trim() == null) {
+				if (type == null || type.trim() == null) {
 					Toast.makeText(getApplicationContext(), "入群等级不能为空!!!", 0).show();
 					return;
 				}
 				isfree = shoufeimodel.getSelectedItem().toString();
-				if (isfree == null && isfree.trim() == null) {
+				if (isfree == null || isfree.trim() == null) {
 					Toast.makeText(getApplicationContext(), "收费模式不能为空!!!", 0).show();
 					return;
 				}
@@ -149,7 +164,10 @@ public class CreatequnActivity extends Activity {
 					jsonObject.put("enter_grade", enter_grade);
 				if (isfree != null)
 					jsonObject.put("isfree", isfree);
-				jsonObject.put("img", R.drawable.addresslist_01);//群图标 暂时都设置成1
+				
+				Random rand = new Random();
+				int i = rand.nextInt(10) + 1;
+				jsonObject.put("img", imglist.get(i));//群图标 暂时都设置成1
 		//		jsonObject.put("totalNumber", totalNumber);
 		//		jsonObject.put("currentNumber", currentNumber);
 				SharePreferenceUtil util = new SharePreferenceUtil(CreatequnActivity.this, Constants.SAVE_USER);
