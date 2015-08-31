@@ -1,0 +1,99 @@
+package com.example.niuxin;
+
+import java.util.HashMap;
+import java.util.List;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class NiuXinAdapter extends BaseAdapter{
+
+	//数据源
+	 private List<HashMap<String,String>> list;
+	 private Context context;
+	 private int []type;
+	 
+	 //构造函数
+	public NiuXinAdapter (Context context,List<HashMap<String,String>> list, int[] type){
+		  this.context = context;
+		  this.list = list;
+		  this.type=type;
+		 } 
+	
+	
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return list.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return list.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		LayoutInflater mInflater = LayoutInflater.from(context);
+		//产生一个View
+		View view = null;
+		//根据type不同的数据类型构造不同的View
+		if(type[position]==0){
+			view = mInflater.inflate(R.layout.qunlistview, null);//选择群聊布局显示
+			//从适配器获取群聊数据
+			String content=list.get(position).get("data");
+			//分离数据
+			String []items=content.split(",");
+			//设置群聊控件显示内容
+			ImageView img=(ImageView)view.findViewById(R.id.img);
+			img.setImageResource(R.drawable.head001);
+			TextView qunname=(TextView)view.findViewById(R.id.qunname);	
+			qunname.setText(items[0]);	
+			TextView lastmes=(TextView)view.findViewById(R.id.lastmes);	
+			lastmes.setText(items[1]);
+			TextView time=(TextView)view.findViewById(R.id.time);	
+			time.setText(items[2]);	
+			TextView quntag=(TextView)view.findViewById(R.id.quntag);	
+			quntag.setText(items[3]);	
+			TextView renshu=(TextView)view.findViewById(R.id.renshu);	
+			renshu.setText(items[4]);
+			TextView grade=(TextView)view.findViewById(R.id.grade);	
+			grade.setText(items[5]);	
+			
+	
+		}else{
+			view = mInflater.inflate(R.layout.person_list, null);//选择个人聊天布局显示	
+			//从适配器获取个人聊天数据
+			String content=list.get(position).get("data");
+			//分离数据
+			String []items=content.split(",");
+			//设置个人聊天控件显示内容
+			ImageView img_pers=(ImageView)view.findViewById(R.id.img_pers);
+			img_pers.setImageResource(R.drawable.head002);
+			TextView qunname_pers=(TextView)view.findViewById(R.id.qunname_pers);	
+			qunname_pers.setText(items[0]);	
+			TextView lastmes_pers=(TextView)view.findViewById(R.id.lastmes_pers);	
+			lastmes_pers.setText(items[1]);
+			TextView time_pers=(TextView)view.findViewById(R.id.time_pers);	
+			time_pers.setText(items[2]);	
+
+		}
+				
+		return view;
+	}
+
+}
+
