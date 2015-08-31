@@ -34,12 +34,46 @@ public class Contacts_detailedActivity extends Activity{
 	private Button mButton;
 	ListView listView_contacts_detailed;
 	SimpleAdapter contacts_detailedAdapter = null;
+	public Handler handler = new Handler();
+	private SharePreferenceUtil util = null;
+	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.contacts_detailed);
+		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		
+		Intent intent = getIntent();	
+		 
+		String searchtext  = intent.getStringExtra("fromObject");// 聊天类型
+		JSONArray jsonArray = null;
+		try {
+			jsonArray = new JSONArray(searchtext);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			try {
+				JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+				Map<String, Object> map = new HashMap<String, Object>();
+				// 获取每一个对象中的值
+				int id = myjObject.getInt("id");
+				String title = myjObject.getString("title_contacts");
+				Integer img = myjObject.getInt("image_contacts");
+				Integer chattype = myjObject.getInt("chattype");
+
+				map.put("id", id);
+				map.put("title_contacts_detailed", title);
+				map.put("image_contacts_detailed", img);
+				map.put("chattype", chattype);
+				
+				list.add(map);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
 
 		//获取控件及点击事件
 		mButton = (Button)findViewById(R.id.btn_cancle_cdl);
@@ -51,11 +85,11 @@ public class Contacts_detailedActivity extends Activity{
 		});
 
 		listView_contacts_detailed=(ListView)findViewById(R.id.contacts_detailed_list);
-		 contacts_detailedAdapter= new SimpleAdapter(this, getData_contacts_detailed(),R.layout.contacts_detailed_list, 
-				new String[]{"image_contacts_detailed","title_contacts_detailed"},
+		 contacts_detailedAdapter= new SimpleAdapter(this, list,R.layout.contacts_detailed_list, 
+				new String[]{"image_contacts_detailed","title_contacts"},
 				new int[]{R.id.image_contacts_detailed,R.id.title_contacts_detailed});
 		listView_contacts_detailed.setAdapter(contacts_detailedAdapter);
-	/*	
+		
 		listView_contacts_detailed.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
@@ -67,13 +101,13 @@ public class Contacts_detailedActivity extends Activity{
 				startActivity(intent);
 			}
 		});
-		*/
+		
 
 	}
 	
 	
 	
-	
+
 	
 	
 	

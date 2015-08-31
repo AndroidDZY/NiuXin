@@ -30,235 +30,269 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 public class SearchresultActivity extends Activity {
-	private LinearLayout layout1,layout2,layout3; 
-	ListView listView_contacts,listView_chatlog,listView_collect;
-	private Button mButton,mmButton;
-	//1
-    private SuoluetuActivity suolue;
+	private LinearLayout layout1, layout2, layout3;
+	ListView listView_contacts, listView_chatlog, listView_collect;
+	private Button mButton, mmButton;
+	// 1
+	private SuoluetuActivity suolue;
 	private SharePreferenceUtil util = null;
 	private EditText sr_edittext;
 	String searchtext = null;
-    public Handler handler = new Handler();
-    SimpleAdapter contactsAdapter = null;
-    List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
-		setContentView(R.layout.searchresult);
-		//2
-		suolue = new SuoluetuActivity(this,handler);
+	public Handler handler = new Handler();
+	SimpleAdapter contactsAdapter = null;
+	List<Map<String, Object>> list1 = new ArrayList<Map<String, Object>>();
+
+	public void init() {
+		suolue = new SuoluetuActivity(this, handler);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
-		//获取控件
-		mButton = (Button)findViewById(R.id.sr_searchcancel);
-		mmButton = (Button)findViewById(R.id.sr_search);
+		// 获取控件
+		mButton = (Button) findViewById(R.id.sr_searchcancel);
+		mmButton = (Button) findViewById(R.id.sr_search);
 		sr_edittext = (EditText) findViewById(R.id.sr_edittext);
-		//点击事件-取消搜索
+		// 获取控件与监听
+		layout1 = (LinearLayout) findViewById(R.id.layout1);
+		layout2 = (LinearLayout) findViewById(R.id.layout2);
+		layout3 = (LinearLayout) findViewById(R.id.layout3);
+
+		// 点击事件-取消搜索
 		mButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				finish();
 			}
 		});
-		//点击事件-完成搜索
+		// 点击事件-完成搜索
 		mmButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
-				
-			 searchtext = 	sr_edittext.getText().toString();				
+
+				searchtext = sr_edittext.getText().toString();
 				if (searchtext == null || searchtext.trim() == null) {
 					Toast.makeText(getApplicationContext(), "搜索条件不能为空!!!", 0).show();
 					return;
 				}
-				
+
 				TestThread t = new TestThread();
 				t.start();
 			}
 		});
-		
-		
-		// 获取控件与监听
-		layout1 = (LinearLayout) findViewById(R.id.layout1);
+
 		layout1.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(SearchresultActivity.this,Contacts_detailedActivity.class);
+				// TODO Auto-generated method stu
+				if(list1.size()==0){
+					return;
+				}
+				
+			//	Intent intent = new Intent(SearchresultActivity.this, Contacts_detailedActivity.class);
+				Intent intent=new Intent();
+				JSONArray js = new JSONArray();
+				
+				for (int i = 0; i < list1.size(); i++) {
+					JSONObject jb = new JSONObject();
+					try {
+						jb.put("id", list1.get(i).get("id"));
+						jb.put("title_contacts", list1.get(i).get("title_contacts"));
+						jb.put("image_contacts", list1.get(i).get("image_contacts"));
+						jb.put("chattype", list1.get(i).get("chattype"));
+						
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}					
+					js.put(jb);
+										
+				}
+
+				intent.putExtra("list", js.toString());//
+				intent.setClass(SearchresultActivity.this, Contacts_detailedActivity.class);
 				startActivity(intent);
 			}
 		});
-		
-		layout2 = (LinearLayout) findViewById(R.id.layout2);
+
 		layout2.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(SearchresultActivity.this,Chatlog_detailedActivity.class);
+				Intent intent = new Intent(SearchresultActivity.this, Chatlog_detailedActivity.class);
 				startActivity(intent);
 			}
 		});
-		
-		layout3 = (LinearLayout) findViewById(R.id.layout3);
+
 		layout3.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(SearchresultActivity.this,Collect_detailedActivity.class);
+				Intent intent = new Intent(SearchresultActivity.this, Collect_detailedActivity.class);
 				startActivity(intent);
 			}
 		});
-		
-		//获取第一个ListView
-		//创建适配器
-		//第二个参数：list集合中的每一个Map对象对应生成一个列表项
-		//第三个参数：表明使用contacts_list.xml文件作为列表项组件
-		//第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
-		//第五个参数：决定使用contacts_list.xml文件中的哪些组件来填充列表项
-		listView_contacts=(ListView)findViewById(R.id.contacts_list);
-		 contactsAdapter= new SimpleAdapter(this, getData_contacts(),R.layout.contacts_list, 
-				new String[]{"image_contacts","title_contacts"},
-				new int[]{R.id.image_contacts,R.id.title_contacts});
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
+		setContentView(R.layout.searchresult);
+
+		init();
+		// 2
+
+		// 获取第一个ListView
+		// 创建适配器
+		// 第二个参数：list集合中的每一个Map对象对应生成一个列表项
+		// 第三个参数：表明使用contacts_list.xml文件作为列表项组件
+		// 第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
+		// 第五个参数：决定使用contacts_list.xml文件中的哪些组件来填充列表项
+		listView_contacts = (ListView) findViewById(R.id.contacts_list);
+		contactsAdapter = new SimpleAdapter(this, list1, R.layout.contacts_list,
+				new String[] { "image_contacts", "title_contacts" },
+				new int[] { R.id.image_contacts, R.id.title_contacts });
 		listView_contacts.setAdapter(contactsAdapter);
-		
+
 		listView_contacts.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 				Intent intent = new Intent();
-				intent.putExtra("group_friend_type", list.get(position).get("chattype").toString());// 类型																							// 类型2代表个人聊天
-				intent.putExtra("group_friend_id", list.get(position).get("id").toString());// 群id																										// 或者将要接收信息的人的id
-				intent.putExtra("group_friend_name", list.get(position).get("title_contacts_detailed").toString());// 群名																											// 或者将要接受消息人的名字
+				intent.putExtra("group_friend_type", list1.get(position).get("chattype").toString());// 类型
+																										// //
+																										// //
+																										// //
+																										// 类型2代表个人聊天
+				intent.putExtra("group_friend_id", list1.get(position).get("id").toString());// 群id
+																								// //
+																								// //
+																								// //
+																								// 或者将要接收信息的人的id
+				intent.putExtra("group_friend_name", list1.get(position).get("title_contacts").toString());// 群名
+				// 或者将要接受消息人的名字
 				intent.setClass(SearchresultActivity.this, ChatActivity.class);
 				startActivity(intent);
 			}
 		});
-		
-		
-		//获取第二个ListView
-		//创建适配器
-		//第二个参数：list集合中的每一个Map对象对应生成一个列表项
-		//第三个参数：表明使用chatlog_list.xml文件作为列表项组件
-		//第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
-		//第五个参数：决定使用chatlog_list.xml文件中的哪些组件来填充列表项
-		listView_chatlog=(ListView)findViewById(R.id.chatlog_list);
-		SimpleAdapter chatlogAdapter= new SimpleAdapter(this, getData_chatlog(),R.layout.chatlog_list, 
-				new String[]{"image_chatlog","title_chatlog","content_chatlog"},
-				new int[]{R.id.image_chatlog,R.id.title_chatlog,R.id.content_chatlog});
+
+		// 获取第二个ListView
+		// 创建适配器
+		// 第二个参数：list集合中的每一个Map对象对应生成一个列表项
+		// 第三个参数：表明使用chatlog_list.xml文件作为列表项组件
+		// 第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
+		// 第五个参数：决定使用chatlog_list.xml文件中的哪些组件来填充列表项
+		listView_chatlog = (ListView) findViewById(R.id.chatlog_list);
+		SimpleAdapter chatlogAdapter = new SimpleAdapter(this, getData_chatlog(), R.layout.chatlog_list,
+				new String[] { "image_chatlog", "title_chatlog", "content_chatlog" },
+				new int[] { R.id.image_chatlog, R.id.title_chatlog, R.id.content_chatlog });
 		listView_chatlog.setAdapter(chatlogAdapter);
-		
-		//获取第三个ListView
-		//创建适配器
-		//第二个参数：list集合中的每一个Map对象对应生成一个列表项
-		//第三个参数：表明使用collect_list.xml文件作为列表项组件
-		//第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
-		//第五个参数：决定使用collect_list.xml文件中的哪些组件来填充列表项
-		listView_collect=(ListView)findViewById(R.id.collect_list);
-		SimpleAdapter collectAdapter= new SimpleAdapter(this, getData_collect(),R.layout.collect_list, 
-				new String[]{"image_collect","title_collect","content_collect"},
-				new int[]{R.id.image_collect,R.id.title_collect,R.id.content_collect});
+
+		// 获取第三个ListView
+		// 创建适配器
+		// 第二个参数：list集合中的每一个Map对象对应生成一个列表项
+		// 第三个参数：表明使用collect_list.xml文件作为列表项组件
+		// 第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
+		// 第五个参数：决定使用collect_list.xml文件中的哪些组件来填充列表项
+		listView_collect = (ListView) findViewById(R.id.collect_list);
+		SimpleAdapter collectAdapter = new SimpleAdapter(this, getData_collect(), R.layout.collect_list,
+				new String[] { "image_collect", "title_collect", "content_collect" },
+				new int[] { R.id.image_collect, R.id.title_collect, R.id.content_collect });
 		listView_collect.setAdapter(collectAdapter);
 	}
-	
+
 	// 群组及联系人listview的数据
 	private List<Map<String, Object>> getData_contacts() {
 		// TODO Auto-generated method stub
-		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("image_contacts", R.drawable.head001);
 		map.put("title_contacts", "汪总");
 		list.add(map);
-		
+
 		map = new HashMap<String, Object>();
 		map.put("image_contacts", R.drawable.head002);
 		map.put("title_contacts", "中信证券讨论组");
-		list.add(map);	
-		
+		list.add(map);
+
 		map = new HashMap<String, Object>();
 		map.put("image_contacts", R.drawable.head003);
 		map.put("title_contacts", "海螺水泥群组");
 		list.add(map);
-		
+
 		return list;
 	}
-	
+
 	// 聊天记录的数据
 	private List<Map<String, Object>> getData_chatlog() {
 		// TODO Auto-generated method stub
-		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("image_chatlog", R.drawable.head004);
 		map.put("title_chatlog", "汪总");
 		map.put("content_chatlog", "今天又要涨停了");
 		list.add(map);
-		
+
 		map = new HashMap<String, Object>();
 		map.put("image_chatlog", R.drawable.head005);
 		map.put("title_chatlog", "中信证券讨论组");
 		map.put("content_chatlog", "一路飘红啊");
-		list.add(map);	
-		
+		list.add(map);
+
 		map = new HashMap<String, Object>();
 		map.put("image_chatlog", R.drawable.head006);
 		map.put("title_chatlog", "海螺水泥群组");
 		map.put("content_chatlog", "海螺水泥是一只自选股");
 		list.add(map);
-		
+
 		return list;
 	}
-	
+
 	// 收藏的数据
 	private List<Map<String, Object>> getData_collect() {
 		// TODO Auto-generated method stub
-		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("image_collect", R.drawable.head007);
 		map.put("title_collect", "军工板块暴涨近7%领涨两市");
 		map.put("content_collect", "周五军工股大涨近7%，领涨两市，截至发稿，际华集团、拓尔思、长春一东、中航...");
 		list.add(map);
-		
+
 		map = new HashMap<String, Object>();
 		map.put("image_collect", R.drawable.head008);
 		map.put("title_collect", "人社部：约2万亿元养老金可投资");
 		map.put("content_collect", "周五上午10时，人力资源社会保障部副部长和财政部副部...");
-		list.add(map);	
-		
+		list.add(map);
+
 		map = new HashMap<String, Object>();
 		map.put("image_collect", R.drawable.head009);
 		map.put("title_collect", "海螺水泥群组");
 		map.put("content_collect", "海螺水泥是一只自选股");
 		list.add(map);
-		
+
 		return list;
 	}
-	
-	
-	
-	
-class TestThread extends Thread {
-		
+
+	class TestThread extends Thread {
+
 		@Override
-		public void run() {			
+		public void run() {
 			// 新建工具类，向服务器发送Http请求
 			HttpPostUtil postUtil = new HttpPostUtil();
 
 			JSONObject jsonObject = new JSONObject();
 			try {
-				
-				Integer id = util.getId();			
+
+				Integer id = util.getId();
 				jsonObject.put("id", id);
 				jsonObject.put("searchTest", searchtext);
 			} catch (JSONException e) {
 				e.printStackTrace();
-			}		
+			}
 
 			/*
 			 * boolean isNetwork= postUtil.checkNetState(act); if(!isNetwork){
@@ -269,7 +303,7 @@ class TestThread extends Thread {
 			// 设置发送的url 和服务器端的struts.xml文件对应
 			postUtil.setUrl("/search/search_contacts.do");
 			// 不向服务器发送数据
-			//向服务器发送数据
+			// 向服务器发送数据
 			JSONArray js = new JSONArray();
 			js.put(jsonObject);
 			postUtil.setRequest(js);
@@ -283,10 +317,12 @@ class TestThread extends Thread {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			list.clear();
+			list1.clear();
+		//	layout1.setVisibility(View.GONE);
 			for (int i = 0; i < jsonArray.length(); i++) {
-				if(i==3)
+				if (i == 3)
 					break;
+		//		layout1.setVisibility(View.VISIBLE);
 				try {
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
 					Map<String, Object> map = new HashMap<String, Object>();
@@ -295,11 +331,13 @@ class TestThread extends Thread {
 					String title = myjObject.getString("name");
 					Integer img = myjObject.getInt("img");
 					Integer chattype = myjObject.getInt("chattype");
+				
 					map.put("id", id);
-					map.put("title_contacts_detailed", title);
-					map.put("image_contacts_detailed", img);										
+					map.put("title_contacts", title);
+					map.put("image_contacts", img);
 					map.put("chattype", chattype);
-					list.add(map);
+					
+					list1.add(map);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -307,7 +345,7 @@ class TestThread extends Thread {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
-					 contactsAdapter.notifyDataSetChanged();
+					contactsAdapter.notifyDataSetChanged();
 
 				}
 
