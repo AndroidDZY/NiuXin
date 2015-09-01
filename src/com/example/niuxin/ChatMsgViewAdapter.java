@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ChatMsgViewAdapter extends BaseAdapter {
@@ -116,13 +117,15 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 			viewHolder.tvSendTime = (TextView) convertView.findViewById(R.id.tv_sendtime);
 			viewHolder.tvContent = (TextView) convertView.findViewById(R.id.tv_chatcontent);
 			viewHolder.isComMsg = isComMsg;
-
+			viewHolder.img = (ImageView) convertView.findViewById(R.id.iv_userhead);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		viewHolder.tvSendTime.setText(entity.getDate());
-
+		viewHolder.img.setBackgroundResource(entity.getImg());
+		
+		
 		// 设置具体的聊天内容
 		int mark = 0;
 		String str = null;
@@ -179,6 +182,7 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		public TextView tvSendTime;
 		public TextView tvContent;
 		public boolean isComMsg = true;
+		public ImageView img = null;
 	}
 
 	
