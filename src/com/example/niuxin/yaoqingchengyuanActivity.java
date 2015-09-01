@@ -28,7 +28,7 @@ public class yaoqingchengyuanActivity extends Activity{
 	//1
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
-	Button cancle;
+	Button cancle,finish;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -37,6 +37,7 @@ public class yaoqingchengyuanActivity extends Activity{
 		suolue = new SuoluetuActivity(this,handler);
 		//获取各种控件
 		cancle = (Button)findViewById(R.id.btn_yq_cancle);
+		finish = (Button)findViewById(R.id.btn_yq_finish);
 		mEditText = (EditText)findViewById(R.id.yq_search);
 		
 		//定义按钮事件
@@ -47,6 +48,16 @@ public class yaoqingchengyuanActivity extends Activity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				finish();
+			}
+		});
+		//完成按钮
+		finish.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				// 创建群组成功，并邀请了成员后，跳转到主界面
+				startActivity(new Intent(yaoqingchengyuanActivity.this,MainActivity.class));
 			}
 		});
 		//点击搜索框跳转到添加好友界面
