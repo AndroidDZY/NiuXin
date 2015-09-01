@@ -221,7 +221,7 @@ public class FriendListActivity extends MyActivity implements OnClickListener {
 		mRecentListView.setAdapter(application.getmRecentAdapter());// 先设置空对象，要么从数据库中读出
 
 		// 下面是处理好友列表界面处理
-		myListView = (MyListView) lay2.findViewById(R.id.tab2_listView);
+		//myListView = (MyListView) lay2.findViewById(R.id.tab2_listView);
 		myExAdapter = new MyExAdapter(this, group);
 		myListView.setAdapter(myExAdapter);
 		myListView.setGroupIndicator(null);// 不设置大组指示器图标，因为我们自定义设置了

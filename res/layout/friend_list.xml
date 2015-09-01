@@ -46,7 +46,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout1"
+        android:id="@+id/RelativeLayout12"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:background="@drawable/login_moremenu_back"
