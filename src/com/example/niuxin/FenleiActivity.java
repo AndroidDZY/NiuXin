@@ -151,10 +151,10 @@ public class FenleiActivity extends Activity {
 		textView1_type1.setText("个股  ①");
 		textView1_people1.setText("12/25");
         //为您推荐，第二组数据
-		textView1_title2.setText("中兴证券讨论组");
-		textView1_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView1_type2.setText("个股  ①");
-		textView1_people2.setText("12/25");
+		textView1_title2.setText("一带一路讨论组");
+		textView1_summary2.setText("一带一路相关个股分析讨论");
+		textView1_type2.setText("个股  ⑨");
+		textView1_people2.setText("28/40");
         //为您推荐，第三组数据
 		textView2_title1.setText("中兴证券讨论组");
 		textView2_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
@@ -166,15 +166,15 @@ public class FenleiActivity extends Activity {
 		textView2_type2.setText("个股  ①");
 		textView2_people2.setText("12/25");
         //24小时最热，第一组数据
-		textView3_title1.setText("中兴证券讨论组");
-		textView3_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView3_type1.setText("个股  ①");
-		textView3_people1.setText("12/25");
+		textView3_title1.setText("创业板买什么");
+		textView3_summary1.setText("教你创业板如何挣钱");
+		textView3_type1.setText("板块");
+		textView3_people1.setText("98/100");
         //24小时最热，第二组数据
-		textView3_title2.setText("中兴证券讨论组");
-		textView3_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView3_title2.setText("灌水扯淡专房1");
+		textView3_summary2.setText("谈天说地，互相治愈");
 		textView3_type2.setText("个股  ①");
-		textView3_people2.setText("12/25");
+		textView3_people2.setText("168/200");
 		//24小时最热，第三组数据
 		textView4_title1.setText("中兴证券讨论组");
 		textView4_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
@@ -186,15 +186,15 @@ public class FenleiActivity extends Activity {
 		textView4_type2.setText("个股  ①");
 		textView4_people2.setText("12/25");
         //股市学堂，第一组数据
-		textView5_title1.setText("中兴证券讨论组");
-		textView5_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView5_type1.setText("个股  ①");
-		textView5_people1.setText("12/25");
+		textView5_title1.setText("汪老师课堂");
+		textView5_summary1.setText("汪老师的炒股讲堂");
+		textView5_type1.setText("教学 ￥");
+		textView5_people1.setText("18/20");
         //股市学堂，第二组数据
-		textView5_title2.setText("中兴证券讨论组");
-		textView5_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView5_type2.setText("个股  ①");
-		textView5_people2.setText("12/25");
+		textView5_title2.setText("技术免费教学群");
+		textView5_summary2.setText("教你如何用技术分析法挣钱");
+		textView5_type2.setText("教学");
+		textView5_people2.setText("32/40");
 		//股市学堂，第三组数据
 		textView6_title1.setText("中兴证券讨论组");
 		textView6_summary1.setText("中兴证券综合讨论，分析买入卖出时机");

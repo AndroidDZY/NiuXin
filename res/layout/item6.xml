@@ -6,7 +6,7 @@
     android:layout_marginTop="75dp">
     <RelativeLayout 
         android:layout_width="150dp"
-        android:background="@drawable/kaungdi1"
+        android:background="@drawable/kuangzhong"
         android:layout_height="90dp"
         android:orientation="vertical"
         android:layout_marginLeft="20dp"
@@ -83,7 +83,7 @@
     </RelativeLayout>
     
     <RelativeLayout android:layout_width="150dp"
-        android:background="@drawable/kaungdi1"
+        android:background="@drawable/kuanggao"
         android:layout_height="90dp"
         android:orientation="vertical"
         android:layout_marginLeft="20dp"
