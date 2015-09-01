@@ -74,6 +74,11 @@
         <activity android:name="com.example.niuxin.K_line_dayActivity"></activity>
         <activity android:name="com.example.niuxin.K_line_setActivity"></activity>
 
+        
+          <activity android:name="com.example.niuxin.Contacts_detailedActivity"></activity>
+        <activity android:name="com.example.niuxin.Chatlog_detailedActivity"></activity>
+        <activity android:name="com.example.niuxin.Collect_detailedActivity"></activity>
+        
         <activity android:name="com.example.niuxin.FenleiActivity"></activity>
         <activity android:name="com.example.niuxin.ShoucangActivity"></activity>
         <activity android:name="com.example.niuxin.PaihangActivity"></activity>
@@ -81,9 +86,7 @@
         <activity android:name="com.example.niuxin.SearchresultActivity"></activity>
         <activity android:name="com.example.niuxin.SearchFriendActivity"></activity>
         
-        <activity android:name="com.example.niuxin.Contacts_detailedActivity"></activity>
-        <activity android:name="com.example.niuxin.Chatlog_detailedActivity"></activity>
-        <activity android:name="com.example.niuxin.Collect_detailedActivity"></activity>
+      
         
 
         

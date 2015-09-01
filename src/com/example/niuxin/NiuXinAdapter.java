@@ -54,41 +54,42 @@ public class NiuXinAdapter extends BaseAdapter{
 		if(type.get(position)==0){
 			view = mInflater.inflate(R.layout.qunlistview, null);//选择群聊布局显示
 			//从适配器获取群聊数据
-			String content=list.get(position).get("data").toString();
+		//	String content=list.get(position).get("data").toString();
 			//分离数据
-			String []items=content.split(",");
+		//	String []items=content.split(",");
 			//设置群聊控件显示内容
 			ImageView img=(ImageView)view.findViewById(R.id.img);
-			img.setImageResource(R.drawable.head001);
+			img.setImageResource(Integer.valueOf(list.get(position).get("img").toString()));
 			TextView qunname=(TextView)view.findViewById(R.id.qunname);	
-			qunname.setText(items[0]);	
+			qunname.setText(list.get(position).get("name").toString());	
 			TextView lastmes=(TextView)view.findViewById(R.id.lastmes);	
-			lastmes.setText(items[1]);
+			lastmes.setText(list.get(position).get("lastmes").toString());
 			TextView time=(TextView)view.findViewById(R.id.time);	
-			time.setText(items[2]);	
+			time.setText(list.get(position).get("time").toString());	
 			TextView quntag=(TextView)view.findViewById(R.id.quntag);	
-			quntag.setText(items[3]);	
+			quntag.setText(list.get(position).get("type").toString());	
 			TextView renshu=(TextView)view.findViewById(R.id.renshu);	
-			renshu.setText(items[4]);
+			renshu.setText(list.get(position).get("renshu").toString());
 			TextView grade=(TextView)view.findViewById(R.id.grade);	
-			grade.setText(items[5]);	
+			grade.setText(list.get(position).get("grade").toString());	
 			
 	
 		}else{
 			view = mInflater.inflate(R.layout.person_list, null);//选择个人聊天布局显示	
 			//从适配器获取个人聊天数据
-			String content=list.get(position).get("data").toString();
+		//	String content=list.get(position).get("data").toString();
 			//分离数据
-			String []items=content.split(",");
+		//	String []items=content.split(",");
+			
 			//设置个人聊天控件显示内容
 			ImageView img_pers=(ImageView)view.findViewById(R.id.img_pers);
-			img_pers.setImageResource(R.drawable.head002);
+			img_pers.setImageResource(Integer.valueOf(list.get(position).get("img").toString()));
 			TextView qunname_pers=(TextView)view.findViewById(R.id.qunname_pers);	
-			qunname_pers.setText(items[0]);	
+			qunname_pers.setText(list.get(position).get("name").toString());	
 			TextView lastmes_pers=(TextView)view.findViewById(R.id.lastmes_pers);	
-			lastmes_pers.setText(items[1]);
+			lastmes_pers.setText(list.get(position).get("lastmes").toString());
 			TextView time_pers=(TextView)view.findViewById(R.id.time_pers);	
-			time_pers.setText(items[2]);	
+			time_pers.setText(list.get(position).get("time").toString());	
 
 		}
 				

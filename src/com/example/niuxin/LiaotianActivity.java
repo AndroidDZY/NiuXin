@@ -29,9 +29,11 @@ public class LiaotianActivity extends Activity {
 	ListView list;
 	private Handler handler = new Handler();
 	public static Activity act = null;
-	SimpleAdapter liaotianAdapter = null;
+//	SimpleAdapter liaotianAdapter = null;
 	List<HashMap<String, Object>> listLiaoTian= new ArrayList<HashMap<String,Object>>();
 	SharePreferenceUtil util;
+	NiuXinAdapter listItemAdapter = null;
+	List<Integer> typelist = new LinkedList<Integer>();
 	@Override  
 	protected void onResume() {
 		 super.onResume();  
@@ -56,20 +58,11 @@ public class LiaotianActivity extends Activity {
         		 "中信证券讨论组,今天又要涨停啦,17:30,个股,1/50,2","汪总,今天又要涨停啦,19:50",
         		 "中信证券讨论组,今天又要涨停啦,17:30,个股,1/50,2","汪总,今天又要涨停啦,19:50"};
          //type用于判断用群聊布局还是用个人聊天布局显示
-        List<Integer> type = new LinkedList<Integer>();
-        //将假数据存入listItem
-        for(int i=0;i<listLiaoTian.size();i++){
-        //	HashMap<String, String> map = new HashMap<String, String>();
-        	//根据不同需求可以构造更复杂的数据,目前之构造一个数据
-        //	map.put("data", data[i]);
-        //	listItem.add(map);
-        	if(Integer.valueOf(listLiaoTian.get(i).get("chattype").toString())==1)
-        		type.add(0);
-        	else
-        		type.add(1);
-        }
         
-		NiuXinAdapter listItemAdapter= new NiuXinAdapter(this, listLiaoTian,type);		
+        //将假数据存入listItem
+        
+        
+		 listItemAdapter= new NiuXinAdapter(this, listLiaoTian,typelist);		
 		list.setAdapter(listItemAdapter);
 		
 //		liaotianAdapter= new SimpleAdapter(LiaotianActivity.this,listLiaoTian,
@@ -141,6 +134,7 @@ public class LiaotianActivity extends Activity {
 				e.printStackTrace();
 			}	
 			listLiaoTian.clear();
+			typelist.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {				
 				try {
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
@@ -171,6 +165,7 @@ public class LiaotianActivity extends Activity {
 						map.put("type", type);
 						map.put("renshu", renshu);
 						map.put("grade", grade);   //入群等级，
+						typelist.add(0);
 						listLiaoTian.add(map);
 					}else{
 						HashMap<String, Object> map = new HashMap<String, Object>();
@@ -188,9 +183,9 @@ public class LiaotianActivity extends Activity {
 						map.put("lastmes", lastmes);
 						map.put("time",time);
 
-						
+						typelist.add(1);
 						listLiaoTian.add(map);
-												
+																	
 					}
 					
 					
@@ -203,7 +198,7 @@ public class LiaotianActivity extends Activity {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
-					 liaotianAdapter.notifyDataSetChanged();
+					listItemAdapter.notifyDataSetChanged();
 				}
 
 			};

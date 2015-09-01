@@ -40,7 +40,11 @@ public class SearchresultActivity extends Activity {
 	String searchtext = null;
 	public Handler handler = new Handler();
 	SimpleAdapter contactsAdapter = null;
+	SimpleAdapter chatlogAdapter = null;
+	SimpleAdapter collectAdapter = null;
 	List<Map<String, Object>> list1 = new ArrayList<Map<String, Object>>();
+	List<Map<String, Object>> list2 = new ArrayList<Map<String, Object>>();
+	List<Map<String, Object>> list3 = new ArrayList<Map<String, Object>>();
 
 	public void init() {
 		suolue = new SuoluetuActivity(this, handler);
@@ -75,8 +79,10 @@ public class SearchresultActivity extends Activity {
 					return;
 				}
 
-				TestThread t = new TestThread();
+				ContactsThread t = new ContactsThread();
 				t.start();
+				ChatRecoedThread t1 = new ChatRecoedThread();
+				t1.start();
 			}
 		});
 
@@ -118,7 +124,38 @@ public class SearchresultActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(SearchresultActivity.this, Chatlog_detailedActivity.class);
+			//	Intent intent = new Intent(SearchresultActivity.this, Chatlog_detailedActivity.class);
+				//startActivity(intent);
+				
+				
+				
+				if(list2.size()==0){
+					return;
+				}
+				
+			//	Intent intent = new Intent(SearchresultActivity.this, Contacts_detailedActivity.class);
+				Intent intent=new Intent();
+				JSONArray js = new JSONArray();
+				
+				for (int i = 0; i < list2.size(); i++) {
+					JSONObject jb = new JSONObject();
+					try {
+						jb.put("id", list2.get(i).get("id"));
+						jb.put("title_chatlog", list2.get(i).get("title_chatlog"));
+						jb.put("image_chatlog", list2.get(i).get("image_chatlog"));
+						jb.put("chattype", list2.get(i).get("chattype"));
+						jb.put("content_chatlog", list2.get(i).get("content_chatlog"));
+				
+						
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}					
+					js.put(jb);
+										
+				}
+
+				intent.putExtra("list", js.toString());//
+				intent.setClass(SearchresultActivity.this, Chatlog_detailedActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -160,16 +197,8 @@ public class SearchresultActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 				Intent intent = new Intent();
-				intent.putExtra("group_friend_type", list1.get(position).get("chattype").toString());// 类型
-																										// //
-																										// //
-																										// //
-																										// 类型2代表个人聊天
-				intent.putExtra("group_friend_id", list1.get(position).get("id").toString());// 群id
-																								// //
-																								// //
-																								// //
-																								// 或者将要接收信息的人的id
+				intent.putExtra("group_friend_type", list1.get(position).get("chattype").toString());
+				intent.putExtra("group_friend_id", list1.get(position).get("id").toString());
 				intent.putExtra("group_friend_name", list1.get(position).get("title_contacts").toString());// 群名
 				// 或者将要接受消息人的名字
 				intent.setClass(SearchresultActivity.this, ChatActivity.class);
@@ -184,7 +213,7 @@ public class SearchresultActivity extends Activity {
 		// 第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
 		// 第五个参数：决定使用chatlog_list.xml文件中的哪些组件来填充列表项
 		listView_chatlog = (ListView) findViewById(R.id.chatlog_list);
-		SimpleAdapter chatlogAdapter = new SimpleAdapter(this, getData_chatlog(), R.layout.chatlog_list,
+		 chatlogAdapter = new SimpleAdapter(this, list2, R.layout.chatlog_list,
 				new String[] { "image_chatlog", "title_chatlog", "content_chatlog" },
 				new int[] { R.id.image_chatlog, R.id.title_chatlog, R.id.content_chatlog });
 		listView_chatlog.setAdapter(chatlogAdapter);
@@ -196,34 +225,12 @@ public class SearchresultActivity extends Activity {
 		// 第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
 		// 第五个参数：决定使用collect_list.xml文件中的哪些组件来填充列表项
 		listView_collect = (ListView) findViewById(R.id.collect_list);
-		SimpleAdapter collectAdapter = new SimpleAdapter(this, getData_collect(), R.layout.collect_list,
+		collectAdapter = new SimpleAdapter(this, getData_collect(), R.layout.collect_list,
 				new String[] { "image_collect", "title_collect", "content_collect" },
 				new int[] { R.id.image_collect, R.id.title_collect, R.id.content_collect });
 		listView_collect.setAdapter(collectAdapter);
 	}
 
-	// 群组及联系人listview的数据
-	private List<Map<String, Object>> getData_contacts() {
-		// TODO Auto-generated method stub
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		map.put("image_contacts", R.drawable.head001);
-		map.put("title_contacts", "汪总");
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("image_contacts", R.drawable.head002);
-		map.put("title_contacts", "中信证券讨论组");
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("image_contacts", R.drawable.head003);
-		map.put("title_contacts", "海螺水泥群组");
-		list.add(map);
-
-		return list;
-	}
 
 	// 聊天记录的数据
 	private List<Map<String, Object>> getData_chatlog() {
@@ -277,7 +284,7 @@ public class SearchresultActivity extends Activity {
 		return list;
 	}
 
-	class TestThread extends Thread {
+	class 	ContactsThread extends Thread {
 
 		@Override
 		public void run() {
@@ -354,4 +361,91 @@ public class SearchresultActivity extends Activity {
 		}
 	}
 
+	
+	
+	class ChatRecoedThread extends Thread {
+		@Override
+		public void run() {
+			// 新建工具类，向服务器发送Http请求
+			HttpPostUtil postUtil = new HttpPostUtil();
+
+			// 向服务器发送数据，如果没有，可以不发送
+			JSONObject jsonObject = new JSONObject();
+			try {
+				
+				Integer id = util.getId();			
+				jsonObject.put("id", id);	
+				jsonObject.put("searchTest", searchtext);	
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}			
+			/*
+			boolean isNetwork= postUtil.checkNetState(act);
+			if(!isNetwork){
+				mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
+				mDialog.show();
+				return;
+			}*/
+			
+			//设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/search/search_listChatRecordBySearchText.do");
+			//向服务器发送数据
+			JSONArray js = new JSONArray();
+			js.put(jsonObject);
+			postUtil.setRequest(js);
+			// 从服务器获取数据
+			String res = postUtil.run();	
+			if(res==null){
+				return;
+			}
+			// 对从服务器获取数据进行解析
+			JSONArray jsonArray = null;			
+			try {
+				jsonArray = new JSONArray(res);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return;
+			}	
+			list2.clear();
+
+			for (int i = 0; i < jsonArray.length(); i++) {				
+				try {
+					if (i == 3)
+						break;
+					
+					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象					
+					String chattype = myjObject.getString("chattype");
+					// 获取每一个对象中的值
+			
+						HashMap<String, Object> map = new HashMap<String, Object>();
+						//String chattype = myjObject.getString("chattype");
+						int id = myjObject.getInt("id");
+						String name = myjObject.getString("name");
+						String lastmes = myjObject.getString("lastmes");
+						String time = myjObject.getString("time");
+						Integer img = myjObject.getInt("img");						
+						map.put("image_chatlog", img);//R.drawable.head010
+						map.put("id", id);
+						map.put("title_chatlog", name);
+						map.put("chattype", chattype);
+						map.put("content_chatlog", lastmes);						
+						list2.add(map);
+					
+				}catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}/////////////////////////////解析数据完成
+			
+			
+			Runnable r = new Runnable() {
+				@Override
+				public void run() {
+					chatlogAdapter.notifyDataSetChanged();
+				}
+
+			};
+			handler.post(r);
+		}
+	}
+	
 }

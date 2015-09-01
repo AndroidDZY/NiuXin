@@ -46,7 +46,7 @@ public class Contacts_detailedActivity extends Activity{
 		
 		Intent intent = getIntent();	
 		 
-		String searchtext  = intent.getStringExtra("fromObject");// 聊天类型
+		String searchtext  = intent.getStringExtra("list");// 聊天类型
 		JSONArray jsonArray = null;
 		try {
 			jsonArray = new JSONArray(searchtext);
@@ -86,7 +86,7 @@ public class Contacts_detailedActivity extends Activity{
 
 		listView_contacts_detailed=(ListView)findViewById(R.id.contacts_detailed_list);
 		 contacts_detailedAdapter= new SimpleAdapter(this, list,R.layout.contacts_detailed_list, 
-				new String[]{"image_contacts_detailed","title_contacts"},
+				new String[]{"image_contacts_detailed","title_contacts_detailed"},
 				new int[]{R.id.image_contacts_detailed,R.id.title_contacts_detailed});
 		listView_contacts_detailed.setAdapter(contacts_detailedAdapter);
 		
