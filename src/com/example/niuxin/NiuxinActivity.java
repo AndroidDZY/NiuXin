@@ -62,6 +62,9 @@ public class NiuxinActivity extends TabActivity {
 		liaotian=(Button)findViewById(R.id.liaotian);
 		tongxunlu=(Button)findViewById(R.id.tongxunlu);
 		pengyouquan=(Button)findViewById(R.id.pengyouquan);
+		liaotian.setTextColor(0xffde4557); // 设置字体颜色红
+		tongxunlu.setTextColor(0xff000000); // 设置字体颜色黑
+		pengyouquan.setTextColor(0xff000000); // 设置字体颜色黑
 		liaotian.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {

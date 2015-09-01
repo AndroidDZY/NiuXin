@@ -174,7 +174,7 @@ public class FenleiActivity extends Activity {
 		textView3_title2.setText("灌水扯淡专房1");
 		textView3_summary2.setText("谈天说地，互相治愈");
 		textView3_type2.setText("个股  ①");
-		textView3_people2.setText("168/200");
+		textView3_people2.setText("68/200");
 		//24小时最热，第三组数据
 		textView4_title1.setText("中兴证券讨论组");
 		textView4_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
