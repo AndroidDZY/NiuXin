@@ -13,6 +13,9 @@
 	            android:id="@+id/tv_sendtime"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+	            android:textColor="#ffffff"
+            	android:textSize="12sp"
+            	android:background="#ffC2C2C2"
 	           	/>
 	    </LinearLayout>
 	    <LinearLayout
