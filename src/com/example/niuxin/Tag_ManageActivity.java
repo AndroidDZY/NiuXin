@@ -55,11 +55,15 @@ public class Tag_ManageActivity extends Activity{
 		
 		//新建标签按钮
 		btn_tag_add.setOnClickListener(new OnClickListener() {
-			View myView=LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);//将layout对象转换为VIew对象
-			AlertDialog.Builder builder = new AlertDialog.Builder(Tag_ManageActivity.this);
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				add();
+			}
+			private void add() {
+				// TODO Auto-generated method stub
+				View myView=LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);//将layout对象转换为VIew对象
+				AlertDialog.Builder builder = new AlertDialog.Builder(Tag_ManageActivity.this);
 				 builder.setTitle("新建标签");
 				 //builder.setMessage("确定要删除这些标签吗？");
 				 builder.setView(myView);
@@ -72,20 +76,26 @@ public class Tag_ManageActivity extends Activity{
 			       builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {  
 			           public void onClick(DialogInterface dialog, int whichButton) {  
 			               //这里添加点击确定后的逻辑  
-			               //showDialog("你选择了取消");  
+			               //showDialog("你选择了取消");
+			        	   dialog.dismiss();//对话框消失
 			           }  
 			       });  
-			       builder.create().show();  	
+			       builder.create().show();  
 			}
 		});
 		
 		//删除标签按钮
 		btn_tag_delete.setOnClickListener(new OnClickListener() {
-			//创建一个对话框
-			AlertDialog.Builder builder = new AlertDialog.Builder(Tag_ManageActivity.this); 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				delete();
+			}
+			
+			private void delete() {
+				// TODO Auto-generated method stub
+				//创建一个对话框
+				AlertDialog.Builder builder = new AlertDialog.Builder(Tag_ManageActivity.this);
 				//builder.setIcon(R.drawable.icon); 
 				
 			       //builder.setTitle("确定要删除这些标签吗？");
@@ -99,7 +109,8 @@ public class Tag_ManageActivity extends Activity{
 			       builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {  
 			           public void onClick(DialogInterface dialog, int whichButton) {  
 			               //这里添加点击确定后的逻辑  
-			               //showDialog("你选择了取消");  
+			               //showDialog("你选择了取消");
+			        	   dialog.dismiss();//对话框消失
 			           }  
 			       });  
 			       builder.create().show();  	
@@ -132,22 +143,22 @@ public class Tag_ManageActivity extends Activity{
 		
 		
 		
-		//实现点击不同的item，奇数偶数次点击更换imageview显示
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent , View view , int position ,
-					long id ) {		
-				SimpleAdapter adapter=(SimpleAdapter)parent.getAdapter();//找到被点击的Adapter
-	            Map<String,Object> map=(Map<String, Object>) adapter.getItem(position);//找到被点击的列表项
-	            if(Integer.valueOf(map.get("img_tag_flag").toString())==R.drawable.edit_flag01){
-	            	tag_flag = R.drawable.edit_flag02;
-	            }else
-	            	tag_flag = R.drawable.edit_flag01;
-	         
-	            list.get(position).put("img_tag_flag", tag_flag);//将更新过的add_flag值放入list中        
-	            adapter.notifyDataSetInvalidated();//使更新过的list数据生效
-			}
-		});
+//		//实现点击不同的item，奇数偶数次点击更换imageview显示
+//		listView.setOnItemClickListener(new OnItemClickListener() {
+//			@Override
+//			public void onItemClick(AdapterView<?> parent , View view , int position ,
+//					long id ) {		
+//				SimpleAdapter adapter=(SimpleAdapter)parent.getAdapter();//找到被点击的Adapter
+//	            Map<String,Object> map=(Map<String, Object>) adapter.getItem(position);//找到被点击的列表项
+//	            if(Integer.valueOf(map.get("img_tag_flag").toString())==R.drawable.edit_flag01){
+//	            	tag_flag = R.drawable.edit_flag02;
+//	            }else
+//	            	tag_flag = R.drawable.edit_flag01;
+//	         
+//	            list.get(position).put("img_tag_flag", tag_flag);//将更新过的add_flag值放入list中        
+//	            adapter.notifyDataSetInvalidated();//使更新过的list数据生效
+//			}
+//		});
 	}
 	private ArrayList<HashMap<String, Object>> getData() {
 		ArrayList<HashMap<String, Object>> list = getList();

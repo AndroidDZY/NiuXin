@@ -3,7 +3,10 @@ package com.example.niuxin;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +22,7 @@ public class lvButtonAdapter extends BaseAdapter {
         TextView appName;
         ImageButton buttonClose;
     }
+
     
     private ArrayList<HashMap<String, Object>> mAppList;
     private LayoutInflater mInflater;
@@ -100,6 +104,38 @@ public class lvButtonAdapter extends BaseAdapter {
             System.out.println(">>>>>>>>>>vid>>>>>>>>>>>>"+vid);//不同按钮的id
            // if (vid == holder.buttonClose.getId())
            //     removeItem(position);
+            if(R.id.img_tag_flag == vid){
+            	
+            }
+            else if(R.id.img_tag_edit == vid){
+            	edit();
+            }
         }
+
+		private void edit() {
+			// TODO Auto-generated method stub
+			View myView=LayoutInflater.from(mContext).inflate(R.layout.edittextview, null);//将layout对象转换为VIew对象
+			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+				 builder.setTitle("标签重命名");
+				 //builder.setMessage("确定要删除这些标签吗？");
+				 builder.setView(myView);
+			       builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  
+			           public void onClick(DialogInterface dialog, int whichButton) {  
+			               //这里添加点击确定后的逻辑  
+			              // showDialog("你选择了确定");  
+			           }  
+			       });  
+			       builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {  
+			           public void onClick(DialogInterface dialog, int whichButton) {  
+			               //这里添加点击确定后的逻辑  
+			               //showDialog("你选择了取消"); 
+			        	   dialog.dismiss();//对话框消失
+			           }  
+			       });  
+			       builder.create().show();  	
+		}
+		
+		
     }
+
 }
