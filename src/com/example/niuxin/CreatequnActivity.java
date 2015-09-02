@@ -101,27 +101,27 @@ public class CreatequnActivity extends Activity {
 					return;
 				}
 				mark = gegutag.getText().toString();// 个股标签 可能多个
-				if (mark == null || mark.trim() == null) {
+				if (mark == null || "".equals(mark.trim())) {
 					Toast.makeText(getApplicationContext(), "群标签不能为空!!!", 0).show();
 					return;
 				}
 				description = tianjiamiaoshu.getText().toString();
-				if (description == null || description.trim() == null) {
+				if (description == null || "".equals(description.trim())) {
 					Toast.makeText(getApplicationContext(), "群描述不能为空!!!", 0).show();
 					return;
 				}
 				type = qunzuleixing.getSelectedItem().toString();
-				if (type == null || type.trim() == null) {
+				if (type == null || "".equals(type.trim()) ) {
 					Toast.makeText(getApplicationContext(), "群类型不能为空!!!", 0).show();
 					return;
 				}
 				enter_grade = ruquncondition.getSelectedItem().toString();
-				if (type == null || type.trim() == null) {
+				if (enter_grade == null || "".equals(enter_grade.trim()) ) {
 					Toast.makeText(getApplicationContext(), "入群等级不能为空!!!", 0).show();
 					return;
 				}
 				isfree = shoufeimodel.getSelectedItem().toString();
-				if (isfree == null || isfree.trim() == null) {
+				if (isfree == null || "".equals(isfree.trim())) {
 					Toast.makeText(getApplicationContext(), "收费模式不能为空!!!", 0).show();
 					return;
 				}
