@@ -1,27 +1,25 @@
 package com.example.niuxin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class Tag_ManageActivity extends Activity{
 	Button btn_tag_cancle,btn_tag_add;
@@ -29,9 +27,10 @@ public class Tag_ManageActivity extends Activity{
 	ListView listView;
 	private int tag_flag = R.drawable.edit_flag01;
 	//实例化一个LinkedList类(LinkedList集合中的对象是一个个Map对象,而这个Map对象的键是String类型,值是Object类型)的对象list
-	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
+	ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 	//1
 	private SuoluetuActivity suolue;
+	lvButtonAdapter listItemAdapter = null;
 	public Handler handler = new Handler();
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -116,10 +115,22 @@ public class Tag_ManageActivity extends Activity{
 		//第三个参数：表明使用taglistview.xml文件作为列表项组件
 		//第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
 		//第五个参数：决定使用taglistview.xml文件中的哪些组件来填充列表项
+		/*
 		SimpleAdapter tagAdapter= new SimpleAdapter(this, list,R.layout.taglistview, 
 				new String[]{"img_tag_flag","tag_name","img_tag_edit"},
 				new int[]{R.id.img_tag_flag,R.id.tag_name,R.id.img_tag_edit});
 		listView.setAdapter(tagAdapter);//为listView设置适配器
+		*/
+		
+		  listItemAdapter = new lvButtonAdapter(this,list,
+		            R.layout.taglistview,
+		            new String[]{"img_tag_flag","tag_name","img_tag_edit"},
+					new int[]{R.id.img_tag_flag,R.id.tag_name,R.id.img_tag_edit});	        
+		  listView.setAdapter(listItemAdapter);
+
+		
+		
+		
 		
 		//实现点击不同的item，奇数偶数次点击更换imageview显示
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -138,12 +149,12 @@ public class Tag_ManageActivity extends Activity{
 			}
 		});
 	}
-	private List<Map<String, Object>> getData() {
-		List<Map<String, Object>> list = getList();
+	private ArrayList<HashMap<String, Object>> getData() {
+		ArrayList<HashMap<String, Object>> list = getList();
 		return list;
 	}
-	private List<Map<String, Object>> getList() {
-		Map<String, Object> map = new HashMap<String, Object>();
+	private ArrayList<HashMap<String, Object>> getList() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		//map.put("id", 1);
 		map.put("img_tag_flag", tag_flag);

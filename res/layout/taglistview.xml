@@ -8,7 +8,7 @@
     android:padding="5dp"
     >
     
-    <ImageView 
+    <ImageButton 
         android:id="@+id/img_tag_flag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -23,11 +23,12 @@
      />
    			
 
-	<ImageView 
+	<ImageButton 
 	    android:id="@+id/img_tag_edit"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="200dp"
+	    android:focusable="false"
     />
 </LinearLayout>
 

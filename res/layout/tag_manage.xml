@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f7f7f7" >
+    android:background="#f7f7f7" 
+    android:descendantFocusability="blocksDescendants" >
     
     <!-- 顶部缩略图 -->
 	<include   
