@@ -322,33 +322,36 @@ public class SearchresultActivity extends Activity {
 			try {
 				jsonArray = new JSONArray(res);
 			} catch (JSONException e) {
-				e.printStackTrace();
+				e.printStackTrace();				
 			}
 			list1.clear();
-		//	layout1.setVisibility(View.GONE);
-			for (int i = 0; i < jsonArray.length(); i++) {
-				if (i == 3)
-					break;
-		//		layout1.setVisibility(View.VISIBLE);
-				try {
-					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
-					Map<String, Object> map = new HashMap<String, Object>();
-					// 获取每一个对象中的值
-					int id = myjObject.getInt("id");
-					String title = myjObject.getString("name");
-					Integer img = myjObject.getInt("img");
-					Integer chattype = myjObject.getInt("chattype");
-				
-					map.put("id", id);
-					map.put("title_contacts", title);
-					map.put("image_contacts", img);
-					map.put("chattype", chattype);
+			if(jsonArray!=null){
+//				layout1.setVisibility(View.GONE);
+				for (int i = 0; i < jsonArray.length(); i++) {
+					if (i == 3)
+						break;
+			//		layout1.setVisibility(View.VISIBLE);
+					try {
+						JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+						Map<String, Object> map = new HashMap<String, Object>();
+						// 获取每一个对象中的值
+						int id = myjObject.getInt("id");
+						String title = myjObject.getString("name");
+						Integer img = myjObject.getInt("img");
+						Integer chattype = myjObject.getInt("chattype");
 					
-					list1.add(map);
-				} catch (JSONException e) {
-					e.printStackTrace();
+						map.put("id", id);
+						map.put("title_contacts", title);
+						map.put("image_contacts", img);
+						map.put("chattype", chattype);
+						
+						list1.add(map);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
 			}
+		
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
@@ -407,36 +410,37 @@ public class SearchresultActivity extends Activity {
 				return;
 			}	
 			list2.clear();
+			if(jsonArray!=null){
+				for (int i = 0; i < jsonArray.length(); i++) {				
+					try {
+						if (i == 3)
+							break;
+						
+						JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象					
+						String chattype = myjObject.getString("chattype");
+						// 获取每一个对象中的值
+				
+							HashMap<String, Object> map = new HashMap<String, Object>();
+							//String chattype = myjObject.getString("chattype");
+							int id = myjObject.getInt("id");
+							String name = myjObject.getString("name");
+							String lastmes = myjObject.getString("lastmes");
+							String time = myjObject.getString("time");
+							Integer img = myjObject.getInt("img");						
+							map.put("image_chatlog", img);//R.drawable.head010
+							map.put("id", id);
+							map.put("title_chatlog", name);
+							map.put("chattype", chattype);
+							map.put("content_chatlog", lastmes);						
+							list2.add(map);
+						
+					}catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}/////////////////////////////解析数据完成
+				
+			}
 
-			for (int i = 0; i < jsonArray.length(); i++) {				
-				try {
-					if (i == 3)
-						break;
-					
-					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象					
-					String chattype = myjObject.getString("chattype");
-					// 获取每一个对象中的值
-			
-						HashMap<String, Object> map = new HashMap<String, Object>();
-						//String chattype = myjObject.getString("chattype");
-						int id = myjObject.getInt("id");
-						String name = myjObject.getString("name");
-						String lastmes = myjObject.getString("lastmes");
-						String time = myjObject.getString("time");
-						Integer img = myjObject.getInt("img");						
-						map.put("image_chatlog", img);//R.drawable.head010
-						map.put("id", id);
-						map.put("title_chatlog", name);
-						map.put("chattype", chattype);
-						map.put("content_chatlog", lastmes);						
-						list2.add(map);
-					
-				}catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}/////////////////////////////解析数据完成
-			
-			
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
