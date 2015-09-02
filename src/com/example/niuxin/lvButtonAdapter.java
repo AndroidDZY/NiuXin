@@ -3,18 +3,26 @@ package com.example.niuxin;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.niuxin.util.HttpPostUtil;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.DisplayMetrics;
+import android.database.DataSetObservable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class lvButtonAdapter extends BaseAdapter {
     private class buttonViewHolder {
@@ -30,9 +38,13 @@ public class lvButtonAdapter extends BaseAdapter {
     private String[] keyString;
     private int[] valueViewID;
     private buttonViewHolder holder;
+    private final DataSetObservable mDataSetObservable = new DataSetObservable();
+    private Activity act;
+    private Integer itemid = null;
+    private String labname = "";
     
     public lvButtonAdapter(Context c, ArrayList<HashMap<String, Object>> appList, int resource,
-            String[] from, int[] to) {
+            String[] from, int[] to,final Activity act) {
         mAppList = appList;
         mContext = c;
         mInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -40,6 +52,7 @@ public class lvButtonAdapter extends BaseAdapter {
         valueViewID = new int[to.length];
         System.arraycopy(from, 0, keyString, 0, from.length);
         System.arraycopy(to, 0, valueViewID, 0, to.length);
+        this.act = act;
     }
     
     @Override
@@ -99,18 +112,24 @@ public class lvButtonAdapter extends BaseAdapter {
         
         @Override
         public void onClick(View v) {
-            int vid=v.getId();
-            System.out.println(">>>>>>>>>position>>>>>>>>>>>>>"+position);//位置id
-            System.out.println(">>>>>>>>>>vid>>>>>>>>>>>>"+vid);//不同按钮的id
-           // if (vid == holder.buttonClose.getId())
-           //     removeItem(position);
+            int vid=v.getId();         
             if(R.id.img_tag_flag == vid){
-            	
+            	int tag_flag;
+   
+	            if(Integer.valueOf(mAppList.get(position).get("img_tag_flag").toString())==R.drawable.edit_flag01){
+	            	tag_flag = R.drawable.edit_flag02;
+	            }else
+	            	tag_flag = R.drawable.edit_flag01;
+	         
+	            mAppList.get(position).put("img_tag_flag", tag_flag);//将更新过的add_flag值放入list中        
+	            notifyDataSetChanged();//使更新过的list数据生效
             }
             else if(R.id.img_tag_edit == vid){
             	edit();
             }
         }
+
+		
 
 		private void edit() {
 			// TODO Auto-generated method stub
@@ -121,14 +140,23 @@ public class lvButtonAdapter extends BaseAdapter {
 				 builder.setView(myView);
 			       builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  
 			           public void onClick(DialogInterface dialog, int whichButton) {  
-			               //这里添加点击确定后的逻辑  
-			              // showDialog("你选择了确定");  
+			              
+			        	   EditText text =  (EditText)act.findViewById(R.id.et_tag_name);			        	   
+			        	   String str = text.getText().toString();
+			        	   if(str==null||"".equals(str.trim())){
+			        		   Toast.makeText(act.getApplicationContext(), "标签名称不能为空!!!", 0).show();
+			        		   return;
+			        	   }
+			        	   labname = str;
+			        	   itemid = position;
+			        	   UpdateThread thread = new UpdateThread();
+			        	   thread.start();
+			        	   dialog.dismiss();//对话框消失
 			           }  
 			       });  
 			       builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {  
 			           public void onClick(DialogInterface dialog, int whichButton) {  
-			               //这里添加点击确定后的逻辑  
-			               //showDialog("你选择了取消"); 
+			               
 			        	   dialog.dismiss();//对话框消失
 			           }  
 			       });  
@@ -137,5 +165,44 @@ public class lvButtonAdapter extends BaseAdapter {
 		
 		
     }
+
+	public void setSelection(int i) {
+		setSelection(i);
+	}
+	
+	
+	
+	class UpdateThread extends Thread {
+		@Override
+		public void run() {
+
+			// 新建工具类，向服务器发送Http请求
+			HttpPostUtil postUtil = new HttpPostUtil();
+			JSONArray jArray = new JSONArray();
+
+			JSONObject jsonObject = new JSONObject();
+			try {
+				jsonObject.put("id", itemid);
+				jsonObject.put("name", labname);// 标签的id
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			jArray.put(jsonObject);
+
+			/*
+			 * boolean isNetwork= postUtil.checkNetState(act); if(!isNetwork){
+			 * mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
+			 * mDialog.show(); return; }
+			 */
+
+			// 设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/lab/lab_update.do");
+			// 向服务器发送数据
+			postUtil.setRequest(jArray);
+			
+	}
+}
+	
 
 }
