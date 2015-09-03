@@ -154,7 +154,8 @@ public class lvButtonAdapter extends BaseAdapter {
 			        	   String str = text.getText().toString();
 			        	   if(str==null||"".equals(str.trim())){
 			        		   Toast.makeText(act.getApplicationContext(), "标签名称不能为空!!!", 0).show();
-			        		   return;
+			        		  
+								return;
 			        	   }
 			        	   labname = str;
 			        	   itemid = position;

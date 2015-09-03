@@ -123,6 +123,10 @@ public class Tag_ManageActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				if(list==null||list.size()==0){	
+					 Toast.makeText(act.getApplicationContext(), "没有可删除的标签!!!", 0).show();
+					return;
+				}
 				delete();
 			}
 
@@ -136,6 +140,7 @@ public class Tag_ManageActivity extends Activity {
 				builder.setMessage("确定要删除这些标签吗？");
 				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
+						
 						// 准备删除数据
 						DeleteThread d = new DeleteThread();
 						d.start();
