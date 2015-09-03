@@ -33,7 +33,15 @@ public class lvButtonAdapter extends BaseAdapter {
 
     
     private ArrayList<HashMap<String, Object>> mAppList;
-    private LayoutInflater mInflater;
+    public ArrayList<HashMap<String, Object>> getmAppList() {
+		return mAppList;
+	}
+
+	public void setmAppList(ArrayList<HashMap<String, Object>> mAppList) {
+		this.mAppList = mAppList;
+	}
+
+	private LayoutInflater mInflater;
     private Context mContext;
     private String[] keyString;
     private int[] valueViewID;
@@ -105,7 +113,8 @@ public class lvButtonAdapter extends BaseAdapter {
 
     class lvButtonListener implements OnClickListener {
         private int position;
-
+        EditText text = null;
+        View myView = null;
         lvButtonListener(int pos) {
             position = pos;
         }
@@ -133,7 +142,7 @@ public class lvButtonAdapter extends BaseAdapter {
 
 		private void edit() {
 			// TODO Auto-generated method stub
-			View myView=LayoutInflater.from(mContext).inflate(R.layout.edittextview, null);//将layout对象转换为VIew对象
+			final View myView=LayoutInflater.from(mContext).inflate(R.layout.edittextview, null);//将layout对象转换为VIew对象
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 				 builder.setTitle("标签重命名");
 				 //builder.setMessage("确定要删除这些标签吗？");
@@ -141,7 +150,7 @@ public class lvButtonAdapter extends BaseAdapter {
 			       builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  
 			           public void onClick(DialogInterface dialog, int whichButton) {  
 			              
-			        	   EditText text =  (EditText)act.findViewById(R.id.et_tag_name);			        	   
+			        	   text =  (EditText)myView.findViewById(R.id.et_tag_name);			        	   
 			        	   String str = text.getText().toString();
 			        	   if(str==null||"".equals(str.trim())){
 			        		   Toast.makeText(act.getApplicationContext(), "标签名称不能为空!!!", 0).show();
@@ -149,9 +158,11 @@ public class lvButtonAdapter extends BaseAdapter {
 			        	   }
 			        	   labname = str;
 			        	   itemid = position;
+			        	   mAppList.get(position).put("tag_name",str);
 			        	   UpdateThread thread = new UpdateThread();
 			        	   thread.start();
 			        	   dialog.dismiss();//对话框消失
+			        	   notifyDataSetChanged();
 			           }  
 			       });  
 			       builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {  
@@ -166,9 +177,9 @@ public class lvButtonAdapter extends BaseAdapter {
 		
     }
 
-	public void setSelection(int i) {
-		setSelection(i);
-	}
+//	public void setSelection(int i) {
+//		setSelection(i);
+//	}
 	
 	
 	

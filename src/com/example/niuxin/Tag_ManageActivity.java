@@ -21,8 +21,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Tag_ManageActivity extends Activity {
 	Button btn_tag_cancle, btn_tag_add;
@@ -40,6 +42,7 @@ public class Tag_ManageActivity extends Activity {
 	lvButtonAdapter listItemAdapter = null;
 	public Handler handler = new Handler();
 	public String labname = "";
+	 EditText text = null;
 
 	@Override
 	protected void onResume() {
@@ -87,12 +90,21 @@ public class Tag_ManageActivity extends Activity {
 				builder.setTitle("新建标签");
 				// builder.setMessage("确定要删除这些标签吗？");
 				builder.setView(myView);
+				 text =  (EditText)myView.findViewById(R.id.et_tag_name);
 				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						// 这里添加点击确定后的逻辑
 						// showDialog("你选择了确定");
+						 // EditText text =  (EditText)findViewById(R.id.et_tag_name);	
+						String str = text.getText().toString();
+			        	   if(str==null||"".equals(str.trim())){
+			        		   Toast.makeText(act.getApplicationContext(), "标签名称不能为空!!!", 0).show();
+			        		   return;
+			        	   }
+			        	   labname = str;
 						AddThread add = new AddThread();
 						add.start();
+						dialog.dismiss();// 对话框消失
 					}
 				});
 				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -298,6 +310,7 @@ public class Tag_ManageActivity extends Activity {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
+					listItemAdapter.setmAppList(list);
 					listItemAdapter.notifyDataSetChanged();
 				}
 
@@ -351,6 +364,8 @@ public class Tag_ManageActivity extends Activity {
 							int id = myjObject.getInt("id");
 							map.put("id", id);
 							map.put("tag_name", labname);
+							map.put("img_tag_flag", tag_flag);
+							map.put("img_tag_edit", R.drawable.tag_edit);
 							list.add(map);
 						} catch (JSONException e) {
 							e.printStackTrace();
@@ -360,8 +375,9 @@ public class Tag_ManageActivity extends Activity {
 		Runnable r = new Runnable() {
 				@Override
 				public void run() {					
+					listItemAdapter.setmAppList(list);
 					listItemAdapter.notifyDataSetChanged();
-					listItemAdapter.setSelection(list.size() - 1);
+					//listItemAdapter.setSelection(list.size() - 1);
 				}
 
 			};
