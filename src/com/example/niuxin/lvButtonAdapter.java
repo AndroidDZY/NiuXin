@@ -177,10 +177,6 @@ public class lvButtonAdapter extends BaseAdapter {
 		
     }
 
-//	public void setSelection(int i) {
-//		setSelection(i);
-//	}
-	
 	
 	
 	class UpdateThread extends Thread {
@@ -193,7 +189,7 @@ public class lvButtonAdapter extends BaseAdapter {
 
 			JSONObject jsonObject = new JSONObject();
 			try {
-				jsonObject.put("id", itemid);
+				jsonObject.put("id",  Integer.valueOf(mAppList.get(itemid).get("id").toString()));
 				jsonObject.put("name", labname);// 标签的id
 
 			} catch (JSONException e) {
@@ -211,6 +207,7 @@ public class lvButtonAdapter extends BaseAdapter {
 			postUtil.setUrl("/lab/lab_update.do");
 			// 向服务器发送数据
 			postUtil.setRequest(jArray);
+			postUtil.run();
 			
 	}
 }

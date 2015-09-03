@@ -29,7 +29,7 @@ import android.widget.Toast;
 public class Tag_ManageActivity extends Activity {
 	Button btn_tag_cancle, btn_tag_add;
 	ImageButton btn_tag_delete;
-	ListView listView;
+	ListView listView = null;
 	private int tag_flag = R.drawable.edit_flag01;
 	public static Activity act = null;
 
@@ -377,7 +377,7 @@ public class Tag_ManageActivity extends Activity {
 				public void run() {					
 					listItemAdapter.setmAppList(list);
 					listItemAdapter.notifyDataSetChanged();
-					//listItemAdapter.setSelection(list.size() - 1);
+					listView.setSelection(list.size() - 1);
 				}
 
 			};
