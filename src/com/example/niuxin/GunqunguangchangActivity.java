@@ -43,6 +43,9 @@ public class GunqunguangchangActivity extends TabActivity{
 		fenlei=(Button)findViewById(R.id.fenlei);
 		shoucang=(Button)findViewById(R.id.shoucang);
 		paihang=(Button)findViewById(R.id.paihang);
+		fenlei.setTextColor(0xffde4557); // 设置字体颜色红
+		shoucang.setTextColor(0xff000000); // 设置字体颜色黑
+		paihang.setTextColor(0xff000000); // 设置字体颜色黑
 		
 		fenlei.setOnClickListener(new OnClickListener() {
 

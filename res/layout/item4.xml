@@ -79,6 +79,7 @@
 
     </RelativeLayout>
     
+
     <RelativeLayout android:layout_width="120dp"
         android:background="@drawable/kaungdi1"
         android:layout_height="80dp"

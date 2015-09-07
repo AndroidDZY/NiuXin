@@ -41,6 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:paddingLeft="2dp"
             android:hint="请输入群组名称"
             android:maxLength="10"
             android:background="@drawable/edittext_03"
@@ -120,6 +121,7 @@
         <EditText android:id="@+id/cq_gegutag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="2dp"
             android:hint="请输入个股或板块代码"
             android:background="@drawable/edittext_03"
             android:textSize="15sp"/>
@@ -155,6 +157,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:paddingLeft="2dp"
             android:hint="请输入群组描述"
             android:background="@drawable/edittext_03"
             android:textSize="15sp"

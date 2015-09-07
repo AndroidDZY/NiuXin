@@ -45,6 +45,9 @@ public class SearchresultActivity extends Activity {
 	List<Map<String, Object>> list1 = new ArrayList<Map<String, Object>>();
 	List<Map<String, Object>> list2 = new ArrayList<Map<String, Object>>();
 	List<Map<String, Object>> list3 = new ArrayList<Map<String, Object>>();
+	List<Map<String, Object>> list11 = new ArrayList<Map<String, Object>>();//用于显示更多
+	List<Map<String, Object>> list22 = new ArrayList<Map<String, Object>>();
+	List<Map<String, Object>> list33 = new ArrayList<Map<String, Object>>();
 
 	public void init() {
 		suolue = new SuoluetuActivity(this, handler);
@@ -90,7 +93,7 @@ public class SearchresultActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stu
-				if(list1.size()==0){
+				if(list11.size()==0){
 					return;
 				}
 				
@@ -98,13 +101,13 @@ public class SearchresultActivity extends Activity {
 				Intent intent=new Intent();
 				JSONArray js = new JSONArray();
 				
-				for (int i = 0; i < list1.size(); i++) {
+				for (int i = 0; i < list11.size(); i++) {
 					JSONObject jb = new JSONObject();
 					try {
-						jb.put("id", list1.get(i).get("id"));
-						jb.put("title_contacts", list1.get(i).get("title_contacts"));
-						jb.put("image_contacts", list1.get(i).get("image_contacts"));
-						jb.put("chattype", list1.get(i).get("chattype"));
+						jb.put("id", list11.get(i).get("id"));
+						jb.put("title_contacts", list11.get(i).get("title_contacts"));
+						jb.put("image_contacts", list11.get(i).get("image_contacts"));
+						jb.put("chattype", list11.get(i).get("chattype"));
 						
 					} catch (JSONException e) {
 						e.printStackTrace();
@@ -129,7 +132,7 @@ public class SearchresultActivity extends Activity {
 				
 				
 				
-				if(list2.size()==0){
+				if(list22.size()==0){
 					return;
 				}
 				
@@ -137,14 +140,14 @@ public class SearchresultActivity extends Activity {
 				Intent intent=new Intent();
 				JSONArray js = new JSONArray();
 				
-				for (int i = 0; i < list2.size(); i++) {
+				for (int i = 0; i < list22.size(); i++) {
 					JSONObject jb = new JSONObject();
 					try {
-						jb.put("id", list2.get(i).get("id"));
-						jb.put("title_chatlog", list2.get(i).get("title_chatlog"));
-						jb.put("image_chatlog", list2.get(i).get("image_chatlog"));
-						jb.put("chattype", list2.get(i).get("chattype"));
-						jb.put("content_chatlog", list2.get(i).get("content_chatlog"));
+						jb.put("id", list22.get(i).get("id"));
+						jb.put("title_chatlog", list22.get(i).get("title_chatlog"));
+						jb.put("image_chatlog", list22.get(i).get("image_chatlog"));
+						jb.put("chattype", list22.get(i).get("chattype"));
+						jb.put("content_chatlog", list22.get(i).get("content_chatlog"));
 				
 						
 					} catch (JSONException e) {
@@ -322,33 +325,37 @@ public class SearchresultActivity extends Activity {
 			try {
 				jsonArray = new JSONArray(res);
 			} catch (JSONException e) {
-				e.printStackTrace();
+				e.printStackTrace();				
 			}
 			list1.clear();
-		//	layout1.setVisibility(View.GONE);
-			for (int i = 0; i < jsonArray.length(); i++) {
-				if (i == 3)
-					break;
-		//		layout1.setVisibility(View.VISIBLE);
-				try {
-					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
-					Map<String, Object> map = new HashMap<String, Object>();
-					// 获取每一个对象中的值
-					int id = myjObject.getInt("id");
-					String title = myjObject.getString("name");
-					Integer img = myjObject.getInt("img");
-					Integer chattype = myjObject.getInt("chattype");
-				
-					map.put("id", id);
-					map.put("title_contacts", title);
-					map.put("image_contacts", img);
-					map.put("chattype", chattype);
+			list11.clear();
+			if(jsonArray!=null){
+//				layout1.setVisibility(View.GONE);
+				for (int i = 0; i < jsonArray.length(); i++) {
 					
-					list1.add(map);
-				} catch (JSONException e) {
-					e.printStackTrace();
+			//		layout1.setVisibility(View.VISIBLE);
+					try {
+						JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+						Map<String, Object> map = new HashMap<String, Object>();
+						// 获取每一个对象中的值
+						int id = myjObject.getInt("id");
+						String title = myjObject.getString("name");
+						Integer img = myjObject.getInt("img");
+						Integer chattype = myjObject.getInt("chattype");
+					
+						map.put("id", id);
+						map.put("title_contacts", title);
+						map.put("image_contacts", img);
+						map.put("chattype", chattype);
+						if (i <3)
+							list1.add(map);
+						list11.add(map);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
 			}
+		
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
@@ -407,36 +414,38 @@ public class SearchresultActivity extends Activity {
 				return;
 			}	
 			list2.clear();
+			if(jsonArray!=null){
+				for (int i = 0; i < jsonArray.length(); i++) {				
+					try {
+						
+						
+						JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象					
+						String chattype = myjObject.getString("chattype");
+						// 获取每一个对象中的值
+				
+							HashMap<String, Object> map = new HashMap<String, Object>();
+							//String chattype = myjObject.getString("chattype");
+							int id = myjObject.getInt("id");
+							String name = myjObject.getString("name");
+							String lastmes = myjObject.getString("lastmes");
+							String time = myjObject.getString("time");
+							Integer img = myjObject.getInt("img");						
+							map.put("image_chatlog", img);//R.drawable.head010
+							map.put("id", id);
+							map.put("title_chatlog", name);
+							map.put("chattype", chattype);
+							map.put("content_chatlog", lastmes);
+							if (i < 3)
+								list2.add(map);
+							list22.add(map);
+						
+					}catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}/////////////////////////////解析数据完成
+				
+			}
 
-			for (int i = 0; i < jsonArray.length(); i++) {				
-				try {
-					if (i == 3)
-						break;
-					
-					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象					
-					String chattype = myjObject.getString("chattype");
-					// 获取每一个对象中的值
-			
-						HashMap<String, Object> map = new HashMap<String, Object>();
-						//String chattype = myjObject.getString("chattype");
-						int id = myjObject.getInt("id");
-						String name = myjObject.getString("name");
-						String lastmes = myjObject.getString("lastmes");
-						String time = myjObject.getString("time");
-						Integer img = myjObject.getInt("img");						
-						map.put("image_chatlog", img);//R.drawable.head010
-						map.put("id", id);
-						map.put("title_chatlog", name);
-						map.put("chattype", chattype);
-						map.put("content_chatlog", lastmes);						
-						list2.add(map);
-					
-				}catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}/////////////////////////////解析数据完成
-			
-			
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
