@@ -205,7 +205,7 @@ public class FenleiActivity extends Activity {
 		textView6_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
 		textView6_type2.setText("个股  ①");
 		textView6_people2.setText("12/25");
-
+        //定义的12个复选框，初始化星星的颜色为无色
 		checkBox1.setBackgroundResource(R.drawable.star1);
 		checkBox2.setBackgroundResource(R.drawable.star1);
 		checkBox3.setBackgroundResource(R.drawable.star1);
@@ -243,7 +243,7 @@ public class FenleiActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
-				if (arg1) {
+				if (arg1) {  //布尔值判断复选框是否被选中，如果选中的话星星变成黄色
 					checkBox1.setBackgroundResource(R.drawable.star2);
 				} else {
 					checkBox1.setBackgroundResource(R.drawable.star1);
