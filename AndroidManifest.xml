@@ -85,7 +85,8 @@
         <activity android:name="com.example.niuxin.SearchuserActivity"></activity>
         <activity android:name="com.example.niuxin.SearchresultActivity"></activity>
         <activity android:name="com.example.niuxin.SearchFriendActivity"></activity>
-        
+        <activity android:name="com.example.niuxin.DeclarationLaunchActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationReceiveActivity"></activity>
       
         
 

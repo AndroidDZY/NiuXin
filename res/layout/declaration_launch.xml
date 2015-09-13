@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我要报单"
+            android:id="@+id/declaration_launch_detail"
+            android:layout_centerInParent="true"/>
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="已经完成报单查询"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"/>
+            <Spinner 
+                android:id="@+id/declaration_launch_paixu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/baodan_paixu"/>
+        </LinearLayout>
+        </RelativeLayout>
+       
+    </LinearLayout>
+     <View  
+    	android:layout_width="match_parent"  
+    	android:layout_height="1dp" 
+    	android:background="#de4557"  />
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+       <TextView 
+           android:layout_marginTop="5dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="点击报单模块可以看到报单详情，点击查看发送对象可以查看目标用户"
+           android:textSize="12sp"/>
+       <ListView android:id="@+id/declaration_tag"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:paddingTop="10dp"></ListView>
+    </LinearLayout>
+    
+
+</LinearLayout>

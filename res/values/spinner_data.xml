@@ -39,4 +39,14 @@
     	<item>三颗星</item>
     	<item>一颗星</item>    
 	</string-array> 
+	<string-array name="baodan_paixu">  
+    	<item>按时间排序</item>  
+    	<item>按合约类型</item>
+    	<item>按接收者</item>    
+	</string-array> 
+	<string-array name="baodan_type">  
+    	<item>我要报单</item>  
+    	<item>接收报单</item>
+    	   
+	</string-array> 
 </resources>

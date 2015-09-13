@@ -4,6 +4,92 @@
     android:layout_height="match_parent"
     android:background="#f7f7f7"
     android:orientation="vertical" >
-    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <Spinner  android:layout_centerInParent="true" 
+            android:id="@+id/declaration_changerole"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:entries="@array/baodan_type"/>
+        <TextView android:layout_below="@id/declaration_changerole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请您选择自己的角色"
+            android:gravity="center"
+            />
+       <!--  <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/declaration_changerole"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="角色改变" -->
+            </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+        <LinearLayout android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                
+            <Button 
+                android:id="@+id/declaration_rolelaunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我要报单"
+                android:layout_gravity="center"
+                /> 
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" 
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+            <TextView android:id="@+id/declaration_rolelaunch_explain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="通过我们平台认证的操盘手，可以将自己的操作分享给普通的期民"/>
+            </LinearLayout>
+        </LinearLayout>
+       <LinearLayout android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+            <Button 
+                android:id="@+id/declaration_rolereceive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="接收报单"
+                android:layout_gravity="center"
+                />
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" 
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+            <TextView android:id="@+id/declaration_rolereceive_explain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="普通的期民可以接收操盘手的报单，作为投资参考"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>
