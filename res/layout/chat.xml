@@ -39,107 +39,22 @@
         <LinearLayout 
             android:id="@+id/layout_more"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="110dp"
             android:padding="10dp"
             android:orientation="horizontal"
             android:visibility="gone">
-            <LinearLayout 
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-            	<ImageButton 
-            	    android:id="@+id/btn_collect"
-                	android:layout_width="40dp"
-                	android:layout_height="40dp"
-                	android:layout_weight="2"
-                	android:onClick="popupmenu"
-                	android:background="@drawable/chat_collect"/>
-            	<TextView 
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="0dp"
-            	    android:layout_weight="1"
-            	    android:text="收藏"
-            	    android:textSize="10sp"/>
-            	<ImageButton
-           		    android:layout_width="40dp"
-           		    android:layout_height="40dp"
-           		    android:layout_weight="2"
-           		    android:background="@drawable/chat_setting" />
-
-            	<TextView 
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="0dp"
-            	    android:layout_weight="1"
-            	    android:text="设置"
-            	    android:layout_gravity="center_horizontal"
-            	    android:textSize="10sp"/>
-           	</LinearLayout>
-           	<LinearLayout 
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-            	<ImageButton 
-                	android:layout_width="40dp"
-                	android:layout_height="40dp"
-                	android:layout_weight="2"
-                	android:background="@drawable/chat_picture"/>
-            	<TextView 
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="0dp"
-            	    android:layout_weight="1"
-            	    android:text="图片"
-            	    android:textSize="10sp"/>
-           	</LinearLayout>
-           	<LinearLayout 
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-            	<ImageButton 
-            	    android:id="@+id/btn_share"
-                	android:layout_width="40dp"
-                	android:layout_height="40dp"
-                	android:layout_weight="2"
-                	android:background="@drawable/chat_share"/>
-            	<TextView 
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="0dp"
-            	    android:layout_weight="1"
-            	    android:text="分享"
-            	    android:textSize="10sp"/>
-           	</LinearLayout>
-           	<LinearLayout 
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-            	<ImageButton 
-                	android:layout_width="40dp"
-                	android:layout_height="40dp"
-                	android:layout_weight="2"
-                	android:background="@drawable/chat_members"/>
-            	<TextView 
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="0dp"
-            	    android:layout_weight="1"
-            	    android:text="成员"
-            	    android:textSize="10sp"/>
-           	</LinearLayout>
-        </LinearLayout>
-        
+            
+        <android.support.v4.view.ViewPager
+        	android:id="@+id/chat_more_viewpager"
+       	 	android:layout_width="match_parent"
+        	android:layout_height="wrap_content" /> 
+        </LinearLayout>     
     </LinearLayout>
     
     <!-- 编辑框部分 -->
 	<LinearLayout
         android:id="@+id/rl_bottom"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="42dp"
         android:orientation="horizontal"
         android:background="#de4557"
@@ -151,9 +66,8 @@
         <Button 
             android:id="@+id/btn_back" 
             android:gravity="center" 
-            android:layout_width="0dp" 
+            android:layout_width="30dp" 
             android:layout_height="30dp"
-            android:layout_weight="1" 
             android:background="@drawable/btn_chat_back"
             android:layout_margin="2dp"
             android:layout_alignParentLeft="true"/>
@@ -161,18 +75,18 @@
 	        android:id="@+id/sendmessage"
 	        android:layout_width="0dp" 
         	android:layout_height="35dp"
-        	android:layout_weight="6" 
+        	android:layout_weight="1" 
         	android:layout_margin="2dp"
         	android:gravity="center_vertical"
         	android:background="@drawable/edittext_search"
         	android:singleLine="true"
             android:paddingLeft="8dp"
             android:textSize="15sp"/>
-	     <LinearLayout android:layout_width="0dp"
+	     <LinearLayout android:layout_width="30dp"
 	         android:layout_height="30dp"
 	         android:id="@+id/linear"
+	         android:layout_margin="2dp"
 	         android:orientation="horizontal"
-	         android:layout_weight="1"
 	         ></LinearLayout>
    <!--     <Button
         	android:id="@+id/btn_send"
@@ -184,16 +98,14 @@
         	
          <Button
         	android:id="@+id/emotion"
-        	android:layout_width="0dp"
-        	android:layout_weight="1" 
+        	android:layout_width="30dp"
         	android:layout_height="30dp"
         	android:layout_margin="2dp"
         	android:background="@drawable/chat_face"
         	 />
         <Button
 	        android:id="@+id/gengduo"
-        	android:layout_width="0dp"
-        	android:layout_weight="1" 
+        	android:layout_width="30dp"
         	android:layout_height="30dp"
         	android:layout_margin="2dp"
         	android:background="@drawable/chat_more" />

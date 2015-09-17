@@ -63,14 +63,20 @@ public class NiuxinActivity extends TabActivity {
 		tongxunlu=(Button)findViewById(R.id.tongxunlu);
 		pengyouquan=(Button)findViewById(R.id.pengyouquan);
 		liaotian.setTextColor(0xffde4557); // 设置字体颜色红
+		liaotian.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
 		tongxunlu.setTextColor(0xff000000); // 设置字体颜色黑
+		tongxunlu.setBackgroundColor(0xfff7f7f7);// 设置无边框
 		pengyouquan.setTextColor(0xff000000); // 设置字体颜色黑
+		pengyouquan.setBackgroundColor(0xfff7f7f7);// 设置无边框
 		liaotian.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
 					liaotian.setTextColor(0xffde4557); // 设置字体颜色红
+					liaotian.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
 					tongxunlu.setTextColor(0xff000000); // 设置字体颜色黑
+					tongxunlu.setBackgroundColor(0xfff7f7f7);// 设置无边框
 					pengyouquan.setTextColor(0xff000000); // 设置字体颜色黑
+					pengyouquan.setBackgroundColor(0xfff7f7f7);// 设置无边框
 				tabHost.setCurrentTabByTag("liaotian");
 
 			}
@@ -79,8 +85,11 @@ public class NiuxinActivity extends TabActivity {
 
 			public void onClick(View view) {
 				liaotian.setTextColor(0xff000000); 
-				tongxunlu.setTextColor(0xffde4557); 
-				pengyouquan.setTextColor(0xff000000); 
+				liaotian.setBackgroundColor(0xfff7f7f7);// 设置无边框
+				tongxunlu.setTextColor(0xffde4557);
+				tongxunlu.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
+				pengyouquan.setTextColor(0xff000000);
+				pengyouquan.setBackgroundColor(0xfff7f7f7);// 设置无边框
 				tabHost.setCurrentTabByTag("tongxunlu");
 
 			}
@@ -89,8 +98,11 @@ public class NiuxinActivity extends TabActivity {
 
 			public void onClick(View view) {
 				liaotian.setTextColor(0xff000000); 
+				liaotian.setBackgroundColor(0xfff7f7f7);// 设置无边框
 				tongxunlu.setTextColor(0xff000000); 
-				pengyouquan.setTextColor(0xffde4557); 
+				tongxunlu.setBackgroundColor(0xfff7f7f7);// 设置无边框
+				pengyouquan.setTextColor(0xffde4557);
+				pengyouquan.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
 				tabHost.setCurrentTabByTag("pengyouquan");
 
 			}
