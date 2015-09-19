@@ -28,7 +28,7 @@
             android:paddingLeft="12dp"
             android:gravity="center_vertical"
             android:paddingRight="8dp"
-            android:drawableRight="@drawable/voice_icon"
+            android:drawableRight="@drawable/ic_voice01"
             android:singleLine="true"
             android:textSize="12sp"
             />

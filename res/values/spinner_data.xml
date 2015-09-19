@@ -35,9 +35,9 @@
 	</string-array>  
 	
 	<string-array name="qun_score">  
-    	<item>五颗星</item>  
-    	<item>三颗星</item>
-    	<item>一颗星</item>    
+    	<item>五星</item>  
+    	<item>三星</item>
+    	<item>一星</item>    
 	</string-array> 
 	<string-array name="baodan_paixu">  
     	<item>按时间排序</item>  

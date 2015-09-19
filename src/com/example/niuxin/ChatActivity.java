@@ -133,7 +133,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		layout = (LinearLayout) findViewById(R.id.linear);
 
 		final Button button = new Button(ChatActivity.this);
-		button.setBackgroundResource(R.drawable.chat_audio);
+		button.setBackgroundResource(R.drawable.btn_chat_audio);
 		layout.addView(button);
 		mEditText.addTextChangedListener(new TextWatcher() {
 
@@ -141,9 +141,9 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 				// TODO Auto-generated method stub
 				if (arg0.length() <= 0) {
-					button.setBackgroundResource(R.drawable.chat_audio);
+					button.setBackgroundResource(R.drawable.btn_chat_audio);
 				} else {
-					button.setBackgroundResource(R.drawable.btn_chat_send);
+					button.setBackgroundResource(R.drawable.btn_chat_send01);
 				}
 			}
 
@@ -522,8 +522,5 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			handler.post(r);
 		}
 	}
-
-	
-
 
 }

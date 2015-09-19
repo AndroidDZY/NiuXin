@@ -24,7 +24,7 @@
             android:hint="@string/search"
             android:paddingLeft="130dp"
             android:drawableLeft="@drawable/search_icon01" 
-            android:drawableRight="@drawable/voice_icon"
+            android:drawableRight="@drawable/ic_voice01"
             android:paddingRight="12dp" 
             android:gravity="center_vertical"
             android:singleLine="true"
