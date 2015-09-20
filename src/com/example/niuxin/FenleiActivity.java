@@ -148,76 +148,76 @@ public class FenleiActivity extends Activity {
 		//为您推荐，第一组数据
 		textView1_title1.setText("中兴证券讨论组");
 		textView1_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView1_type1.setText("个股  ①");
-		textView1_people1.setText("12/25");
+		textView1_type1.setText("个股    ①");
+		textView1_people1.setText(" 12/25");
         //为您推荐，第二组数据
 		textView1_title2.setText("一带一路讨论组");
 		textView1_summary2.setText("一带一路相关个股分析讨论");
-		textView1_type2.setText("个股  ⑨");
-		textView1_people2.setText("28/40");
+		textView1_type2.setText("个股    ⑨");
+		textView1_people2.setText(" 28/40");
         //为您推荐，第三组数据
 		textView2_title1.setText("中兴证券讨论组");
 		textView2_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView2_type1.setText("个股  ①");
-		textView2_people1.setText("12/25");
+		textView2_type1.setText("个股   ①");
+		textView2_people1.setText(" 12/25");
         //为您推荐，第四组数据
 		textView2_title2.setText("中兴证券讨论组");
 		textView2_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView2_type2.setText("个股  ①");
-		textView2_people2.setText("12/25");
+		textView2_type2.setText("个股   ①");
+		textView2_people2.setText(" 12/25");
         //24小时最热，第一组数据
 		textView3_title1.setText("创业板买什么");
 		textView3_summary1.setText("教你创业板如何挣钱");
 		textView3_type1.setText("板块");
-		textView3_people1.setText("98/100");
+		textView3_people1.setText(" 98/100");
         //24小时最热，第二组数据
 		textView3_title2.setText("灌水扯淡专房1");
 		textView3_summary2.setText("谈天说地，互相治愈");
-		textView3_type2.setText("个股  ①");
-		textView3_people2.setText("68/200");
+		textView3_type2.setText("个股    ①");
+		textView3_people2.setText(" 68/200");
 		//24小时最热，第三组数据
 		textView4_title1.setText("中兴证券讨论组");
 		textView4_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView4_type1.setText("个股  ①");
-		textView4_people1.setText("12/25");
+		textView4_type1.setText("个股   ①");
+		textView4_people1.setText(" 12/25");
         //24小时最热，第四组数据
 		textView4_title2.setText("中兴证券讨论组");
 		textView4_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView4_type2.setText("个股  ①");
-		textView4_people2.setText("12/25");
+		textView4_type2.setText("个股   ①");
+		textView4_people2.setText(" 12/25");
         //股市学堂，第一组数据
 		textView5_title1.setText("汪老师课堂");
 		textView5_summary1.setText("汪老师的炒股讲堂");
-		textView5_type1.setText("教学 ￥");
-		textView5_people1.setText("18/20");
+		textView5_type1.setText("教学   ￥");
+		textView5_people1.setText(" 18/20");
         //股市学堂，第二组数据
 		textView5_title2.setText("技术免费教学群");
 		textView5_summary2.setText("教你如何用技术分析法挣钱");
 		textView5_type2.setText("教学");
-		textView5_people2.setText("32/40");
+		textView5_people2.setText(" 32/40");
 		//股市学堂，第三组数据
 		textView6_title1.setText("中兴证券讨论组");
 		textView6_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView6_type1.setText("个股  ①");
-        textView6_people1.setText("12/25");
+		textView6_type1.setText("个股   ①");
+        textView6_people1.setText(" 12/25");
         //股市学堂，第四组数据
 		textView6_title2.setText("中兴证券讨论组");
 		textView6_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
-		textView6_type2.setText("个股  ①");
-		textView6_people2.setText("12/25");
+		textView6_type2.setText("个股   ①");
+		textView6_people2.setText(" 12/25");
         //定义的12个复选框，初始化星星的颜色为无色
-		checkBox1.setBackgroundResource(R.drawable.star1);
-		checkBox2.setBackgroundResource(R.drawable.star1);
-		checkBox3.setBackgroundResource(R.drawable.star1);
-		checkBox4.setBackgroundResource(R.drawable.star1);
-		checkBox5.setBackgroundResource(R.drawable.star1);
-		checkBox6.setBackgroundResource(R.drawable.star1);
-		checkBox7.setBackgroundResource(R.drawable.star1);
-		checkBox8.setBackgroundResource(R.drawable.star1);
-		checkBox9.setBackgroundResource(R.drawable.star1);
-		checkBox10.setBackgroundResource(R.drawable.star1);
-		checkBox11.setBackgroundResource(R.drawable.star1);
-		checkBox12.setBackgroundResource(R.drawable.star1);
+		checkBox1.setBackgroundResource(R.drawable.star_03);
+		checkBox2.setBackgroundResource(R.drawable.star_03);
+		checkBox3.setBackgroundResource(R.drawable.star_03);
+		checkBox4.setBackgroundResource(R.drawable.star_03);
+		checkBox5.setBackgroundResource(R.drawable.star_03);
+		checkBox6.setBackgroundResource(R.drawable.star_03);
+		checkBox7.setBackgroundResource(R.drawable.star_03);
+		checkBox8.setBackgroundResource(R.drawable.star_03);
+		checkBox9.setBackgroundResource(R.drawable.star_03);
+		checkBox10.setBackgroundResource(R.drawable.star_03);
+		checkBox11.setBackgroundResource(R.drawable.star_03);
+		checkBox12.setBackgroundResource(R.drawable.star_03);
 		mPageViews1 = new ArrayList<View>();
 		mPageViews1.add(view1);
 		mPageViews1.add(view2);
@@ -244,9 +244,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {  //布尔值判断复选框是否被选中，如果选中的话星星变成黄色
-					checkBox1.setBackgroundResource(R.drawable.star2);
+					checkBox1.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox1.setBackgroundResource(R.drawable.star1);
+					checkBox1.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -256,9 +256,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox2.setBackgroundResource(R.drawable.star2);
+					checkBox2.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox2.setBackgroundResource(R.drawable.star1);
+					checkBox2.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -268,9 +268,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox3.setBackgroundResource(R.drawable.star2);
+					checkBox3.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox3.setBackgroundResource(R.drawable.star1);
+					checkBox3.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -280,9 +280,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox4.setBackgroundResource(R.drawable.star2);
+					checkBox4.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox4.setBackgroundResource(R.drawable.star1);
+					checkBox4.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -292,9 +292,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox5.setBackgroundResource(R.drawable.star2);
+					checkBox5.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox5.setBackgroundResource(R.drawable.star1);
+					checkBox5.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -304,9 +304,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox6.setBackgroundResource(R.drawable.star2);
+					checkBox6.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox6.setBackgroundResource(R.drawable.star1);
+					checkBox6.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -316,9 +316,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox7.setBackgroundResource(R.drawable.star2);
+					checkBox7.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox8.setBackgroundResource(R.drawable.star1);
+					checkBox8.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -328,9 +328,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox8.setBackgroundResource(R.drawable.star2);
+					checkBox8.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox8.setBackgroundResource(R.drawable.star1);
+					checkBox8.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -340,9 +340,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox9.setBackgroundResource(R.drawable.star2);
+					checkBox9.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox9.setBackgroundResource(R.drawable.star1);
+					checkBox9.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -352,9 +352,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox10.setBackgroundResource(R.drawable.star2);
+					checkBox10.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox10.setBackgroundResource(R.drawable.star1);
+					checkBox10.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -364,9 +364,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox11.setBackgroundResource(R.drawable.star2);
+					checkBox11.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox11.setBackgroundResource(R.drawable.star1);
+					checkBox11.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
@@ -376,9 +376,9 @@ public class FenleiActivity extends Activity {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					checkBox12.setBackgroundResource(R.drawable.star2);
+					checkBox12.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox12.setBackgroundResource(R.drawable.star1);
+					checkBox12.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
