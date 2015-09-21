@@ -44,11 +44,32 @@ public class MainActivity extends TabActivity  {
 		main_guqunguangchang=(Button)findViewById(R.id.main_tab_guqunguangchang);
 		main_gushirili=(Button)findViewById(R.id.main_tab_gushirili);
 		main_more=(Button)findViewById(R.id.main_tab_more);
+		
+		// 按钮文字颜色变化
+		main_niuxin.setTextColor(0xFFFFFFFF);
+		main_guqunguangchang.setTextColor(0xFFFFDAB9);
+		main_gushirili.setTextColor(0xFFFFDAB9);
+		main_more.setTextColor(0xFFFFDAB9);
+		// 按钮文字大小变化
+		main_niuxin.setTextSize(20);
+		main_guqunguangchang.setTextSize(15);
+		main_gushirili.setTextSize(15);
+		main_more.setTextSize(15);
 
 		main_niuxin.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("niuxin");
+				// 按钮文字颜色变化
+				main_niuxin.setTextColor(0xFFFFFFFF);
+				main_guqunguangchang.setTextColor(0xFFFFDAB9);
+				main_gushirili.setTextColor(0xFFFFDAB9);
+				main_more.setTextColor(0xFFFFDAB9);
+				// 按钮文字大小变化
+				main_niuxin.setTextSize(20);
+				main_guqunguangchang.setTextSize(15);
+				main_gushirili.setTextSize(15);
+				main_more.setTextSize(15);
 
 			}
 		});
@@ -56,21 +77,48 @@ public class MainActivity extends TabActivity  {
 
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("guqunguangchang");
-
+				// 按钮文字颜色变化
+				main_niuxin.setTextColor(0xFFFFDAB9);
+				main_guqunguangchang.setTextColor(0xFFFFFFFF);
+				main_gushirili.setTextColor(0xFFFFDAB9);
+				main_more.setTextColor(0xFFFFDAB9);
+				// 按钮文字大小变化
+				main_niuxin.setTextSize(15);
+				main_guqunguangchang.setTextSize(20);
+				main_gushirili.setTextSize(15);
+				main_more.setTextSize(15);
 			}
 		});
 		main_gushirili.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("gushirili");
-
+				// 按钮文字颜色变化
+				main_niuxin.setTextColor(0xFFFFDAB9);
+				main_guqunguangchang.setTextColor(0xFFFFDAB9);
+				main_gushirili.setTextColor(0xFFFFFFFF);
+				main_more.setTextColor(0xFFFFDAB9);
+				// 按钮文字大小变化
+				main_niuxin.setTextSize(15);
+				main_guqunguangchang.setTextSize(15);
+				main_gushirili.setTextSize(20);
+				main_more.setTextSize(15);
 			}
 		});
 		main_more.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("more");
-
+				// 按钮文字颜色变化
+				main_niuxin.setTextColor(0xFFFFDAB9);
+				main_guqunguangchang.setTextColor(0xFFFFDAB9);
+				main_gushirili.setTextColor(0xFFFFDAB9);
+				main_more.setTextColor(0xFFFFFFFF);
+				// 按钮文字大小变化
+				main_niuxin.setTextSize(15);
+				main_guqunguangchang.setTextSize(15);
+				main_gushirili.setTextSize(15);
+				main_more.setTextSize(20);
 			}
 		});		
 	}

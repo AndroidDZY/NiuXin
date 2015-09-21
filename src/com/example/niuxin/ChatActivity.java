@@ -27,13 +27,18 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -57,6 +62,13 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	private SuoluetuActivity suolue;
 	private TextView groupNameText;
 	LinearLayout layout;
+	
+	private View view1, view2;
+	private List<View> viewList;//view数组
+	private ViewPager viewPager;  //对应的viewPager
+	View myView = null;
+	PagerAdapter pagerAdapter = null;
+	
 	// private User user;
 	private MessageDB messageDB;
 	private MyApplication application;
@@ -76,6 +88,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	public static Activity act = null;
 
 
+	
 	// 聊天数据
 	private List<ChatMsgEntity> mDataArrays = new ArrayList<ChatMsgEntity>();
 
@@ -110,8 +123,9 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);// 界面漂浮在软键盘之上
 		setContentView(R.layout.chat);
-		
 		
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		initView();
@@ -154,6 +168,48 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 				send();
 			}
 		});
+		
+		/* 聊天更多部分ViewPager实现 */
+		viewPager = (ViewPager) findViewById(R.id.chat_more_viewpager);
+		LayoutInflater inflater=getLayoutInflater();
+		view1 = inflater.inflate(R.layout.chat_more_item1, null);
+		view2 = inflater.inflate(R.layout.chat_more_item2,null);
+
+		viewList = new ArrayList<View>();// 将要分页显示的View装入数组中
+		viewList.add(view1);
+		viewList.add(view2);
+		
+		pagerAdapter = new PagerAdapter() {
+			
+			@Override
+			public boolean isViewFromObject(View arg0, Object arg1) {
+				// TODO Auto-generated method stub
+				return arg0 == arg1;
+			}
+			
+			@Override
+			public int getCount() {
+				// TODO Auto-generated method stub
+				return viewList.size();
+			}
+			
+			@Override
+			public void destroyItem(ViewGroup container, int position,
+					Object object) {
+				// TODO Auto-generated method stub
+				container.removeView(viewList.get(position));
+			}
+			
+			@Override
+			public Object instantiateItem(ViewGroup container, int position) {
+				// TODO Auto-generated method stub
+				container.addView(viewList.get(position));
+				
+				
+				return viewList.get(position);
+			}
+		};
+		viewPager.setAdapter(pagerAdapter);
 	}
 
 	// 初始化视图
@@ -167,8 +223,11 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		mButtonMore = (Button) findViewById(R.id.gengduo);
 		mEditText = (EditText) findViewById(R.id.sendmessage);
 		layout_more = (LinearLayout) findViewById(R.id.layout_more);
-		btn_collect = (ImageButton) findViewById(R.id.btn_collect);
-		btn_share = (ImageButton) findViewById(R.id.btn_share);
+		
+		//指定chat_more_item1布局中的控件
+		myView = LayoutInflater.from(this).inflate(R.layout.chat_more_item1, null);
+		btn_collect = (ImageButton) myView.findViewById(R.id.btn_collect);
+		btn_share = (ImageButton) myView.findViewById(R.id.btn_share);
 
 		groupNameText = (TextView) findViewById(R.id.groupName);
 		mButtonBack.setOnClickListener(this);

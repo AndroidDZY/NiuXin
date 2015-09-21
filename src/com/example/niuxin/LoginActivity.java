@@ -176,31 +176,31 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 	 * 提交账号密码信息到服务器
 	 */
 	private void submit() {	
-		String accounts = mAccounts.getText().toString();
-		String password = mPassword.getText().toString();
-		if (accounts.length() == 0 || password.length() == 0) {
-			DialogFactory.ToastDialog(this, "牛信登录", "亲！帐号和密码不能为空哦");
-		} else {
-			showRequestDialog();
-			// 通过Socket验证信息
-			if (application.isClientStart()) {
-				Client client = application.getClient();
-				ClientOutputThread out = client.getClientOutputThread();
-				TranObject<User> o = new TranObject<User>(TranObjectType.LOGIN);
-				User u = new User();
-				u.setUserName(accounts);
-				u.setPassWord(Encode.getEncode("MD5", password));
-				o.setObject(u);
-				out.setMsg(o);
-			} else {
-				if (mDialog.isShowing())
-					mDialog.dismiss();
-				DialogFactory.ToastDialog(LoginActivity.this, "牛信登录",
-						"亲！服务器暂未开放哦");
-			}
-		}
-	//	Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-	//	startActivity(intent);
+//		String accounts = mAccounts.getText().toString();
+//		String password = mPassword.getText().toString();
+//		if (accounts.length() == 0 || password.length() == 0) {
+//			DialogFactory.ToastDialog(this, "牛信登录", "亲！帐号和密码不能为空哦");
+//		} else {
+//			showRequestDialog();
+//			// 通过Socket验证信息
+//			if (application.isClientStart()) {
+//				Client client = application.getClient();
+//				ClientOutputThread out = client.getClientOutputThread();
+//				TranObject<User> o = new TranObject<User>(TranObjectType.LOGIN);
+//				User u = new User();
+//				u.setUserName(accounts);
+//				u.setPassWord(Encode.getEncode("MD5", password));
+//				o.setObject(u);
+//				out.setMsg(o);
+//			} else {
+//				if (mDialog.isShowing())
+//					mDialog.dismiss();
+//				DialogFactory.ToastDialog(LoginActivity.this, "牛信登录",
+//						"亲！服务器暂未开放哦");
+//			}
+//		}
+		Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+		startActivity(intent);
 	}
 
 	@Override

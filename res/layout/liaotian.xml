@@ -6,7 +6,10 @@
     android:layout_marginTop="65dp">
         <ListView android:id="@+id/qunlist"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content">
+       android:layout_height="wrap_content"
+       android:divider="#8fde4557"
+       android:dividerHeight="1dp"
+	>
    </ListView>
 
 </LinearLayout>
