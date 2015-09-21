@@ -204,7 +204,26 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			public Object instantiateItem(ViewGroup container, int position) {
 				// TODO Auto-generated method stub
 				container.addView(viewList.get(position));
+				ImageButton iBtnCollect = (ImageButton) container.findViewById(R.id.btn_collect);
+				ImageButton iBtnShare = (ImageButton) container.findViewById(R.id.btn_share);
+				iBtnCollect.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						System.out.println(">>>>>>>>>>>");
+						collect();
+					}
+				});
 				
+				iBtnShare.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						share();
+					}
+				});
 				
 				return viewList.get(position);
 			}
@@ -261,12 +280,12 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		case R.id.gengduo:
 			more();
 			break;
-		case R.id.btn_collect:
-			collect();
-			break;
-		case R.id.btn_share:
-			share();
-			break;
+//		case R.id.btn_collect:
+//			collect();
+//			break;
+//		case R.id.btn_share:
+//			share();
+//			break;
 		}
 	}
 

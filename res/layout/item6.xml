@@ -45,7 +45,7 @@
                   android:orientation="horizontal">
                   <TextView
                    android:layout_gravity="center"
-                   android:background="@drawable/fuchuangzuhe_03"
+                   android:background="@drawable/fuchuang_03"
                    android:layout_weight="1"
 	               android:id="@+id/item6_type1"
 	               android:layout_width="0dp"
@@ -119,7 +119,7 @@
                   android:orientation="horizontal">
                   <TextView
                    android:layout_gravity="center"
-                   android:background="@drawable/fuchuangzuhe_03"
+                   android:background="@drawable/fuchuang_03"
                    android:layout_weight="1"
 	               android:id="@+id/item6_type2"
 	               android:layout_width="0dp"

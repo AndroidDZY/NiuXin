@@ -2,7 +2,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
+    <LinearLayout
+   	android:id="@+id/llytBottom"
+	android:layout_width="match_parent"
+	android:layout_height="33dp"
+ 	android:layout_alignParentBottom="true"
+	android:background="#de4557"
+	android:orientation="horizontal" >
+	<Button
+		android:id="@+id/btn_searchuser_cancle"
+    	android:checked="true"
+    	android:layout_width="0dp"
+    	android:layout_height="match_parent"
+    	android:background="#de4557"
+    	android:layout_gravity="center"
+    	android:textSize="15sp"
+    	android:textColor="#ffffff"
+    	android:layout_weight="1"
+    	android:clickable="true"
+    	android:text="取消" 
+    	/>
+	<Button
+    	android:id="@+id/btn_searchuser_finish"
+    	android:layout_width="0dp"
+    	android:layout_height="match_parent"
+    	android:background="#de4557"
+    	android:layout_gravity="center"
+    	android:textSize="15sp"
+    	android:textColor="#ffffff"
+    	android:layout_weight="1"
+    	android:clickable="true"
+    	android:text="完成" />
+    </LinearLayout> 
+    
 <LinearLayout 
+    android:layout_above="@id/llytBottom"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
@@ -168,7 +203,7 @@
         android:background="#de4557"  />
    </LinearLayout>
    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="5dp">
         <TextView android:layout_width="match_parent"
@@ -176,199 +211,172 @@
             android:text="为您推荐"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_marginBottom="5dp" />
    <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-      <RelativeLayout android:layout_width="150dp"
+            <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+       <RelativeLayout 
         android:id="@+id/searchuser_relativelayout1"
-        android:background="@drawable/kaungdi1"
-        android:layout_height="90dp"
-        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="20dp"
-        android:layout_weight="1">
-        <RelativeLayout android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_height="25dp"
-            >
-            <TextView android:id="@+id/searchuser_relativelayout1_title1"
+        android:paddingBottom="2dp"
+        android:background="@drawable/word_backgroud_01"
+        android:layout_weight="5">
+             <TextView 
+                android:id="@+id/searchuser_relativelayout1_title1"
                 android:textSize="14sp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <CheckBox 
-                android:orientation="horizontal"
-                android:id="@+id/searchuser_relativelayout1_star1"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:button="@null"
-                android:layout_marginLeft="25dp"></CheckBox>
-            
-        </RelativeLayout>
-        
-       <RelativeLayout android:layout_width="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal"
-            >
-            <TextView android:id="@+id/searchuser_relativelayout1_summary1"
+              <TextView 
+                android:layout_centerInParent="true"
+                android:id="@+id/searchuser_relativelayout1_summary1"
                 android:lines="2"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:ellipsize="end"
                 />
-         </RelativeLayout>
-
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="25dp"
-           android:layout_alignParentBottom="true" >
-
-           <TextView
-               android:id="@+id/searchuser_relativelayout1_type1"
-               android:layout_width="wrap_content"
-               android:layout_height="20dp"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentLeft="true"
-               android:layout_marginLeft="22dp"
-               android:layout_weight="1"
-               android:textSize="12sp" />
-
-           <TextView
-               android:id="@+id/searchuser_relativelayout1_people1"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentRight="true"
-               android:layout_weight="2"
-               android:layout_marginRight="5dp"
-               android:layout_marginBottom="2dp"
-                />
-
-       </RelativeLayout>
-
-    </RelativeLayout>
-    
-    <RelativeLayout 
+              <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:orientation="horizontal">
+                  <TextView
+                   android:layout_gravity="center"
+                   android:background="@drawable/fuchuang_03"
+                   android:layout_weight="1"
+	               android:id="@+id/searchuser_relativelayout1_type1"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:layout_marginLeft="5dp"
+	               android:textSize="12sp" 
+	               android:textColor="#ffffff"
+	               />
+	              <TextView
+	               android:layout_marginLeft="5dp"
+	               android:layout_gravity="center"
+	               android:layout_weight="1"
+	               android:background="@drawable/fuchuang_03"
+	               android:id="@+id/searchuser_relativelayout1_people1"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:textSize="12sp"
+	               android:textColor="#ffffff"
+	                />
+              </LinearLayout>
+        </RelativeLayout>
+      <CheckBox
+       android:layout_weight="1"
+       android:id="@+id/searchuser_relativelayout1_star1"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="8dp"
+       android:button="@null" 
+       android:background="@drawable/star_03"/>
+   </LinearLayout>
+   <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginBottom="10dp">
+       <RelativeLayout 
         android:id="@+id/searchuser_relativelayout2"
-        android:layout_width="150dp"
-        android:background="@drawable/kaungdi1"
-        android:layout_height="90dp"
-        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1">
-        <RelativeLayout android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_height="25dp"
-            >
-            <TextView 
-                android:textSize="14sp"
+        android:background="@drawable/word_backgroud_02"
+        android:layout_weight="5">
+             <TextView 
                 android:id="@+id/searchuser_relativelayout2_title2"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <CheckBox 
-                android:orientation="horizontal"
-                android:id="@+id/searchuser_relativelayout2_star2"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:button="@null"
-                android:layout_marginLeft="25dp"></CheckBox>
-            
-        </RelativeLayout>
-        
-       <RelativeLayout android:layout_width="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal"
-            >
-            <TextView 
+              <TextView 
+                android:layout_centerInParent="true"
                 android:id="@+id/searchuser_relativelayout2_summary2"
                 android:lines="2"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
+                android:ellipsize="end"
                 />
+              <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:orientation="horizontal">
+                  <TextView
+                   android:layout_gravity="center"
+                   android:background="@drawable/fuchuang_03"
+                   android:layout_weight="1"
+	               android:id="@+id/searchuser_relativelayout2_type2"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:layout_marginLeft="5dp"
+	               android:textSize="12sp" 
+	               android:textColor="#ffffff"
+	               />
+
+	              <TextView
+	               android:layout_marginLeft="5dp"
+	               android:layout_gravity="center"
+	               android:layout_weight="1"
+	               android:background="@drawable/fuchuang_03"
+	               android:id="@+id/searchuser_relativelayout2_people2"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:textSize="12sp"
+	               android:textColor="#ffffff"
+	                />
+              </LinearLayout>
+        
+        
          </RelativeLayout>
-
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="25dp"
-           android:layout_alignParentBottom="true" >
-
-           <TextView
-               android:id="@+id/searchuser_relativelayout2_type2"
-               android:layout_width="wrap_content"
-               android:layout_height="20dp"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentLeft="true"
-               android:layout_marginLeft="22dp"
-               android:layout_weight="1"
-               android:textSize="12sp" />
-
-           <TextView
-               android:id="@+id/searchuser_relativelayout2_people2"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentRight="true"
-               android:layout_weight="2"
-               android:layout_marginRight="5dp"
-               android:layout_marginBottom="2dp"
-               />
-
-       </RelativeLayout>
-
-    </RelativeLayout>
+         
+      <CheckBox
+       android:layout_weight="1"
+       android:id="@+id/searchuser_relativelayout2_star2"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="8dp"
+       android:button="@null" 
+       android:background="@drawable/star_03"/>
+   </LinearLayout>
+   
+   
+   
+   
+   
+   
   </LinearLayout>
    </LinearLayout>
     
 </LinearLayout>
-     <LinearLayout
-     	android:layout_width="match_parent"
-     	android:layout_height="33dp"
-      	android:layout_alignParentBottom="true"
-     	android:background="#de4557"
-     	android:orientation="horizontal" >
-     	<Button
-     		android:id="@+id/btn_searchuser_cancle"
-         	android:checked="true"
-         	android:layout_width="0dp"
-         	android:layout_height="match_parent"
-         	android:background="#de4557"
-         	android:layout_gravity="center"
-         	android:textSize="15sp"
-         	android:textColor="#ffffff"
-         	android:layout_weight="1"
-         	android:clickable="true"
-         	android:text="取消" 
-         	/>
-     	<Button
-         	android:id="@+id/btn_searchuser_finish"
-         	android:layout_width="0dp"
-         	android:layout_height="match_parent"
-         	android:background="#de4557"
-         	android:layout_gravity="center"
-         	android:textSize="15sp"
-         	android:textColor="#ffffff"
-         	android:layout_weight="1"
-         	android:clickable="true"
-         	android:text="完成" />
-    </LinearLayout> 
+
 
 </RelativeLayout>
