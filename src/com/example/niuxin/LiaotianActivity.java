@@ -20,11 +20,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 public class LiaotianActivity extends Activity {
 	ListView list;
@@ -52,36 +50,17 @@ public class LiaotianActivity extends Activity {
 		list=(ListView)findViewById(R.id.qunlist);
 		
         ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
-
-        //群组聊天和个人聊天假数据
-         String []data={"中信证券讨论组,今天又要涨停啦,17:30,个股,1/50,2","汪总,今天又要涨停啦,19:50",
-        		 "股市学堂讨论组,今天又要涨停啦,08:30,教学,5/50,1","许总,今天又要涨停啦,09:50",
-        		 "中信证券讨论组,今天又要涨停啦,17:30,个股,1/50,2","汪总,今天又要涨停啦,19:50",
-        		 "中信证券讨论组,今天又要涨停啦,17:30,个股,1/50,2","汪总,今天又要涨停啦,19:50"};
-         //type用于判断用群聊布局还是用个人聊天布局显示
-        
-        //将假数据存入listItem
-        
-        
+     
 		 listItemAdapter= new NiuXinAdapter(this, listLiaoTian,typelist);		
 		list.setAdapter(listItemAdapter);
-		
-//		liaotianAdapter= new SimpleAdapter(LiaotianActivity.this,listLiaoTian,
-//					R.layout.qunlistview, new String[]{"img","name","lastmes",
-//							"time","type","renshu","grade"},new int[]{R.id.img,R.id.qunname,
-//				             R.id.lastmes,R.id.time,R.id.quntag,R.id.renshu,R.id.grade});
-//		listView.setAdapter(liaotianAdapter);
+
 //		//跳转到聊天界面
 		list.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
 
-				Intent intent=new Intent();
-			//	intent.putExtra("groupid", listLiaoTian.get(position).get("id").toString());
-			//	intent.putExtra("name", listLiaoTian.get(position).get("name").toString());
-			//	intent.setClass(LiaotianActivity.this, ChatActivity.class);
-				
+				Intent intent=new Intent();		
 				intent.putExtra("group_friend_type", listLiaoTian.get(position).get("chattype").toString());//类型 1代表群聊天  类型2代表个人聊天
 				intent.putExtra("group_friend_id", listLiaoTian.get(position).get("id").toString());//群id 或者将要接收信息的人的id
 				intent.putExtra("group_friend_name", listLiaoTian.get(position).get("name").toString());//群名  或者将要接受消息人的名字
