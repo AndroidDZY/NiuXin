@@ -54,7 +54,8 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	PopupMenu popupMenu;
 	Menu menu;
 	private Button mBtnSend, mButtonBiaoqing, mButtonBack, mButtonMore;
-	private ImageButton btn_collect, btn_share;
+	private ImageButton  btn_share;
+	private Button btn_collect;
 	private EditText mEditText;
 	private ListView mListView;
 	private LinearLayout layout_more;
@@ -226,7 +227,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		
 		//指定chat_more_item1布局中的控件
 		myView = LayoutInflater.from(this).inflate(R.layout.chat_more_item1, null);
-		btn_collect = (ImageButton) myView.findViewById(R.id.btn_collect);
+		btn_collect = (Button) myView.findViewById(R.id.btn_collect);
 		btn_share = (ImageButton) myView.findViewById(R.id.btn_share);
 
 		groupNameText = (TextView) findViewById(R.id.groupName);
