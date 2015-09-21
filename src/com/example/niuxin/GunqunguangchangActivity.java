@@ -44,15 +44,21 @@ public class GunqunguangchangActivity extends TabActivity{
 		shoucang=(Button)findViewById(R.id.shoucang);
 		paihang=(Button)findViewById(R.id.paihang);
 		fenlei.setTextColor(0xffde4557); // 设置字体颜色红
+		fenlei.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
 		shoucang.setTextColor(0xff000000); // 设置字体颜色黑
+		shoucang.setBackgroundColor(0xfff7f7f7);// 设置无边框
 		paihang.setTextColor(0xff000000); // 设置字体颜色黑
+		paihang.setBackgroundColor(0xfff7f7f7);// 设置无边框
 		
 		fenlei.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
 				fenlei.setTextColor(0xffde4557); // 设置字体颜色红
+				fenlei.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
 				shoucang.setTextColor(0xff000000); // 设置字体颜色黑
+				shoucang.setBackgroundColor(0xfff7f7f7);// 设置无边框
 				paihang.setTextColor(0xff000000); // 设置字体颜色黑
+				paihang.setBackgroundColor(0xfff7f7f7);// 设置无边框
 				tabHost.setCurrentTabByTag("fenlei");
 
 			}
@@ -61,8 +67,11 @@ public class GunqunguangchangActivity extends TabActivity{
 
 			public void onClick(View view) {
 				fenlei.setTextColor(0xff000000); 
-				shoucang.setTextColor(0xffde4557); 
-				paihang.setTextColor(0xff000000); 
+				fenlei.setBackgroundColor(0xfff7f7f7);// 设置无边框
+				shoucang.setTextColor(0xffde4557);
+				shoucang.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
+				paihang.setTextColor(0xff000000);
+				paihang.setBackgroundColor(0xfff7f7f7);// 设置无边框
 				tabHost.setCurrentTabByTag("shoucang");
 
 			}
@@ -71,8 +80,11 @@ public class GunqunguangchangActivity extends TabActivity{
 
 			public void onClick(View view) {
 				fenlei.setTextColor(0xff000000); 
+				fenlei.setBackgroundColor(0xfff7f7f7);// 设置无边框
 				shoucang.setTextColor(0xff000000); 
-				paihang.setTextColor(0xffde4557); 
+				shoucang.setBackgroundColor(0xfff7f7f7);// 设置无边框
+				paihang.setTextColor(0xffde4557);
+				paihang.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
 				tabHost.setCurrentTabByTag("paihang");
 
 			}

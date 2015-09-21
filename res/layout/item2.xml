@@ -1,155 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal" 
-    android:layout_marginTop="75dp">
-    <RelativeLayout 
-        android:layout_width="120dp"
-        android:background="@drawable/kaungdi1"
-        android:layout_height="80dp"
-        android:orientation="vertical"
+    >
+    <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginBottom="10dp">
+       <RelativeLayout 
+        android:id="@+id/guqun1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_weight="1">
-        <RelativeLayout 
-            android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_height="25dp"
-            >
-            <TextView 
+        android:background="@drawable/word_backgroud_01"
+        android:paddingBottom="2dp"
+        android:layout_weight="5">
+             <TextView 
                 android:id="@+id/item2_title1"
-                android:textSize="13sp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               
                 />
-            <CheckBox 
-                android:id="@+id/item2_star1"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="25dp"
-                android:button="@null"
-                />
-        </RelativeLayout>
-        
-       <RelativeLayout android:layout_width="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            >
-            <TextView 
+              <TextView 
+                android:layout_centerInParent="true"
                 android:id="@+id/item2_summary1"
                 android:lines="2"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:ellipsize="end"
                 />
-         </RelativeLayout>
-
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="18dp"
-           android:layout_alignParentBottom="true" >
-
-           <TextView
-               android:id="@+id/item2_type1"
-               android:layout_width="wrap_content"
-               android:layout_height="18dp"
-               android:layout_marginLeft="22dp"
-               android:textSize="12sp" 
-               />
-
-           <TextView
-               android:id="@+id/item2_people1"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentRight="true"
-               android:layout_marginRight="5dp"
-               android:layout_marginBottom="2dp"
-                />
-
-       </RelativeLayout>
-
-    </RelativeLayout>
-    
-
-    <RelativeLayout android:layout_width="120dp"
-        android:background="@drawable/kaungdi1"
-        android:layout_height="80dp"
-        android:orientation="vertical"
+              <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:orientation="horizontal">
+                  <TextView
+                   android:layout_gravity="center"
+                   android:background="@drawable/fuchuangzuhe_03"
+                   android:layout_weight="1"
+	               android:id="@+id/item2_type1"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:layout_marginLeft="5dp"
+	               android:textSize="12sp" 
+	               android:textColor="#ffffff"
+	               />
+	              <TextView
+	               android:layout_marginLeft="5dp"
+	               android:layout_gravity="center"
+	               android:layout_weight="1"
+	               android:background="@drawable/fuchuang_03"
+	               android:id="@+id/item2_people1"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:textSize="12sp"
+	               android:textColor="#ffffff"
+	                />
+              </LinearLayout>
+        </RelativeLayout>
+      <CheckBox
+       android:layout_weight="1"
+       android:id="@+id/item2_star1"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="8dp"
+       android:button="@null" 
+       android:background="@drawable/star_05"/>
+   </LinearLayout>
+   <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginBottom="10dp">
+       <RelativeLayout 
+        android:id="@+id/guqun2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1">
-        <RelativeLayout android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_height="25dp"
-            >
-            <TextView 
+        android:paddingBottom="2dp"
+        android:background="@drawable/word_backgroud_01"
+        android:layout_weight="5">
+             <TextView 
                 android:id="@+id/item2_title2"
-                android:textSize="13sp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <CheckBox android:id="@+id/item2_star2"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="25dp"
-                android:button="@null"
-                />
-        </RelativeLayout>
-        
-       <RelativeLayout android:layout_width="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal"
-            >
-            <TextView android:id="@+id/item2_summary2"
+              <TextView 
+                android:layout_centerInParent="true"
+                android:id="@+id/item2_summary2"
                 android:lines="2"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:ellipsize="end"
                 />
+              <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:orientation="horizontal">
+                  <TextView
+                   android:layout_gravity="center"
+                   android:background="@drawable/fuchuangzuhe_03"
+                   android:layout_weight="1"
+	               android:id="@+id/item2_type2"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:layout_marginLeft="5dp"
+	               android:textSize="12sp" 
+	               android:textColor="#ffffff"
+	               />
+
+	              <TextView
+	               android:layout_marginLeft="5dp"
+	               android:layout_gravity="center"
+	               android:layout_weight="1"
+	               android:background="@drawable/fuchuang_03"
+	               android:id="@+id/item2_people2"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:textSize="12sp"
+	               android:textColor="#ffffff"
+	                />
+              </LinearLayout>
+        
+        
          </RelativeLayout>
-
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="18dp"
-           android:layout_alignParentBottom="true" >
-
-           <TextView
-               android:id="@+id/item2_type2"
-               android:layout_width="wrap_content"
-               android:layout_height="18dp"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentLeft="true"
-               android:layout_marginLeft="22dp"
-               android:textSize="12sp" />
-
-           <TextView
-               android:id="@+id/item2_people2"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentRight="true"
-               android:layout_marginRight="5dp"
-               android:layout_marginBottom="2dp"
-                />
-
-       </RelativeLayout>
-
-    </RelativeLayout>
+         
+      <CheckBox
+       android:layout_weight="1"
+       android:id="@+id/item2_star2"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="8dp"
+       android:button="@null" 
+       android:background="@drawable/star_05"/>
+   </LinearLayout>
+    
 </LinearLayout>

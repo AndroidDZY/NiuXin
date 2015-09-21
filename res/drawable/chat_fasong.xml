@@ -2,6 +2,6 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android" >
      <item android:state_focused="true"
            android:drawable="@drawable/chat_fasong" /> <!-- focused -->
-     <item android:drawable="@drawable/chat_audio" /> <!-- default -->
+     <item android:drawable="@drawable/btn_chat_audio" /> <!-- default -->
 
 </animation-list>

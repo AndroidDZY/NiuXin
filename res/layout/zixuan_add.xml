@@ -35,7 +35,7 @@
             android:hint="@string/search_zx"
             android:paddingLeft="55dp"
             android:drawableLeft="@drawable/search_icon01" 
-            android:drawableRight="@drawable/voice_icon"
+            android:drawableRight="@drawable/ic_voice01"
             android:paddingRight="12dp" 
             android:singleLine="true"
             android:textSize="13sp"
