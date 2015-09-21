@@ -146,8 +146,8 @@ public class FenleiActivity extends Activity {
 		checkBox11 = (CheckBox) view6.findViewById(R.id.item6_star1);
 		checkBox12 = (CheckBox) view6.findViewById(R.id.item6_star2);
 		//为您推荐，第一组数据
-		textView1_title1.setText("中兴证券讨论组");
-		textView1_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView1_title1.setText("中信证券讨论组");
+		textView1_summary1.setText("中信证券综合讨论，分析买入卖出时机");
 		textView1_type1.setText("个股    ①");
 		textView1_people1.setText(" 12/25");
         //为您推荐，第二组数据
@@ -156,13 +156,13 @@ public class FenleiActivity extends Activity {
 		textView1_type2.setText("个股    ⑨");
 		textView1_people2.setText(" 28/40");
         //为您推荐，第三组数据
-		textView2_title1.setText("中兴证券讨论组");
-		textView2_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView2_title1.setText("中信证券讨论组");
+		textView2_summary1.setText("中信证券综合讨论，分析买入卖出时机");
 		textView2_type1.setText("个股   ①");
 		textView2_people1.setText(" 12/25");
         //为您推荐，第四组数据
-		textView2_title2.setText("中兴证券讨论组");
-		textView2_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView2_title2.setText("中信证券讨论组");
+		textView2_summary2.setText("中信证券综合讨论，分析买入卖出时机");
 		textView2_type2.setText("个股   ①");
 		textView2_people2.setText(" 12/25");
         //24小时最热，第一组数据
@@ -176,13 +176,13 @@ public class FenleiActivity extends Activity {
 		textView3_type2.setText("个股    ①");
 		textView3_people2.setText(" 68/200");
 		//24小时最热，第三组数据
-		textView4_title1.setText("中兴证券讨论组");
-		textView4_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView4_title1.setText("中信证券讨论组");
+		textView4_summary1.setText("中信证券综合讨论，分析买入卖出时机");
 		textView4_type1.setText("个股   ①");
 		textView4_people1.setText(" 12/25");
         //24小时最热，第四组数据
-		textView4_title2.setText("中兴证券讨论组");
-		textView4_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView4_title2.setText("中信证券讨论组");
+		textView4_summary2.setText("中信证券综合讨论，分析买入卖出时机");
 		textView4_type2.setText("个股   ①");
 		textView4_people2.setText(" 12/25");
         //股市学堂，第一组数据
@@ -196,13 +196,13 @@ public class FenleiActivity extends Activity {
 		textView5_type2.setText("教学");
 		textView5_people2.setText(" 32/40");
 		//股市学堂，第三组数据
-		textView6_title1.setText("中兴证券讨论组");
-		textView6_summary1.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView6_title1.setText("中信证券讨论组");
+		textView6_summary1.setText("中信证券综合讨论，分析买入卖出时机");
 		textView6_type1.setText("个股   ①");
         textView6_people1.setText(" 12/25");
         //股市学堂，第四组数据
-		textView6_title2.setText("中兴证券讨论组");
-		textView6_summary2.setText("中兴证券综合讨论，分析买入卖出时机");
+		textView6_title2.setText("中信证券讨论组");
+		textView6_summary2.setText("中信证券综合讨论，分析买入卖出时机");
 		textView6_type2.setText("个股   ①");
 		textView6_people2.setText(" 12/25");
         //定义的12个复选框，初始化星星的颜色为无色

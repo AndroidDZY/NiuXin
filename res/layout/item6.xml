@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal" 
-    android:layout_marginTop="75dp">
+    >
     <LinearLayout 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="10dp">
        <RelativeLayout 
         android:id="@+id/guqun1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="15dp"
+        android:paddingBottom="2dp"
         android:background="@drawable/word_backgroud_01"
-        android:layout_weight="9">
+        android:layout_weight="5">
              <TextView 
                 android:id="@+id/item6_title1"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -34,6 +37,7 @@
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:ellipsize="end"
                 />
               <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -44,28 +48,31 @@
                    android:background="@drawable/fuchuangzuhe_03"
                    android:layout_weight="1"
 	               android:id="@+id/item6_type1"
-	               android:layout_width="wrap_content"
-	               android:layout_height="18dp"
-	               android:layout_marginRight="10dp"
-	               android:layout_marginLeft="10dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:layout_marginLeft="5dp"
 	               android:textSize="12sp" 
+	               android:textColor="#ffffff"
 	               />
 	              <TextView
-	               android:layout_marginLeft="10dp"
+	               android:layout_marginLeft="5dp"
 	               android:layout_gravity="center"
 	               android:layout_weight="1"
 	               android:background="@drawable/fuchuang_03"
 	               android:id="@+id/item6_people1"
-	               android:layout_width="wrap_content"
+	               android:layout_width="0dp"
 	               android:layout_height="wrap_content"
-	               android:layout_marginRight="10dp"
+	               android:layout_marginRight="5dp"
+	               android:textSize="12sp"
+	               android:textColor="#ffffff"
 	                />
               </LinearLayout>
         </RelativeLayout>
       <CheckBox
        android:layout_weight="1"
        android:id="@+id/item6_star1"
-       android:layout_width="15dp"
+       android:layout_width="0dp"
        android:layout_height="wrap_content"
        android:layout_marginTop="8dp"
        android:button="@null" 
@@ -76,21 +83,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="10dp">
        <RelativeLayout 
         android:id="@+id/guqun2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="15dp"
+        android:paddingBottom="2dp"
         android:background="@drawable/word_backgroud_01"
-        android:layout_weight="9">
+        android:layout_weight="5">
              <TextView 
                 android:id="@+id/item6_title2"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -101,6 +111,7 @@
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:ellipsize="end"
                 />
               <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -111,22 +122,25 @@
                    android:background="@drawable/fuchuangzuhe_03"
                    android:layout_weight="1"
 	               android:id="@+id/item6_type2"
-	               android:layout_width="wrap_content"
-	               android:layout_height="18dp"
-	               android:layout_marginRight="10dp"
-	               android:layout_marginLeft="10dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:layout_marginRight="5dp"
+	               android:layout_marginLeft="5dp"
 	               android:textSize="12sp" 
+	               android:textColor="#ffffff"
 	               />
 
 	              <TextView
-	               android:layout_marginLeft="10dp"
+	               android:layout_marginLeft="5dp"
 	               android:layout_gravity="center"
 	               android:layout_weight="1"
 	               android:background="@drawable/fuchuang_03"
 	               android:id="@+id/item6_people2"
-	               android:layout_width="wrap_content"
+	               android:layout_width="0dp"
 	               android:layout_height="wrap_content"
-	               android:layout_marginRight="10dp"
+	               android:layout_marginRight="5dp"
+	               android:textSize="12sp"
+	               android:textColor="#ffffff"
 	                />
               </LinearLayout>
         
@@ -136,7 +150,7 @@
       <CheckBox
        android:layout_weight="1"
        android:id="@+id/item6_star2"
-       android:layout_width="15dp"
+       android:layout_width="0dp"
        android:layout_height="wrap_content"
        android:layout_marginTop="8dp"
        android:button="@null" 
