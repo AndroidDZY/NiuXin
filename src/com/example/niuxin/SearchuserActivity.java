@@ -162,7 +162,7 @@ public class SearchuserActivity extends Activity {
 							type1.setText(type);
 							people1.setText(peoplenum);
 							checkBox3.setVisibility(View.VISIBLE);
-							checkBox3.setBackgroundResource(R.drawable.star1);
+							checkBox3.setBackgroundResource(R.drawable.star_03);
 							idlist.add(id);
 						}catch (JSONException e) {
 							e.printStackTrace();
@@ -185,7 +185,7 @@ public class SearchuserActivity extends Activity {
 							type1.setText(type);
 							people1.setText(peoplenum);	
 							checkBox3.setVisibility(View.VISIBLE);
-							checkBox3.setBackgroundResource(R.drawable.star1);
+							checkBox3.setBackgroundResource(R.drawable.star_03);
 							idlist.add(id);
 							JSONObject myjObject1 = jsonArray.getJSONObject(1);// 获取每一个JsonObject对象
 					
@@ -203,7 +203,7 @@ public class SearchuserActivity extends Activity {
 							type2.setText(type1);
 							people2.setText(peoplenum1);
 							checkBox4.setVisibility(View.VISIBLE);
-							checkBox4.setBackgroundResource(R.drawable.star1);
+							checkBox4.setBackgroundResource(R.drawable.star_03);
 							idlist.add(id1);
 						}catch (JSONException e) {
 							e.printStackTrace();
@@ -351,7 +351,7 @@ public class SearchuserActivity extends Activity {
 							summary1.setText(mark);
 							type1.setText(type);
 							people1.setText(peoplenum);
-							checkBox3.setBackgroundResource(R.drawable.star1);
+							checkBox3.setBackgroundResource(R.drawable.star_03);
 							idlist.add(id);
 						}catch (JSONException e) {
 							e.printStackTrace();
@@ -374,7 +374,7 @@ public class SearchuserActivity extends Activity {
 							summary1.setText(mark);
 							type1.setText(type);
 							people1.setText(peoplenum);						
-							checkBox3.setBackgroundResource(R.drawable.star1);
+							checkBox3.setBackgroundResource(R.drawable.star_03);
 							idlist.add(id);
 							JSONObject myjObject1 = jsonArray.getJSONObject(1);// 获取每一个JsonObject对象
 					
@@ -391,7 +391,7 @@ public class SearchuserActivity extends Activity {
 							summary2.setText(mark1);
 							type2.setText(type1);
 							people2.setText(peoplenum1);
-							checkBox4.setBackgroundResource(R.drawable.star1);
+							checkBox4.setBackgroundResource(R.drawable.star_03);
 							idlist.add(id1);
 						}catch (JSONException e) {
 							e.printStackTrace();
@@ -446,10 +446,10 @@ public class SearchuserActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if (arg1) {
-					checkBox3.setBackgroundResource(R.drawable.star2);
+					checkBox3.setBackgroundResource(R.drawable.star_05);
 					marklist.set(0,true);
 				} else {
-					checkBox3.setBackgroundResource(R.drawable.star1);
+					checkBox3.setBackgroundResource(R.drawable.star_03);
 					marklist.set(0,false);
 				}
 			}
@@ -459,10 +459,10 @@ public class SearchuserActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if (arg1) {
-					checkBox4.setBackgroundResource(R.drawable.star2);
+					checkBox4.setBackgroundResource(R.drawable.star_05);
 					marklist.set(1,true);
 				} else {
-					checkBox4.setBackgroundResource(R.drawable.star1);
+					checkBox4.setBackgroundResource(R.drawable.star_03);
 					marklist.set(1,false);
 				}
 			}

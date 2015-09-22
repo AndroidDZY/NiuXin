@@ -54,8 +54,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	PopupMenu popupMenu;
 	Menu menu;
 	private Button mBtnSend, mButtonBiaoqing, mButtonBack, mButtonMore;
-	private ImageButton  btn_share;
-	private Button btn_collect;
+	private ImageButton  btn_share,btn_collect;
 	private EditText mEditText;
 	private ListView mListView;
 	private LinearLayout layout_more;
@@ -205,7 +204,26 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			public Object instantiateItem(ViewGroup container, int position) {
 				// TODO Auto-generated method stub
 				container.addView(viewList.get(position));
+				ImageButton iBtnCollect = (ImageButton) container.findViewById(R.id.btn_collect);
+				ImageButton iBtnShare = (ImageButton) container.findViewById(R.id.btn_share);
+				iBtnCollect.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						System.out.println(">>>>>>>>>>>");
+						collect();
+					}
+				});
 				
+				iBtnShare.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						share();
+					}
+				});
 				
 				return viewList.get(position);
 			}
@@ -227,15 +245,15 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		
 		//指定chat_more_item1布局中的控件
 		myView = LayoutInflater.from(this).inflate(R.layout.chat_more_item1, null);
-		btn_collect = (Button) myView.findViewById(R.id.btn_collect);
+		btn_collect = (ImageButton) myView.findViewById(R.id.btn_collect);
 		btn_share = (ImageButton) myView.findViewById(R.id.btn_share);
 
 		groupNameText = (TextView) findViewById(R.id.groupName);
 		mButtonBack.setOnClickListener(this);
 		// mBtnSend.setOnClickListener(this);
 		mButtonMore.setOnClickListener(this);
-		btn_collect.setOnClickListener(this);
-		btn_share.setOnClickListener(this);
+//		btn_collect.setOnClickListener(this);
+//		btn_share.setOnClickListener(this);
 		// 设置EditText光标位置
 		// mEditText.setSelection(5);
 		mAdapter = new ChatMsgViewAdapter(ChatActivity.this, mDataArrays,handler,this);
@@ -262,12 +280,12 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		case R.id.gengduo:
 			more();
 			break;
-		case R.id.btn_collect:
-			collect();
-			break;
-		case R.id.btn_share:
-			share();
-			break;
+//		case R.id.btn_collect:
+//			collect();
+//			break;
+//		case R.id.btn_share:
+//			share();
+//			break;
 		}
 	}
 

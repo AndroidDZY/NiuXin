@@ -35,7 +35,7 @@
 	            android:layout_marginLeft="10dp"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:background="@drawable/chatfrom_bg_focused" 
+	            android:background="@drawable/chatfrom_bg_focused01" 
 	          	style="@style/chat_content_date_style"
 	            />   
 	    </LinearLayout>
