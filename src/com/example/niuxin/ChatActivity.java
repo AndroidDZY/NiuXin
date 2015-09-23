@@ -55,7 +55,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	PopupMenu popupMenu;
 	Menu menu;
 	private Button mBtnSend, mButtonBiaoqing, mButtonBack, mButtonMore;
-	private ImageButton btn_collect, btn_share;
+	private ImageButton  btn_share,btn_collect;
 	private EditText mEditText;
 	private ListView mListView;
 	private LinearLayout layout_more;
@@ -253,8 +253,8 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		mButtonBack.setOnClickListener(this);
 		// mBtnSend.setOnClickListener(this);
 		mButtonMore.setOnClickListener(this);
-		btn_collect.setOnClickListener(this);
-		btn_share.setOnClickListener(this);
+//		btn_collect.setOnClickListener(this);
+//		btn_share.setOnClickListener(this);
 		// 设置EditText光标位置
 		// mEditText.setSelection(5);
 		mAdapter = new ChatMsgViewAdapter(ChatActivity.this, mDataArrays,handler,this);
