@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
@@ -41,6 +42,7 @@ public class SearchFriendActivity extends Activity{
     private EditText text;
     String searchtext = null;
     private int mark = 0;
+    GetSource getSource = new GetSource();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -174,9 +176,9 @@ public class SearchFriendActivity extends Activity{
 					Map<String, Object> map = new HashMap<String, Object>();				
 						int id = myjObject.getInt("id");
 						String name = myjObject.getString("name");
-						Integer img = myjObject.getInt("img");			
+						String img = myjObject.getString("img");			
 						map.put("id", id);
-						map.put("image_sfriend", img);
+						map.put("image_sfriend", getSource.getResourceByReflect(img));
 						map.put("title_sfriend", name);
 						map.put("flag_sfriend", flag_sfriend);
 						list.add(map);				

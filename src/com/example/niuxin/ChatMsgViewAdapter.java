@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.niuxin.bean.ChatMsgEntity;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 
 import android.app.Activity;
@@ -46,7 +47,7 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 	private Context context;
 	private LayoutInflater mInflater;
 	private Activity act;
-
+	GetSource getSource = new GetSource();
 	public ChatMsgViewAdapter(Context context, List<ChatMsgEntity> data, Handler handler, Activity act) {
 		this.context = context;
 		this.data = data;
@@ -123,7 +124,7 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		viewHolder.tvSendTime.setText(entity.getDate());
-		viewHolder.img.setBackgroundResource(entity.getImg());
+		viewHolder.img.setBackgroundResource(getSource.getResourceByReflect(entity.getImg()));
 		
 		
 		// 设置具体的聊天内容

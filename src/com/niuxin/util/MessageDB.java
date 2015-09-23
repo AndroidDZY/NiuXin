@@ -42,7 +42,7 @@ public class MessageDB {
 		Cursor c = db.rawQuery("SELECT * from _" + id + " ORDER BY _id DESC LIMIT 5", null);
 		while (c.moveToNext()) {
 			String name = c.getString(c.getColumnIndex("name"));
-			int img = c.getInt(c.getColumnIndex("img"));
+			String img = c.getString(c.getColumnIndex("img"));
 			String date = c.getString(c.getColumnIndex("date"));
 			int isCome = c.getInt(c.getColumnIndex("isCome"));
 			String message = c.getString(c.getColumnIndex("message"));

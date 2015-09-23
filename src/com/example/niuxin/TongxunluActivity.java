@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.example.niuxin.zixuan_addActivity.TestThread;
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
@@ -33,7 +34,7 @@ public class TongxunluActivity extends Activity {
 	List<Map<String, Object>> list_friend_qun = new ArrayList<Map<String, Object>>();
 	SimpleAdapter tongxunAdapter = null;
 	SimpleAdapter zixuanAdapter = null;
-
+	 GetSource getSource = new GetSource();
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -151,11 +152,11 @@ public class TongxunluActivity extends Activity {
 					// 获取每一个对象中的值
 					int id = myjObject.getInt("id");
 					String title = myjObject.getString("name");
-					Integer img = myjObject.getInt("img");
+					String img = myjObject.getString("img");
 					Integer chattype = myjObject.getInt("chattype");
 					map.put("id", id);
 					map.put("title", title);
-					map.put("image", img);										
+					map.put("image", getSource.getResourceByReflect(img));										
 					map.put("chattype", chattype);
 
 					list_friend_qun.add(map);

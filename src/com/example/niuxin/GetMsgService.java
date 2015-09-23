@@ -74,7 +74,7 @@ public class GetMsgService extends Service {
 					int form = textObject.getFromUser();// 消息从哪里来
 					String content = textObject.getObject().getMessage();// 消息内容
 
-					ChatMsgEntity entity = new ChatMsgEntity("",MyDate.getDateEN(), content, -1, true);// 收到的消息
+					ChatMsgEntity entity = new ChatMsgEntity("",MyDate.getDateEN(), content, "-1", true);// 收到的消息
 					messageDB.saveMsg(form, entity);// 保存到数据库
 
 					// 更新通知栏
