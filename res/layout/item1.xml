@@ -17,7 +17,7 @@
         android:layout_marginLeft="20dp"
         android:background="@drawable/word_backgroud_01"
         android:paddingBottom="2dp"
-        android:layout_weight="5">
+        android:layout_weight="1">
              <TextView 
                 android:layout_marginLeft="6dp"
                 android:id="@+id/item1_title1"
@@ -66,7 +66,7 @@
                           android:textColor="#ffffff"
                           />
                       <TextView android:layout_marginTop="2dp"
-                          android:layout_marginRight="2dp"
+                          android:layout_marginRight="1dp"
                           android:text="①"
                           android:id="@+id/item1_shuzi1"
                           android:layout_width="wrap_content"
@@ -104,9 +104,8 @@
               </LinearLayout>
         </RelativeLayout>
       <CheckBox
-       android:layout_weight="1"
        android:id="@+id/item1_star1"
-       android:layout_width="0dp"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginTop="8dp"
        android:button="@null" 
@@ -125,7 +124,7 @@
         android:layout_marginLeft="20dp"
         android:paddingBottom="2dp"
         android:background="@drawable/word_backgroud_02"
-        android:layout_weight="5">
+        android:layout_weight="1">
              <TextView 
                 android:id="@+id/item1_title2"
                 android:textSize="14sp"
@@ -217,9 +216,8 @@
          </RelativeLayout>
          
       <CheckBox
-       android:layout_weight="1"
        android:id="@+id/item1_star2"
-       android:layout_width="0dp"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginTop="8dp"
        android:button="@null" 

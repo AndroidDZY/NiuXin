@@ -60,7 +60,9 @@
         	<View  
         		android:layout_width="match_parent"  
         		android:layout_height="1dp" 
-        		android:background="#de4557"  />
+        		android:background="#de4557"
+        		android:layout_marginLeft="5dp"
+        		android:layout_marginRight="5dp"  />
        	</LinearLayout>
  </LinearLayout>
 </TabHost>

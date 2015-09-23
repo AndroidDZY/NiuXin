@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:gravity="center_vertical"
+    android:background="@drawable/liststyle_person"
     android:orientation="horizontal"
-    android:background="#ffffff"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+    android:minHeight="50dp"
     >
+    <!-- 白色矩形部分 -->
     <ImageView 
         android:id="@+id/img_pers"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
         android:scaleType="fitCenter"
-        android:layout_marginLeft="5dp"
-        android:padding="5dp"
         />
      <LinearLayout 
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="7"
+        android:layout_marginLeft="5dp"
         >
         <TextView 
             android:id="@+id/qunname_pers"
@@ -34,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#696969"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
     <TextView 
         android:id="@+id/time_pers"
@@ -44,13 +44,10 @@
         android:textSize="12sp"
         android:textColor="#000000"
         />
+    <!-- 虚拟正方形区域，用于和群组列表对齐 -->
      <RelativeLayout 
         android:layout_width="50dp"
-        android:layout_height="45dp"
-        android:layout_marginRight="5dp"        
-	android:paddingLeft="5dp"
-        android:paddingRight="3dp"
-        android:paddingBottom="3dp"
+        android:layout_height="50dp"
         >
     </RelativeLayout>
   

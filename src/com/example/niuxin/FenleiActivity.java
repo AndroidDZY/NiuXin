@@ -158,12 +158,12 @@ public class FenleiActivity extends Activity {
         //为您推荐，第三组数据
 		textView2_title1.setText("中信证券讨论组");
 		textView2_summary1.setText("中信证券综合讨论，分析买入卖出时机");
-		textView2_type1.setText("个股①");
+		textView2_type1.setText("个股");
 		textView2_people1.setText(" 12/25");
         //为您推荐，第四组数据
 		textView2_title2.setText("中信证券讨论组");
 		textView2_summary2.setText("中信证券综合讨论，分析买入卖出时机");
-		textView2_type2.setText("个股①");
+		textView2_type2.setText("个股");
 		textView2_people2.setText("12/25");
         //24小时最热，第一组数据
 		textView3_title1.setText("创业板买什么");

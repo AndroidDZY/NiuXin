@@ -26,8 +26,7 @@
         android:background="#de4557">
         <EditText 
             android:id="@+id/search"
-            android:layout_weight="6"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
             android:gravity="center_vertical"
@@ -35,30 +34,22 @@
             android:drawableLeft="@drawable/search_icon01"
             android:drawableRight="@drawable/ic_voice01"
             android:paddingRight="15dp"
-            android:paddingLeft="105dp"
+            android:paddingLeft="140dp"
             android:hint="@string/search"
             android:focusable="false"
             android:textSize="14sp"/>
-        <ImageButton 
-            android:id="@+id/createqun"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:background="#de4557"
-            android:src="@drawable/btn_add"
-            android:scaleType="centerInside"
-            android:layout_height="wrap_content"/>
+
         </LinearLayout>
         <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
             android:background="#f7f7f7">
             <Button 
                android:id="@+id/liaotian"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:background="#f7f7f7"
                 android:layout_gravity="bottom"
@@ -68,7 +59,7 @@
             <Button 
                 android:id="@+id/tongxunlu"
                 android:layout_height="30dp"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
                 android:text="通讯录"
@@ -77,12 +68,21 @@
             <Button 
                 android:id="@+id/pengyouquan"
                 android:layout_height="30dp"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
                 android:text="股友圈"
                 android:background="#f7f7f7"
                 android:textSize="15dp"/>
+            
+         <ImageButton 
+            android:id="@+id/createqun"
+            android:layout_width="25dp"
+            android:background="@drawable/btn_add"
+            android:layout_height="25dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="bottom"/>
         </LinearLayout>
       <LinearLayout 
         android:layout_width="match_parent"
