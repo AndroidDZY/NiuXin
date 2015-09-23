@@ -5,6 +5,7 @@ package com.example.niuxin;
 import java.util.List;
 
 import com.niuxin.bean.User;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.GroupFriend;
 
 import android.content.Context;
@@ -32,7 +33,7 @@ public class MyExAdapter extends BaseExpandableListAdapter {
 			R.drawable.f7, R.drawable.f8, R.drawable.f9 };// 头像资源数组
 	private Context context;
 	private List<GroupFriend> group;// 传递过来的经过处理的总数据
-
+	GetSource getSource = new GetSource();
 	public MyExAdapter(Context context, List<GroupFriend> group) {
 		super();
 		this.context = context;
@@ -99,8 +100,8 @@ public class MyExAdapter extends BaseExpandableListAdapter {
 		final String id = group.get(groupPosition).getChild(childPosition)
 				.getId()
 				+ "";
-		final int img = group.get(groupPosition).getChild(childPosition)
-				.getImg();
+		final int img = getSource.getResourceByReflect(group.get(groupPosition).getChild(childPosition)
+				.getImg());
 		title.setText(name);// 大标题
 		title2.setText(id);// 小标题
 		icon.setImageResource(imgs[img]);
@@ -112,7 +113,7 @@ public class MyExAdapter extends BaseExpandableListAdapter {
 				User u = new User();
 				u.setUserName(name);
 				u.setId(Integer.parseInt(id));
-				u.setImg(img);
+		//		u.setImg(img);
 				Intent intent = new Intent(context, ChatActivity.class);
 				intent.putExtra("user", u);
 				context.startActivity(intent);

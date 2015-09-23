@@ -30,7 +30,7 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 	private Button mBtnRegister;
 	private Button mRegBack;
 	private EditText mEmailEt, mNameEt, mPasswdEt, mPasswdEt2;
-	private List<Integer> imglist = new LinkedList<Integer>();
+	private List<String> imglist = new LinkedList<String>();
 	private MyApplication application;
 
 	@Override
@@ -54,16 +54,16 @@ public class RegisterActivity extends MyActivity implements OnClickListener {
 		mPasswdEt = (EditText) findViewById(R.id.reg_password);
 		mPasswdEt2 = (EditText) findViewById(R.id.reg_password2);
 
-		imglist.add(R.drawable.head001);
-		imglist.add(R.drawable.head002);
-		imglist.add(R.drawable.head003);
-		imglist.add(R.drawable.head004);
-		imglist.add(R.drawable.head005);
-		imglist.add(R.drawable.head006);
-		imglist.add(R.drawable.head007);
-		imglist.add(R.drawable.head008);
-		imglist.add(R.drawable.head009);
-		imglist.add(R.drawable.head010);
+		imglist.add("head001.png");
+		imglist.add("head002.png");
+		imglist.add("head003.png");
+		imglist.add("head004.png");
+		imglist.add("head005.png");
+		imglist.add("head006.png");
+		imglist.add("head007.png");
+		imglist.add("head008.png");
+		imglist.add("head009.png");
+		imglist.add("head010.png");
 	}
 
 	private Dialog mDialog = null;

@@ -13,6 +13,7 @@ import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.MessageDB;
 import com.niuxin.util.MyDate;
@@ -86,7 +87,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	String group_friend_name = null;
 	private Handler handler = new Handler();
 	public static Activity act = null;
-
+	GetSource getSource = new GetSource();
 
 	
 	// 聊天数据
@@ -518,7 +519,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 					int senduserid = myjObject.getInt("sendUserId");
 					String sendUsername = myjObject.getString("sendUsername");					
 					String message = myjObject.getString("message");
-					entity.setImg(myjObject.getInt("img"));
+					entity.setImg(myjObject.getString("img"));
 					entity.setName(sendUsername);
 					if (senduserid == util.getId()) {// 判断发送的Id和当前用户的Id是否一致
 						entity.setMsgType(false);

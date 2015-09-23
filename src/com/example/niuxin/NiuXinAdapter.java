@@ -3,6 +3,8 @@ package com.example.niuxin;
 import java.util.HashMap;
 import java.util.List;
 
+import com.niuxin.util.GetSource;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,7 @@ public class NiuXinAdapter extends BaseAdapter{
 	 private List<HashMap<String,Object>> list;
 	 private Context context;
 	 private List<Integer> type;
-	 
+	 GetSource getSource = new GetSource();
 	 //构造函数
 	public NiuXinAdapter (Context context,List<HashMap<String,Object>> list, List<Integer> type){
 		  this.context = context;
@@ -59,7 +61,7 @@ public class NiuXinAdapter extends BaseAdapter{
 		//	String []items=content.split(",");
 			//设置群聊控件显示内容
 			ImageView img=(ImageView)view.findViewById(R.id.img);
-			img.setImageResource(Integer.valueOf(list.get(position).get("img").toString()));
+			img.setImageResource(getSource.getResourceByReflect(list.get(position).get("img").toString()));
 			TextView qunname=(TextView)view.findViewById(R.id.qunname);	
 			qunname.setText(list.get(position).get("name").toString());	
 			TextView lastmes=(TextView)view.findViewById(R.id.lastmes);	
@@ -83,7 +85,7 @@ public class NiuXinAdapter extends BaseAdapter{
 			
 			//设置个人聊天控件显示内容
 			ImageView img_pers=(ImageView)view.findViewById(R.id.img_pers);
-			img_pers.setImageResource(Integer.valueOf(list.get(position).get("img").toString()));
+			img_pers.setImageResource(getSource.getResourceByReflect(list.get(position).get("img").toString()));
 			TextView qunname_pers=(TextView)view.findViewById(R.id.qunname_pers);	
 			qunname_pers.setText(list.get(position).get("name").toString());	
 			TextView lastmes_pers=(TextView)view.findViewById(R.id.lastmes_pers);	

@@ -56,12 +56,12 @@ public class SharePreferenceUtil {
 	}
 
 	// 用户自己的头像
-	public Integer getImg() {
-		return sp.getInt("img", 0);
+	public String getImg() {
+		return sp.getString("img", "");
 	}
 
-	public void setImg(int i) {
-		editor.putInt("img", i);
+	public void setImg(String i) {
+		editor.putString("img", i);
 		editor.commit();
 	}
 

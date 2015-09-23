@@ -24,7 +24,7 @@ public class UserDB {
 		Cursor c = db.rawQuery("select * from user where id=?",
 				new String[] { id + "" });
 		if (c.moveToFirst()) {
-			u.setImg(c.getInt(c.getColumnIndex("img")));
+			u.setImg(c.getString(c.getColumnIndex("img")));
 			u.setUserName(c.getString(c.getColumnIndex("name")));
 		}
 		return u;
@@ -56,7 +56,7 @@ public class UserDB {
 			User u = new User();
 			u.setId(c.getInt(c.getColumnIndex("id")));
 			u.setUserName(c.getString(c.getColumnIndex("userName")));
-			u.setImg(c.getInt(c.getColumnIndex("img")));
+			u.setImg(c.getString(c.getColumnIndex("img")));
 			//u.setIsOnline(c.getInt(c.getColumnIndex("isOnline")));
 			list.add(u);
 		}

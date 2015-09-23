@@ -129,7 +129,7 @@ public class LiaotianActivity extends Activity {
 						String type = myjObject.getString("type");
 						String lastmes = myjObject.getString("lastmes");
 						String time = myjObject.getString("time");
-						Integer img = myjObject.getInt("img");
+						String img = myjObject.getString("img");
 						
 						String grade = myjObject.getString("grade");
 						//currentNumber
@@ -154,7 +154,7 @@ public class LiaotianActivity extends Activity {
 						String name = myjObject.getString("name");
 						String lastmes = myjObject.getString("lastmes");
 						String time = myjObject.getString("time");
-						Integer img = myjObject.getInt("img");
+						String img = myjObject.getString("img");
 	
 						map.put("img", img);//R.drawable.head010
 						map.put("id", id);
