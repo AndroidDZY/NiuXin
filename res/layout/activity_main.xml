@@ -59,7 +59,7 @@
                     android:textColor="#FFDAB9"
                     android:layout_weight="1"
                     android:clickable="true"
-                    android:text="股群广场" />
+                    android:text="群组广场" />
 
                 <Button
                     android:id="@+id/main_tab_gushirili"
@@ -71,7 +71,7 @@
                     android:textColor="#FFDAB9"
                     android:layout_weight="1"
                     android:clickable="true"
-                    android:text="股市日历" />
+                    android:text="报单系统" />
 
                 <Button
                    android:id="@+id/main_tab_more"
