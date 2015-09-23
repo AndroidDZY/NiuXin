@@ -45,8 +45,8 @@
               <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_alignParentBottom="true"
-                  android:layout_marginLeft="8dp"
-                  android:layout_marginRight="8dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
                   android:orientation="horizontal">
                   <RelativeLayout 
                       android:layout_width="0dp"
@@ -93,7 +93,7 @@
 	               /> -->
 	              <TextView
 	               android:id="@+id/item2_people1"
-	               android:layout_marginLeft="8dp"
+	               android:layout_marginLeft="10dp"
 	               android:layout_gravity="center"
 	               android:layout_weight="1"
 	               android:gravity="center_vertical|right"
@@ -156,8 +156,8 @@
               <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_alignParentBottom="true"
-                  android:layout_marginLeft="8dp"
-                  android:layout_marginRight="8dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
                   android:orientation="horizontal">
                   <!-- <TextView
                    android:layout_gravity="center"
@@ -205,7 +205,7 @@
 
 	              <TextView
 	               android:id="@+id/item2_people2"
-	               android:layout_marginLeft="8dp"
+	               android:layout_marginLeft="10dp"
 	               android:layout_gravity="center"
 	               android:layout_weight="1"
 	               android:gravity="center_vertical|right"

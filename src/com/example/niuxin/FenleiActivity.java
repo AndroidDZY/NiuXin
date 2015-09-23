@@ -318,7 +318,7 @@ public class FenleiActivity extends Activity {
 				if (arg1) {
 					checkBox7.setBackgroundResource(R.drawable.star_05);
 				} else {
-					checkBox8.setBackgroundResource(R.drawable.star_03);
+					checkBox7.setBackgroundResource(R.drawable.star_03);
 				}
 			}
 		});
