@@ -66,7 +66,7 @@ public class ShareActivity extends Activity{
 		
 		map = new HashMap<String, Object>();
 		map.put("img_share", R.drawable.collect_head);
-		map.put("xiaoxiyuan01", "股友圈");
+		map.put("xiaoxiyuan01", "投资圈");
 		map.put("share_title", "中信证券讨论组");
 		map.put("share_context","汪总：今天又要涨停");
 		map.put("share_date", "15/7/2");
