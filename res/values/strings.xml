@@ -1174,5 +1174,5 @@
     <string name="gift">送了一个语音祝福给你，赶快听听吧~</string>
     <string name="file">[文件]</string>
     <string name="register_tip">提示 \n带*项为必填项\n填写邮箱方便您找回密码以及了解更多牛信信息</string>
-
+	<string name="declaration_receive">点击星号可以收藏报单，已收藏报单还可以得到额外提醒；点击报单模块可以看到报单详情和发送者信息</string>
 </resources>
