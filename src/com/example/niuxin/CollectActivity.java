@@ -59,7 +59,7 @@ public class CollectActivity extends Activity{
 		
 		map.put("img_collect", R.drawable.collect_head);
 		map.put("xiaoxiyuan", "所有");
-		map.put("collect_title", "中信证券讨论组");
+		map.put("collect_title", "豆粕商品讨论组");
 		map.put("collect_context","汪总：今天又要涨停");
 		map.put("collect_date", "15/7/2");
 		map.put("collect_time", "13:27");
@@ -68,7 +68,7 @@ public class CollectActivity extends Activity{
 		map = new HashMap<String, Object>();
 		map.put("img_collect", R.drawable.collect_head);
 		map.put("xiaoxiyuan", "聊天记录");
-		map.put("collect_title", "中信证券讨论组");
+		map.put("collect_title", "豆粕商品讨论组");
 		map.put("collect_context","汪总：今天又要涨停");
 		map.put("collect_date", "15/7/2");
 		map.put("collect_time", "13:27");
@@ -77,7 +77,7 @@ public class CollectActivity extends Activity{
 		map = new HashMap<String, Object>();
 		map.put("img_collect", R.drawable.collect_head);
 		map.put("xiaoxiyuan", "投资圈");
-		map.put("collect_title", "中信证券讨论组");
+		map.put("collect_title", "豆粕商品讨论组");
 		map.put("collect_context","汪总：今天又要涨停");
 		map.put("collect_date", "15/7/2");
 		map.put("collect_time", "13:27");
@@ -86,7 +86,7 @@ public class CollectActivity extends Activity{
 		map = new HashMap<String, Object>();
 		map.put("img_collect", R.drawable.collect_head);
 		map.put("xiaoxiyuan", "推送消息");
-		map.put("collect_title", "中信证券讨论组");
+		map.put("collect_title", "豆粕商品讨论组");
 		map.put("collect_context","汪总：今天又要涨停");
 		map.put("collect_date", "15/7/2");
 		map.put("collect_time", "13:27");

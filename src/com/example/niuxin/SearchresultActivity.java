@@ -118,7 +118,7 @@ public class SearchresultActivity extends Activity {
 				}
 
 				intent.putExtra("list", js.toString());//
-				intent.setClass(SearchresultActivity.this, Contacts_detailedActivity.class);
+				intent.setClass(SearchresultActivity.this, ContactsDetailedActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -249,7 +249,7 @@ public class SearchresultActivity extends Activity {
 
 		map = new HashMap<String, Object>();
 		map.put("image_chatlog", R.drawable.head005);
-		map.put("title_chatlog", "中信证券讨论组");
+		map.put("title_chatlog", "豆粕商品讨论组");
 		map.put("content_chatlog", "一路飘红啊");
 		list.add(map);
 

@@ -193,7 +193,7 @@ public class LiaotianActivity extends Activity {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("image", R.drawable.head001);
-		map.put("title", "中信证券讨论组");
+		map.put("title", "豆粕商品讨论组");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();

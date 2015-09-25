@@ -107,7 +107,7 @@ public class Chatlog_detailedActivity extends Activity{
 		
 		map = new HashMap<String, Object>();
 		map.put("image_chatlog_detailed", R.drawable.head005);
-		map.put("title_chatlog_detailed", "中信证券讨论组");
+		map.put("title_chatlog_detailed", "豆粕商品讨论组");
 		map.put("content_chatlog_detailed", "一路飘红啊");
 		list.add(map);	
 		

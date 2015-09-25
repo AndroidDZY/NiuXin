@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:visibility="gone" />
-    
+   
         <LinearLayout
             android:id="@+id/console_line_bottom"
             android:layout_width="match_parent"
@@ -35,6 +35,8 @@
             android:layout_alignParentBottom="true"
             android:background="#de4557"
             android:orientation="horizontal" >
+            
+             
                <Button
                     android:id="@+id/main_tab_niuxin"
                     android:checked="true"
@@ -85,10 +87,17 @@
                    android:clickable="true"
                    android:text="更多" 
                    />
-
-            </LinearLayout>
- 
-        
+                   </LinearLayout>
+            
+  
+  <!--  
+    	<com.example.niuxin.BottomLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			>
+    	</com.example.niuxin.BottomLayout>
+        -->
+    	
     </LinearLayout>
 
 </TabHost>

@@ -19,7 +19,7 @@
             android:id="@+id/groupName"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="中信证券讨论组"
+	        android:text="豆粕商品讨论组"
 	        android:textSize="20sp"
 	        android:textColor="#ffffff"
 	        android:layout_centerInParent="true"
