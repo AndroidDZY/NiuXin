@@ -13,7 +13,7 @@ import android.widget.Spinner;
 
 public class GushiriliActivity extends Activity{
 	Button buttonChangerole, buttonRolelaunch,buttonRolereceive;
-	Spinner spinnerChangerole;
+//	Spinner spinnerChangerole;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -22,7 +22,7 @@ public class GushiriliActivity extends Activity{
 		//buttonChangerole=(Button)findViewById(R.id.declaration_changerole);
 		buttonRolelaunch=(Button)findViewById(R.id.declaration_rolelaunch);
 		buttonRolereceive=(Button)findViewById(R.id.declaration_rolereceive);
-		spinnerChangerole=(Spinner)findViewById(R.id.declaration_changerole);
+//		spinnerChangerole=(Spinner)findViewById(R.id.declaration_changerole);
 		//跳转到我要报单界面
 		buttonRolelaunch.setOnClickListener(new OnClickListener() {
 			
@@ -44,7 +44,7 @@ public class GushiriliActivity extends Activity{
 			}
 		});
 		//下拉事件监听
-		spinnerChangerole.setOnItemSelectedListener(new OnItemSelectedListener() {
+		/*spinnerChangerole.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -58,7 +58,7 @@ public class GushiriliActivity extends Activity{
 				// TODO Auto-generated method stub
 				
 			}
-		});
+		});*/
 	}
 
 }

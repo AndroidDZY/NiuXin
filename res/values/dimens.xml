@@ -4,6 +4,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="layout_margin_five">5dp</dimen>
+    <dimen name="layout_margin_eight">8dp</dimen>
+    <dimen name="layout_margin_ten">10dp</dimen>
     <dimen name="line_width">1dp</dimen>
     <dimen name="bottom_btn_width">33dp</dimen>
     
