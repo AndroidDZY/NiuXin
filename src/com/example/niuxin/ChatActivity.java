@@ -32,6 +32,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,7 +53,8 @@ import android.widget.Toast;
 
 public class ChatActivity extends MyActivity implements OnClickListener {
 
-	PopupMenu popupMenu;
+	//自定义的弹出框类
+	SelectPicPopupWindow popupMenu;
 	Menu menu;
 	private Button mBtnSend, mButtonBiaoqing, mButtonBack, mButtonMore;
 	private ImageButton  btn_share,btn_collect;
@@ -297,7 +299,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	}
 
 	// 展开收藏
-	@SuppressLint("NewApi")
+/*	@SuppressLint("NewApi")
 	private void collect() {
 		// TODO Auto-generated method stub
 		// 创建PopupMenu对象，按钮btn_collect为触发该弹出菜单的组件
@@ -334,8 +336,41 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			}
 		});
 		popupMenu.show();
+	}*/
+	// 点击收藏事件处理
+	private void collect(){
+		//实例化SelectPicPopupWindow
+		popupMenu = new SelectPicPopupWindow(ChatActivity.this, itemsOnClick);
+		//显示窗口
+		popupMenu.showAtLocation(ChatActivity.this.findViewById(R.id.chatt), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0); 
+		//设置layout在PopupWindow中显示的位置，其中chatt在为一个标志，在chat.xml中定义
 	}
 
+    //为点击收藏后弹出窗口实现监听类
+    private OnClickListener  itemsOnClick = new OnClickListener(){
+
+		public void onClick(View v) {
+			popupMenu.dismiss();
+			switch (v.getId()) {
+			case R.id.btn_check_collection:
+				// 跳转到已收藏界面
+				Intent intent = new Intent(ChatActivity.this, CollectActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.btn_batch_collect:
+				// 暂无
+				break;
+			case R.id.btn_manage_tag:
+				// 跳转到标签管理界面
+				Intent intent1 = new Intent(ChatActivity.this, Tag_ManageActivity.class);
+				startActivity(intent1);
+				break;
+			default:
+				break;
+			}
+		}
+    };
+    
 	// 展开更多
 	private void more() {
 		// TODO Auto-generated method stub
