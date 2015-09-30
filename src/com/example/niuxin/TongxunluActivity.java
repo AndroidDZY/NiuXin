@@ -20,12 +20,15 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class TongxunluActivity extends Activity {
 	ListView listView, listView_u;
@@ -197,6 +200,26 @@ public class TongxunluActivity extends Activity {
 		list.add(map);
 
 		return list;
+	}
+	
+	// 手机back按键事件处理
+	private long mExitTime = 0;
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		Log.d("KeyBack", "KeyBack");
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, "再按一次退出",
+						Toast.LENGTH_SHORT).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				finish();
+//				System.exit(0);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

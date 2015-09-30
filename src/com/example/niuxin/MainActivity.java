@@ -9,12 +9,15 @@ import com.example.niuxin.zixuan_addActivity.TestThread;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 public class MainActivity extends TabActivity  {
 	private TabHost tabHost;
@@ -23,6 +26,27 @@ public class MainActivity extends TabActivity  {
     //1
     private SuoluetuActivity suolue;
     public Handler handler = new Handler();
+    
+	// 手机back按键事件处理
+	private long mExitTime = 0;
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		Log.d("KeyBack", "KeyBack");
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, "再按一次退出",
+						Toast.LENGTH_SHORT).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				finish();
+//				System.exit(0);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -120,7 +144,8 @@ public class MainActivity extends TabActivity  {
 				main_gushirili.setTextSize(15);
 				main_more.setTextSize(20);
 			}
-		});		
+		});	
+		
 	}
 	
 	private void initTab() {
@@ -137,6 +162,8 @@ public class MainActivity extends TabActivity  {
 		
 		
 	}
+	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

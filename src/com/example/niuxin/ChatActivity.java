@@ -32,7 +32,9 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -232,7 +234,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		};
 		viewPager.setAdapter(pagerAdapter);
 	}
-
+	
 	// 初始化视图
 	private void initView() {
 		// TODO Auto-generated method stub
