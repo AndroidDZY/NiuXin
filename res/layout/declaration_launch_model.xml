@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <TextView android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="选择模板"
+        android:textSize="16sp"/>
+    <View  
+        android:layout_marginTop="5dp"
+    	android:layout_width="match_parent"  
+    	android:layout_height="1dp" 
+    	android:background="#de4557"/>
+
+    <ListView
+        android:id="@+id/declaration_list_modelchoice"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" >
+    </ListView>
+    
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加"/>
+
+</LinearLayout>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal">
+    <Button android:id="@+id/declaration_button_back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="返回"/>
+    <Button android:id="@+id/declaration_button_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:text="保存"
+        android:gravity="center"/>
+</LinearLayout>
+
+</RelativeLayout>

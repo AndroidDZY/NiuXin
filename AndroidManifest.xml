@@ -87,6 +87,9 @@
         <activity android:name="com.example.niuxin.SearchFriendActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationLaunchActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationReceiveActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationDetailActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationModelChoiceActivity"></activity>
+        
       
         
 
