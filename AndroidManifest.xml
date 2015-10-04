@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.niuxin"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="3.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -70,12 +70,12 @@
 
         <activity android:name="com.example.niuxin.kanpan_wudangActivity"></activity>
         <activity android:name="com.example.niuxin.edit_zixuanActivity"></activity>
-        <activity android:name="com.example.niuxin.K_lineActivity"></activity>
-        <activity android:name="com.example.niuxin.K_line_dayActivity"></activity>
-        <activity android:name="com.example.niuxin.K_line_setActivity"></activity>
+        <activity android:name="com.example.niuxin.KlineActivity"></activity>
+        <activity android:name="com.example.niuxin.KlineDayActivity"></activity>
+        <activity android:name="com.example.niuxin.KlineSetActivity"></activity>
 
         
-          <activity android:name="com.example.niuxin.Contacts_detailedActivity"></activity>
+          <activity android:name="com.example.niuxin.ContactsDetailedActivity"></activity>
         <activity android:name="com.example.niuxin.Chatlog_detailedActivity"></activity>
         <activity android:name="com.example.niuxin.Collect_detailedActivity"></activity>
         
@@ -90,6 +90,10 @@
         <activity android:name="com.example.niuxin.DeclarationDetailActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationModelChoiceActivity"></activity>
         
+        <activity android:name="com.example.niuxin.DeclarationRemindSettingActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationSourceSelectActivity"></activity>
+        <activity android:name="com.example.niuxin.ContractTypeSelectActivity"></activity>
+        <activity android:name="com.example.niuxin.ContractDetailsActivity"></activity>
       
         
 

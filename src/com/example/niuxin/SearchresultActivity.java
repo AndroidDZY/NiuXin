@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
@@ -48,7 +49,7 @@ public class SearchresultActivity extends Activity {
 	List<Map<String, Object>> list11 = new ArrayList<Map<String, Object>>();//用于显示更多
 	List<Map<String, Object>> list22 = new ArrayList<Map<String, Object>>();
 	List<Map<String, Object>> list33 = new ArrayList<Map<String, Object>>();
-
+	 GetSource getSource = new GetSource();
 	public void init() {
 		suolue = new SuoluetuActivity(this, handler);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
@@ -117,7 +118,7 @@ public class SearchresultActivity extends Activity {
 				}
 
 				intent.putExtra("list", js.toString());//
-				intent.setClass(SearchresultActivity.this, Contacts_detailedActivity.class);
+				intent.setClass(SearchresultActivity.this, ContactsDetailedActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -248,7 +249,7 @@ public class SearchresultActivity extends Activity {
 
 		map = new HashMap<String, Object>();
 		map.put("image_chatlog", R.drawable.head005);
-		map.put("title_chatlog", "中信证券讨论组");
+		map.put("title_chatlog", "豆粕商品讨论组");
 		map.put("content_chatlog", "一路飘红啊");
 		list.add(map);
 
@@ -340,12 +341,12 @@ public class SearchresultActivity extends Activity {
 						// 获取每一个对象中的值
 						int id = myjObject.getInt("id");
 						String title = myjObject.getString("name");
-						Integer img = myjObject.getInt("img");
+						String img = myjObject.getString("img");
 						Integer chattype = myjObject.getInt("chattype");
 					
 						map.put("id", id);
 						map.put("title_contacts", title);
-						map.put("image_contacts", img);
+						map.put("image_contacts", getSource.getResourceByReflect(img));
 						map.put("chattype", chattype);
 						if (i <3)
 							list1.add(map);
@@ -429,8 +430,8 @@ public class SearchresultActivity extends Activity {
 							String name = myjObject.getString("name");
 							String lastmes = myjObject.getString("lastmes");
 							String time = myjObject.getString("time");
-							Integer img = myjObject.getInt("img");						
-							map.put("image_chatlog", img);//R.drawable.head010
+							String img = myjObject.getString("img");						
+							map.put("image_chatlog", getSource.getResourceByReflect(img));//R.drawable.head010
 							map.put("id", id);
 							map.put("title_chatlog", name);
 							map.put("chattype", chattype);

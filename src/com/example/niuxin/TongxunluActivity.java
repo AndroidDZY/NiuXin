@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.example.niuxin.zixuan_addActivity.TestThread;
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
@@ -19,12 +20,15 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class TongxunluActivity extends Activity {
 	ListView listView, listView_u;
@@ -33,7 +37,7 @@ public class TongxunluActivity extends Activity {
 	List<Map<String, Object>> list_friend_qun = new ArrayList<Map<String, Object>>();
 	SimpleAdapter tongxunAdapter = null;
 	SimpleAdapter zixuanAdapter = null;
-
+	 GetSource getSource = new GetSource();
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -151,11 +155,11 @@ public class TongxunluActivity extends Activity {
 					// 获取每一个对象中的值
 					int id = myjObject.getInt("id");
 					String title = myjObject.getString("name");
-					Integer img = myjObject.getInt("img");
+					String img = myjObject.getString("img");
 					Integer chattype = myjObject.getInt("chattype");
 					map.put("id", id);
 					map.put("title", title);
-					map.put("image", img);										
+					map.put("image", getSource.getResourceByReflect(img));										
 					map.put("chattype", chattype);
 
 					list_friend_qun.add(map);
@@ -196,6 +200,26 @@ public class TongxunluActivity extends Activity {
 		list.add(map);
 
 		return list;
+	}
+	
+	// 手机back按键事件处理
+	private long mExitTime = 0;
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		Log.d("KeyBack", "KeyBack");
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, "再按一次退出",
+						Toast.LENGTH_SHORT).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				finish();
+//				System.exit(0);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

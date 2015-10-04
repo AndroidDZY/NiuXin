@@ -153,7 +153,7 @@ public class SearchuserActivity extends Activity {
 							Integer id = myjObject.getInt("id");
 							String name = myjObject.getString("name");
 							String mark = myjObject.getString("mark");
-							String type = myjObject.getString("type") + "①";
+							String type = myjObject.getString("type") ;
 							String peoplenum = myjObject.getString("currentNumber") + "/"
 									+ myjObject.getString("totalNumber");
 							relativeLayout1.setVisibility(View.VISIBLE);
@@ -176,7 +176,7 @@ public class SearchuserActivity extends Activity {
 							Integer id = myjObject.getInt("id");
 							String name = myjObject.getString("name");
 							String mark = myjObject.getString("mark");
-							String type = myjObject.getString("type") + "①";
+							String type = myjObject.getString("type") ;
 							String peoplenum = myjObject.getString("currentNumber") + "/"
 									+ myjObject.getString("totalNumber");
 							relativeLayout1.setVisibility(View.VISIBLE);
@@ -194,7 +194,7 @@ public class SearchuserActivity extends Activity {
 							Integer id1 = myjObject1.getInt("id");
 							String name1 = myjObject1.getString("name");
 							String mark1 = myjObject1.getString("mark");
-							String type1 = myjObject1.getString("type") + "①";
+							String type1 = myjObject1.getString("type") ;
 							String peoplenum1 = myjObject1.getString("currentNumber") + "/"
 									+ myjObject.getString("totalNumber");
 							relativeLayout2.setVisibility(View.VISIBLE);
@@ -344,7 +344,7 @@ public class SearchuserActivity extends Activity {
 							Integer id = myjObject.getInt("id");
 							String name = myjObject.getString("name");
 							String mark = myjObject.getString("mark");
-							String type = myjObject.getString("type") + "①";
+							String type = myjObject.getString("type") ;
 							String peoplenum = myjObject.getString("currentNumber") + "/"
 									+ myjObject.getString("totalNumber");
 							title1.setText(name);
@@ -367,7 +367,7 @@ public class SearchuserActivity extends Activity {
 							Integer id = myjObject.getInt("id");
 							String name = myjObject.getString("name");
 							String mark = myjObject.getString("mark");
-							String type = myjObject.getString("type") + "①";
+							String type = myjObject.getString("type") ;
 							String peoplenum = myjObject.getString("currentNumber") + "/"
 									+ myjObject.getString("totalNumber");
 							title1.setText(name);
@@ -383,7 +383,7 @@ public class SearchuserActivity extends Activity {
 							Integer id1 = myjObject1.getInt("id");
 							String name1 = myjObject1.getString("name");
 							String mark1 = myjObject1.getString("mark");
-							String type1 = myjObject1.getString("type") + "①";
+							String type1 = myjObject1.getString("type") ;
 							String peoplenum1 = myjObject1.getString("currentNumber") + "/"
 									+ myjObject.getString("totalNumber");
 							title2.setText(name1);

@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:layout_marginTop="65dp">
+    android:layout_marginTop="75dp">
         <ListView android:id="@+id/qunlist"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:divider="#8fde4557"
-       android:dividerHeight="1dp"
+       android:divider="@drawable/bg_list_divider"
+       android:paddingLeft="5dp"
+       android:paddingRight="5dp"
 	>
    </ListView>
 

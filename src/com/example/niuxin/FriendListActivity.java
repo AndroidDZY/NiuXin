@@ -197,7 +197,7 @@ public class FriendListActivity extends MyActivity implements OnClickListener {
 
 		cursor = (ImageView) findViewById(R.id.tab2_bg);
 
-		myHeadImage.setImageResource(imgs[list.get(0).getImg()]);
+		//myHeadImage.setImageResource(imgs[list.get(0).getImg()]);
 		myName.setText(list.get(0).getUserName());
 		layout_body_activity.setFocusable(true);
 
@@ -319,18 +319,18 @@ public class FriendListActivity extends MyActivity implements OnClickListener {
 			application.setRecentNum(newNum);// 保存到全局变量
 			TextMessage tm = (TextMessage) msg.getObject();
 			String message = tm.getMessage();
-			ChatMsgEntity entity = new ChatMsgEntity("", MyDate.getDateEN(),
-					message, -1, true);// 收到的消息
-			messageDB.saveMsg(msg.getFromUser(), entity);// 保存到数据库
+		//	ChatMsgEntity entity = new ChatMsgEntity("", MyDate.getDateEN(),
+		//			message, -1, true);// 收到的消息
+		//	messageDB.saveMsg(msg.getFromUser(), entity);// 保存到数据库
 			Toast.makeText(FriendListActivity.this,
 					"亲！新消息哦 " + msg.getFromUser() + ":" + message, 0).show();// 提示用户
 			MediaPlayer.create(this, R.raw.msg).start();// 声音提示
 			User user2 = userDB.selectInfo(msg.getFromUser());// 通过id查询对应数据库该好友信息
-			RecentChatEntity entity2 = new RecentChatEntity(msg.getFromUser(),
-					user2.getImg(), newNum, user2.getUserName(), MyDate.getDate(),
-					message);
-			application.getmRecentAdapter().remove(entity2);// 先移除该对象，目的是添加到首部
-			application.getmRecentList().addFirst(entity2);// 再添加到首部
+		//	RecentChatEntity entity2 = new RecentChatEntity(msg.getFromUser(),
+		//			user2.getImg(), newNum, user2.getUserName(), MyDate.getDate(),
+		//			message);
+		//	application.getmRecentAdapter().remove(entity2);// 先移除该对象，目的是添加到首部
+		//	application.getmRecentList().addFirst(entity2);// 再添加到首部
 			application.getmRecentAdapter().notifyDataSetChanged();
 			break;
 		case LOGIN:

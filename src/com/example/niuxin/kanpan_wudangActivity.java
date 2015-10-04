@@ -46,7 +46,7 @@ public class kanpan_wudangActivity extends Activity {
         btn_K.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
-				Intent intent = new Intent(kanpan_wudangActivity.this,K_lineActivity.class);
+				Intent intent = new Intent(kanpan_wudangActivity.this,KlineActivity.class);
 				startActivity(intent);
 				//finish();
 

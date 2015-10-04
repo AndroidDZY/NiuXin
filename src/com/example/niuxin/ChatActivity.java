@@ -13,6 +13,7 @@ import com.niuxin.bean.User;
 import com.niuxin.client.Client;
 import com.niuxin.client.ClientOutputThread;
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.MessageDB;
 import com.niuxin.util.MyDate;
@@ -31,12 +32,15 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -51,10 +55,11 @@ import android.widget.Toast;
 
 public class ChatActivity extends MyActivity implements OnClickListener {
 
-	PopupMenu popupMenu;
+	//自定义的弹出框类
+	SelectPicPopupWindow popupMenu;
 	Menu menu;
 	private Button mBtnSend, mButtonBiaoqing, mButtonBack, mButtonMore;
-	private ImageButton btn_collect, btn_share;
+	private ImageButton  btn_share,btn_collect;
 	private EditText mEditText;
 	private ListView mListView;
 	private LinearLayout layout_more;
@@ -86,7 +91,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	String group_friend_name = null;
 	private Handler handler = new Handler();
 	public static Activity act = null;
-
+	GetSource getSource = new GetSource();
 
 	
 	// 聊天数据
@@ -211,7 +216,6 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-						System.out.println(">>>>>>>>>>>");
 						collect();
 					}
 				});
@@ -230,7 +234,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		};
 		viewPager.setAdapter(pagerAdapter);
 	}
-
+	
 	// 初始化视图
 	private void initView() {
 		// TODO Auto-generated method stub
@@ -252,8 +256,8 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		mButtonBack.setOnClickListener(this);
 		// mBtnSend.setOnClickListener(this);
 		mButtonMore.setOnClickListener(this);
-		btn_collect.setOnClickListener(this);
-		btn_share.setOnClickListener(this);
+//		btn_collect.setOnClickListener(this);
+//		btn_share.setOnClickListener(this);
 		// 设置EditText光标位置
 		// mEditText.setSelection(5);
 		mAdapter = new ChatMsgViewAdapter(ChatActivity.this, mDataArrays,handler,this);
@@ -297,7 +301,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	}
 
 	// 展开收藏
-	@SuppressLint("NewApi")
+/*	@SuppressLint("NewApi")
 	private void collect() {
 		// TODO Auto-generated method stub
 		// 创建PopupMenu对象，按钮btn_collect为触发该弹出菜单的组件
@@ -334,8 +338,41 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 			}
 		});
 		popupMenu.show();
+	}*/
+	// 点击收藏事件处理
+	private void collect(){
+		//实例化SelectPicPopupWindow
+		popupMenu = new SelectPicPopupWindow(ChatActivity.this, itemsOnClick);
+		//显示窗口
+		popupMenu.showAtLocation(ChatActivity.this.findViewById(R.id.chatt), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0); 
+		//设置layout在PopupWindow中显示的位置，其中chatt在为一个标志，在chat.xml中定义
 	}
 
+    //为点击收藏后弹出窗口实现监听类
+    private OnClickListener  itemsOnClick = new OnClickListener(){
+
+		public void onClick(View v) {
+			popupMenu.dismiss();
+			switch (v.getId()) {
+			case R.id.btn_check_collection:
+				// 跳转到已收藏界面
+				Intent intent = new Intent(ChatActivity.this, CollectActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.btn_batch_collect:
+				// 暂无
+				break;
+			case R.id.btn_manage_tag:
+				// 跳转到标签管理界面
+				Intent intent1 = new Intent(ChatActivity.this, Tag_ManageActivity.class);
+				startActivity(intent1);
+				break;
+			default:
+				break;
+			}
+		}
+    };
+    
 	// 展开更多
 	private void more() {
 		// TODO Auto-generated method stub
@@ -518,7 +555,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 					int senduserid = myjObject.getInt("sendUserId");
 					String sendUsername = myjObject.getString("sendUsername");					
 					String message = myjObject.getString("message");
-					entity.setImg(myjObject.getInt("img"));
+					entity.setImg(myjObject.getString("img"));
 					entity.setName(sendUsername);
 					if (senduserid == util.getId()) {// 判断发送的Id和当前用户的Id是否一致
 						entity.setMsgType(false);

@@ -21,39 +21,36 @@
 
         <LinearLayout 
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="#f7f7f7f7">
             <Button 
                android:id="@+id/fenlei"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:background="#ffffff"
-                android:layout_gravity="center"
+                android:layout_gravity="bottom"
                 android:layout_weight="1"
                 android:text="分类"
-                android:clickable="true"
                 android:textSize="15dp"/>
             <Button 
                 android:id="@+id/shoucang"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:background="#ffffff"
-                android:layout_gravity="center"
+                android:layout_gravity="bottom"
                 android:layout_weight="1"
                 android:text="收藏"
-                android:clickable="true"
                 android:textSize="15dp"/>
             <Button 
                 android:id="@+id/paihang"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:background="#ffffff"
-                android:layout_gravity="center"
+                android:layout_gravity="bottom"
                 android:layout_weight="1"
                 android:text="排行"
-                android:clickable="true"
                 android:textSize="15dp"/>
         </LinearLayout>
         <LinearLayout 
@@ -63,7 +60,9 @@
         	<View  
         		android:layout_width="match_parent"  
         		android:layout_height="1dp" 
-        		android:background="#de4557"  />
+        		android:background="#de4557"
+        		android:layout_marginLeft="5dp"
+        		android:layout_marginRight="5dp"  />
        	</LinearLayout>
  </LinearLayout>
 </TabHost>

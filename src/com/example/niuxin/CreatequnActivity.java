@@ -34,7 +34,7 @@ public class CreatequnActivity extends Activity {
 	private SuoluetuActivity suolue;
 	private Handler handler = new Handler();
 	public static Activity act = null;
-	private List<Integer> imglist = new LinkedList<Integer>();
+	private List<String> imglist = new LinkedList<String>();
 	String name = null;// 群名称
 	String mark = null;// 个股标签 可能多个
 	String description = null;
@@ -62,16 +62,16 @@ public class CreatequnActivity extends Activity {
 		shoufeimodel = (Spinner) findViewById(R.id.cq_shoufeimoshi);
 
 		
-		imglist.add(R.drawable.head001);
-		imglist.add(R.drawable.head002);
-		imglist.add(R.drawable.head003);
-		imglist.add(R.drawable.head004);
-		imglist.add(R.drawable.head005);
-		imglist.add(R.drawable.head006);
-		imglist.add(R.drawable.head007);
-		imglist.add(R.drawable.head008);
-		imglist.add(R.drawable.head009);
-		imglist.add(R.drawable.head010);
+		imglist.add("head001.png");
+		imglist.add("head002.png");
+		imglist.add("head003.png");
+		imglist.add("head004.png");
+		imglist.add("head005.png");
+		imglist.add("head006.png");
+		imglist.add("head007.png");
+		imglist.add("head008.png");
+		imglist.add("head009.png");
+		imglist.add("head010.png");
 		
 		// 定义按钮事件
 		// 取消按钮

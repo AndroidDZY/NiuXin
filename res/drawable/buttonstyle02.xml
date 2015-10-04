@@ -3,12 +3,20 @@
 <!-- 边框颜色值 --><item> 
       <shape> 
             <solid android:color="#de4557" /> 
+            <corners 
+                android:topLeftRadius="4dp"     
+             	android:topRightRadius="4dp"  />
       </shape> 
 </item> 
 <!-- 主体背景颜色值 -->
 <item  android:right="1.5dp" android:left="1.5dp" android:top="1.5dp"> 
      <shape> 
            <solid android:color="#ffffff" />
+           
+    <!-- 设置按钮的四个角为弧形 -->
+    <!-- android:radius 弧形的半径 -->
+    <corners android:topLeftRadius="4dp"     
+             android:topRightRadius="4dp"  />
            
            <padding android:bottom="5dp"
            		android:left="5dp"

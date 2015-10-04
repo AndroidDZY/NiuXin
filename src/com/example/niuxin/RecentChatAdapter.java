@@ -98,7 +98,7 @@ public class RecentChatAdapter extends BaseAdapter {
 				User u = new User();
 				u.setUserName(entity.getName());
 				u.setId(entity.getId());
-				u.setImg(entity.getImg());
+			//	u.setImg(entity.getImg());
 				Intent intent = new Intent(context, ChatActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				intent.putExtra("user", u);

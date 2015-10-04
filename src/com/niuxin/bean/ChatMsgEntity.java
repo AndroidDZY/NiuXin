@@ -10,7 +10,7 @@ public class ChatMsgEntity {
     private String text;
     //是否为对方发来的信息
     private boolean isComMeg = true;
-	private int img;
+	private String img;
 
     public String getName() {
         return name;
@@ -47,15 +47,17 @@ public class ChatMsgEntity {
     public ChatMsgEntity() {
     }
     
-	public int getImg() {
+
+
+	public String getImg() {
 		return img;
 	}
 
-	public void setImg(int img) {
+	public void setImg(String img) {
 		this.img = img;
 	}
 
-	public ChatMsgEntity(String name, String date, String text, int img,
+	public ChatMsgEntity(String name, String date, String text, String img,
 			boolean isComMsg) {
 		super();
 		this.name = name;

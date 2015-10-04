@@ -176,7 +176,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 	 * 提交账号密码信息到服务器
 	 */
 	private void submit() {	
-		/*String accounts = mAccounts.getText().toString();
+/*		String accounts = mAccounts.getText().toString();
 		String password = mPassword.getText().toString();
 		if (accounts.length() == 0 || password.length() == 0) {
 			DialogFactory.ToastDialog(this, "牛信登录", "亲！帐号和密码不能为空哦");

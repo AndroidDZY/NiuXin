@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 import android.widget.PopupMenu.OnDismissListener;
 import android.widget.TabHost;
 import android.widget.PopupMenu.OnMenuItemClickListener;
@@ -158,6 +161,5 @@ public class NiuxinActivity extends TabActivity {
 		});
 		popupMenu.show();
 	}
-
 
 }
