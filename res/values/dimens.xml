@@ -8,6 +8,7 @@
     <dimen name="layout_margin_ten">10dp</dimen>
     <dimen name="line_width">1dp</dimen>
     <dimen name="bottom_btn_width">33dp</dimen>
+    <dimen name="top_title_width">33dp</dimen>
     
     <dimen name="textsize_big">20sp</dimen>
     <dimen name="textsize_middle">15sp</dimen>
