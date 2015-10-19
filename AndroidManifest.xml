@@ -89,6 +89,7 @@
         <activity android:name="com.example.niuxin.DeclarationReceiveActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationDetailActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationModelChoiceActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationContactChoiceActivity"></activity>
         
         <activity android:name="com.example.niuxin.DeclarationRemindSettingActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationSourceSelectActivity"></activity>

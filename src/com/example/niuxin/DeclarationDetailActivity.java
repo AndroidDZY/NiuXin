@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 
 public class DeclarationDetailActivity extends Activity{
 	
-	RelativeLayout relativeLayoutModelChoice;
+	RelativeLayout relativeLayoutModelChoice,relativeLayoutContactChoice;
 	private Button buttonBack ,buttonSend ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class DeclarationDetailActivity extends Activity{
 		
 		//数据初始化
 		relativeLayoutModelChoice=(RelativeLayout)findViewById(R.id.detail_model_control);
+		relativeLayoutContactChoice=(RelativeLayout)findViewById(R.id.detail_contact_type);
 		buttonBack=(Button)findViewById(R.id.detail_button_back);
 		buttonSend=(Button)findViewById(R.id.detail_button_send);
 		//设置监听事件
@@ -36,7 +37,16 @@ public class DeclarationDetailActivity extends Activity{
 				startActivity(intent);
 			}
 		});
-		
+		//合约类型选择界面跳转
+		relativeLayoutContactChoice.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(DeclarationDetailActivity.this,DeclarationContactChoiceActivity.class);
+				startActivity(intent);
+			}
+		});
 		buttonBack.setOnClickListener(new OnClickListener() {
 			
 			@Override
