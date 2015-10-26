@@ -27,25 +27,6 @@ public class MainActivity extends TabActivity  {
     private SuoluetuActivity suolue;
     public Handler handler = new Handler();
     
-	// 手机back按键事件处理
-	private long mExitTime = 0;
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		Log.d("KeyBack", "KeyBack");
-		// TODO Auto-generated method stub
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if ((System.currentTimeMillis() - mExitTime) > 2000) {
-				Toast.makeText(this, "再按一次退出",
-						Toast.LENGTH_SHORT).show();
-				mExitTime = System.currentTimeMillis();
-			} else {
-				finish();
-//				System.exit(0);
-			}
-			return true;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +144,26 @@ public class MainActivity extends TabActivity  {
 		
 	}
 	
-
+	// 手机back按键事件处理
+	private long mExitTime = 0;
+    @Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		Log.d("KeyBack", "KeyBack");
+		// TODO Auto-generated method stub
+		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+		//	if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+					Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+					mExitTime = System.currentTimeMillis();
+				} else {
+					finish();
+					// System.exit(0);
+				}
+		//	}
+			return true;
+		}
+		return super.dispatchKeyEvent(event);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
