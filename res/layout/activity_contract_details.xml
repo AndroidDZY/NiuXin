@@ -11,8 +11,22 @@
 	    android:text="返回"
 	    android:textColor="#FFDAB9"
 	    android:layout_alignParentBottom="true"/>  
+    <View 
+        android:id="@+id/v_contract_details"
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:background="@drawable/line_red_new"
+		android:layout_marginLeft="@dimen/layout_margin_five"
+		android:layout_marginRight="@dimen/layout_margin_five"
+		android:layout_marginBottom="@dimen/layout_margin_five"
+		android:layout_above="@id/btn_contract_details_back"
+        />
+    <ScrollView 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_above="@id/v_contract_details"
+    	 >
     <LinearLayout 
-        android:layout_above="@id/btn_contract_details_back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -26,7 +40,7 @@
         	android:background="@color/red"
         	android:padding="@dimen/layout_margin_five"
         	android:textStyle="bold"/>
-        <RelativeLayout 
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -34,21 +48,21 @@
             android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="11"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="合约类型"/>
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:text="IF1509"/>
-        </RelativeLayout>
+        </LinearLayout>
         <View 
             android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:background="@drawable/line_gray"/>
-        <RelativeLayout 
+            android:layout_height="3dp"
+            android:background="@drawable/line_gray_new"/>
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -56,21 +70,21 @@
             android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="11"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="操作类型"/>
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:text="多开"/>
-        </RelativeLayout>
+        </LinearLayout>
         <View 
             android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:background="@drawable/line_gray"/>
-        <RelativeLayout 
+            android:layout_height="3dp"
+            android:background="@drawable/line_gray_new"/>
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -78,21 +92,22 @@
             android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="11"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="价格"/>
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="3113"/>
-        </RelativeLayout>
+                android:text="3113"
+                android:background="@drawable/bg_declaration_yellow"/>
+        </LinearLayout>
         <View 
             android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:background="@drawable/line_gray"/>
-        <RelativeLayout 
+            android:layout_height="3dp"
+            android:background="@drawable/line_gray_new"/>
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -100,21 +115,30 @@
             android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="12"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="手数"/>
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="20手"/>
-        </RelativeLayout>
+                android:text="20"
+                android:background="@drawable/bg_declaration_yellow_small"
+                />
+            <TextView 
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="手"
+                android:layout_marginLeft="@dimen/layout_margin_five"
+                />
+        </LinearLayout>
         <View 
             android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:background="@drawable/line_gray"/>
-        <RelativeLayout 
+            android:layout_height="3dp"
+            android:background="@drawable/line_gray_new"/>
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -122,21 +146,29 @@
             android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="12"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="仓位"/>
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="15%"/>
-        </RelativeLayout>
+                android:text="15"
+                android:background="@drawable/bg_declaration_yellow_small"/>
+            <TextView 
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:layout_marginLeft="@dimen/layout_margin_five"
+                />
+        </LinearLayout>
         <View 
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@drawable/line_red"/>
-        <RelativeLayout 
+            android:background="@drawable/line_red_new"/>
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -144,21 +176,21 @@
             android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="15"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="止盈止损范围"/>
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:text="无"/>
-        </RelativeLayout>
+        </LinearLayout>
         <View 
             android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:background="@drawable/line_gray"/>
-        <RelativeLayout 
+            android:layout_height="3dp"
+            android:background="@drawable/line_gray_new"/>
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -166,21 +198,21 @@
             android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="15"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="备注"/>
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:text="无"/>
-        </RelativeLayout>
+        </LinearLayout>
         <View 
             android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:background="@drawable/line_gray"/>
-        <RelativeLayout 
+            android:layout_height="3dp"
+            android:background="@drawable/line_gray_new"/>
+        <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -190,13 +222,98 @@
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="配图"/>
+            <ImageView 
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_declaration_map"/>
+        </LinearLayout>
+        <Button 
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/btn_voice"/>
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line_t"
+            android:paddingTop="20dp"
+            android:gravity="center_vertical"
+            >
             <TextView 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="无"/>
-        </RelativeLayout>
+                android:layout_marginLeft="30dp"
+                android:text="报单者"
+                android:textSize="@dimen/textsize_big"/>
+            <ImageView 
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_declaration_head"
+                />
+        </LinearLayout>
+        <View 
+			android:layout_width="match_parent"
+			android:layout_height="10dp"
+			android:background="@drawable/line_red_new"
+			android:layout_marginLeft="@dimen/layout_margin_five"
+			android:layout_marginRight="@dimen/layout_margin_five"
+			android:layout_marginBottom="@dimen/layout_margin_five"
+        	/>
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
+            <TextView 
+                android:layout_width="0dp"
+                android:layout_weight="11"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="收藏报单者"
+                android:textSize="@dimen/textsize_big"/>
+			<ToggleButton
+        		android:id="@+id/tog_btn_collect"
+        		android:layout_width="0dp"
+        		android:layout_weight="3"
+        		android:layout_height="wrap_content"
+        		android:layout_gravity="center_horizontal"
+        		android:background="@android:color/transparent"
+        		android:button="@drawable/ios7_btn"
+        		android:checked="false"
+        		android:text=""
+        		android:textOff=""
+        		android:textOn="" />
+        </LinearLayout>
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
+            <TextView 
+                android:layout_width="0dp"
+                android:layout_weight="11"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="屏蔽该人报单"
+                android:textSize="@dimen/textsize_big"/>
+			<ToggleButton
+        		android:id="@+id/tog_btn_shield"
+        		android:layout_width="0dp"
+        		android:layout_weight="3"
+        		android:layout_height="wrap_content"
+        		android:layout_gravity="center_horizontal"
+        		android:background="@android:color/transparent"
+        		android:button="@drawable/ios7_btn"
+        		android:checked="false"
+        		android:text=""
+        		android:textOff=""
+        		android:textOn="" />
+        </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
