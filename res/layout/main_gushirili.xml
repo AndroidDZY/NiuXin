@@ -12,8 +12,8 @@
     </LinearLayout>
     <View 
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/red"
+        android:layout_height="10dp"
+        android:background="@drawable/bg_dividerline"
         android:layout_marginLeft="@dimen/layout_margin_five"
         android:layout_marginRight="@dimen/layout_margin_five"/>
     <RelativeLayout 
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="请选择自己合适的角色，之后可以修改"
-            android:textSize="@dimen/textsize_middle"
+            android:textSize="@dimen/textsize_small"
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_centerHorizontal="true"
@@ -34,8 +34,8 @@
         <View 
             android:id="@+id/view_declaration_bottom"
         	android:layout_width="match_parent"
-        	android:layout_height="1dp"
-        	android:background="@color/red"
+        	android:layout_height="10dp"
+        	android:background="@drawable/bg_dividerline"
         	android:layout_marginLeft="@dimen/layout_margin_five"
         	android:layout_marginRight="@dimen/layout_margin_five"
         	android:layout_alignParentBottom="true"/>
