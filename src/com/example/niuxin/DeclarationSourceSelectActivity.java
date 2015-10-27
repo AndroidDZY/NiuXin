@@ -7,6 +7,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -15,6 +16,10 @@ import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class DeclarationSourceSelectActivity extends Activity {
+	//1
+//    private SuoluetuActivity suolue;
+//    public Handler handler = new Handler();
+    
 	private ListView listView;
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	private int flag = 0;
@@ -23,10 +28,14 @@ public class DeclarationSourceSelectActivity extends Activity {
 	private int flagDeclarationOne = 0;
 	private int flagDeclarationTwo = 0;
 	private int flagDeclarationThree = 0;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_declaration_source_select);
+		
+		//2
+//		suolue = new SuoluetuActivity(this,handler);
 		
 		//initView();
 		
@@ -68,7 +77,7 @@ public class DeclarationSourceSelectActivity extends Activity {
 				SimpleAdapter adapter=(SimpleAdapter)parent.getAdapter();//找到被点击的Adapter
 	            Map<String,Object> map=(Map<String, Object>) adapter.getItem(position);//找到被点击的列表项
 	            if(Integer.valueOf(map.get("flag").toString())==0){
-	            	flagDeclaration = R.drawable.k_flag;
+	            	flagDeclaration = R.drawable.flag_blue_hook;
 	            }else
 	            	flagDeclaration = 0;
 	            //先清空
@@ -97,19 +106,19 @@ public class DeclarationSourceSelectActivity extends Activity {
 		map = new HashMap<String, Object>();
 		map.put("id", 2);
 		map.put("flag", flagDeclarationOne);
-		map.put("name", "报单者1");
+		map.put("name", "已关注的报单者");
 		list.add(map);
 
 		map = new HashMap<String, Object>();
 		map.put("id", 3);
 		map.put("flag", flagDeclarationTwo);
-		map.put("name", "报单者2");
+		map.put("name", "报单者1");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
 		map.put("id", 4);
 		map.put("flag", flagDeclarationThree);
-		map.put("name", "报单者3");
+		map.put("name", "报单者2");
 		list.add(map);
 
 		return list;
