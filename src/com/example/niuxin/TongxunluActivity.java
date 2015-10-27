@@ -203,7 +203,7 @@ public class TongxunluActivity extends Activity {
 	}
 	
 	// 手机back按键事件处理
-	private long mExitTime = 0;
+/*	private long mExitTime = 0;
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		Log.d("KeyBack", "KeyBack");
@@ -220,6 +220,6 @@ public class TongxunluActivity extends Activity {
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
-	}
+	}*/
 
 }
