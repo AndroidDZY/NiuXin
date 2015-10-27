@@ -13,7 +13,7 @@
     <View 
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@drawable/bg_dividerline"
+        android:background="@drawable/line_red"
         android:layout_marginLeft="@dimen/layout_margin_five"
         android:layout_marginRight="@dimen/layout_margin_five"/>
     <RelativeLayout 
@@ -35,7 +35,7 @@
             android:id="@+id/view_declaration_bottom"
         	android:layout_width="match_parent"
         	android:layout_height="10dp"
-        	android:background="@drawable/bg_dividerline"
+        	android:background="@drawable/line_red"
         	android:layout_marginLeft="@dimen/layout_margin_five"
         	android:layout_marginRight="@dimen/layout_margin_five"
         	android:layout_alignParentBottom="true"/>

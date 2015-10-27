@@ -9,6 +9,7 @@
 	    android:layout_height="@dimen/bottom_btn_width"
 	    android:background="@color/red"
 	    android:text="返回"
+	    android:textColor="#FFDAB9"
 	    android:layout_alignParentBottom="true"/>  
     <LinearLayout 
         android:layout_above="@id/btn_contract_details_back"
@@ -17,16 +18,20 @@
         android:orientation="vertical"
         >
         <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="报单详细内容"/>
-        <View 
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/red"/>
+            android:layout_height="wrap_content"
+            android:text="报单详细内容"
+            android:textColor="@color/white"
+        	android:textSize="@dimen/textsize_big"
+        	android:background="@color/red"
+        	android:padding="@dimen/layout_margin_five"
+        	android:textStyle="bold"/>
         <RelativeLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/layout_margin_ten"
+            android:paddingRight="@dimen/layout_margin_ten"
+            android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
                 android:layout_width="wrap_content"
@@ -37,11 +42,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="if1509"/>
+                android:text="IF1509"/>
         </RelativeLayout>
+        <View 
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:background="@drawable/line_gray"/>
         <RelativeLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/layout_margin_ten"
+            android:paddingRight="@dimen/layout_margin_ten"
+            android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
                 android:layout_width="wrap_content"
@@ -54,9 +66,16 @@
                 android:layout_alignParentRight="true"
                 android:text="多开"/>
         </RelativeLayout>
+        <View 
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:background="@drawable/line_gray"/>
         <RelativeLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/layout_margin_ten"
+            android:paddingRight="@dimen/layout_margin_ten"
+            android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
                 android:layout_width="wrap_content"
@@ -69,9 +88,16 @@
                 android:layout_alignParentRight="true"
                 android:text="3113"/>
         </RelativeLayout>
+        <View 
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:background="@drawable/line_gray"/>
         <RelativeLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/layout_margin_ten"
+            android:paddingRight="@dimen/layout_margin_ten"
+            android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
                 android:layout_width="wrap_content"
@@ -84,9 +110,16 @@
                 android:layout_alignParentRight="true"
                 android:text="20手"/>
         </RelativeLayout>
+        <View 
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:background="@drawable/line_gray"/>
         <RelativeLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/layout_margin_ten"
+            android:paddingRight="@dimen/layout_margin_ten"
+            android:paddingTop="@dimen/layout_margin_five"
             >
             <TextView 
                 android:layout_width="wrap_content"
@@ -101,7 +134,69 @@
         </RelativeLayout>
         <View 
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/red"/>
+            android:layout_height="10dp"
+            android:background="@drawable/line_red"/>
+        <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/layout_margin_ten"
+            android:paddingRight="@dimen/layout_margin_ten"
+            android:paddingTop="@dimen/layout_margin_five"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="止盈止损范围"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="无"/>
+        </RelativeLayout>
+        <View 
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:background="@drawable/line_gray"/>
+        <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/layout_margin_ten"
+            android:paddingRight="@dimen/layout_margin_ten"
+            android:paddingTop="@dimen/layout_margin_five"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="备注"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="无"/>
+        </RelativeLayout>
+        <View 
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:background="@drawable/line_gray"/>
+        <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/layout_margin_ten"
+            android:paddingRight="@dimen/layout_margin_ten"
+            android:paddingTop="@dimen/layout_margin_five"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="配图"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="无"/>
+        </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
