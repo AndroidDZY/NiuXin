@@ -22,7 +22,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	private ListView lvDeclaration;
 	SimpleAdapter declarationAdapter = null;
 	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-	
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
