@@ -13,12 +13,17 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class DeclarationReceiveActivity extends Activity implements OnClickListener{
-	private Button btnSetting, btnSource, btnType;
+	private Button btnSetting, btnSource, btnType,btnBack;
+	private ToggleButton togBtnCollect;
 	private ListView lvDeclaration;
 	SimpleAdapter declarationAdapter = null;
 	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -38,8 +43,8 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		//第五个参数：决定使用listview_declaration.xml文件中的哪些组件来填充列表项
 		lvDeclaration=(ListView)findViewById(R.id.lv_declarationreceive);
 		declarationAdapter= new SimpleAdapter(this, getData(),R.layout.listview_declaration, 
-				new String[]{"name"},
-				new int[]{R.id.tv_declarationreciive_name});
+				new String[]{"declarationName"},
+				new int[]{R.id.tv_declaration_name});
 		lvDeclaration.setAdapter(declarationAdapter);
 		
 		
@@ -61,10 +66,31 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		btnSetting = (Button)findViewById(R.id.btn_declarationreceive_setting);
 		btnSource = (Button)findViewById(R.id.btn_declarationreceive_source);
 		btnType = (Button)findViewById(R.id.btn_declarationreceive_type);
+		btnBack = (Button)findViewById(R.id.btn_declaration_receive_back);
 		
 		btnSetting.setOnClickListener(this);
 		btnSource.setOnClickListener(this);
 		btnType.setOnClickListener(this);
+		btnBack.setOnClickListener(this);
+		
+		togBtnCollect = (ToggleButton) findViewById(R.id.tog_btn_declaration_collect);
+		
+		// 只展示收藏报单切换按钮
+		togBtnCollect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(isChecked){
+					//选中
+					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "只展示收藏报单", Toast.LENGTH_SHORT);
+					toast.show();
+				}else{
+					//未选中
+					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "取消", Toast.LENGTH_SHORT);
+					toast.show();
+				}
+			}
+		});
 	}
 
 	// 定义按钮点击事件
@@ -83,6 +109,9 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				Intent intentType = new Intent(DeclarationReceiveActivity.this, ContractTypeSelectActivity.class);
 				startActivity(intentType);
 				break;
+			case R.id.btn_declaration_receive_back:
+				finish();
+				break;
 			default:
 				break;
 		}		
@@ -96,19 +125,19 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		
 //		map.put("image_chatlog_detailed", R.drawable.head004);
 //		map.put("title_chatlog_detailed", "汪总");
-		map.put("name", "合约1");
+		map.put("declarationName", "合约IF1510");
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
 //		map.put("image_chatlog_detailed", R.drawable.head005);
 //		map.put("title_chatlog_detailed", "豆粕商品讨论组");
-		map.put("name", "合约2");
+		map.put("declarationName", "合约IF1511");
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
 //		map.put("image_chatlog_detailed", R.drawable.head006);
 //		map.put("title_chatlog_detailed", "海螺水泥群组");
-		map.put("name", "合约3");
+		map.put("declarationName", "合约IF1512");
 		list.add(map);
 		
 		return list;

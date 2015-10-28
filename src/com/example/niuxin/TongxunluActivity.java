@@ -89,7 +89,7 @@ public class TongxunluActivity extends Activity {
 		// 第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
 		// 第五个参数：决定使用tongxunlulistview.xml文件中的哪些组件来填充列表项
 		listView_u = (ListView) findViewById(R.id.tonglist);
-		tongxunAdapter = new SimpleAdapter(this, list_friend_qun, R.layout.tongxunlulistview,
+		tongxunAdapter = new SimpleAdapter(this, list_friend_qun, R.layout.listview_tongxunlu,
 				new String[] { "image", "title" }, new int[] { R.id.image_u, R.id.title_u });
 		listView_u.setAdapter(tongxunAdapter);
 

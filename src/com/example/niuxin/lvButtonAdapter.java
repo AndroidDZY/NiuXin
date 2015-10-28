@@ -88,7 +88,7 @@ public class lvButtonAdapter extends BaseAdapter {
         if (convertView != null) {
             holder = (buttonViewHolder) convertView.getTag();
         } else {
-            convertView = mInflater.inflate(R.layout.taglistview, null);
+            convertView = mInflater.inflate(R.layout.listview_tag, null);
             holder = new buttonViewHolder();
             holder.appIcon = (ImageButton)convertView.findViewById(valueViewID[0]);
             holder.appName = (TextView)convertView.findViewById(valueViewID[1]);
