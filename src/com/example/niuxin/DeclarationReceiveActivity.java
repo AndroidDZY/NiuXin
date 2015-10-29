@@ -140,6 +140,12 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		map.put("declarationName", "合约IF1512");
 		list.add(map);
 		
+		map = new HashMap<String, Object>();
+//		map.put("image_chatlog_detailed", R.drawable.head006);
+//		map.put("title_chatlog_detailed", "海螺水泥群组");
+		map.put("declarationName", "合约IF1513");
+		list.add(map);
+		
 		return list;
 	}
 
