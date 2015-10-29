@@ -176,6 +176,9 @@
         android:id="@+id/lv_declarationreceive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="@null"
+        android:layout_marginLeft="@dimen/layout_margin_five"
+        android:layout_marginRight="@dimen/layout_margin_five"
         android:layout_above="@id/v_declaration_receive"
         android:layout_below="@id/lly_declaration_receive"
         >

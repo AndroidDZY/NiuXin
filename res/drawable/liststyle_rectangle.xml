@@ -10,7 +10,7 @@
         <!-- 阴影部分 -->
         <item android:bottom="2.0dip" >
             <shape>
-                <solid android:color="#ffffff"/>
+                <solid android:color="@color/white"/>
                 <corners android:radius="4.0dip"/>
             </shape>
         </item>
