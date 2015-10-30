@@ -53,9 +53,11 @@
                 android:layout_height="wrap_content"
                 android:text="合约类型"/>
             <TextView 
+                android:id="@+id/tv_contract_details_contract"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:text="IF1509"/>
         </LinearLayout>
         <View 
@@ -75,9 +77,11 @@
                 android:layout_height="wrap_content"
                 android:text="操作类型"/>
             <TextView 
+                android:id="@+id/tv_contract_details_operation"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:text="多开"/>
         </LinearLayout>
         <View 
@@ -97,10 +101,14 @@
                 android:layout_height="wrap_content"
                 android:text="价格"/>
             <TextView 
+                android:id="@+id/tv_contract_details_price"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="3113"
+                android:paddingLeft="5dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
                 android:background="@drawable/bg_declaration_yellow"/>
         </LinearLayout>
         <View 
@@ -120,10 +128,14 @@
                 android:layout_height="wrap_content"
                 android:text="手数"/>
             <TextView 
+                android:id="@+id/tv_contract_details_handnum"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:text="20"
+                android:paddingLeft="5dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
                 android:background="@drawable/bg_declaration_yellow_small"
                 />
             <TextView 
@@ -151,10 +163,14 @@
                 android:layout_height="wrap_content"
                 android:text="仓位"/>
             <TextView 
+                android:id="@+id/tv_contract_details_position"
+                android:paddingLeft="5dp"
+                android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:text="15"
+                android:singleLine="true"
                 android:background="@drawable/bg_declaration_yellow_small"/>
             <TextView 
                 android:layout_width="0dp"
@@ -177,14 +193,36 @@
             >
             <TextView 
                 android:layout_width="0dp"
-                android:layout_weight="15"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:text="止盈止损范围"/>
             <TextView 
+                android:id="@+id/tv_contract_details_minnum"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="无"/>
+                android:text="10000"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:paddingLeft="@dimen/layout_margin_five"
+                android:background="@drawable/bg_declaration_yellow_small"/>
+            <View 
+            	android:layout_width="40dp"
+            	android:layout_height="3dp"
+            	android:layout_marginLeft="10dp"
+            	android:layout_gravity="center"
+            	android:background="@drawable/line_gray_new"/>
+            <TextView 
+                android:id="@+id/tv_contract_details_maxnum"
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="50000"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:paddingLeft="@dimen/layout_margin_five"
+                android:background="@drawable/bg_declaration_yellow_small"/>
         </LinearLayout>
         <View 
             android:layout_width="200dp"
@@ -199,13 +237,18 @@
             >
             <TextView 
                 android:layout_width="0dp"
-                android:layout_weight="15"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="备注"/>
             <TextView 
+                android:id="@+id/tv_contract_details_remark"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:paddingLeft="@dimen/layout_margin_five"
+                android:background="@drawable/bg_declaration_remark"
                 android:text="无"/>
         </LinearLayout>
         <View 
@@ -224,6 +267,7 @@
                 android:layout_height="wrap_content"
                 android:text="配图"/>
             <ImageView 
+                android:id="@+id/iv_contract_details_pictureurl"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
@@ -243,6 +287,7 @@
             android:gravity="center_vertical"
             >
             <TextView 
+                android:id="@+id/tv_contract_details_sender_name"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -250,6 +295,7 @@
                 android:text="报单者"
                 android:textSize="@dimen/textsize_big"/>
             <ImageView 
+                android:id="@+id/iv_contract_details_sender_head"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

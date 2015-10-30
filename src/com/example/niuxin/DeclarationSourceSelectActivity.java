@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 public class DeclarationSourceSelectActivity extends Activity {
 	//1
@@ -30,7 +31,7 @@ public class DeclarationSourceSelectActivity extends Activity {
 	private int flagDeclarationOne = 0;
 	private int flagDeclarationTwo = 0;
 	private int flagDeclarationThree = 0;
-	private Button btnBack;
+	private Button btnBack, btnSave;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,18 +42,23 @@ public class DeclarationSourceSelectActivity extends Activity {
 		//2
 //		suolue = new SuoluetuActivity(this,handler);
 		
-		//initView();
-
 		initView();
 		
 		/* 按钮点击事件
 		 * 
 		 */
 		btnBack.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				finish();
+			}
+		});
+		
+		btnSave.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast toast = Toast.makeText(DeclarationSourceSelectActivity.this, "保存完毕", Toast.LENGTH_SHORT);
+				toast.show();
 			}
 		});
 
@@ -65,7 +71,7 @@ public class DeclarationSourceSelectActivity extends Activity {
 		//第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
 		//第五个参数：决定使用listview_declaration_source_select.xml文件中的哪些组件来填充列表项
 		SimpleAdapter adapter= new SimpleAdapter(this, list,R.layout.listview_declaration_source_select, 
-				new String[]{"flag","name"},
+				new String[]{"flag","name"},	//是否选中、报单者名字
 				new int[]{R.id.iv_declaration_source_select_flag,R.id.tv_declaration_source_select_name});
 		listView.setAdapter(adapter);//为listView设置适配器
 		
@@ -104,7 +110,7 @@ public class DeclarationSourceSelectActivity extends Activity {
 	            list.get(1).put("flag", 0);
 	            list.get(2).put("flag", 0);
 	            list.get(3).put("flag", 0);
-	            list.get(position).put("flag", flagDeclaration);//将更新过的k_flag值放入list中        
+	            list.get(position).put("flag", flagDeclaration);//将更新过的flag值放入list中        
 	            adapter.notifyDataSetInvalidated();//使更新过的list数据生效
 			}
 		});
@@ -112,7 +118,8 @@ public class DeclarationSourceSelectActivity extends Activity {
 	
 	private void initView() {
 		// 控件初始化
-		btnBack = (Button)findViewById(R.id.btn_declaration_source_select_back);
+		btnBack = (Button)findViewById(R.id.btn_declaration_source_select_back);	//返回按钮
+		btnSave = (Button)findViewById(R.id.btn_declaration_source_select_save);	//保存按钮
 	}
 
 	private List<Map<String, Object>> getData() {
