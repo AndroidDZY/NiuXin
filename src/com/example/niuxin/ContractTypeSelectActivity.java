@@ -61,7 +61,7 @@ public class ContractTypeSelectActivity extends Activity {
 		//第五个参数：决定使用listview_contract_type_select.xml文件中的哪些组件来填充列表项
 
 		adapter= new SimpleAdapter(this, list,R.layout.listview_contract_type_select, 
-				new String[]{"flag","name"},
+				new String[]{"flag","type"},
 				new int[]{R.id.iv_contract_type_select_flag,R.id.tv_contract_type_select_name});
 		listView.setAdapter(adapter);//为listView设置适配器
 		
@@ -135,9 +135,9 @@ public class ContractTypeSelectActivity extends Activity {
 					Map<String, Object> map = new HashMap<String, Object>();
 					// 获取每一个对象中的值
 					int id = myjObject.getInt("id");
-					String name = myjObject.getString("name");
+					String type = myjObject.getString("type");
 					map.put("id", id);				
-					map.put("name", name);	
+					map.put("type", type);	
 					map.put("flag", 0);
 					list.add(map);
 				} catch (JSONException e) {
@@ -146,17 +146,8 @@ public class ContractTypeSelectActivity extends Activity {
 			}
 			Runnable r = new Runnable() {
 				@Override
-				public void run() {
-					// 这里可以写上更新UI的代码
-					/*
-					 * addAdapter = new SimpleAdapter(zixuan_addActivity.this,
-					 * list, R.layout.addlistview, new String[] { "name",
-					 * "number", "add_flag" }, new int[] { R.id.name, R.id.num,
-					 * R.id.add_flag }); listView.setAdapter(addAdapter);//
-					 * 为listView设置适配器
-					 */
+				public void run() {					
 					adapter.notifyDataSetChanged();
-
 				}
 
 			};
