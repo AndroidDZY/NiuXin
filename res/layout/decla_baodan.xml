@@ -8,6 +8,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_width="0dp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"
         android:orientation="vertical">
@@ -15,15 +16,51 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView android:layout_width="0dp"
+                android:background="@drawable/decla_baodan_contact"
                 android:id="@+id/decla_baodan_tag"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:textColor="#ffffff"
+                android:layout_marginRight="8dp"
                 android:gravity="center"/>
-            <TextView android:layout_width="0dp"
+            <LinearLayout android:layout_width="0dp"
+                android:background="@drawable/decla_baodan_timeblue"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+                <ImageView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/decla_baodan_rili"
+                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="center_vertical"/>
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/decla_baodan_rili"
+                    android:text="2015年9月17日周一"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="2dp"/>
+                <ImageView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/decla_baodan_shizhong"/>
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="10:23"
+                    android:id="@+id/decla_baodan_time"
+                    android:layout_marginLeft="1dp"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp"/>
+            </LinearLayout>
+            <!-- <TextView android:layout_width="wrap_content"
                 android:id="@+id/decla_baodan_time"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="center"/>
+                android:layout_marginLeft="10dp"
+                android:gravity="center"/> -->
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,9 +68,11 @@
             android:layout_marginTop="2dp">
             <Button android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/decla_baodan_type"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:id="@+id/decla_baodan_type"
+                android:textColor="#ffffff"
                 android:textSize="20sp"/>
             <LinearLayout android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -44,27 +83,34 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
+                    android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
                     >
                     <RelativeLayout android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:background="@drawable/decla_baodan_yellow1"
                         android:layout_weight="1">
                         <TextView android:layout_width="wrap_content"
+                            android:layout_marginLeft="2dp"
                             android:layout_height="wrap_content"
                             android:text="价格"
                             android:gravity="center"
                             android:layout_alignParentLeft="true"/>
                         <TextView android:layout_width="wrap_content"
+                            android:background="@drawable/decla_baodan_yellow3"
                             android:layout_height="wrap_content"
                             android:id="@+id/decla_baodan_price"
                             android:gravity="center"
                             android:layout_alignParentRight="true"/>
                     </RelativeLayout>
                     <RelativeLayout android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
                         android:layout_height="0dp"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:background="@drawable/decla_baodan_yellow1">
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
                             android:text="手数"
                             android:gravity="center"
                             android:layout_alignParentLeft="true"/>
@@ -72,6 +118,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/decla_baodan_shoushu"
                             android:gravity="center"
+                            android:background="@drawable/decla_baodan_yellow3"
                             android:layout_alignParentRight="true"/>
                     </RelativeLayout>
                 </LinearLayout>
@@ -79,17 +126,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
+                    android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
                     >
                     <RelativeLayout android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:background="@drawable/decla_baodan_yellow1"
                         android:layout_weight="1">
                         <TextView android:layout_width="wrap_content"
+                            android:layout_marginLeft="2dp"
                             android:layout_height="wrap_content"
                             android:text="盈利"
                             android:gravity="center"
                             android:layout_alignParentLeft="true"/>
                         <TextView android:layout_width="wrap_content"
+                            android:background="@drawable/decla_baodan_yellow3"
                             android:layout_height="wrap_content"
                             android:id="@+id/decla_baodan_gain"
                             android:gravity="center"
@@ -97,15 +148,19 @@
                     </RelativeLayout>
                     <RelativeLayout android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/decla_baodan_yellow1"
                         android:layout_weight="1">
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
                             android:text="仓位"
                             android:gravity="center"
                             android:layout_alignParentLeft="true"/>
                         <TextView android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/decla_baodan_space"
+                            android:background="@drawable/decla_baodan_yellow3"
                             android:gravity="center"
                             android:layout_alignParentRight="true"/>
                     </RelativeLayout>
@@ -119,6 +174,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
+        android:textSize="16sp"
+        android:background="@drawable/decla_baodan_sendobj"
         />
 
 </LinearLayout>

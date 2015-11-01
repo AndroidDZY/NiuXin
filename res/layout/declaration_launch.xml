@@ -3,56 +3,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <LinearLayout android:layout_width="match_parent"
+    <!-- 顶部缩略图 -->
+	 <include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/>  
+    <RelativeLayout android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
-        <RelativeLayout android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/decla_lanch_blue"
+            
+        >
         <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我要报单"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:background="@null"
+            android:textColor="#ffffff"
             android:id="@+id/declaration_launch_detail"
-            android:layout_centerInParent="true"/>
-        <LinearLayout android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:text="通过我们平台认证的操盘手，有能力将自己对操作分享给普通用户的资深期民"
+            android:textColor="#ffffff"
+            android:textSize="8sp" 
+            android:layout_marginBottom="20dp"/>
+
+    </RelativeLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:id="@+id/declaration_launch_paixu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:background="@null"
+                android:entries="@array/baodan_paixu" />
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="已完成报单"
+                android:layout_toLeftOf="@id/declaration_launch_paixu"
+                android:textSize="16sp"
+                android:layout_marginRight="2dp"/>
+             <ImageView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/declaration_launch_paixu"
+                android:background="@drawable/decla_lanch_jiantou"/>
+        </RelativeLayout>
+        <!-- <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="已经完成报单查询"
+                android:layout_width="wrap_content"
+                android:text="已完成报单"
                 android:textSize="16sp"
-                android:layout_marginLeft="10dp"/>
-            <Spinner 
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="2dp"/>
+            <Spinner
                 android:id="@+id/declaration_launch_paixu"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:entries="@array/baodan_paixu"/>
-        </LinearLayout>
-        </RelativeLayout>
-       
-    </LinearLayout>
-     <View  
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:entries="@array/baodan_paixu" />
+            <ImageView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/decla_lanch_jiantou"/>
+        </LinearLayout> -->
+        <View  
     	android:layout_width="match_parent"  
     	android:layout_height="1dp" 
     	android:background="#de4557"  />
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="vertical">
-       <TextView 
-           android:layout_marginTop="5dp"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="点击报单模块可以看到报单详情，点击查看发送对象可以查看目标用户"
-           android:textSize="12sp"/>
-       <ListView android:id="@+id/declaration_tag"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:paddingTop="10dp"></ListView>
-    </LinearLayout>
-    
-
+	    
+	       <TextView 
+	           android:layout_marginTop="5dp"
+	           android:layout_width="match_parent"
+	           android:layout_height="wrap_content"
+	           android:layout_gravity="center"
+	           android:gravity="center"
+	           android:text="点击报单模块可以看到报单详情，点击查看发送对象可以查看目标用户"
+	           android:textSize="9sp"
+	           android:textColor="#d3d3d3"/>
+	       
+	       <ListView android:id="@+id/declaration_tag"
+	           android:layout_width="match_parent"
+	           android:layout_height="wrap_content"
+	           android:paddingTop="20dp"></ListView>
+       
+	 </LinearLayout>
+	 <LinearLayout android:layout_width="match_parent"
+	     android:layout_height="15dp"
+	     android:orientation="horizontal">
+	      <View  
+	    	android:layout_width="match_parent"  
+	    	android:layout_height="1dp" 
+	    	android:background="#de4557"  />
+      </LinearLayout>
+	  <!-- 顶部缩略图 -->
+	<include   
+		android:id="@+id/include_mainbottom"  
+		layout="@layout/main_bottom"/>  
 </LinearLayout>
