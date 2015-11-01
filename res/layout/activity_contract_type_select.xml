@@ -2,36 +2,62 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/white"  >
     <TextView 
         android:id="@+id/tv_contract_type_select"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
         android:text="合约类型选择"
-        android:textSize="@dimen/textsize_big"/>
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_width"
+        android:textSize="@dimen/textsize_big"
         android:background="@color/red"
-        android:layout_below="@id/tv_contract_type_select"/>
-    <LinearLayout 
+        android:padding="@dimen/layout_margin_five"
+        android:textStyle="bold"
+        android:gravity="center_vertical"/>
+     <LinearLayout 
+        android:id="@+id/lly_contract_type_select"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_btn_width"
-        android:background="@color/red"
         android:layout_alignParentBottom="true">
         <Button 
+            android:id="@+id/btn_contract_type_select_back"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="返回"
+            android:textColor="@color/white"
             android:background="@color/red"/>
+        <View 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
         <Button 
+            android:id="@+id/btn_contract_type_select_save"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="保存"
-            android:background="@color/red"/>
+            android:textColor="@color/white"
+            android:background="@color/red"
+            />
     </LinearLayout>
-
+    <View 
+        android:id="@+id/v_contract_type_select"
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:background="@drawable/line_red_new"
+		android:layout_marginLeft="@dimen/layout_margin_five"
+		android:layout_marginRight="@dimen/layout_margin_five"
+		android:layout_marginBottom="@dimen/layout_margin_five"
+		android:layout_above="@id/lly_contract_type_select"
+		/>
+    <ListView 
+     	android:id="@+id/lv_contract_type_select"
+     	android:layout_below="@id/tv_contract_type_select"
+     	android:layout_above="@id/v_contract_type_select"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:divider="@null"
+     />
 </RelativeLayout>
-

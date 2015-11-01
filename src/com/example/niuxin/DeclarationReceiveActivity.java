@@ -13,16 +13,23 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class DeclarationReceiveActivity extends Activity implements OnClickListener{
-	private Button btnSetting, btnSource, btnType;
+	private Button btnSetting, btnSendFrom, btnType,btnBack;
+	private ToggleButton togBtnCollect;
+	private TextView tvContract, tvSendFrom;
 	private ListView lvDeclaration;
 	SimpleAdapter declarationAdapter = null;
 	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-	
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -38,8 +45,11 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		//第五个参数：决定使用listview_declaration.xml文件中的哪些组件来填充列表项
 		lvDeclaration=(ListView)findViewById(R.id.lv_declarationreceive);
 		declarationAdapter= new SimpleAdapter(this, getData(),R.layout.listview_declaration, 
-				new String[]{"name"},
-				new int[]{R.id.tv_declarationreciive_name});
+				new String[]{"contract", "date", "week", "time", "operation", "price", "handnum", "profit", "position", "senderHead", "senderName", "isCollect"},	
+				// 合约类型、日期、星期、时间、操作类型、价格、手数、盈利、仓位、报单者头像、报单者名字、是否收藏标志
+				new int[]{R.id.tv_declaration_contract, R.id.tv_declaration_date, R.id.tv_declaration_week, R.id.tv_declaration_time, 
+			R.id.tv_declaration_operation_type, R.id.tv_declaration_cost ,R.id.tv_declaration_amount, R.id.tv_declaration_profit, 
+			R.id.tv_declaration_position, R.id.iv_declaration_sender_head, R.id.tv_declaration_sender_name, R.id.iv_declaration_collect});
 		lvDeclaration.setAdapter(declarationAdapter);
 		
 		
@@ -58,13 +68,37 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 
 	private void initView() {
 		// 获取各种控件
-		btnSetting = (Button)findViewById(R.id.btn_declarationreceive_setting);
-		btnSource = (Button)findViewById(R.id.btn_declarationreceive_source);
-		btnType = (Button)findViewById(R.id.btn_declarationreceive_type);
+		btnSetting = (Button)findViewById(R.id.btn_declarationreceive_setting);	//“提醒设置”跳转按钮
+		btnSendFrom = (Button)findViewById(R.id.btn_declarationreceive_source);	//“报单来源”跳转按钮
+		btnType = (Button)findViewById(R.id.btn_declarationreceive_type);	//“合约类型”跳转按钮
+		btnBack = (Button)findViewById(R.id.btn_declaration_receive_back);	//返回按钮
 		
 		btnSetting.setOnClickListener(this);
-		btnSource.setOnClickListener(this);
+		btnSendFrom.setOnClickListener(this);
 		btnType.setOnClickListener(this);
+		btnBack.setOnClickListener(this);
+		
+		tvContract = (TextView)findViewById(R.id.tv_declaration_receive_contract);	//“合约类型”显示文本
+		tvSendFrom = (TextView)findViewById(R.id.tv_declaration_receive_source);	//“报单来源”显示文本
+		
+		togBtnCollect = (ToggleButton) findViewById(R.id.tog_btn_declaration_collect);	//“只展示收藏报单”切换按钮
+		
+		// 只展示收藏报单切换按钮
+		togBtnCollect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(isChecked){
+					//选中
+					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "只展示收藏报单", Toast.LENGTH_SHORT);
+					toast.show();
+				}else{
+					//未选中
+					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "取消", Toast.LENGTH_SHORT);
+					toast.show();
+				}
+			}
+		});
 	}
 
 	// 定义按钮点击事件
@@ -83,6 +117,9 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				Intent intentType = new Intent(DeclarationReceiveActivity.this, ContractTypeSelectActivity.class);
 				startActivity(intentType);
 				break;
+			case R.id.btn_declaration_receive_back:
+				finish();
+				break;
 			default:
 				break;
 		}		
@@ -94,21 +131,63 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-//		map.put("image_chatlog_detailed", R.drawable.head004);
-//		map.put("title_chatlog_detailed", "汪总");
-		map.put("name", "合约1");
+		map.put("contract", "合约IF1510");
+		map.put("date", "2015年10月30日");
+		map.put("week", "周五");
+		map.put("time", "10:59");
+		map.put("operation", "多平");
+		map.put("price", "3133");
+		map.put("handnum", "1000");
+		map.put("profit", "6340000");
+		map.put("position", "15%");
+		map.put("senderHead", R.drawable.head_declaration_sender);
+		map.put("senderName", "张三");
+		map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-//		map.put("image_chatlog_detailed", R.drawable.head005);
-//		map.put("title_chatlog_detailed", "豆粕商品讨论组");
-		map.put("name", "合约2");
+		map.put("contract", "合约IF1511");
+		map.put("date", "2015年10月30日");
+		map.put("week", "周五");
+		map.put("time", "10:59");
+		map.put("operation", "多平");
+		map.put("price", "3133");
+		map.put("handnum", "1000");
+		map.put("profit", "6340000");
+		map.put("position", "15%");
+		map.put("senderHead", R.drawable.head_declaration_sender);
+		map.put("senderName", "张三");
+		map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-//		map.put("image_chatlog_detailed", R.drawable.head006);
-//		map.put("title_chatlog_detailed", "海螺水泥群组");
-		map.put("name", "合约3");
+		map.put("contract", "合约IF1512");
+		map.put("date", "2015年10月30日");
+		map.put("week", "周五");
+		map.put("time", "10:59");
+		map.put("operation", "多平");
+		map.put("price", "3133");
+		map.put("handnum", "1000");
+		map.put("profit", "6340000");
+		map.put("position", "15%");
+		map.put("senderHead", R.drawable.head001);
+		map.put("senderName", "李四");
+		map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
+		list.add(map);
+		
+		map = new HashMap<String, Object>();
+		map.put("contract", "合约IF1513");
+		map.put("date", "2015年10月30日");
+		map.put("week", "周五");
+		map.put("time", "10:59");
+		map.put("operation", "多平");
+		map.put("price", "3133");
+		map.put("handnum", "1000");
+		map.put("profit", "6340000");
+		map.put("position", "15%");
+		map.put("senderHead", R.drawable.head001);
+		map.put("senderName", "李四");
+		map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
 		list.add(map);
 		
 		return list;

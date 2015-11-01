@@ -17,7 +17,7 @@ public class GushiriliActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
-		setContentView(R.layout.main_gushirili);
+		setContentView(R.layout.main_declaration);
 		//获取角色改变，发布操盘，接收操盘按钮监听
 		//buttonChangerole=(Button)findViewById(R.id.declaration_changerole);
 		buttonRolelaunch=(Button)findViewById(R.id.declaration_rolelaunch);

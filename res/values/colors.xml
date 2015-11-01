@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<color name="red">#de4557</color>
+	<color name="gray">#FFBDBDBD</color>
     <color name="white">#ffffff</color>
     <color name="gold">#b89766</color>
     <color name="window_bg">#ffeef1f3</color>

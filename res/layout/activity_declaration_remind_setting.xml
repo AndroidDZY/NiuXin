@@ -2,43 +2,77 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/white"  >
     <TextView 
-        android:id="@+id/tv_contract_type_select"
+        android:id="@+id/tv_declaration_remind_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="选择模版"
-        android:textSize="@dimen/textsize_big"/>
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_width"
+        android:text="选择模板"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_big"
         android:background="@color/red"
-        android:layout_below="@id/tv_contract_type_select"/>
-    <LinearLayout 
+        android:padding="@dimen/layout_margin_five"
+        android:textStyle="bold"
+        android:gravity="center_vertical"/>
+     <LinearLayout 
+        android:id="@+id/lly_declaration_remind_setting"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_btn_width"
-        android:background="@color/red"
         android:layout_alignParentBottom="true">
         <Button 
+            android:id="@+id/btn_declaration_remind_setting_back"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="返回"
+            android:textColor="@color/white"
             android:background="@color/red"/>
+        <View 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
         <Button 
+            android:id="@+id/btn_declaration_remind_setting_all"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="全选"
-            android:background="@color/red"/>
+            android:textColor="@color/white"
+            android:background="@color/red"
+            />
+        <View 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
         <Button 
+            android:id="@+id/btn_declaration_remind_setting_delete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="删除"
-            android:background="@color/red"/>
+            android:textColor="@color/white"
+            android:background="@color/red"
+            />
     </LinearLayout>
-
+    <View 
+        android:id="@+id/v_declaration_remind_setting"
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:background="@drawable/line_red_new"
+		android:layout_marginLeft="@dimen/layout_margin_five"
+		android:layout_marginRight="@dimen/layout_margin_five"
+		android:layout_marginBottom="@dimen/layout_margin_five"
+		android:layout_above="@id/lly_declaration_remind_setting"
+		/>
+    <ListView 
+     	android:id="@+id/lv_declaration_remind_setting"
+     	android:layout_below="@id/tv_declaration_remind_setting"
+     	android:layout_above="@id/v_declaration_remind_setting"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:divider="@null"
+     />
 </RelativeLayout>
 
 
