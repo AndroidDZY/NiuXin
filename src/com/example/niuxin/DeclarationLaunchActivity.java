@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -53,12 +55,25 @@ public class DeclarationLaunchActivity extends Activity{
 		button3.setTextColor(0xFFFFFFFF);
 		button3.setTextSize(20);
 		//事件监听
-		//跳转到报单详情
+		//跳转到报单详细内容
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				System.out.println("1111111111111");
+				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
+				startActivity(intent);
+			}
+		});
+		//我要报单
 		iDeclarationDetail.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				System.out.println("1111111111111");
 				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailActivity.class);
 				startActivity(intent);
 			}
