@@ -13,9 +13,9 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -146,7 +146,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("contract", "合约IF1511");
+		map.put("contract", "IF1511");
 		map.put("date", "2015年10月30日");
 		map.put("week", "周五");
 		map.put("time", "10:59");
@@ -161,7 +161,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		list.add(map);	
 		
 		map = new HashMap<String, Object>();
-		map.put("contract", "合约IF1512");
+		map.put("contract", "IF1512");
 		map.put("date", "2015年10月30日");
 		map.put("week", "周五");
 		map.put("time", "10:59");
@@ -176,7 +176,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		list.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("contract", "合约IF1513");
+		map.put("contract", "IF1513");
 		map.put("date", "2015年10月30日");
 		map.put("week", "周五");
 		map.put("time", "10:59");
