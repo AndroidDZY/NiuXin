@@ -54,7 +54,7 @@ public class NiuXinAdapter extends BaseAdapter{
 		View view = null;
 		//根据type不同的数据类型构造不同的View
 		if(type.get(position)==0){
-			view = mInflater.inflate(R.layout.qunlistview, null);//选择群聊布局显示
+			view = mInflater.inflate(R.layout.listview_qun, null);//选择群聊布局显示
 			//从适配器获取群聊数据
 		//	String content=list.get(position).get("data").toString();
 			//分离数据
@@ -77,7 +77,7 @@ public class NiuXinAdapter extends BaseAdapter{
 			
 	
 		}else{
-			view = mInflater.inflate(R.layout.person_list, null);//选择个人聊天布局显示	
+			view = mInflater.inflate(R.layout.listview_person, null);//选择个人聊天布局显示	
 			//从适配器获取个人聊天数据
 		//	String content=list.get(position).get("data").toString();
 			//分离数据

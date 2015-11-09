@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_declaration_list_item"
+    android:orientation="horizontal" >
+    <ImageView 
+        android:id="@+id/iv_declaration_remind_setting_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/layout_margin_ten"
+        android:layout_alignParentLeft="true"
+        />
+    <TextView 
+        android:id="@+id/tv_declaration_remind_setting_name"
+        android:layout_toRightOf="@id/iv_declaration_remind_setting_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"/>
+</RelativeLayout>

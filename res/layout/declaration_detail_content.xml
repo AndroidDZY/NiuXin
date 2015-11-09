@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/> 
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" 
+	    android:layout_below="@id/include">
+	    <LinearLayout android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:background="#de4557"
+		    android:minHeight="30dp">
+		    <TextView android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="报单详细内容"
+		        android:textSize="16sp"
+		        android:layout_gravity="center_vertical"
+		        android:layout_marginLeft="8dp"
+		        android:textColor="#ffffff"/>
+	    </LinearLayout>
+	    <LinearLayout 
+	        android:layout_marginTop="5dp"
+	        android:baselineAligned="false"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="8dp"
+	        android:orientation="horizontal">
+	        <LinearLayout 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:layout_weight="1"
+	            >
+		        <TextView android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="合约类型"
+		            android:textSize="12sp"
+		           />
+		        <View  
+		        android:layout_marginTop="5dp"
+		    	android:layout_width="match_parent"  
+		    	android:layout_height="1dp" 
+		    	android:background="#cccccc"  />
+	        </LinearLayout>
+	        <RelativeLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:layout_marginRight="10dp">
+		        <TextView
+		            android:id="@+id/detail_content_contacttype"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginRight="5dp"
+		            android:text="IF1509"
+		            android:layout_centerInParent="true"
+		            android:textSize="12sp" />
+		    </RelativeLayout>
+	    </LinearLayout>
+	    <LinearLayout 
+	        android:layout_marginTop="3dp"
+	        android:baselineAligned="false"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="8dp"
+	        android:orientation="horizontal">
+	        <LinearLayout 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:layout_weight="1"
+	            >
+		        <TextView android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="操作类型"
+		            android:textSize="12sp"
+		           />
+		        <View  
+		        android:layout_marginTop="5dp"
+		    	android:layout_width="match_parent"  
+		    	android:layout_height="1dp" 
+		    	android:background="#cccccc"  />
+	        </LinearLayout>
+	        <RelativeLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:layout_marginRight="10dp">
+		        <TextView
+		            android:id="@+id/detail_content_operatetype"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginRight="5dp"
+		            android:text="多开"
+		            android:layout_centerInParent="true"
+		            android:textSize="12sp" />
+		    </RelativeLayout>
+	    </LinearLayout>
+	    <LinearLayout  android:baselineAligned="true"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="8dp"
+	        android:orientation="horizontal">
+	        <LinearLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:layout_weight="1">
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="价格"
+		            android:textSize="12sp"
+		            android:layout_alignParentLeft="true"/>
+		        <View  
+		        android:layout_marginTop="5dp"
+		    	android:layout_width="match_parent"  
+		    	android:layout_height="1dp" 
+		    	android:background="#cccccc"  />
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:layout_marginTop="3dp"
+	            android:layout_marginLeft="20dp"
+	            android:layout_marginRight="5dp">
+		        <TextView android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="40dp"
+		            android:background="@drawable/decla_baodan_yellow2"
+		            android:id="@+id/detail_content_price"
+		            android:textSize="12sp"
+		            android:text="3213"
+		            android:gravity="center"/>
+		    </LinearLayout>  
+	    </LinearLayout>
+	    <LinearLayout android:baselineAligned="false"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="8dp"
+	        android:orientation="horizontal">
+	        <LinearLayout android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:orientation="vertical"
+	            android:layout_height="wrap_content">
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="手数"
+		            android:textSize="12sp"
+		            />
+		        <View  
+		        android:layout_marginTop="5dp"
+		    	android:layout_width="match_parent"  
+		    	android:layout_height="1dp" 
+		    	android:background="#cccccc"  />
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="3dp"
+	            android:layout_marginLeft="20dp"
+	            android:layout_marginRight="5dp"
+	            >
+		        <TextView android:id="@+id/detail_content_shoushu"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="12"
+		            android:layout_marginLeft="40dp"
+		            android:layout_gravity="center"
+		            android:gravity="center"
+		            android:textSize="12sp"
+		            android:layout_marginRight="8dp"
+		            android:background="@drawable/decla_baodan_yellow3"/>
+		        <TextView android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="手"
+		            android:textSize="13sp"
+		            />
+	        </LinearLayout>
+	    </LinearLayout>
+	    <LinearLayout android:baselineAligned="false"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="8dp"
+	        android:orientation="horizontal">
+	        <LinearLayout android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:orientation="vertical"
+	            android:layout_height="wrap_content">
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="仓位"
+		            android:textSize="12sp"
+		            />
+		        <View  
+		        android:layout_marginTop="5dp"
+		    	android:layout_width="match_parent"  
+		    	android:layout_height="1dp" 
+		    	android:background="#cccccc"  />
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="3dp"
+	            android:layout_marginLeft="20dp"
+	            android:layout_marginRight="5dp"
+	            >
+		        <TextView android:id="@+id/detail_content_cangwei"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="12"
+		            android:layout_marginLeft="40dp"
+		            android:layout_gravity="center"
+		            android:gravity="center"
+		            android:textSize="12sp"
+		            android:layout_marginRight="8dp"
+		            android:background="@drawable/decla_baodan_yellow3"/>
+		        <TextView android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="%"
+		            android:textSize="13sp"
+		            />
+	        </LinearLayout>
+	    </LinearLayout>
+	    <View  
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="8dp"
+	        android:layout_marginRight="10dp"
+	    	android:layout_width="match_parent"  
+	    	android:layout_height="1dp" 
+	    	android:background="#de4557"  />
+	    <LinearLayout  android:baselineAligned="true"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="10dp"
+	        android:orientation="horizontal">
+	        <LinearLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:layout_weight="1">
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="止盈止损范围"
+		            android:textSize="12sp"
+		            android:layout_alignParentLeft="true"/>
+		        <View  
+		        android:layout_marginTop="5dp"
+		    	android:layout_width="match_parent"  
+		    	android:layout_height="1dp" 
+		    	android:background="#cccccc"  />
+	        </LinearLayout>
+	        <RelativeLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:layout_marginTop="3dp"
+	            android:layout_marginLeft="20dp"
+	            android:layout_marginRight="5dp">
+		        <TextView android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerInParent="true"
+		            android:id="@+id/detail_content_area"
+		            android:textSize="12sp"
+		            android:text="无"
+		            android:gravity="center"/>
+		    </RelativeLayout>  
+	    </LinearLayout>
+	    <LinearLayout  android:baselineAligned="true"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginLeft="10dp"
+	        android:orientation="horizontal">
+	        <LinearLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:layout_weight="1">
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="备注"
+		            android:textSize="12sp"
+		            android:layout_alignParentLeft="true"/>
+		        <View  
+		        android:layout_marginTop="5dp"
+		    	android:layout_width="match_parent"  
+		    	android:layout_height="1dp" 
+		    	android:background="#cccccc"  />
+	        </LinearLayout>
+	        <RelativeLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:layout_marginTop="3dp"
+	            android:layout_marginLeft="20dp"
+	            android:layout_marginRight="5dp">
+		        <TextView android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerInParent="true"
+		            android:id="@+id/detail_content_beizhu"
+		            android:textSize="12sp"
+		            android:text="无"
+		            android:gravity="center"/>
+		    </RelativeLayout>  
+	    </LinearLayout>
+	     <LinearLayout 
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="5dp"
+	        android:layout_marginTop="2dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:minWidth="45dp"
+	        android:orientation="horizontal">
+	        <TextView android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="配图"
+	            android:textSize="12sp"/>
+	        <ImageView android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="2dp"
+	            android:layout_marginLeft="20dp"
+	            android:id="@+id/detail_content_image"
+	            android:background="@drawable/decla_lanch_peitu"
+	            />
+	    </LinearLayout>
+	    <TextView android:layout_marginLeft="10dp"
+	        android:layout_marginTop="3dp"
+	        android:layout_marginRight="8dp"
+	        android:background="@drawable/detail_content_recive1"
+	        android:layout_width="match_parent"
+	        android:layout_height="28dp"
+	        />
+	    <View   android:layout_marginLeft="13dp"
+		        android:layout_marginTop="5dp"
+		        android:layout_marginRight="10dp"
+		    	android:layout_width="match_parent"  
+		    	android:layout_height="1dp" 
+		    	android:background="#cccccc"  />
+	    <LinearLayout android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginTop="5dp"
+	        android:orientation="horizontal">
+	        <TextView android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:text="报单者"
+	            android:textSize="16sp"
+	            android:layout_marginLeft="13dp"/>
+	        <RelativeLayout android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1">
+	        <ImageView android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginRight="8dp"
+	            android:layout_centerInParent="true"
+	            android:id="@+id/detail_content_touxiang"
+	            android:background="@drawable/detail_content_touxiang"/>
+	        </RelativeLayout>
+	    </LinearLayout>
+	    <View  
+	        android:layout_marginTop="5dp"
+	        android:layout_marginLeft="13dp"
+	        android:layout_marginRight="10dp"
+	    	android:layout_width="match_parent"  
+	    	android:layout_height="1dp" 
+	    	android:background="#de4557" />
+	</LinearLayout>
+	<RelativeLayout android:layout_width="match_parent"
+	    android:layout_height="30dp"
+	    android:layout_alignParentBottom="true"
+	    android:background="#de4557">
+		<Button android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="返回"
+		            android:textSize="16sp"
+		            android:textColor="#ffffff"
+		            android:layout_centerInParent="true"
+		            android:background="@null"
+		            android:layout_gravity="center"/>
+	</RelativeLayout>
+</RelativeLayout>

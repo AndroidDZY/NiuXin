@@ -10,15 +10,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 public class DeclarationLaunchActivity extends Activity{
@@ -26,32 +30,105 @@ public class DeclarationLaunchActivity extends Activity{
 	Button iDeclarationDetail ;
 	private ListView listView;
 	private List<HashMap<String, Object>> mData;  
-    
-	
+	private SuoluetuActivity suolue;
+	private View view;
+	public Handler handler = new Handler();
+	private MainActivity mainActivity;
+	private TabHost tabHost;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.declaration_launch);
-		
+		//mainActivity=new MainActivity();
 		//初始化
 		iDeclarationDetail=(Button)findViewById(R.id.declaration_launch_detail);
 		mData=getData();
 		listView=(ListView)findViewById(R.id.declaration_tag);
 		MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
 		listView.setAdapter(adapter);
+		
+		view=(View)findViewById(R.id.include_mainbottom);
+		Button button1=(Button)view.findViewById(R.id.main_tab_niuxin);
+		Button button2=(Button)view.findViewById(R.id.main_tab_guqunguangchang);
+		Button button3=(Button)view.findViewById(R.id.main_tab_gushirili);
+		Button button4=(Button)view.findViewById(R.id.main_tab_more);
+		button3.setTextColor(0xFFFFFFFF);
+		button3.setTextSize(20);
 		//事件监听
-		//跳转到报单详情
+		//跳转到报单详细内容
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				System.out.println("1111111111111");
+				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
+				startActivity(intent);
+			}
+		});
+		//我要报单
 		iDeclarationDetail.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				System.out.println("1111111111111");
 				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailActivity.class);
 				startActivity(intent);
 			}
 		});
-	}
+		button1.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent1 =new Intent(DeclarationLaunchActivity.this ,MainActivity.class);
+				startActivity(intent1);
+			}
+		});
+        button2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent1 =new Intent(DeclarationLaunchActivity.this ,MainActivity.class);
+				
+				startActivity(intent1);
+			}
+		});
+        button3.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent1 =new Intent(DeclarationLaunchActivity.this ,MainActivity.class);
+				startActivity(intent1);
+				
+			}
+		});
+        button4.setOnClickListener(new OnClickListener() {
 	
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent1 =new Intent(DeclarationLaunchActivity.this ,MainActivity.class);
+				startActivity(intent1);
+				
+			}
+		});
+	}
+	public MainActivity getMainActivity() {
+		return mainActivity;
+	}
+	public void setMainActivity(MainActivity mainActivity) {
+		this.mainActivity = mainActivity;
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		suolue = new SuoluetuActivity(this, handler);
+	}
 	//适配器
 	public class MyAdapter extends BaseAdapter {  
         private LayoutInflater mInflater;// 动态布局映射  
@@ -85,12 +162,12 @@ public class DeclarationLaunchActivity extends Activity{
         	tagText.setText(mData.get(position).get("tagText").toString());
         	//时间
         	TextView timeText=(TextView) convertView.findViewById(R.id.decla_baodan_time);
-        	timeText.setText(mData.get(position).get("timeText").toString());
+        	//timeText.setText(mData.get(position).get("timeText").toString());
         	//类型
         	Button typeButton=(Button) convertView.findViewById(R.id.decla_baodan_type);
         	typeButton.setText(mData.get(position).get("typeButton").toString());
         	//价格
-        	TextView priceText=(TextView) convertView.findViewById(R.id.decla_baodan_tag);
+        	TextView priceText=(TextView) convertView.findViewById(R.id.decla_baodan_price);
         	priceText.setText(mData.get(position).get("priceText").toString());
         	//手数
         	TextView handText=(TextView) convertView.findViewById(R.id.decla_baodan_shoushu);

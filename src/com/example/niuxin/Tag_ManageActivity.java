@@ -173,7 +173,7 @@ public class Tag_ManageActivity extends Activity {
 		 * listView.setAdapter(tagAdapter);//为listView设置适配器
 		 */
 		 listView = (ListView)findViewById(R.id.taglist);//获取ListView
-		listItemAdapter = new lvButtonAdapter(this, list, R.layout.taglistview,
+		listItemAdapter = new lvButtonAdapter(this, list, R.layout.listview_tag,
 				new String[] { "img_tag_flag", "tag_name", "img_tag_edit" },
 				new int[] { R.id.img_tag_flag, R.id.tag_name, R.id.img_tag_edit }, this);
 		listView.setAdapter(listItemAdapter);

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends TabActivity {
 	private TabHost tabHost;
+
 	private Button main_niuxin, main_guqunguangchang, main_gushirili, main_more;
 	// 1
 	private SuoluetuActivity suolue;
@@ -42,6 +43,7 @@ public class MainActivity extends TabActivity {
 		}
 		return super.dispatchKeyEvent(event);
 	}
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -153,10 +155,36 @@ public class MainActivity extends TabActivity {
 				.setContent(new Intent(this, GunqunguangchangActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("gushirili").setIndicator("gushirili")
 				.setContent(new Intent(this, GushiriliActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("more").setIndicator("more")
+				.setContent(new Intent(this, MoreActivity.class)));
+		
+		
+	}
+	
+	// 手机back按键事件处理
+/*	private long mExitTime = 0;
+    @Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		Log.d("KeyBack", "KeyBack");
+		// TODO Auto-generated method stub
+		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+		//	if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+					Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+					mExitTime = System.currentTimeMillis();
+				} else {
+					finish();
+					// System.exit(0);
+				}
+		//	}
+			return true;
+		}
+		return super.dispatchKeyEvent(event);
+
 		tabHost.addTab(
 				tabHost.newTabSpec("more").setIndicator("more").setContent(new Intent(this, MoreActivity.class)));
 
-	}
+	}*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
