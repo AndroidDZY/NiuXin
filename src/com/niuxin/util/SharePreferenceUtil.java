@@ -82,7 +82,7 @@ public class SharePreferenceUtil {
 	}
 
 	public int getPort() {
-		return sp.getInt("port", Constants.SERVER_PORT);
+		return sp.getInt("port", 0);
 	}
 
 	// 是否在后台运行标记
