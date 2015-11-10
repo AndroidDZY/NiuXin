@@ -91,6 +91,13 @@
         <activity android:name="com.example.niuxin.DeclarationModelChoiceActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationContactChoiceActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationDetailContentActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationUserselectActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationSendpurposeChoiceActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationQunzuselectActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationQunzushowActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationUsershowActivity"></activity>
+        <activity android:name="com.example.niuxin.DeclarationSendtargetchoicedActivity"></activity>
+        
         
         <activity android:name="com.example.niuxin.DeclarationRemindSettingActivity"></activity>
         <activity android:name="com.example.niuxin.DeclarationSourceSelectActivity"></activity>

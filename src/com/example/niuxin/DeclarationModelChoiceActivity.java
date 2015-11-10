@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ public class DeclarationModelChoiceActivity extends Activity{
 	private ListView listView;
 	private List<HashMap<String, Object>> mData;  
     private Button buttonBack , saveButton ;
-	
+	private ImageView addImageView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -34,6 +35,7 @@ public class DeclarationModelChoiceActivity extends Activity{
 		buttonBack=(Button)findViewById(R.id.declaration_button_back);
 		//保存按钮
 		saveButton=(Button)findViewById(R.id.declaration_button_save);
+		addImageView=(ImageView)findViewById(R.id.declaration_imageview_add);
 		mData = getData();
 		MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
 		listView=(ListView)findViewById(R.id.declaration_list_modelchoice);
@@ -55,6 +57,15 @@ public class DeclarationModelChoiceActivity extends Activity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				//获取数据保存到数据库
+			}
+		});
+		//添加按钮
+		addImageView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
@@ -90,10 +101,8 @@ public class DeclarationModelChoiceActivity extends Activity{
         	checkBox.setText(mData.get(position).get("checkBox").toString());
             TextView modelText = (TextView) convertView.findViewById(R.id.decla_textview_model);
             modelText.setText(mData.get(position).get("modeltext").toString());
-            Button editButton=(Button)convertView.findViewById(R.id.decla_button_edit);
-            editButton.setText(mData.get(position).get("editButton").toString());
-            Button delButton=(Button)convertView.findViewById(R.id.decla_button_del);
-            delButton.setText(mData.get(position).get("delButton").toString());
+            ImageView editButton=(ImageView)convertView.findViewById(R.id.decla_button_edit);
+            ImageView delButton=(ImageView)convertView.findViewById(R.id.decla_button_del);
             return convertView;
 		}  
     }
@@ -106,8 +115,6 @@ public class DeclarationModelChoiceActivity extends Activity{
             map = new HashMap<String, Object>();  
             map.put("checkBox",  i); //r.drawable 
             map.put("modeltext", "模板"+i);  
-            map.put("editButton", "编辑");  
-            map.put("delButton", "删除");  
             list.add(map);  
         }  
   

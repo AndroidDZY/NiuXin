@@ -10,13 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
+import android.widget.TextView;
+/*
+ * 填写报单内容activity
+ */
 public class DeclarationDetailActivity extends Activity{
 	
-	LinearLayout linearLayoutModelChoice,linearLayoutContactChoice,linearLayoutActiontype;
+	LinearLayout linearLayoutModelChoice,linearLayoutContactChoice,linearLayoutActiontype,detailsendchoice;
 	private Button buttonBack ,buttonSend ;
 	EditText editTextPrice, editTextShoushu,editTextCangwei,editTextArea1,editTextArea2,editTextBeizhu;
-	
+	TextView purposeChoiced;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -28,6 +31,7 @@ public class DeclarationDetailActivity extends Activity{
 		linearLayoutModelChoice=(LinearLayout)findViewById(R.id.detail_model_control);
 		linearLayoutContactChoice=(LinearLayout)findViewById(R.id.detail_contact_type);
 		linearLayoutActiontype=(LinearLayout)findViewById(R.id.detail_action_type);
+		detailsendchoice=(LinearLayout)findViewById(R.id.detail_send_desti);
 		buttonBack=(Button)findViewById(R.id.detail_button_back);
 		buttonSend=(Button)findViewById(R.id.detail_button_send);
 		editTextPrice=(EditText)findViewById(R.id.detail_edit_price);
@@ -36,6 +40,8 @@ public class DeclarationDetailActivity extends Activity{
 		editTextArea1=(EditText)findViewById(R.id.detail_edit_area1);
 		editTextArea2=(EditText)findViewById(R.id.detail_edit_area2);
 		editTextBeizhu=(EditText)findViewById(R.id.decla_lanch_detail_edit_beizhu);
+		purposeChoiced=(TextView)findViewById(R.id.detail_purpose_choiced);
+		purposeChoiced.setText("未选");
 		//设置监听事件
 		//模板选择跳转
 		String text="  ";
@@ -69,6 +75,17 @@ public class DeclarationDetailActivity extends Activity{
 				// TODO Auto-generated method stub
 				Intent intent=new Intent(DeclarationDetailActivity.this,DeclarationContactChoiceActivity.class);
 				startActivity(intent);
+			}
+		});
+		//发送目标选择
+		detailsendchoice.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(DeclarationDetailActivity.this,DeclarationSendpurposeChoiceActivity.class);
+				startActivity(intent);
+				purposeChoiced.setText("已选");
 			}
 		});
 		buttonBack.setOnClickListener(new OnClickListener() {

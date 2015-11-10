@@ -27,14 +27,11 @@ import android.widget.TextView;
 
 public class DeclarationLaunchActivity extends Activity{
 	
-	Button iDeclarationDetail ;
+	Button iDeclarationDetail ,backButton;
 	private ListView listView;
 	private List<HashMap<String, Object>> mData;  
 	private SuoluetuActivity suolue;
-	private View view;
 	public Handler handler = new Handler();
-	private MainActivity mainActivity;
-	private TabHost tabHost;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -42,18 +39,12 @@ public class DeclarationLaunchActivity extends Activity{
 		//mainActivity=new MainActivity();
 		//初始化
 		iDeclarationDetail=(Button)findViewById(R.id.declaration_launch_detail);
+		backButton=(Button)findViewById(R.id.declaration_lanch_back);
 		mData=getData();
 		listView=(ListView)findViewById(R.id.declaration_tag);
 		MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
 		listView.setAdapter(adapter);
 		
-		view=(View)findViewById(R.id.include_mainbottom);
-		Button button1=(Button)view.findViewById(R.id.main_tab_niuxin);
-		Button button2=(Button)view.findViewById(R.id.main_tab_guqunguangchang);
-		Button button3=(Button)view.findViewById(R.id.main_tab_gushirili);
-		Button button4=(Button)view.findViewById(R.id.main_tab_more);
-		button3.setTextColor(0xFFFFFFFF);
-		button3.setTextSize(20);
 		//事件监听
 		//跳转到报单详细内容
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -78,51 +69,14 @@ public class DeclarationLaunchActivity extends Activity{
 				startActivity(intent);
 			}
 		});
-		button1.setOnClickListener(new OnClickListener() {
+		backButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent1 =new Intent(DeclarationLaunchActivity.this ,MainActivity.class);
-				startActivity(intent1);
+				finish();
 			}
 		});
-        button2.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent intent1 =new Intent(DeclarationLaunchActivity.this ,MainActivity.class);
-				
-				startActivity(intent1);
-			}
-		});
-        button3.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent intent1 =new Intent(DeclarationLaunchActivity.this ,MainActivity.class);
-				startActivity(intent1);
-				
-			}
-		});
-        button4.setOnClickListener(new OnClickListener() {
-	
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent intent1 =new Intent(DeclarationLaunchActivity.this ,MainActivity.class);
-				startActivity(intent1);
-				
-			}
-		});
-	}
-	public MainActivity getMainActivity() {
-		return mainActivity;
-	}
-	public void setMainActivity(MainActivity mainActivity) {
-		this.mainActivity = mainActivity;
 	}
 	@Override
 	protected void onResume() {
@@ -181,6 +135,16 @@ public class DeclarationLaunchActivity extends Activity{
         	//对象
         	Button objectButton=(Button)convertView.findViewById(R.id.decla_baodan_object);
         	objectButton.setText(mData.get(position).get("objectButton").toString());
+        	objectButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					System.out.println("111111111111111111111111111111111111111111111");
+					Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);
+					startActivity(intent);
+				}
+			});
             return convertView;
 		}  
     }

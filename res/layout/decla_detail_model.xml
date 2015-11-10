@@ -6,6 +6,7 @@
     <CheckBox android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@null"
         android:id="@+id/decla_checkbox"/>
     <TextView 
         android:id="@+id/decla_textview_model"
@@ -17,17 +18,19 @@
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:orientation="horizontal">
-        <Button 
+        <ImageView 
+            android:layout_marginLeft="20dp"
             android:id="@+id/decla_button_edit"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@drawable/modeledit"
             />
-        <Button 
+        <ImageView 
+            android:layout_marginLeft="20dp"
             android:id="@+id/decla_button_del"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@drawable/modeldelete"
             />
         
     </LinearLayout>

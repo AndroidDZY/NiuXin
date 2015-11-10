@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+       <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+        </FrameLayout>
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone" />
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/>  
+         <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:background="#de4557"
+		    android:minHeight="30dp">
+		    <TextView android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="已选择用户查看"
+		        android:textSize="16sp"
+		        android:layout_gravity="center_vertical"
+		        android:layout_marginLeft="8dp"
+		        android:textColor="#ffffff"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent"
+            android:baselineAligned="false"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <RelativeLayout android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <Button android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:textSize="18sp"
+                    android:id="@+id/declartion_target_haoyou"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:layout_marginRight="10dp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <Button android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="18sp"
+                    android:background="@null"
+                    android:id="@+id/declartion_target_qunzu"
+                    android:layout_marginLeft="10dp"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+      <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="-8dp"
+          android:layout_marginRight="10dp"
+          android:background="@drawable/declaration_sendpurpos_redline" />
+    </LinearLayout>
+    <LinearLayout android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/declaration_sendpurpos_redline"/>
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#de4557">
+            <Button android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:id="@+id/declaration_sendtarget_back"
+                android:text="返回"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:background="@null"/>
+            
+        </LinearLayout>
+    </LinearLayout> 
+</TabHost>
+

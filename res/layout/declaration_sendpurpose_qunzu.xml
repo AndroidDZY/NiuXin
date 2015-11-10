@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListView android:id="@+id/declaration_sendpurpose_qunzu_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"></ListView>
+   <LinearLayout android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/declaration_sendpurpos_redline"/>
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#de4557">
+            <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/declaration_sendpur_qunzuback"
+                android:text="返回"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:background="@null"/>
+            <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/declaration_sendpur_qunzuselectall"
+                android:text="全选"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:background="@null"/>
+            <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/declaration_sendpur_qunzusave"
+                android:text="保存"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:background="@null"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>    
+
