@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.niuxin.ContractTypeSelectActivity.SearchThread;
 import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
@@ -40,6 +41,15 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	private Handler handler = new Handler();
 	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 	private SharePreferenceUtil util = null;
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
+		SearchAllThread thread = new SearchAllThread();
+		thread.start();
+	}
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -146,6 +156,8 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			// 向服务器发送数据，如果没有，可以不发送 JSONObject jsonObject = new JSONObject();
 			try {
 				jsonObject.put("userid", util.getId());
+				
+				/////////////////////////////////////////////////
 			
 			} catch (JSONException e) {
 				e.printStackTrace();
