@@ -173,29 +173,31 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
 					Map<String, Object> map = new HashMap<String, Object>();
 					// 发送表单用户的信息
-					String id = myjObject.getString("id");
+					String id = myjObject.getString("id");//表单id
 					String contract = myjObject.getString("contract");
 					String operation = myjObject.getString("operation");
 					String price = myjObject.getString("price");
 					int handnum = myjObject.getInt("handnum");
 					Double position = myjObject.getDouble("position");
-					Double minnum = myjObject.getDouble("minnum");
-					Double maxnum = myjObject.getDouble("maxnum");
-					String remark = myjObject.getString("remark");
-					String pictureurl = myjObject.getString("pictureurl");
-					String audiourl = myjObject.getString("audiourl");
-					String createtime = myjObject.getString("createtime");
-					String name = myjObject.getString("name");
+				//	Double minnum = myjObject.getDouble("minnum");
+				//	Double maxnum = myjObject.getDouble("maxnum");
+				//	String remark = myjObject.getString("remark");
+				//	String pictureurl = myjObject.getString("pictureurl");
+				//	String audiourl = myjObject.getString("audiourl");
+					String date = myjObject.getString("date");
+					String week = myjObject.getString("week");
+					String time = myjObject.getString("time");
+				//	String name = myjObject.getString("name");
 					int sendfromid = myjObject.getInt("sendfrom");
 					int collection = myjObject.getInt("collection");
 					String senduserimg = myjObject.getString("img");
-					String sendusername = myjObject.getString("name");
+					String sendusername = myjObject.getString("sendusername");
 					
 
 					map.put("contract", contract);
-					map.put("date", createtime);
-					map.put("week", "周五");
-					map.put("time", "10:59");
+					map.put("date", date);
+					map.put("week", week);
+					map.put("time", time);
 					map.put("operation", operation);
 					map.put("price", price);
 					map.put("handnum", handnum);
