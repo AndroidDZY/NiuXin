@@ -5,9 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.niuxin.util.Constants;
+import com.niuxin.util.HttpPostUtil;
+import com.niuxin.util.SharePreferenceUtil;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -28,13 +37,14 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	private TextView tvContract, tvSendFrom;
 	private ListView lvDeclaration;
 	SimpleAdapter declarationAdapter = null;
+	private Handler handler = new Handler();
 	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-
+	private SharePreferenceUtil util = null;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_declaration_receive);
-		
+		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		initView();
 		
 		//获取ListView
@@ -124,6 +134,100 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				break;
 		}		
 	}
+	
+	
+	class SearchAllThread extends Thread {//默认情况下，什么也没选择，得到的搜索结果。
+		@Override
+		public void run() {			
+			// 新建工具类，向服务器发送Http请求
+			HttpPostUtil postUtil = new HttpPostUtil();
+			JSONArray jArray = new JSONArray();
+			JSONObject jsonObject = new JSONObject();
+			// 向服务器发送数据，如果没有，可以不发送 JSONObject jsonObject = new JSONObject();
+			try {
+				jsonObject.put("userid", util.getId());
+			
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			jArray.put(jsonObject);
+		
+			// 设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/form/form_selectAll.do");
+			// 向服务器发送数据
+			postUtil.setRequest(jArray);
+
+			// 从服务器获取数据
+			String res = postUtil.run();
+			// 对从服务器获取数据进行解析
+			JSONArray jsonArray = null;
+			try {
+				jsonArray = new JSONArray(res);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			list.clear();
+			
+			for (int i = 0; i < jsonArray.length(); i++) {
+				try {
+					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+					Map<String, Object> map = new HashMap<String, Object>();
+					// 发送表单用户的信息
+					String id = myjObject.getString("id");
+					String contract = myjObject.getString("contract");
+					String operation = myjObject.getString("operation");
+					String price = myjObject.getString("price");
+					int handnum = myjObject.getInt("handnum");
+					Double position = myjObject.getDouble("position");
+					Double minnum = myjObject.getDouble("minnum");
+					Double maxnum = myjObject.getDouble("maxnum");
+					String remark = myjObject.getString("remark");
+					String pictureurl = myjObject.getString("pictureurl");
+					String audiourl = myjObject.getString("audiourl");
+					String createtime = myjObject.getString("createtime");
+					String name = myjObject.getString("name");
+					int sendfromid = myjObject.getInt("sendfrom");
+					int collection = myjObject.getInt("collection");
+					String senduserimg = myjObject.getString("img");
+					String sendusername = myjObject.getString("name");
+					
+
+					map.put("contract", contract);
+					map.put("date", createtime);
+					map.put("week", "周五");
+					map.put("time", "10:59");
+					map.put("operation", operation);
+					map.put("price", price);
+					map.put("handnum", handnum);
+					map.put("profit", "6340000");
+					map.put("position", position+"%");
+					map.put("senderHead", senduserimg);
+					map.put("senderName", sendusername);
+					map.put("senderId", sendfromid);//发送用户的id
+					map.put("id", id);//表单id
+					if(collection==0)
+						map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
+					list.add(map);
+					
+					list.add(map);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			Runnable r = new Runnable() {
+				@Override
+				public void run() {				
+					declarationAdapter.notifyDataSetChanged();
+
+				}
+
+			};
+			handler.post(r);
+		}
+	}
+
+	
+	
 	
 	// listview适配器数据加载
 	private List<Map<String, Object>> getData() {
