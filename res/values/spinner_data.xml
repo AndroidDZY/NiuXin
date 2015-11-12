@@ -40,9 +40,9 @@
     	<item>一星</item>    
 	</string-array> 
 	<string-array name="baodan_paixu">  
-    	<item>按时间排序</item>  
-    	<item>按合约类型</item>
-    	<item>按接收者</item>    
+    	<item>按时间顺序查询</item>  
+    	<item>按合约类型查询</item>
+    	<item>按接收者查询</item>    
 	</string-array> 
 	<string-array name="baodan_type">  
     	<item>我要报单</item>  
