@@ -156,9 +156,12 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			// 向服务器发送数据，如果没有，可以不发送 JSONObject jsonObject = new JSONObject();
 			try {
 				//1 用json进行解析接收到的参数 a接收用户的id b报单来源（用户id，群组id 全选为-1 多个以逗号分隔） c合约类型（全选为-1  多个以逗号分隔）  d只展示收藏的报单（关闭为-1 开启为1）
-				jsonObject.put("userid", util.getId()); //用户的id
-				jsonObject.put("userid", util.getId()); //用户的id
-
+				jsonObject.put("userid", util.getId()); //用户自己的id
+				jsonObject.put("sendtouserid", ""); //发送给用户的id
+				jsonObject.put("sendtogroupid", ""); //发送给群组的id
+				jsonObject.put("contract", ""); //合约类型
+				jsonObject.put("collection", ""); //是否只展示收藏 0表示没选择 1表示选择
+				
 
 				
 				/////////////////////////////////////////////////
@@ -194,7 +197,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					String operation = myjObject.getString("operation");
 					BigDecimal price = (BigDecimal) myjObject.get("price");
 					int handnum = myjObject.getInt("handnum");
-					Double position = (Double) myjObject.get("position");
+					Double position =  myjObject.getDouble("position");
 					BigDecimal profit = (BigDecimal) myjObject.get("profit");
 				//	Double minnum = myjObject.getDouble("minnum");
 				//	Double maxnum = myjObject.getDouble("maxnum");
