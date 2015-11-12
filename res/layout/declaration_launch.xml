@@ -4,134 +4,136 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     <!-- 顶部缩略图 -->
-	 <include   
+	<include   
 		android:id="@+id/include"  
-		layout="@layout/suolue"/>  
-    <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/decla_lanch_blue"
-            
+		layout="@layout/suolue"
+		/>
+	  
+    <RelativeLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/bg_gray"
         >
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我要报单"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"
-            android:background="@null"
-            android:textColor="#ffffff"
-            android:id="@+id/declaration_launch_detail"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            android:text="通过我们平台认证的操盘手，有能力将自己对操作分享给普通用户的资深期民"
-            android:textColor="#ffffff"
-            android:textSize="8sp" 
-            android:layout_marginBottom="20dp"/>
-
+        <RelativeLayout 
+        	android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:background="@drawable/decla_lanch_blue"
+        	android:layout_marginTop="@dimen/layout_margin_ten"
+        	android:layout_marginBottom="@dimen/layout_margin_ten"
+        	android:layout_marginLeft="@dimen/layout_margin_five"
+        	android:layout_marginRight="@dimen/layout_margin_five"
+            >
+            <Button android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="我要报单"
+            	android:textSize="@dimen/textsize_big"
+            	android:layout_centerInParent="true"
+            	android:background="@null"
+            	android:layout_marginTop="-8dp"
+            	android:textColor="#ffffff"
+            	android:id="@+id/declaration_launch_detail"
+            	/>
+        	<TextView
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_below="@id/declaration_launch_detail"
+            	android:layout_centerHorizontal="true"
+            	android:gravity="center_horizontal"
+            	android:text="通过我们平台认证的操盘手，有能力将自己对操作分享给普通用户的资深期民"
+            	android:textColor="#ffffff"
+            	android:textSize="6sp" 
+            	android:layout_marginTop="-8dp"
+            	/>
+        </RelativeLayout>
     </RelativeLayout>
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="3"
-        android:orientation="vertical">
-        <RelativeLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Spinner
-                android:id="@+id/declaration_launch_paixu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:background="@null"
-                android:entries="@array/baodan_paixu" />
-            <TextView android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="已完成报单"
-                android:layout_toLeftOf="@id/declaration_launch_paixu"
-                android:textSize="16sp"
-                android:layout_marginRight="2dp"/>
-             <ImageView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_gravity="center_vertical"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/declaration_launch_paixu"
-                android:background="@drawable/decla_lanch_jiantou"/>
-        </RelativeLayout>
-        <!-- <LinearLayout android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:background="@color/white"
+        android:orientation="vertical"
+        >
+        <RelativeLayout 
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="已完成报单"
-                android:textSize="16sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="2dp"/>
-            <Spinner
-                android:id="@+id/declaration_launch_paixu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@null"
-                android:entries="@array/baodan_paixu" />
-            <ImageView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/decla_lanch_jiantou"/>
-        </LinearLayout> -->
-        <View  
-    	android:layout_width="match_parent"  
-    	android:layout_height="1dp" 
-    	android:background="#de4557"  />
-	    
+            >
+            <LinearLayout 
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:orientation="horizontal"
+            	android:layout_centerInParent="true"
+            	android:gravity="center"
+            	>
+        		<TextView android:layout_height="wrap_content"
+                	android:layout_width="wrap_content"
+                	android:text="已完成报单"
+                	android:textSize="@dimen/textsize_small"
+                	android:textColor="@color/black"
+                	/>
+            	<Spinner
+                	android:id="@+id/declaration_launch_paixu"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:background="@null"
+                	android:layout_marginLeft="5dp"
+                	android:layout_marginRight="5dp"
+                	
+					/>
+             	<ImageView 
+             	    android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:background="@drawable/decla_lanch_jiantou"
+                	/>
+        	</LinearLayout> 
+        </RelativeLayout>
+
+    	<View 
+			android:layout_width="match_parent"
+			android:layout_height="10dp"
+			android:background="@drawable/line_red_new"
+			android:layout_marginLeft="@dimen/layout_margin_five"
+			android:layout_marginRight="@dimen/layout_margin_five"
+        	/>
 	       <TextView 
-	           android:layout_marginTop="5dp"
 	           android:layout_width="match_parent"
 	           android:layout_height="wrap_content"
 	           android:layout_gravity="center"
 	           android:gravity="center"
 	           android:text="点击报单模块可以看到报单详情，点击查看发送对象可以查看目标用户"
-	           android:textSize="9sp"
-	           android:textColor="#d3d3d3"/>
+	           android:textSize="@dimen/textsize_ssmall"
+	           android:textColor="@color/gray"/>
 	       
 	       <ListView android:id="@+id/declaration_tag"
-	           android:layout_width="match_parent"
-	           android:layout_height="wrap_content"
-	           android:paddingTop="20dp"></ListView>
-       
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:divider="@null"
+        		android:layout_marginLeft="@dimen/layout_margin_five"
+        		android:layout_marginRight="@dimen/layout_margin_five"
+	           >
+	       </ListView>
+
 	 </LinearLayout>
-	 <LinearLayout android:layout_width="match_parent"
-	     android:layout_height="15dp"
-	     android:orientation="horizontal">
-	      <View  
-	    	android:layout_width="match_parent"  
-	    	android:layout_height="1dp" 
-	    	android:background="#de4557"  />
-      </LinearLayout>
-	  <!-- 顶部缩略图 -->
+	 <!-- 底部按钮 -->
 	<LinearLayout android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    android:layout_gravity="bottom"
-	    android:background="#de4557">
-	    <Button android:layout_width="0dp"
-	        android:layout_height="26dp"
+	    android:orientation="vertical"
+	    android:layout_alignParentBottom="true"
+	    android:background="@color/white">
+	    
+	    <View 
+			android:layout_width="match_parent"
+			android:layout_height="10dp"
+			android:background="@drawable/line_red_new"
+			android:layout_marginLeft="@dimen/layout_margin_five"
+			android:layout_marginRight="@dimen/layout_margin_five"
+			android:layout_marginBottom="@dimen/layout_margin_five"
+        	/>
+	    <Button android:layout_width="match_parent"
+	        android:layout_height="@dimen/bottom_btn_width"
 	        android:id="@+id/declaration_lanch_back"
-	        android:layout_weight="1"
 	        android:text="返回"
 	        android:textColor="#ffffff"
-	        android:textSize="16sp"
-	        android:background="@null"/>
+	        android:textSize="@dimen/textsize_big"
+	        android:background="@color/red"/>
 	</LinearLayout>
 </LinearLayout>

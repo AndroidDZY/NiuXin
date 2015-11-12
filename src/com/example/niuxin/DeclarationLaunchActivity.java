@@ -18,10 +18,12 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -29,9 +31,11 @@ public class DeclarationLaunchActivity extends Activity{
 	
 	Button iDeclarationDetail ,backButton;
 	private ListView listView;
+	private Spinner spinner;
 	private List<HashMap<String, Object>> mData;  
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
+	String[] declaOrder = {"按时间顺序查询", "按合约类型查询", "按接收者查询"};
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -44,6 +48,10 @@ public class DeclarationLaunchActivity extends Activity{
 		listView=(ListView)findViewById(R.id.declaration_tag);
 		MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
 		listView.setAdapter(adapter);
+		
+		spinner = (Spinner)findViewById(R.id.declaration_launch_paixu);  
+		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.decla_spinner, declaOrder);   //此处加上自己的样式
+		spinner.setAdapter(spinnerAdapter);
 		
 		//事件监听
 		//跳转到报单详细内容
@@ -110,32 +118,38 @@ public class DeclarationLaunchActivity extends Activity{
         @Override
 		public View getView(int position, View convertView, ViewGroup arg2) {
 			// TODO Auto-generated method stub
-        	convertView = mInflater.inflate(R.layout.decla_baodan, null);//根据布局文件实例化view 
-        	//标签
-        	TextView tagText=(TextView) convertView.findViewById(R.id.decla_baodan_tag);
+        	convertView = mInflater.inflate(R.layout.listview_set_declaration, null);//根据布局文件实例化view 
+        	//合约
+        	TextView tagText=(TextView) convertView.findViewById(R.id.tv_declaration_contract_set);
         	tagText.setText(mData.get(position).get("tagText").toString());
-        	//时间
-        	TextView timeText=(TextView) convertView.findViewById(R.id.decla_baodan_time);
+        	//日期
+        	TextView dateText=(TextView) convertView.findViewById(R.id.tv_declaration_date_set);
         	//timeText.setText(mData.get(position).get("timeText").toString());
-        	//类型
-        	Button typeButton=(Button) convertView.findViewById(R.id.decla_baodan_type);
+        	//星期
+        	TextView weekText=(TextView) convertView.findViewById(R.id.tv_declaration_week_set);
+        	//timeText.setText(mData.get(position).get("timeText").toString());
+        	//时间
+        	TextView timeText=(TextView) convertView.findViewById(R.id.tv_declaration_time_set);
+        	//timeText.setText(mData.get(position).get("timeText").toString());
+        	//操作类型
+        	TextView typeButton=(TextView) convertView.findViewById(R.id.tv_declaration_operation_type_set);
         	typeButton.setText(mData.get(position).get("typeButton").toString());
         	//价格
-        	TextView priceText=(TextView) convertView.findViewById(R.id.decla_baodan_price);
+        	TextView priceText=(TextView) convertView.findViewById(R.id.tv_declaration_cost_set);
         	priceText.setText(mData.get(position).get("priceText").toString());
         	//手数
-        	TextView handText=(TextView) convertView.findViewById(R.id.decla_baodan_shoushu);
+        	TextView handText=(TextView) convertView.findViewById(R.id.tv_declaration_amount_set);
         	handText.setText(mData.get(position).get("handText").toString());
         	//盈利
-        	TextView gainText=(TextView) convertView.findViewById(R.id.decla_baodan_gain);
+        	TextView gainText=(TextView) convertView.findViewById(R.id.tv_declaration_profit_set);
         	gainText.setText(mData.get(position).get("gainText").toString());
         	//仓位
-        	TextView spaceText=(TextView) convertView.findViewById(R.id.decla_baodan_space);
+        	TextView spaceText=(TextView) convertView.findViewById(R.id.tv_declaration_position_set);
         	spaceText.setText(mData.get(position).get("spaceText").toString());
         	//对象
-        	Button objectButton=(Button)convertView.findViewById(R.id.decla_baodan_object);
-        	objectButton.setText(mData.get(position).get("objectButton").toString());
-        	objectButton.setOnClickListener(new OnClickListener() {
+        	TextView sendtoText=(TextView)convertView.findViewById(R.id.tv_declaration_sendto_set);
+//        	sendtoText.setText(mData.get(position).get("objectButton").toString());
+        	sendtoText.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View arg0) {
@@ -162,7 +176,6 @@ public class DeclarationLaunchActivity extends Activity{
             map.put("handText", "1111");  
             map.put("gainText", "250");
             map.put("spaceText", "15%");
-            map.put("objectButton", "查看发送对象");
             list.add(map);  
         }  
   
