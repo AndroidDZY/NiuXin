@@ -1,5 +1,6 @@
 package com.example.niuxin;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.niuxin.ContractTypeSelectActivity.SearchThread;
 import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
@@ -155,7 +155,11 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			JSONObject jsonObject = new JSONObject();
 			// 向服务器发送数据，如果没有，可以不发送 JSONObject jsonObject = new JSONObject();
 			try {
-				jsonObject.put("userid", util.getId());
+				//1 用json进行解析接收到的参数 a接收用户的id b报单来源（用户id，群组id 全选为-1 多个以逗号分隔） c合约类型（全选为-1  多个以逗号分隔）  d只展示收藏的报单（关闭为-1 开启为1）
+				jsonObject.put("userid", util.getId()); //用户的id
+				jsonObject.put("userid", util.getId()); //用户的id
+
+
 				
 				/////////////////////////////////////////////////
 			
@@ -188,9 +192,10 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					String id = myjObject.getString("id");//表单id
 					String contract = myjObject.getString("contract");
 					String operation = myjObject.getString("operation");
-					String price = myjObject.getString("price");
+					BigDecimal price = (BigDecimal) myjObject.get("price");
 					int handnum = myjObject.getInt("handnum");
-					Double position = myjObject.getDouble("position");
+					Double position = (Double) myjObject.get("position");
+					BigDecimal profit = (BigDecimal) myjObject.get("profit");
 				//	Double minnum = myjObject.getDouble("minnum");
 				//	Double maxnum = myjObject.getDouble("maxnum");
 				//	String remark = myjObject.getString("remark");
@@ -213,7 +218,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					map.put("operation", operation);
 					map.put("price", price);
 					map.put("handnum", handnum);
-					map.put("profit", "6340000");
+					map.put("profit", profit);
 					map.put("position", position+"%");
 					map.put("senderHead", senduserimg);
 					map.put("senderName", sendusername);
@@ -221,6 +226,8 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					map.put("id", id);//表单id
 					if(collection==0)
 						map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
+					else
+						map.put("isCollect", R.drawable.ic_declaration_star_pressed);
 					list.add(map);
 					
 					list.add(map);
@@ -232,7 +239,6 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				@Override
 				public void run() {				
 					declarationAdapter.notifyDataSetChanged();
-
 				}
 
 			};
@@ -241,8 +247,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	}
 
 	
-	
-	
+
 	// listview适配器数据加载
 	private List<Map<String, Object>> getData() {
 		// TODO Auto-generated method stub
