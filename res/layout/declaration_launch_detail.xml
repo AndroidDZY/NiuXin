@@ -2,15 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+	<!-- 顶部缩略图 -->
      <include   
 		android:id="@+id/include"  
-		layout="@layout/suolue"/>  
-<LinearLayout 
+		layout="@layout/suolue"/> 
+		
+         <ScrollView 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_below="@id/include"
+    	 >
+	<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
-    android:layout_below="@id/include">
+    >
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -19,23 +25,23 @@
 	    <TextView android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="填写报单内容"
-	        android:textSize="16sp"
+	        android:textSize="@dimen/textsize_middle"
 	        android:layout_gravity="center_vertical"
-	        android:layout_marginLeft="8dp"
-	        android:textColor="#ffffff"/>
+	        android:layout_marginLeft="@dimen/layout_margin_eight"
+	        android:textColor="@color/white"/>
     </LinearLayout>
     <LinearLayout android:id="@+id/detail_model_control"
         android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="@dimen/layout_margin_five"
+        android:layout_marginLeft="@dimen/layout_margin_eight"
         android:orientation="horizontal">
         <LinearLayout 
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
+            android:layout_weight="3"
             >
 	        <TextView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -44,13 +50,13 @@
 	           />
 	        <View  
 	        android:layout_marginTop="5dp"
-	    	android:layout_width="match_parent"  
-	    	android:layout_height="1dp" 
+	    	android:layout_width="150dp"  
+	    	android:layout_height="0.5dp" 
 	    	android:background="#cccccc"  />
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginRight="10dp">
 	        <TextView
 	            android:id="@+id/detail_model_choice"
@@ -79,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
+            android:layout_weight="3"
             >
 	        <TextView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -88,13 +94,13 @@
 	           />
 	        <View  
 	        android:layout_marginTop="5dp"
-	    	android:layout_width="match_parent"  
-	    	android:layout_height="1dp" 
+	    	android:layout_width="150dp"  
+	    	android:layout_height="0.5dp" 
 	    	android:background="#cccccc"  />
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginRight="10dp">
 	        <TextView
 	            android:id="@+id/detail_contact_show"
@@ -143,7 +149,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
+            android:layout_weight="3"
             >
 	        <TextView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -152,13 +158,13 @@
 	           />
 	        <View  
 	        android:layout_marginTop="5dp"
-	    	android:layout_width="match_parent"  
-	    	android:layout_height="1dp" 
+	    	android:layout_width="150dp"  
+	    	android:layout_height="0.5dp" 
 	    	android:background="#cccccc"  />
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginRight="10dp">
 	        <TextView
 	            android:id="@+id/detail_control_show"
@@ -206,7 +212,7 @@
         <LinearLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="3">
 	        <TextView 
 	            android:id="@+id/detail_price"
 	            android:layout_width="wrap_content"
@@ -216,15 +222,15 @@
 	            android:layout_alignParentLeft="true"/>
 	        <View  
 	        android:layout_marginTop="5dp"
-	    	android:layout_width="match_parent"  
-	    	android:layout_height="1dp" 
+	    	android:layout_width="150dp"  
+	    	android:layout_height="0.5dp" 
 	    	android:background="#cccccc"  />
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginRight="5dp">
 	        <EditText
 	            android:layout_width="wrap_content"
@@ -232,7 +238,7 @@
 	            android:layout_centerInParent="true"
 	            android:background="@drawable/decla_baodan_yellow2"
 	            android:inputType="text"
-	            android:minWidth="90dp"
+	            android:minWidth="60dp"
 	            android:textSize="12sp"
 	            android:id="@+id/detail_edit_price"/>
 
@@ -246,24 +252,24 @@
         android:layout_marginLeft="8dp"
         android:orientation="horizontal">
         <LinearLayout android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:orientation="vertical"
             android:layout_height="wrap_content">
 	        <TextView 
 	            android:id="@+id/detail_shoushu"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="手数"
+	            android:text="手数  "
 	            android:textSize="12sp"
 	            />
 	        <View  
 	        android:layout_marginTop="5dp"
-	    	android:layout_width="match_parent"  
-	    	android:layout_height="1dp" 
+	    	android:layout_width="150dp"  
+	    	android:layout_height="0.5dp" 
 	    	android:background="#cccccc"  />
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginLeft="20dp"
@@ -272,8 +278,8 @@
 	        <EditText
 	            android:id="@+id/detail_edit_shoushu"
 	            android:layout_width="wrap_content"
-	            android:minWidth="60dp"
-	            android:background="@drawable/decla_baodan_yellow2"
+	            android:minWidth="50dp"
+	            android:background="@drawable/decla_baodan_yellow3"
 	            android:layout_centerInParent="true"
 	            android:textSize="12sp"
 	            android:layout_marginRight="3dp"
@@ -285,6 +291,7 @@
 	            android:layout_toRightOf="@id/detail_edit_shoushu"
 	            android:layout_alignBaseline="@+id/detail_edit_shoushu"
 	            android:text="手"
+	            android:textSize="12sp"
 	            android:layout_alignParentTop="true"/>
         </RelativeLayout>
     </LinearLayout>
@@ -298,7 +305,7 @@
         android:orientation="horizontal">
         <LinearLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:orientation="horizontal">
 	        <TextView 
 	            android:id="@+id/detail_cangwei"
@@ -309,7 +316,7 @@
 	            android:layout_alignParentLeft="true"/>
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="20dp"
@@ -317,9 +324,9 @@
 	        <EditText
 	            android:id="@+id/detail_edit_cangwei"
 	            android:layout_width="wrap_content"
-	            android:minWidth="60dp"
+	            android:minWidth="50dp"
 	            android:inputType="text"
-	            android:background="@drawable/decla_baodan_yellow2"
+	            android:background="@drawable/decla_baodan_yellow3"
 	            android:layout_centerInParent="true"
 	            android:textSize="12sp"
 	            android:layout_height="wrap_content"
@@ -329,17 +336,19 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="%"
+	            android:textSize="12sp"
 	             android:layout_toRightOf="@id/detail_edit_cangwei"
 	            android:layout_alignParentTop="true"/>
         </RelativeLayout>
     </LinearLayout>
-    <View  
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="10dp"
-    	android:layout_width="match_parent"  
-    	android:layout_height="1dp" 
-    	android:background="#de4557"  />
+	 <View 
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:background="@drawable/line_red_new"
+		android:layout_marginLeft="@dimen/layout_margin_five"
+		android:layout_marginRight="@dimen/layout_margin_five"
+		android:layout_marginBottom="@dimen/layout_margin_five"
+        />
     <LinearLayout 
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
@@ -371,7 +380,7 @@
 		        android:layout_marginLeft="2dp"
 		        android:layout_marginRight="2dp"
 		    	android:layout_width="0dp"  
-		    	android:layout_height="1dp" 
+		    	android:layout_height="0.5dp" 
 		    	android:background="#cccccc"  />
             <EditText android:layout_width="0dp"
                 android:textSize="12sp"
@@ -384,6 +393,12 @@
                 android:background="@drawable/decla_baodan_yellow2"/> 
         </LinearLayout>
     </LinearLayout>
+    <View  
+	        android:layout_marginTop="5dp"
+	        android:layout_marginLeft="8dp"
+	    	android:layout_width="150dp"  
+	    	android:layout_height="0.5dp" 
+	    	android:background="#cccccc"  />
     <LinearLayout 
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
@@ -407,6 +422,13 @@
             android:id="@+id/decla_lanch_detail_edit_beizhu"
             android:background="@drawable/decla_lanch_detail_beizhu"/>
     </LinearLayout>
+    
+        <View  
+	        android:layout_marginTop="5dp"
+	        android:layout_marginLeft="8dp"
+	    	android:layout_width="150dp"  
+	    	android:layout_height="0.5dp" 
+	    	android:background="#cccccc"  />
     <LinearLayout 
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
@@ -419,14 +441,16 @@
             android:layout_height="wrap_content"
             android:text="配图"
             android:textSize="12sp"/>
-        <ImageView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="20dp"
             android:background="@drawable/decla_lanch_peitu"
             />
         
         </LinearLayout>
+        
+    
         <Button 
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
@@ -437,7 +461,7 @@
             android:id="@+id/detail_button_luying"/>
     
   </LinearLayout>
-  
+  </ScrollView> 
   <LinearLayout 
       android:orientation="vertical"
       android:layout_width="match_parent"
@@ -483,53 +507,62 @@
 	           </RelativeLayout>
 	      </LinearLayout>
 	 </LinearLayout>
-     <View  
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-    	android:layout_width="match_parent"  
-    	android:layout_height="1dp" 
-    	android:background="#de4557"  />
+	
+	 <View 
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:background="@drawable/line_red_new"
+		android:layout_marginLeft="@dimen/layout_margin_five"
+		android:layout_marginRight="@dimen/layout_margin_five"
+		android:layout_marginBottom="@dimen/layout_margin_five"
+        />
      
+     <!-- 底部按钮部分 -->
       <LinearLayout 
-          android:layout_marginTop="5dp"
           android:layout_width="match_parent"
-          android:layout_height="25dp"
+          android:layout_height="@dimen/bottom_btn_width"
           android:orientation="horizontal"
-          android:background="#de4557">
-
+          >
           <Button
               android:layout_weight="1"
               android:id="@+id/detail_button_back"
               android:layout_width="0dp"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:gravity="center"
-              android:background="@null"
+              android:background="@color/red"
               android:text="返回" 
-              android:textSize="16sp"
-              android:textColor="#ffffff"/>
-
+              android:textSize="@dimen/textsize_middle"
+              android:textColor="@color/bottom_button_textcolor_default"/>
+          <View 
+           	  android:layout_width="1dp"
+              android:layout_height="match_parent"
+              android:background="@color/white"/>
           <Button 
               android:id="@+id/detail_button_save"
               android:layout_width="0dp"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:layout_weight="1"
               android:text="保存模板"
-              android:background="@null"
+              android:background="@color/red"
               android:gravity="center"
-              android:textSize="16sp"
-              android:textColor="#ffffff"/>
+              android:textSize="@dimen/textsize_middle"
+              android:textColor="@color/bottom_button_textcolor_default"/>
+          <View 
+           	  android:layout_width="1dp"
+              android:layout_height="match_parent"
+              android:background="@color/white"/>
           <Button 
               android:id="@+id/detail_button_send"
               android:layout_width="0dp"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:layout_weight="1"
               android:text="发送"
-              android:background="@null"
+              android:background="@color/red"
               android:gravity="center"
-              android:textSize="16sp"
-              android:textColor="#ffffff"/>
+              android:textSize="@dimen/textsize_middle"
+              android:textColor="@color/bottom_button_textcolor_default"/>
       </LinearLayout>
+      
   </LinearLayout>
 
 </RelativeLayout>

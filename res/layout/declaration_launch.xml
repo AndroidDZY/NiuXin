@@ -132,8 +132,8 @@
 	        android:layout_height="@dimen/bottom_btn_width"
 	        android:id="@+id/declaration_lanch_back"
 	        android:text="返回"
-	        android:textColor="#ffffff"
-	        android:textSize="@dimen/textsize_big"
+	        android:textColor="@color/bottom_button_textcolor_default"
+	        android:textSize="@dimen/textsize_middle"
 	        android:background="@color/red"/>
 	</LinearLayout>
 </LinearLayout>

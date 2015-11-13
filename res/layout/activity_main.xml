@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:visibility="gone" />
-   
+<!-- 底部按钮部分 -->   
         <LinearLayout
             android:id="@+id/console_line_bottom"
             android:layout_width="match_parent"
