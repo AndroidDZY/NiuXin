@@ -1,6 +1,5 @@
 package com.example.niuxin;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
@@ -41,7 +41,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	private Handler handler = new Handler();
 	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 	private SharePreferenceUtil util = null;
-	
+	GetSource getSource = new GetSource();
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -195,10 +195,10 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					String id = myjObject.getString("id");//表单id
 					String contract = myjObject.getString("contract");
 					String operation = myjObject.getString("operation");
-					BigDecimal price = (BigDecimal) myjObject.get("price");
+					String price =  myjObject.getString("price");
 					int handnum = myjObject.getInt("handnum");
-					Double position =  myjObject.getDouble("position");
-					BigDecimal profit = (BigDecimal) myjObject.get("profit");
+					String position =  myjObject.getString("position");
+					String profit =  myjObject.getString("profit");
 				//	Double minnum = myjObject.getDouble("minnum");
 				//	Double maxnum = myjObject.getDouble("maxnum");
 				//	String remark = myjObject.getString("remark");
@@ -223,7 +223,10 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					map.put("handnum", handnum);
 					map.put("profit", profit);
 					map.put("position", position+"%");
-					map.put("senderHead", senduserimg);
+					
+				//	img.setImageResource(getSource.getResourceByReflect(list.get(position).get("img").toString()));
+					
+					map.put("senderHead", getSource.getResourceByReflect(senduserimg));
 					map.put("senderName", sendusername);
 					map.put("senderId", sendfromid);//发送用户的id
 					map.put("id", id);//表单id
@@ -232,8 +235,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					else
 						map.put("isCollect", R.drawable.ic_declaration_star_pressed);
 					list.add(map);
-					
-					list.add(map);
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
