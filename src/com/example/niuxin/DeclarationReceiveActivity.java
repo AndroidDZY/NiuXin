@@ -42,10 +42,15 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 	private SharePreferenceUtil util = null;
 	GetSource getSource = new GetSource();
+	int isCollect =0;//是否收藏
 	@Override
 	protected void onResume() {
 		super.onResume();
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
+		getDate();
+	}
+	
+	private void getDate(){		
 		SearchAllThread thread = new SearchAllThread();
 		thread.start();
 	}
@@ -55,6 +60,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_declaration_receive);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		
 		initView();
 		
 		//获取ListView
@@ -110,12 +116,16 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				// TODO Auto-generated method stub
 				if(isChecked){
 					//选中
+					isCollect = 1;
 					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "只展示收藏报单", Toast.LENGTH_SHORT);
 					toast.show();
+					getDate();
 				}else{
 					//未选中
+					isCollect = -1;
 					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "取消", Toast.LENGTH_SHORT);
 					toast.show();
+					getDate();
 				}
 			}
 		});
@@ -160,7 +170,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				jsonObject.put("sendtouserid", "-1"); //发送给用户的id
 				jsonObject.put("sendtogroupid", "-1"); //发送给群组的id
 				jsonObject.put("contract", "-1"); //合约类型
-				jsonObject.put("collection", "0"); //是否只展示收藏 0表示没选择 1表示选择
+				jsonObject.put("collection", isCollect); //是否只展示收藏 0表示没选择 1表示选择
 				
 
 				
@@ -249,76 +259,6 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			};
 			handler.post(r);
 		}
-	}
-
-	
-
-	// listview适配器数据加载
-	private List<Map<String, Object>> getData() {
-		// TODO Auto-generated method stub
-		List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("contract", "合约IF1510");
-		map.put("date", "2015年10月30日");
-		map.put("week", "周五");
-		map.put("time", "10:59");
-		map.put("operation", "多平");
-		map.put("price", "3133");
-		map.put("handnum", "1000");
-		map.put("profit", "6340000");
-		map.put("position", "15%");
-		map.put("senderHead", R.drawable.head_declaration_sender);
-		map.put("senderName", "张三");
-		map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
-		list.add(map);
-		
-		map = new HashMap<String, Object>();
-		map.put("contract", "IF1511");
-		map.put("date", "2015年10月30日");
-		map.put("week", "周五");
-		map.put("time", "10:59");
-		map.put("operation", "多平");
-		map.put("price", "3133");
-		map.put("handnum", "1000");
-		map.put("profit", "6340000");
-		map.put("position", "15%");
-		map.put("senderHead", R.drawable.head_declaration_sender);
-		map.put("senderName", "张三");
-		map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
-		list.add(map);	
-		
-		map = new HashMap<String, Object>();
-		map.put("contract", "IF1512");
-		map.put("date", "2015年10月30日");
-		map.put("week", "周五");
-		map.put("time", "10:59");
-		map.put("operation", "多平");
-		map.put("price", "3133");
-		map.put("handnum", "1000");
-		map.put("profit", "6340000");
-		map.put("position", "15%");
-		map.put("senderHead", R.drawable.head001);
-		map.put("senderName", "李四");
-		map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
-		list.add(map);
-		
-		map = new HashMap<String, Object>();
-		map.put("contract", "IF1513");
-		map.put("date", "2015年10月30日");
-		map.put("week", "周五");
-		map.put("time", "10:59");
-		map.put("operation", "多平");
-		map.put("price", "3133");
-		map.put("handnum", "1000");
-		map.put("profit", "6340000");
-		map.put("position", "15%");
-		map.put("senderHead", R.drawable.head001);
-		map.put("senderName", "李四");
-		map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
-		list.add(map);
-		
-		return list;
 	}
 
 }
