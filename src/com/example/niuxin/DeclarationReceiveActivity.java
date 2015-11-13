@@ -1,6 +1,5 @@
 package com.example.niuxin;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
@@ -41,7 +41,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	private Handler handler = new Handler();
 	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 	private SharePreferenceUtil util = null;
-	
+	GetSource getSource = new GetSource();
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -64,7 +64,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		//第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
 		//第五个参数：决定使用listview_declaration.xml文件中的哪些组件来填充列表项
 		lvDeclaration=(ListView)findViewById(R.id.lv_declarationreceive);
-		declarationAdapter= new SimpleAdapter(this, getData(),R.layout.listview_get_declaration, 
+		declarationAdapter= new SimpleAdapter(this, list,R.layout.listview_get_declaration, 
 				new String[]{"contract", "date", "week", "time", "operation", "price", "handnum", "profit", "position", "senderHead", "senderName", "isCollect"},	
 				// 合约类型、日期、星期、时间、操作类型、价格、手数、盈利、仓位、报单者头像、报单者名字、是否收藏标志
 				new int[]{R.id.tv_declaration_contract, R.id.tv_declaration_date, R.id.tv_declaration_week, R.id.tv_declaration_time, 
@@ -157,10 +157,10 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			try {
 				//1 用json进行解析接收到的参数 a接收用户的id b报单来源（用户id，群组id 全选为-1 多个以逗号分隔） c合约类型（全选为-1  多个以逗号分隔）  d只展示收藏的报单（关闭为-1 开启为1）
 				jsonObject.put("userid", util.getId()); //用户自己的id
-				jsonObject.put("sendtouserid", ""); //发送给用户的id
-				jsonObject.put("sendtogroupid", ""); //发送给群组的id
-				jsonObject.put("contract", ""); //合约类型
-				jsonObject.put("collection", ""); //是否只展示收藏 0表示没选择 1表示选择
+				jsonObject.put("sendtouserid", "-1"); //发送给用户的id
+				jsonObject.put("sendtogroupid", "-1"); //发送给群组的id
+				jsonObject.put("contract", "-1"); //合约类型
+				jsonObject.put("collection", "0"); //是否只展示收藏 0表示没选择 1表示选择
 				
 
 				
@@ -195,10 +195,10 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					String id = myjObject.getString("id");//表单id
 					String contract = myjObject.getString("contract");
 					String operation = myjObject.getString("operation");
-					BigDecimal price = (BigDecimal) myjObject.get("price");
+					String price =  myjObject.getString("price");
 					int handnum = myjObject.getInt("handnum");
-					Double position =  myjObject.getDouble("position");
-					BigDecimal profit = (BigDecimal) myjObject.get("profit");
+					String position =  myjObject.getString("position");
+					String profit =  myjObject.getString("profit");
 				//	Double minnum = myjObject.getDouble("minnum");
 				//	Double maxnum = myjObject.getDouble("maxnum");
 				//	String remark = myjObject.getString("remark");
@@ -223,7 +223,10 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					map.put("handnum", handnum);
 					map.put("profit", profit);
 					map.put("position", position+"%");
-					map.put("senderHead", senduserimg);
+					
+				//	img.setImageResource(getSource.getResourceByReflect(list.get(position).get("img").toString()));
+					
+					map.put("senderHead", getSource.getResourceByReflect(senduserimg));
 					map.put("senderName", sendusername);
 					map.put("senderId", sendfromid);//发送用户的id
 					map.put("id", id);//表单id
@@ -232,8 +235,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					else
 						map.put("isCollect", R.drawable.ic_declaration_star_pressed);
 					list.add(map);
-					
-					list.add(map);
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
