@@ -445,6 +445,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="20dp"
+            android:id="@+id/detail_image_beizhu"
             android:background="@drawable/decla_lanch_peitu"
             />
         
@@ -488,6 +489,7 @@
 	              android:text="发送目标"/>
 	          <ImageView android:layout_width="wrap_content"
 	              android:layout_height="18dp"
+	              android:id="@+id/detail_image_beizhu"
 	              android:background="@drawable/decla_lanch_grey2"
 	              android:layout_marginBottom="5dp"/>
 	          <RelativeLayout android:layout_width="0dp"
