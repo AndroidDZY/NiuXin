@@ -9,7 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.niuxin.zixuan_addActivity.PostThread;
 import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
@@ -25,7 +24,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 /*
  * 填写报单内容activity
@@ -144,6 +142,8 @@ public class DeclarationDetailActivity extends Activity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				//获取数据，发送
+				SaveThread saveThread = new SaveThread(1);
+				saveThread.start();
 			}
 		});
 		//保存模板
@@ -152,12 +152,16 @@ public class DeclarationDetailActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				SaveThread saveThread = new SaveThread();
+				SaveThread saveThread = new SaveThread(2);
 				saveThread.start();
 			}
 		});
 	}
 	class SaveThread extends Thread {
+		private int type = 0;
+		public SaveThread(int type){
+			this.type = type;
+		}
 		@Override
 		public void run() {
 			// 新建工具类，向服务器发送Http请求
@@ -176,7 +180,7 @@ public class DeclarationDetailActivity extends Activity{
 				jsonObject.put("maxnum", editTextArea2.getText());//范围大
 				jsonObject.put("remark", editTextBeizhu.getText());//备注
 				jsonObject.put("sendfrom", util.getId());
-				jsonObject.put("type", 2);
+				jsonObject.put("type", type);
 				jArray.put(jsonObject);
 				//System.out.println(list);
 				System.out.println(jArray);
