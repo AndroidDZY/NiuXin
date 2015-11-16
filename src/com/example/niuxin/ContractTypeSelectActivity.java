@@ -1,9 +1,11 @@
 package com.example.niuxin;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,6 +16,7 @@ import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -29,13 +32,9 @@ public class ContractTypeSelectActivity extends Activity {
 	private ListView listView;
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	SimpleAdapter adapter = null;
-/*	private int flag = 0;
-	private int flagDeclaration = 0;
-	private int flagDeclarationAll = 0;
-	private int flagDeclarationOne = 0;
-	private int flagDeclarationTwo = 0;
-	private int flagDeclarationThree = 0;*/
+private Set<Integer> contractSelectList = new HashSet<Integer>();
 	private Button btnBack;
+	private Button btnSave;
 	private Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
 	
@@ -45,6 +44,7 @@ public class ContractTypeSelectActivity extends Activity {
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
 		SearchThread thread = new SearchThread();
 		thread.start();
+
 	}
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,8 +73,15 @@ public class ContractTypeSelectActivity extends Activity {
 				SimpleAdapter adapterClick=(SimpleAdapter)parent.getAdapter();//找到被点击的Adapter
 	            Map<String,Object> map=(Map<String, Object>) adapterClick.getItem(position);//找到被点击的列表项
 	            int flag= 0;
-	            if(Integer.valueOf(map.get("flag").toString())==0)
+	            if(Integer.valueOf(map.get("flag").toString())==0){	            
 	            	flag = R.drawable.ic_declaration_selected;
+	            	contractSelectList.add((Integer)(list.get(position).get("id")));
+	            }
+	            else{
+	            	flag= 0;
+	            	contractSelectList.remove((Integer)(list.get(position).get("id")));
+	            }
+	            	
 	            list.get(position).put("flag", flag);//将更新过的flag值放入list中        
 	           
 	            adapterClick.notifyDataSetInvalidated();//使更新过的list数据生效
@@ -85,13 +92,37 @@ public class ContractTypeSelectActivity extends Activity {
 	private void initView() {
 		// 控件初始化
 		btnBack = (Button)findViewById(R.id.btn_contract_type_select_back);
+		btnSave  = (Button)findViewById(R.id.btn_contract_type_select_save);
 		
 		/* 按钮点击事件
 		 * 
 		 */
 		btnBack.setOnClickListener(new OnClickListener() {			
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) {				
+			/*	String result = "";
+				if(contractSelectList!=null){
+					int b = contractSelectList.toString().length();
+					result = contractSelectList.toString().substring(1,b-1);
+				}
+				Intent intentType = new Intent(ContractTypeSelectActivity.this, DeclarationReceiveActivity.class);
+				intentType.putExtra("contract",result);
+				startActivity(intentType);*/
+				finish();
+			}
+		});	
+		
+		btnSave.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {				
+				String result = "";
+				if(contractSelectList!=null){
+					int b = contractSelectList.toString().length();
+					result = contractSelectList.toString().substring(1,b-1);
+				}
+				Intent intentType = new Intent(ContractTypeSelectActivity.this, DeclarationReceiveActivity.class);
+				intentType.putExtra("contract",result);
+				startActivity(intentType);
 				finish();
 			}
 		});	
