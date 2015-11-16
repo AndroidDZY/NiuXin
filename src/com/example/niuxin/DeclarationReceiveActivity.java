@@ -44,18 +44,27 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	GetSource getSource = new GetSource();
 	int isCollect = 0;// 是否收藏
 	String contractlist = "-1";
+	String sendtouseridlist = "-1";
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		Intent intent = getIntent();
 		if (null != intent) {
-			String temp = intent.getStringExtra("contract");
-			if (null == temp || " " == temp) {//如果什么都没选，就是全选
-				temp = "-1";
+			String tempcontract = intent.getStringExtra("contract");
+			if (null == tempcontract || " " == tempcontract) {//如果什么都没选，就是全选
+				tempcontract = "-1";
 			}			
-			if (!contractlist.equals(temp)) {//看选择后的，和原来的是不是一样
-				contractlist = temp;//
+			if (!contractlist.equals(tempcontract)) {//看选择后的，和原来的是不是一样
+				contractlist = tempcontract;//
+			}
+			
+			String tempsendtouserid = intent.getStringExtra("sendtouserid");
+			if (null == tempsendtouserid || " " == tempsendtouserid) {//如果什么都没选，就是全选
+				tempsendtouserid = "-1";
+			}			
+			if (!sendtouseridlist.equals(tempsendtouserid)) {//看选择后的，和原来的是不是一样
+				sendtouseridlist = tempsendtouserid;//
 			}
 			
 			
@@ -183,7 +192,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				// 1 用json进行解析接收到的参数 a接收用户的id b报单来源（用户id，群组id 全选为-1 多个以逗号分隔）
 				// c合约类型（全选为-1 多个以逗号分隔） d只展示收藏的报单（关闭为-1 开启为1）
 				jsonObject.put("userid", util.getId()); // 用户自己的id
-				jsonObject.put("sendtouserid", "-1"); // 发送给用户的id
+				jsonObject.put("sendtouserid", sendtouseridlist); // 发送给用户的id
 				jsonObject.put("sendtogroupid", "-1"); // 发送给群组的id
 				jsonObject.put("contract", contractlist); // 合约类型
 				jsonObject.put("collection", isCollect); // 是否只展示收藏 0表示没选择 1表示选择
