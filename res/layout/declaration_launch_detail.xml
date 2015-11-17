@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
 	<!-- 顶部缩略图 -->
      <include   
 		android:id="@+id/include"  
@@ -17,19 +18,24 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" 
     >
+    
+    <!-- 页面标题 -->
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#de4557"
-	    android:minHeight="30dp">
+	    android:minHeight="40dp">
 	    <TextView android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="填写报单内容"
-	        android:textSize="@dimen/textsize_middle"
+	        android:textSize="@dimen/textsize_big"
+	        android:textStyle="bold"
 	        android:layout_gravity="center_vertical"
 	        android:layout_marginLeft="@dimen/layout_margin_eight"
 	        android:textColor="@color/white"/>
     </LinearLayout>
+    
+    <!-- 选择模板 -->
     <LinearLayout android:id="@+id/detail_model_control"
         android:baselineAligned="false"
         android:layout_width="match_parent"
@@ -74,6 +80,8 @@
 	            android:background="@drawable/decla_lanch_detail_jiantou"/>
         </RelativeLayout>
     </LinearLayout>
+    
+    <!-- 合约类型 -->
     <LinearLayout android:id="@+id/detail_contact_type"
         android:baselineAligned="false"
         android:layout_width="match_parent"
@@ -118,26 +126,8 @@
 	            android:background="@drawable/decla_lanch_detail_jiantou"/>
         </RelativeLayout>
     </LinearLayout>
-    <!-- <RelativeLayout android:id="@+id/detail_contact_type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="合约类型"
-            android:textSize="16sp"
-            android:layout_alignParentLeft="true"/>
 
-        <TextView
-            android:id="@+id/detail_contact_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:text="全选"
-            android:textSize="16sp" />
-    </RelativeLayout> -->
+    <!-- 操作类型 -->
     <LinearLayout android:id="@+id/detail_action_type"
         android:baselineAligned="false"
         android:layout_width="match_parent"
@@ -182,27 +172,8 @@
 	            android:background="@drawable/decla_lanch_detail_jiantou"/>
         </RelativeLayout>
     </LinearLayout>
-   <!--  <RelativeLayout android:id="@+id/detail_action_type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="操作类型"
-            android:textSize="16sp"
-            android:layout_alignParentLeft="true"/>
 
-        <TextView
-            android:id="@+id/detail_control_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:text="多开"
-            android:textSize="16sp" />
-    </RelativeLayout> -->
-    
+    <!-- 价格 -->
     <LinearLayout  android:baselineAligned="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -241,10 +212,10 @@
 	            android:minWidth="60dp"
 	            android:textSize="12sp"
 	            android:id="@+id/detail_edit_price"/>
-
         </RelativeLayout>  
     </LinearLayout>
-    
+  
+    <!-- 手数 -->
     <LinearLayout android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -296,6 +267,7 @@
         </RelativeLayout>
     </LinearLayout>
     
+    <!-- 仓位 -->
     <LinearLayout 
         android:layout_width="match_parent"
         android:baselineAligned="false"
@@ -341,6 +313,7 @@
 	            android:layout_alignParentTop="true"/>
         </RelativeLayout>
     </LinearLayout>
+    
 	 <View 
 		android:layout_width="match_parent"
 		android:layout_height="10dp"
@@ -349,6 +322,8 @@
 		android:layout_marginRight="@dimen/layout_margin_five"
 		android:layout_marginBottom="@dimen/layout_margin_five"
         />
+	 
+	 <!-- 止盈止损范围 -->
     <LinearLayout 
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
@@ -393,12 +368,15 @@
                 android:background="@drawable/decla_baodan_yellow2"/> 
         </LinearLayout>
     </LinearLayout>
+    
     <View  
 	        android:layout_marginTop="5dp"
 	        android:layout_marginLeft="8dp"
 	    	android:layout_width="150dp"  
 	    	android:layout_height="0.5dp" 
 	    	android:background="#cccccc"  />
+    
+    <!-- 备注 -->
     <LinearLayout 
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
@@ -429,6 +407,8 @@
 	    	android:layout_width="150dp"  
 	    	android:layout_height="0.5dp" 
 	    	android:background="#cccccc"  />
+        
+        <!-- 配图 -->
     <LinearLayout 
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
@@ -447,26 +427,25 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/decla_lanch_peitu"
             />
-        
         </LinearLayout>
         
-    
+    <!-- 录音按钮 -->
         <Button 
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/layout_margin_eight"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/decla_lanch_luying"
             android:id="@+id/detail_button_luying"/>
     
-  </LinearLayout>
-  </ScrollView> 
+  <!-- 发送目标 -->
   <LinearLayout 
       android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true">
+      android:layout_marginTop="@dimen/layout_margin_eight"
+      >
       <LinearLayout android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="2dp"
@@ -506,18 +485,27 @@
 			            android:background="@drawable/decla_lanch_detail_jiantou"/>
 	           </RelativeLayout>
 	      </LinearLayout>
-	 </LinearLayout>
+	   </LinearLayout>
+	</LinearLayout>
 	
-	 <View 
+	   </LinearLayout>
+  </ScrollView> 
+  
+     <!-- 底部按钮部分 -->
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:layout_alignParentBottom="true"
+         >
+		 <View 
 		android:layout_width="match_parent"
 		android:layout_height="10dp"
 		android:background="@drawable/line_red_new"
 		android:layout_marginLeft="@dimen/layout_margin_five"
 		android:layout_marginRight="@dimen/layout_margin_five"
 		android:layout_marginBottom="@dimen/layout_margin_five"
-        />
-     
-     <!-- 底部按钮部分 -->
+        />"
       <LinearLayout 
           android:layout_width="match_parent"
           android:layout_height="@dimen/bottom_btn_width"
@@ -562,7 +550,7 @@
               android:textSize="@dimen/textsize_middle"
               android:textColor="@color/bottom_button_textcolor_default"/>
       </LinearLayout>
-      
-  </LinearLayout>
+    </LinearLayout>  
+  
 
 </RelativeLayout>
