@@ -18,22 +18,28 @@
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        
+        <!-- 顶部缩略图 -->
         <include   
 		android:id="@+id/include"  
 		layout="@layout/suolue"/>  
+		
+        <!-- 页面标签 -->
          <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
 	        android:orientation="horizontal"
 	        android:background="#de4557"
-		    android:minHeight="30dp">
+		    android:minHeight="40dp">
 		    <TextView android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="已选择用户查看"
-		        android:textSize="16sp"
+		        android:textSize="@dimen/textsize_big"
 		        android:layout_gravity="center_vertical"
 		        android:layout_marginLeft="8dp"
+		        android:textStyle="bold"
 		        android:textColor="#ffffff"/>
         </LinearLayout>
+        
         <LinearLayout android:layout_width="match_parent"
             android:baselineAligned="false"
             android:layout_height="match_parent"
@@ -65,37 +71,45 @@
             </RelativeLayout>
         </LinearLayout>
 
-      <ImageView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="10dp"
-          android:layout_marginTop="-8dp"
-          android:layout_marginRight="10dp"
-          android:background="@drawable/declaration_sendpurpos_redline" />
+        <View 
+			android:layout_width="match_parent"
+			android:layout_height="10dp"
+			android:background="@drawable/line_red_new"
+			android:layout_marginLeft="@dimen/layout_margin_five"
+			android:layout_marginRight="@dimen/layout_margin_five"
+			android:layout_marginBottom="@dimen/layout_margin_five"
+        	/>
     </LinearLayout>
+    
     <LinearLayout android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <ImageView android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/declaration_sendpurpos_redline"/>
+      
+        <View 
+			android:layout_width="match_parent"
+			android:layout_height="10dp"
+			android:background="@drawable/line_red_new"
+			android:layout_marginLeft="@dimen/layout_margin_five"
+			android:layout_marginRight="@dimen/layout_margin_five"
+			android:layout_marginBottom="@dimen/layout_margin_five"
+        	/>
+        
+        <!-- 底部按钮部分 -->
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="#de4557">
             <Button android:layout_width="0dp"
-                android:layout_height="25dp"
+                android:layout_height="@dimen/bottom_btn_width"
                 android:layout_weight="1"
                 android:id="@+id/declaration_sendtarget_back"
                 android:text="返回"
-                android:textSize="16sp"
-                android:textColor="#ffffff"
+                android:textSize="@dimen/textsize_middle"
+                android:textColor="@color/bottom_button_textcolor_default"
                 android:background="@null"/>
-            
         </LinearLayout>
-    </LinearLayout> 
+   
+     </LinearLayout> 
 </TabHost>
 

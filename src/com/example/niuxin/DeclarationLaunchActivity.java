@@ -62,8 +62,8 @@ public class DeclarationLaunchActivity extends Activity{
 					long arg3) {
 				// TODO Auto-generated method stub
 				System.out.println("1111111111111");
-				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
-				startActivity(intent);
+//				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
+//				startActivity(intent);
 			}
 		});
 		//我要报单
@@ -77,6 +77,7 @@ public class DeclarationLaunchActivity extends Activity{
 				startActivity(intent);
 			}
 		});
+		//返回按钮
 		backButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
