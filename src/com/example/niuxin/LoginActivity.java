@@ -199,8 +199,8 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 						"亲！服务器暂未开放哦");
 			}
 		}
-	//	Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-	//	startActivity(intent);
+		/*Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+		startActivity(intent);*/
 	}
 
 	@Override

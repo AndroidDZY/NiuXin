@@ -1,11 +1,20 @@
 package com.example.niuxin;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.niuxin.DeclarationModelChoiceActivity.MyAdapter;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import com.example.niuxin.DeclarationModelChoiceActivity.MyAdapter;
+import com.niuxin.util.Constants;
+import com.niuxin.util.HttpPostUtil;
+import com.niuxin.util.SharePreferenceUtil;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +27,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -35,11 +45,15 @@ public class DeclarationLaunchActivity extends Activity{
 	private List<HashMap<String, Object>> mData;  
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
+	private SharePreferenceUtil util = null;
+	MyAdapter adapter;
+	String orderseq;
 	String[] declaOrder = {"按时间顺序查询", "按合约类型查询", "按接收者查询"};
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.declaration_launch);
+		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		//mainActivity=new MainActivity();
 		//初始化
 		iDeclarationDetail=(Button)findViewById(R.id.declaration_launch_detail);
@@ -52,7 +66,23 @@ public class DeclarationLaunchActivity extends Activity{
 		spinner = (Spinner)findViewById(R.id.declaration_launch_paixu);  
 		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.decla_spinner, declaOrder);   //此处加上自己的样式
 		spinner.setAdapter(spinnerAdapter);
-		
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				 String order=declaOrder[arg2];
+				 orderseq=order;
+				arg0.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//事件监听
 		//跳转到报单详细内容
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -121,31 +151,31 @@ public class DeclarationLaunchActivity extends Activity{
         	convertView = mInflater.inflate(R.layout.listview_set_declaration, null);//根据布局文件实例化view 
         	//合约
         	TextView tagText=(TextView) convertView.findViewById(R.id.tv_declaration_contract_set);
-        	tagText.setText(mData.get(position).get("tagText").toString());
+        	tagText.setText(mData.get(position).get("contract").toString());
         	//日期
         	TextView dateText=(TextView) convertView.findViewById(R.id.tv_declaration_date_set);
-        	//timeText.setText(mData.get(position).get("timeText").toString());
+        	dateText.setText(mData.get(position).get("date").toString());
         	//星期
-        	TextView weekText=(TextView) convertView.findViewById(R.id.tv_declaration_week_set);
+        	//TextView weekText=(TextView) convertView.findViewById(R.id.tv_declaration_week_set);
         	//timeText.setText(mData.get(position).get("timeText").toString());
         	//时间
         	TextView timeText=(TextView) convertView.findViewById(R.id.tv_declaration_time_set);
-        	//timeText.setText(mData.get(position).get("timeText").toString());
+        	timeText.setText(mData.get(position).get("time").toString());
         	//操作类型
         	TextView typeButton=(TextView) convertView.findViewById(R.id.tv_declaration_operation_type_set);
-        	typeButton.setText(mData.get(position).get("typeButton").toString());
+        	typeButton.setText(mData.get(position).get("operation").toString());
         	//价格
         	TextView priceText=(TextView) convertView.findViewById(R.id.tv_declaration_cost_set);
-        	priceText.setText(mData.get(position).get("priceText").toString());
+        	priceText.setText(mData.get(position).get("price").toString());
         	//手数
         	TextView handText=(TextView) convertView.findViewById(R.id.tv_declaration_amount_set);
-        	handText.setText(mData.get(position).get("handText").toString());
+        	handText.setText(mData.get(position).get("handnum").toString());
         	//盈利
         	TextView gainText=(TextView) convertView.findViewById(R.id.tv_declaration_profit_set);
         	gainText.setText(mData.get(position).get("gainText").toString());
         	//仓位
         	TextView spaceText=(TextView) convertView.findViewById(R.id.tv_declaration_position_set);
-        	spaceText.setText(mData.get(position).get("spaceText").toString());
+        	spaceText.setText(mData.get(position).get("position").toString());
         	//对象
         	TextView sendtoText=(TextView)convertView.findViewById(R.id.tv_declaration_sendto_set);
 //        	sendtoText.setText(mData.get(position).get("objectButton").toString());
@@ -169,17 +199,105 @@ public class DeclarationLaunchActivity extends Activity{
         HashMap<String, Object> map = null;  
         for (int i = 1; i <= 3; i++) {  
             map = new HashMap<String, Object>();  
-            map.put("tagText", "合约IF1509" ); //r.drawable 
-            map.put("timeText", "2015年10月");  
-            map.put("typeButton", "多平");  
-            map.put("priceText", "1234");  
-            map.put("handText", "1111");  
+            map.put("contract", "合约IF1509" ); //r.drawable 
+            map.put("date", "2015年10月周一");  
+            map.put("time", "10:23");  
+            map.put("operation", "多平");  
+            map.put("price", "1234");  
+            map.put("handnum", "1111");  
             map.put("gainText", "250");
-            map.put("spaceText", "15%");
+            map.put("position", "15%");
             list.add(map);  
         }  
   
         return list;  
     }  
+	//启动线程从数据库中获取数据
+	/*class GroupThread extends Thread {
+		@SuppressLint("SimpleDateFormat")
+		@Override
+		public void run() {
+			// 新建工具类，向服务器发送Http请求
+			HttpPostUtil postUtil = new HttpPostUtil();
+
+			// 向服务器发送数据，如果没有，可以不发送
+			JSONObject jsonObject = new JSONObject();
+			try {
+				
+				Integer id = util.getId();			
+				jsonObject.put("id", id);			
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}			
+			//设置发送的url 和服务器端的struts.xml文件对应
+			if (orderseq.equals("按时间顺序查询")) {
+				postUtil.setUrl("/form/form_selectFormByTime.do");
+			}else if (orderseq.equals("按合约类型查询")) {
+				postUtil.setUrl("/form/form_selectFormByContract.do");
+			}else if (orderseq.equals("按接收者查询")) {
+				postUtil.setUrl("/form/form_selectFormBySend.do");
+			}
+			
+			//向服务器发送数据
+			JSONArray js = new JSONArray();
+			js.put(jsonObject);
+			postUtil.setRequest(js);
+			// 从服务器获取数据
+			String res = postUtil.run();	
+			if(res==null){
+				return;
+			}
+			// 对从服务器获取数据进行解析
+			JSONArray jsonArray = null;			
+			try {
+				jsonArray = new JSONArray(res);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}	
+			mData.clear();
+			//typelist.clear();
+			for (int i = 0; i < jsonArray.length(); i++) {				
+				try {
+					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+					// 获取每一个对象中的值
+						HashMap<String, Object> map = new HashMap<String, Object>();
+						int id = myjObject.getInt("id");
+						String contract = myjObject.getString("contract");//合约类型
+						String operation = myjObject.getString("operation");//操作类型
+						String price = myjObject.getString("price");//价格
+						String handnum = myjObject.getString("handnum");//手数
+						String position = myjObject.getString("position");//仓位
+						String update = myjObject.getString("update");//时间
+						SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日周E HH时mm分");
+					    String  datetime=simpleDateFormat.format(update);
+					    String  date=datetime.substring(0,datetime.indexOf(" "));//获取日期
+					    String  time=datetime.substring(datetime.indexOf(" "));//获取时间
+						//String yingli = myjObject.getString("");//盈利
+						map.put("contract", contract);//R.drawable.head010
+						map.put("id", id);
+						map.put("operation", operation);
+						map.put("price", price);
+						map.put("time",time);
+						map.put("handnum", handnum);
+						map.put("position", position);
+						map.put("date", date);
+						map.put("time", time);
+						//typelist.add(0);
+						mData.add(map);
+					}
+				 catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}/////////////////////////////解析数据完成
+			Runnable r = new Runnable() {
+				@Override
+				public void run() {
+				adapter.notifyDataSetChanged();	
+				}
+
+			};
+			handler.post(r);
+		}
+	}*/
 
 }
