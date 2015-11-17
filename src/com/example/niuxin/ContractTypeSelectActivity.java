@@ -160,6 +160,12 @@ public class ContractTypeSelectActivity extends Activity {
 			}
 			if ( null!= list)
 				list.clear();
+			
+			Map<String, Object> map1 = new HashMap<String, Object>();
+			map1.put("id", -1);
+			map1.put("type", "全选");
+			map1.put("flag", 0);
+			list.add(map1);
 			if (null != jsonArray)
 				for (int i = 0; i < jsonArray.length(); i++) {
 					try {
