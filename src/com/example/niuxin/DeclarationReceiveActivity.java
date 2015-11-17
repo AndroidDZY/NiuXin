@@ -66,9 +66,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			if (!sendtouseridlist.equals(tempsendtouserid)) {//看选择后的，和原来的是不是一样
 				sendtouseridlist = tempsendtouserid;//
 			}
-			
-			
-
+  
 		}
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
 		getDate();
