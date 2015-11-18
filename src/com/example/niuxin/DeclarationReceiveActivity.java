@@ -44,8 +44,11 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	GetSource getSource = new GetSource();
 	int isCollect = 0;// 是否收藏
 	String contractlist = "-1";
+	String contractNamelist = "全选";
 	String sendtouseridlist = "-1";
-
+	String sendtouseridlistName = "全选";
+	private TextView contractNameText;
+	private TextView sendtouserText;
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -59,6 +62,16 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				contractlist = tempcontract;//
 			}
 			
+			String tempcontractName = intent.getStringExtra("contractName");
+			if (null == tempcontractName || " " == tempcontractName) {//如果什么都没选，就是全选
+				tempcontractName = "全选";
+			}			
+			if (!contractNamelist.equals(tempcontractName)) {//看选择后的，和原来的是不是一样
+				contractNamelist = tempcontractName;//
+			}
+			contractNameText.setText(contractNamelist);
+			
+			
 			String tempsendtouserid = intent.getStringExtra("sendtouserid");
 			if (null == tempsendtouserid || " " == tempsendtouserid) {//如果什么都没选，就是全选
 				tempsendtouserid = "-1";
@@ -66,12 +79,24 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			if (!sendtouseridlist.equals(tempsendtouserid)) {//看选择后的，和原来的是不是一样
 				sendtouseridlist = tempsendtouserid;//
 			}
+			
+			String tempsendtouseridName = intent.getStringExtra("sendtouseridName");
+			if (null == tempsendtouseridName || " " == tempsendtouseridName) {//如果什么都没选，就是全选
+				tempsendtouseridName = "全选";
+			}			
+			if (!sendtouseridlistName.equals(tempsendtouseridName)) {//看选择后的，和原来的是不是一样
+				sendtouseridlistName = tempsendtouseridName;//
+			}
+			sendtouserText.setText(sendtouseridlistName);
   
 		}
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
 		getDate();
 	}
-
+	protected void onNewIntent(Intent intent) { 
+	    super.onNewIntent(intent); 
+	   
+	}
 	private void getDate() {
 		SearchAllThread thread = new SearchAllThread();
 		thread.start();
@@ -126,7 +151,8 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		btnSendFrom.setOnClickListener(this);
 		btnType.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
-
+		contractNameText = (TextView) findViewById(R.id.tv_declaration_receive_contract);	
+		sendtouserText = (TextView) findViewById(R.id.tv_declaration_receive_source);
 		tvContract = (TextView) findViewById(R.id.tv_declaration_receive_contract); // “合约类型”显示文本
 		tvSendFrom = (TextView) findViewById(R.id.tv_declaration_receive_source); // “报单来源”显示文本
 
@@ -164,6 +190,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			break;
 		case R.id.btn_declarationreceive_source:
 			Intent intentSource = new Intent(DeclarationReceiveActivity.this, DeclarationSourceSelectActivity.class);
+			
 			startActivity(intentSource);
 			break;
 		case R.id.btn_declarationreceive_type:

@@ -33,14 +33,9 @@ public class DeclarationSourceSelectActivity extends Activity {
 
 	private ListView listView;
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
-	List<Map<String, Object>> listCopy = new LinkedList<Map<String, Object>>();
 	private Set<Integer> useridSelectList = new HashSet<Integer>();
-	private int flag = 0;
-	private int flagDeclaration = 0;
-	private int flagDeclarationAll = 0;
-	private int flagDeclarationOne = 0;
-	private int flagDeclarationTwo = 0;
-	private int flagDeclarationThree = 0;
+	private List<String> useridSelectListName = new LinkedList<String>();
+
 	private Button btnBack, btnSave;
 	private Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
@@ -60,10 +55,7 @@ public class DeclarationSourceSelectActivity extends Activity {
 		setContentView(R.layout.activity_declaration_source_select);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		initView();
-		
-		/* 按钮点击事件
-		 * 
-		 */
+		 
 		btnBack.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -76,29 +68,41 @@ public class DeclarationSourceSelectActivity extends Activity {
 			public void onClick(View v) {
 				Toast toast = Toast.makeText(DeclarationSourceSelectActivity.this, "保存完毕", Toast.LENGTH_SHORT);
 				toast.show();
-				
+ 
+				if((Integer)(list.get(0).get("flag"))==R.drawable.ic_declaration_selected){//如果全选已经被选上的情况 
+					useridSelectList.add(-1);
+					useridSelectListName.add("全选");
+				}else{
+						for(int i=1;i<list.size();i++){
+							if((Integer)(list.get(i).get("flag"))==R.drawable.ic_declaration_selected){
+								useridSelectList.add((Integer)(list.get(i).get("id")));
+								useridSelectListName.add((String)(list.get(i).get("name")));
+							}
+						}
+				}
 				String result = "";
 				if (useridSelectList != null) {
-					if(selectAllmark==1){
-						listCopy.remove(0);
-						useridSelectList.clear();
-						for(int i=0;i<listCopy.size();i++){							
-							useridSelectList.add(Integer.valueOf((String) listCopy.get(i).get("id")));
-						}						
-					}					
 					int b = useridSelectList.toString().length();
 					result = useridSelectList.toString().substring(1, b - 1);
+				}				
+				String resultName = "";
+				if (useridSelectListName != null) {
+					int c = useridSelectListName.toString().length();
+					resultName = useridSelectListName.toString().substring(1, c - 1);
 				}
+				if(resultName.length()>10){
+					resultName = resultName.substring(0, 9) + "...";
+				}
+				
 				Intent intentType = new Intent(DeclarationSourceSelectActivity.this, DeclarationReceiveActivity.class);
 				intentType.putExtra("sendtouserid", result);
-				startActivity(intentType);
+				intentType.putExtra("sendtouseridName", resultName);
+				intentType.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivityForResult(intentType,1);
 				finish();
-
 			}
 		});
 
-		
-	//	list = getData();// 填充list数据
 		listView = (ListView)findViewById(R.id.lv_declaration_source_select);//获取ListView
 		//创建适配器
 		//第二个参数：list集合中的每一个Map对象对应生成一个列表项
@@ -114,46 +118,35 @@ public class DeclarationSourceSelectActivity extends Activity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent , View view , int position ,
-					long id ) {
-				switch (position)
-				{
-				case 0: //点击全选
-					flag = 1;
-					break;
-				case 1://点击1
-					flag = 2;
-					break;
-				case 2:
-					flag = 3;
-					break;
-				case 3:
-					flag = 4;
-					break;
-				default:
-					flag = 0;
-					break;
-				}
+					long id ) {				
 				SimpleAdapter adapter=(SimpleAdapter)parent.getAdapter();//找到被点击的Adapter
 	            Map<String,Object> map=(Map<String, Object>) adapter.getItem(position);//找到被点击的列表项
-	           
-	            list.get(0).put("flag", 0);
-	            if((Integer) (list.get(position).get("id"))==-1){
-            		useridSelectList.clear();
-            		for(int i=0;i<list.size();i++){
-            			list.get(position).put("flag", 0);
-            		}
-            		selectAllmark = 1;
-            	}else
-            		selectAllmark = 0;
-	            
-	            if(Integer.valueOf(map.get("flag").toString())==0){
-	            	flagDeclaration = R.drawable.ic_declaration_selected;	            	
-	            	useridSelectList.add((Integer) (list.get(position).get("id")));	            	
-	            }else{
-	            	flagDeclaration = 0;
-	            	useridSelectList.remove((Integer) (list.get(position).get("id")));	            	
-	            }
-	            list.get(position).put("flag", flagDeclaration);//将更新过的flag值放入list中        
+ 
+	            if((Integer)(list.get(0).get("flag"))==R.drawable.ic_declaration_selected){//如果全选已经被选上的情况 
+					for(int i=0;i<list.size();i++){//将所有的设置选中
+						list.get(i).put("flag", R.drawable.ic_declaration_selected);
+					}
+					if(position==0){//这个时候点击全选，将全选设置为未选中
+						list.get(0).put("flag", 0);// 
+					}else{
+						Toast toast = Toast.makeText(DeclarationSourceSelectActivity.this, "请先取消全选勾选项", Toast.LENGTH_SHORT);
+						toast.show();
+					}
+				}else{
+					if(position==0){//这个时候点击全选
+						for(int i=0;i<list.size();i++){//将所有的设置选中
+						list.get(i).put("flag", R.drawable.ic_declaration_selected);
+						}
+					}else{
+						int flag = 0;
+						if (Integer.valueOf(map.get("flag").toString()) == 0) {
+							flag = R.drawable.ic_declaration_selected;
+						} else {
+							flag = 0;
+						}
+						list.get(position).put("flag", flag);
+					}						
+				}	           
 	            adapter.notifyDataSetInvalidated();//使更新过的list数据生效
 			}
 		});
@@ -209,8 +202,7 @@ public class DeclarationSourceSelectActivity extends Activity {
 			map2.put("id", -2);
 			map2.put("flag", 0);
 			map2.put("name", "已关注的报单者");
-			list.add(map2);
-				
+			list.add(map2);			
 			if (null != jsonArray){
 				for (int i = 0; i < jsonArray.length(); i++) {
 					try {
@@ -223,7 +215,6 @@ public class DeclarationSourceSelectActivity extends Activity {
 						map.put("name", name);
 						map.put("flag", 0);
 						list.add(map);
-						listCopy = list;
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
@@ -238,40 +229,5 @@ public class DeclarationSourceSelectActivity extends Activity {
 			};
 			handler.post(r);
 		}
-	}
-	
-	
-
-	private List<Map<String, Object>> getData() {
-		List<Map<String, Object>> list = getList();
-		return list;
-	}
-	private List<Map<String, Object>> getList() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("id", 1);
-		map.put("flag", flagDeclarationAll);
-		map.put("name", "全选");
-		list.add(map);
-		
-		map = new HashMap<String, Object>();
-		map.put("id", 2);
-		map.put("flag", flagDeclarationOne);
-		map.put("name", "已关注的报单者");
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("id", 3);
-		map.put("flag", flagDeclarationTwo);
-		map.put("name", "报单者1");
-		list.add(map);
-		
-		map = new HashMap<String, Object>();
-		map.put("id", 4);
-		map.put("flag", flagDeclarationThree);
-		map.put("name", "报单者2");
-		list.add(map);
-
-		return list;
 	}
 }

@@ -27,17 +27,20 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class ContractTypeSelectActivity extends Activity {
 	private ListView listView;
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
 	SimpleAdapter adapter = null;
 	private Set<Integer> contractSelectList = new HashSet<Integer>();
+	private List<String> contractSelectNameList = new LinkedList<String>();
 	private Button btnBack;
 	private Button btnSave;
 	private Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
-
+	
+	
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -53,6 +56,7 @@ public class ContractTypeSelectActivity extends Activity {
 		setContentView(R.layout.activity_contract_type_select);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		initView();
+		
 
 		listView = (ListView) findViewById(R.id.lv_contract_type_select);// 获取ListView
 		// 创建适配器
@@ -71,17 +75,33 @@ public class ContractTypeSelectActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				SimpleAdapter adapterClick = (SimpleAdapter) parent.getAdapter();// 找到被点击的Adapter
 				Map<String, Object> map = (Map<String, Object>) adapterClick.getItem(position);// 找到被点击的列表项
-				int flag = 0;
-				if (Integer.valueOf(map.get("flag").toString()) == 0) {
-					flag = R.drawable.ic_declaration_selected;
-					contractSelectList.add((Integer) (list.get(position).get("id")));
-				} else {
-					flag = 0;
-					contractSelectList.remove((Integer) (list.get(position).get("id")));
+			
+				
+				if((Integer)(list.get(0).get("flag"))==R.drawable.ic_declaration_selected){//如果全选已经被选上的情况 
+					for(int i=0;i<list.size();i++){//将所有的设置选中
+						list.get(i).put("flag", R.drawable.ic_declaration_selected);
+					}
+					if(position==0){//这个时候点击全选，将全选设置为未选中
+						list.get(0).put("flag", 0);// 
+					}else{
+						Toast toast = Toast.makeText(ContractTypeSelectActivity.this, "请先取消全选勾选项", Toast.LENGTH_SHORT);
+						toast.show();
+					}
+				}else{
+					if(position==0){//这个时候点击全选
+						for(int i=0;i<list.size();i++){//将所有的设置选中
+						list.get(i).put("flag", R.drawable.ic_declaration_selected);
+						}
+					}else{
+						int flag = 0;
+						if (Integer.valueOf(map.get("flag").toString()) == 0) {
+							flag = R.drawable.ic_declaration_selected;
+						} else {
+							flag = 0;
+						}
+						list.get(position).put("flag", flag);
+					}						
 				}
-
-				list.get(position).put("flag", flag);// 将更新过的flag值放入list中
-
 				adapterClick.notifyDataSetInvalidated();// 使更新过的list数据生效
 			}
 		});
@@ -99,15 +119,7 @@ public class ContractTypeSelectActivity extends Activity {
 		btnBack.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				/*
-				 * String result = ""; if(contractSelectList!=null){ int b =
-				 * contractSelectList.toString().length(); result =
-				 * contractSelectList.toString().substring(1,b-1); } Intent
-				 * intentType = new Intent(ContractTypeSelectActivity.this,
-				 * DeclarationReceiveActivity.class);
-				 * intentType.putExtra("contract",result);
-				 * startActivity(intentType);
-				 */
+				
 				finish();
 			}
 		});
@@ -115,13 +127,38 @@ public class ContractTypeSelectActivity extends Activity {
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
+				if((Integer)(list.get(0).get("flag"))==R.drawable.ic_declaration_selected){//如果全选已经被选上的情况 
+					contractSelectList.add(-1);
+					contractSelectNameList.add("全选");
+				}else{
+						for(int i=1;i<list.size();i++){
+							if((Integer)(list.get(i).get("flag"))==R.drawable.ic_declaration_selected){
+								contractSelectList.add((Integer)(list.get(i).get("id")));
+								contractSelectNameList.add((String)(list.get(i).get("type")));
+							}
+						}
+				}
 				String result = "";
 				if (contractSelectList != null) {
 					int b = contractSelectList.toString().length();
 					result = contractSelectList.toString().substring(1, b - 1);
 				}
+				
+				String resultName = "";
+				if (contractSelectNameList != null) {
+					int c = contractSelectNameList.toString().length();
+					resultName = contractSelectNameList.toString().substring(1, c - 1);
+				}
+				
+				if(resultName.length()>10){
+					resultName = resultName.substring(0, 9) + "...";
+				}
+				
 				Intent intentType = new Intent(ContractTypeSelectActivity.this, DeclarationReceiveActivity.class);
 				intentType.putExtra("contract", result);
+				intentType.putExtra("contractName", resultName);
+				intentType.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intentType);
 				finish();
 			}
