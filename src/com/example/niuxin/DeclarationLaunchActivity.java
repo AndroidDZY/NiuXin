@@ -95,8 +95,14 @@ public class DeclarationLaunchActivity extends Activity{
 					long arg3) {
 				// TODO Auto-generated method stub
 				System.out.println("1111111111111");
-//				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
-//				startActivity(intent);
+				//获取报单的id，通过id去显示报单详情，真数据的时候调用下面的代码
+				/*Integer id=Integer.valueOf(mData.get(arg2).get("id").toString());
+				Intent intent=new Intent();
+				intent.putExtra("id", id);
+				intent.setClass(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
+				startActivity(intent);*/
+				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
+				startActivity(intent);
 			}
 		});
 		
@@ -188,12 +194,21 @@ public class DeclarationLaunchActivity extends Activity{
         	//对象
         	TextView sendtoText=(TextView)convertView.findViewById(R.id.tv_declaration_sendto_set);
 //        	sendtoText.setText(mData.get(position).get("objectButton").toString());
-        	sendtoText.setOnClickListener(new OnClickListener() {
+        	//点击查看发送对象
+        	//对应的ID
+        	//final Long cid=Long.valueOf(mData.get(position).get("id").toString());
+			sendtoText.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
 					System.out.println("111111111111111111111111111111111111111111111");
+					//获取发送报单的id真数据以后就调用此intent
+					/*Integer id=Integer.valueOf(cid.toString());
+					Intent intent=new Intent();
+					intent.putExtra("id", id);
+					intent.setClass(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);
+					*/
 					Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
 					startActivity(intent);
 				}

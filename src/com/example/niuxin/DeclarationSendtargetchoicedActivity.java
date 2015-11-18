@@ -84,6 +84,19 @@ public class DeclarationSendtargetchoicedActivity extends TabActivity{
 				.setContent(new Intent(this, DeclarationUsershowActivity.class)));
     	tabHost.addTab(tabHost.newTabSpec("qunzu").setIndicator("qunzu")
 				.setContent(new Intent(this, DeclarationQunzushowActivity.class)));
+    	/*//真数据的时候调用下面的，获取报单的id 传给查看发送目标界面
+    	Intent intent=getIntent();
+		Long id=Long.valueOf(intent.getStringExtra("id"));
+		Intent haoyouIntent=new Intent();
+		haoyouIntent.putExtra("id", id);
+		haoyouIntent.setClass(DeclarationSendtargetchoicedActivity.this ,DeclarationUsershowActivity.class);
+		Intent qunzuIntent=new Intent();
+		qunzuIntent.putExtra("id", id);
+		qunzuIntent.setClass(DeclarationSendtargetchoicedActivity.this ,DeclarationQunzushowActivity.class);
+		tabHost.addTab(tabHost.newTabSpec("haoyou").setIndicator("haoyou")
+				.setContent(haoyouIntent));
+    	tabHost.addTab(tabHost.newTabSpec("qunzu").setIndicator("qunzu")
+				.setContent(qunzuIntent));*/
     }
 	@Override
 	protected void onResume() {

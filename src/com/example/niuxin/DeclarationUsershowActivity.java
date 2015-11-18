@@ -1,10 +1,16 @@
 package com.example.niuxin;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.example.niuxin.DeclarationModelChoiceActivity.MyAdapter;
+import com.niuxin.util.HttpPostUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -90,6 +96,9 @@ public class DeclarationUsershowActivity extends Activity{
              list.add(map);  
         }  
         return list;  
-    }  
+    } 
+	
+	
+	
 
 }
