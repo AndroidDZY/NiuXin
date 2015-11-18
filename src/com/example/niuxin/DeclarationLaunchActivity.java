@@ -36,10 +36,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DeclarationLaunchActivity extends Activity{
 	
-	Button iDeclarationDetail ,backButton;
+	private Button iDeclarationDetail, backButton;
 	private ListView listView;
 	private Spinner spinner;
 	private List<HashMap<String, Object>> mData;  
@@ -55,11 +56,13 @@ public class DeclarationLaunchActivity extends Activity{
 		setContentView(R.layout.declaration_launch);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		//mainActivity=new MainActivity();
+		
 		//初始化
-		iDeclarationDetail=(Button)findViewById(R.id.declaration_launch_detail);
-		backButton=(Button)findViewById(R.id.declaration_lanch_back);
-		mData=getData();
-		listView=(ListView)findViewById(R.id.declaration_tag);
+		iDeclarationDetail = (Button)findViewById(R.id.declaration_launch_detail);//"我要报单"按钮
+		backButton = (Button)findViewById(R.id.declaration_lanch_back);//返回按钮
+		
+		mData = getData();
+		listView = (ListView)findViewById(R.id.declaration_tag);
 		MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
 		listView.setAdapter(adapter);
 		
@@ -96,6 +99,7 @@ public class DeclarationLaunchActivity extends Activity{
 //				startActivity(intent);
 			}
 		});
+		
 		//我要报单
 		iDeclarationDetail.setOnClickListener(new OnClickListener() {
 			
@@ -107,6 +111,7 @@ public class DeclarationLaunchActivity extends Activity{
 				startActivity(intent);
 			}
 		});
+		
 		//返回按钮
 		backButton.setOnClickListener(new OnClickListener() {
 			
@@ -116,7 +121,10 @@ public class DeclarationLaunchActivity extends Activity{
 				finish();
 			}
 		});
+		
 	}
+	
+	
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -186,7 +194,7 @@ public class DeclarationLaunchActivity extends Activity{
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
 					System.out.println("111111111111111111111111111111111111111111111");
-					Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);
+					Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
 					startActivity(intent);
 				}
 			});

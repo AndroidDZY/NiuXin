@@ -2,11 +2,11 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent" 
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListView android:id="@+id/declaration_sendpurpose_haoyou_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"></ListView>
-   <LinearLayout android:layout_alignParentBottom="true"
+    
+    <!-- 底部按钮部分 -->
+    <LinearLayout
+        android:id="@+id/lly_decla_sendpurpose_haoyou" 
+       	android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -16,34 +16,54 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/declaration_sendpurpos_redline"/>
         <LinearLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/bottom_btn_width"
             android:orientation="horizontal"
             android:background="#de4557">
             <Button android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/declaration_sendpur_haoyouback"
                 android:text="返回"
-                android:textSize="16sp"
-                android:textColor="#ffffff"
-                android:background="@null"/>
+                android:gravity="center"
+                android:textSize="@dimen/textsize_middle"
+                android:textColor="@color/bottom_button_textcolor_default"
+                android:background="@color/red"/>
+            <View 
+           	    android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"/>
             <Button android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/declaration_sendpur_haoyouselectall"
                 android:text="全选"
-                android:textSize="16sp"
-                android:textColor="#ffffff"
-                android:background="@null"/>
+                android:gravity="center"
+                android:textSize="@dimen/textsize_middle"
+                android:textColor="@color/bottom_button_textcolor_default"
+                android:background="@color/red"/>
+            <View 
+           	    android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"/>
             <Button android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/declaration_sendpur_haoyousave"
                 android:text="保存"
-                android:textSize="16sp"
-                android:textColor="#ffffff"
-                android:background="@null"/>
+                android:gravity="center"
+                android:textSize="@dimen/textsize_middle"
+                android:textColor="@color/bottom_button_textcolor_default"
+                android:background="@color/red"/>
         </LinearLayout>
     </LinearLayout>
+    <ListView android:id="@+id/declaration_sendpurpose_haoyou_list"
+        android:layout_above="@id/lly_decla_sendpurpose_haoyou"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:divider="@null"
+    	android:layout_marginTop="220dp"
+        android:dividerHeight="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="10dp"></ListView>
 </RelativeLayout>    
 

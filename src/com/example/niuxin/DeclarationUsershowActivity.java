@@ -69,7 +69,7 @@ public class DeclarationUsershowActivity extends Activity{
         @Override
 		public View getView(int position, View convertView, ViewGroup arg2) {
 			// TODO Auto-generated method stub
-        	convertView = mInflater.inflate(R.layout.declaration_targetshow_haoyouitem, null);//根据布局文件实例化view 
+        	convertView = mInflater.inflate(R.layout.listview_declaration_targetshow_haoyou, null);//根据布局文件实例化view 
         	//名称
         	TextView nameText=(TextView) convertView.findViewById(R.id.declatarget_haoyouitem_name);
         	nameText.setText(mData.get(position).get("nameText").toString());
@@ -89,7 +89,6 @@ public class DeclarationUsershowActivity extends Activity{
             map.put("touxiang", R.drawable.detail_content_touxiang);  
              list.add(map);  
         }  
-  
         return list;  
     }  
 

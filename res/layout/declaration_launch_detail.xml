@@ -8,11 +8,74 @@
 		android:id="@+id/include"  
 		layout="@layout/suolue"/> 
 		
-         <ScrollView 
-    	android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_below="@id/include"
-    	 >
+    <!-- 底部按钮部分 -->
+     <LinearLayout 
+         android:id="@+id/lly_decla_launch_detail"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:layout_alignParentBottom="true"
+         >
+		 <View 
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:background="@drawable/line_red_new"
+		android:layout_marginLeft="@dimen/layout_margin_five"
+		android:layout_marginRight="@dimen/layout_margin_five"
+		android:layout_marginBottom="@dimen/layout_margin_five"
+        />"
+      <LinearLayout 
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/bottom_btn_width"
+          android:orientation="horizontal"
+          >
+          <Button
+              android:layout_weight="1"
+              android:id="@+id/detail_button_back"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:background="@color/red"
+              android:text="返回" 
+              android:textSize="@dimen/textsize_middle"
+              android:textColor="@color/bottom_button_textcolor_default"/>
+          <View 
+           	  android:layout_width="1dp"
+              android:layout_height="match_parent"
+              android:background="@color/white"/>
+          <Button 
+              android:id="@+id/detail_button_save"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:text="保存模板"
+              android:background="@color/red"
+              android:gravity="center"
+              android:textSize="@dimen/textsize_middle"
+              android:textColor="@color/bottom_button_textcolor_default"/>
+          <View 
+           	  android:layout_width="1dp"
+              android:layout_height="match_parent"
+              android:background="@color/white"/>
+          <Button 
+              android:id="@+id/detail_button_send"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:text="发送"
+              android:background="@color/red"
+              android:gravity="center"
+              android:textSize="@dimen/textsize_middle"
+              android:textColor="@color/bottom_button_textcolor_default"/>
+      </LinearLayout>
+    </LinearLayout>  
+	
+   <ScrollView 
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_below="@id/include"
+	android:layout_above="@id/lly_decla_launch_detail"
+	 >
 	<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -491,68 +554,6 @@
 	</LinearLayout>
 	
 	   </LinearLayout>
-  </ScrollView> 
-  
-     <!-- 底部按钮部分 -->
-     <LinearLayout 
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="vertical"
-         android:layout_alignParentBottom="true"
-         >
-		 <View 
-		android:layout_width="match_parent"
-		android:layout_height="10dp"
-		android:background="@drawable/line_red_new"
-		android:layout_marginLeft="@dimen/layout_margin_five"
-		android:layout_marginRight="@dimen/layout_margin_five"
-		android:layout_marginBottom="@dimen/layout_margin_five"
-        />"
-      <LinearLayout 
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/bottom_btn_width"
-          android:orientation="horizontal"
-          >
-          <Button
-              android:layout_weight="1"
-              android:id="@+id/detail_button_back"
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:gravity="center"
-              android:background="@color/red"
-              android:text="返回" 
-              android:textSize="@dimen/textsize_middle"
-              android:textColor="@color/bottom_button_textcolor_default"/>
-          <View 
-           	  android:layout_width="1dp"
-              android:layout_height="match_parent"
-              android:background="@color/white"/>
-          <Button 
-              android:id="@+id/detail_button_save"
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="1"
-              android:text="保存模板"
-              android:background="@color/red"
-              android:gravity="center"
-              android:textSize="@dimen/textsize_middle"
-              android:textColor="@color/bottom_button_textcolor_default"/>
-          <View 
-           	  android:layout_width="1dp"
-              android:layout_height="match_parent"
-              android:background="@color/white"/>
-          <Button 
-              android:id="@+id/detail_button_send"
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="1"
-              android:text="发送"
-              android:background="@color/red"
-              android:gravity="center"
-              android:textSize="@dimen/textsize_middle"
-              android:textColor="@color/bottom_button_textcolor_default"/>
-      </LinearLayout>
-    </LinearLayout>  
-  
+  </ScrollView>   
 
 </RelativeLayout>

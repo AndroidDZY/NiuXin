@@ -62,7 +62,7 @@ public class QunzuAdapter extends BaseAdapter {
             // 获得ViewHolder对象  
             holder = new ViewHolder();  
             // 导入布局并赋值给convertview  
-            convertView = inflater.inflate(R.layout.declaration_sendpurpose_qunzuitem, null);
+            convertView = inflater.inflate(R.layout.listview_declaration_sendpurpose_qunzu, null);
             holder.im = (ImageView)convertView.findViewById(R.id.decla_qunzuitem_touxiang); 
             holder.tv = (TextView) convertView.findViewById(R.id.decla_qunzuitem_name);  
             holder.cb = (CheckBox) convertView.findViewById(R.id.qunzu_item_cb);  

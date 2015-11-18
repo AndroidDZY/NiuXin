@@ -2,7 +2,8 @@
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray">
        <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
@@ -25,44 +26,41 @@
             android:layout_height="wrap_content"
 	        android:orientation="horizontal"
 	        android:background="#de4557"
-		    android:minHeight="30dp">
+		    android:minHeight="40dp">
 		    <TextView android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="目标用户选择"
-		        android:textSize="16sp"
+		        android:textSize="@dimen/textsize_big"
 		        android:layout_gravity="center_vertical"
 		        android:layout_marginLeft="8dp"
+		        android:textStyle="bold"
 		        android:textColor="#ffffff"/>
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent"
             android:baselineAligned="false"
-            android:layout_height="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:orientation="horizontal">
-            <RelativeLayout android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <Button android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_alignParentRight="true"
-                    android:textSize="18sp"
-                    android:id="@+id/declartion_send_haoyou"
-                    android:layout_centerVertical="true"
-                    android:background="@null"
-                    android:layout_marginRight="10dp"
-                    />
-            </RelativeLayout>
-            <RelativeLayout android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <Button android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_alignParentLeft="true"
-                    android:textSize="18sp"
-                    android:background="@null"
-                    android:id="@+id/declartion_send_qunzu"
-                    android:layout_marginLeft="10dp"
-                    />
-            </RelativeLayout>
+            <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:textSize="15dp"
+                android:text="好友"
+                android:background="#f7f7f7"
+                android:layout_gravity="bottom"
+                android:id="@+id/declartion_send_haoyou"
+                />
+            <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:textSize="15dp"
+                android:background="#f7f7f7"
+                android:layout_gravity="bottom"
+                android:text="群组"
+                android:layout_marginLeft="@dimen/layout_margin_eight"
+                android:id="@+id/declartion_send_qunzu"
+                />
         </LinearLayout>
 
       <ImageView
@@ -73,44 +71,7 @@
           android:layout_marginRight="10dp"
           android:background="@drawable/declaration_sendpurpos_redline" />
     </LinearLayout>
-    <!-- <LinearLayout android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/declaration_sendpurpos_redline"/>
-        <LinearLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#de4557">
-            <Button android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/declaration_sendpur_back"
-                android:text="返回"
-                android:textSize="16sp"
-                android:textColor="#ffffff"
-                android:background="@null"/>
-            <Button android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/declaration_sendpur_selectall"
-                android:text="全选"
-                android:textSize="16sp"
-                android:textColor="#ffffff"
-                android:background="@null"/>
-            <Button android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/declaration_sendpur_save"
-                android:text="保存"
-                android:textSize="16sp"
-                android:textColor="#ffffff"
-                android:background="@null"/>
-        </LinearLayout>
-    </LinearLayout> -->
+    
+
 </TabHost>
 

@@ -25,13 +25,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 /*
  * 填写报单内容activity
  */
 public class DeclarationDetailActivity extends Activity{
 	
 	LinearLayout linearLayoutModelChoice,linearLayoutContactChoice,linearLayoutActiontype,detailsendchoice;
-	private Button buttonBack ,buttonSend,buttonsave;
+	private Button backButton ,sendButton,saveButton;
 	EditText editTextPrice, editTextShoushu,editTextCangwei,editTextArea1,editTextArea2,editTextBeizhu;
 	TextView purposeChoiced,contractType,operateType,modelChioced;
 	ImageView imageView;
@@ -54,9 +55,11 @@ public class DeclarationDetailActivity extends Activity{
 		linearLayoutContactChoice=(LinearLayout)findViewById(R.id.detail_contact_type);
 		linearLayoutActiontype=(LinearLayout)findViewById(R.id.detail_action_type);
 		detailsendchoice=(LinearLayout)findViewById(R.id.detail_send_desti);
-		buttonBack=(Button)findViewById(R.id.detail_button_back);
-		buttonSend=(Button)findViewById(R.id.detail_button_send);
-		buttonsave=(Button)findViewById(R.id.detail_button_save);
+		
+		backButton=(Button)findViewById(R.id.detail_button_back);//返回按钮
+		sendButton=(Button)findViewById(R.id.detail_button_send);//发送按钮
+		saveButton=(Button)findViewById(R.id.detail_button_save);//保存模板按钮
+		
 		//价格手数仓位止盈止损范围备注
 		editTextPrice=(EditText)findViewById(R.id.detail_edit_price);
 		editTextShoushu=(EditText)findViewById(R.id.detail_edit_shoushu);
@@ -127,7 +130,7 @@ public class DeclarationDetailActivity extends Activity{
 			}
 		});
 		//返回
-		buttonBack.setOnClickListener(new OnClickListener() {
+		backButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
@@ -136,7 +139,7 @@ public class DeclarationDetailActivity extends Activity{
 			}
 		});
 		//发送
-		buttonSend.setOnClickListener(new OnClickListener() {
+		sendButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
@@ -144,14 +147,18 @@ public class DeclarationDetailActivity extends Activity{
 				//获取数据，发送
 				SaveThread saveThread = new SaveThread(1);
 				saveThread.start();
+				Toast toast = Toast.makeText(DeclarationDetailActivity.this, "发送成功", Toast.LENGTH_SHORT);
+				toast.show();
 			}
 		});
 		//保存模板
-		buttonsave.setOnClickListener(new OnClickListener() {
+		saveButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模板已保存", Toast.LENGTH_SHORT);
+				toast.show();
 				SaveThread saveThread = new SaveThread(2);
 				saveThread.start();
 			}

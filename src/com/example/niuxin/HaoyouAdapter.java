@@ -62,7 +62,7 @@ public class HaoyouAdapter extends BaseAdapter {
             // 获得ViewHolder对象  
             holder = new ViewHolder();  
             // 导入布局并赋值给convertview  
-            convertView = inflater.inflate(R.layout.declaration_sendpurpose_haoyouitme, null);
+            convertView = inflater.inflate(R.layout.listview_declaration_sendpurpose_haoyou, null);
             holder.im = (ImageView)convertView.findViewById(R.id.decla_haoyouitem_touxiang); 
             holder.tv = (TextView) convertView.findViewById(R.id.decla_haoyouitem_name);  
             holder.cb = (CheckBox) convertView.findViewById(R.id.haoyou_item_cb);  
