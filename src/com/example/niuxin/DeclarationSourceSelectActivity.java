@@ -23,10 +23,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
 public class DeclarationSourceSelectActivity extends Activity {
@@ -46,6 +46,14 @@ public class DeclarationSourceSelectActivity extends Activity {
 	private SharePreferenceUtil util = null;
 	int selectAllmark = 0;
 	SimpleAdapter adapter = null;
+	
+	@Override
+	protected void onResume() {
+		super.onResume();	
+		SearchThread thread = new SearchThread();
+		thread.start();
+	}
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -82,17 +90,15 @@ public class DeclarationSourceSelectActivity extends Activity {
 					result = useridSelectList.toString().substring(1, b - 1);
 				}
 				Intent intentType = new Intent(DeclarationSourceSelectActivity.this, DeclarationReceiveActivity.class);
-				intentType.putExtra("useridSelectList", result);
+				intentType.putExtra("sendtouserid", result);
 				startActivity(intentType);
 				finish();
-				
-				
-				
+
 			}
 		});
 
 		
-		list = getData();// 填充list数据
+	//	list = getData();// 填充list数据
 		listView = (ListView)findViewById(R.id.lv_declaration_source_select);//获取ListView
 		//创建适配器
 		//第二个参数：list集合中的每一个Map对象对应生成一个列表项
@@ -135,7 +141,6 @@ public class DeclarationSourceSelectActivity extends Activity {
             		useridSelectList.clear();
             		for(int i=0;i<list.size();i++){
             			list.get(position).put("flag", 0);
-            			
             		}
             		selectAllmark = 1;
             	}else
@@ -201,9 +206,9 @@ public class DeclarationSourceSelectActivity extends Activity {
 			map1.put("name", "全选");
 			list.add(map1);
 			Map<String, Object> map2 = new HashMap<String, Object>();
-			map1.put("id", -2);
-			map1.put("flag", 0);
-			map1.put("name", "已关注的报单者");
+			map2.put("id", -2);
+			map2.put("flag", 0);
+			map2.put("name", "已关注的报单者");
 			list.add(map2);
 				
 			if (null != jsonArray){
@@ -213,9 +218,9 @@ public class DeclarationSourceSelectActivity extends Activity {
 						Map<String, Object> map = new HashMap<String, Object>();
 						// 获取每一个对象中的值
 						int id = myjObject.getInt("id");
-						String type = myjObject.getString("type");
+						String name = myjObject.getString("name");
 						map.put("id", id);
-						map.put("type", type);
+						map.put("name", name);
 						map.put("flag", 0);
 						list.add(map);
 						listCopy = list;

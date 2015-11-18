@@ -62,18 +62,18 @@
                     android:id="@+id/tv_declaration_date_set"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2015年9月7日"
+                    android:text="2015年9月7日周一"
                     android:textColor="@color/white"
                     android:textSize="@dimen/textsize_ssmall"
                     />
-                <TextView 
+                <!-- <TextView 
                     android:id="@+id/tv_declaration_week_set"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="周一"
                     android:textColor="@color/white"
                     android:textSize="@dimen/textsize_ssmall"
-                    />
+                    /> -->
                 <ImageView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -68,7 +68,7 @@ public class DeclarationQunzushowActivity extends Activity{
         @Override
 		public View getView(int position, View convertView, ViewGroup arg2) {
 			// TODO Auto-generated method stub
-        	convertView = mInflater.inflate(R.layout.declaration_targetshow_qunzuitem, null);//根据布局文件实例化view 
+        	convertView = mInflater.inflate(R.layout.listview_declaration_targetshow_qunzu, null);//根据布局文件实例化view 
         	//名称
         	TextView nameText=(TextView) convertView.findViewById(R.id.declatarget_qunzuitem_name);
         	nameText.setText(mData.get(position).get("nameText").toString());

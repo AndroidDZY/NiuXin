@@ -5,7 +5,12 @@
     android:orientation="vertical" >
     <ListView android:id="@+id/declaration_targetshow_haoyou_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"></ListView>
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="220dp"
+        android:divider="@null"
+        android:dividerHeight="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="10dp"
+        >
+    </ListView>
 </LinearLayout>

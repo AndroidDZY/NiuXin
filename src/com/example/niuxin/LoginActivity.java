@@ -198,7 +198,7 @@ public class LoginActivity extends MyActivity implements OnClickListener {
 				DialogFactory.ToastDialog(LoginActivity.this, "牛信登录",
 						"亲！服务器暂未开放哦");
 			}
-		}*/
+        }*/
 		Intent intent=new Intent(LoginActivity.this,MainActivity.class);
 		startActivity(intent);
 	}

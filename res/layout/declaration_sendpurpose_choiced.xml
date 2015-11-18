@@ -2,7 +2,8 @@
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray">
        <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
@@ -42,43 +43,38 @@
         
         <LinearLayout android:layout_width="match_parent"
             android:baselineAligned="false"
-            android:layout_height="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:orientation="horizontal">
-            <RelativeLayout android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <Button android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_alignParentRight="true"
-                    android:textSize="18sp"
-                    android:id="@+id/declartion_target_haoyou"
-                    android:layout_centerVertical="true"
-                    android:background="@null"
-                    android:layout_marginRight="10dp"
-                    />
-            </RelativeLayout>
-            <RelativeLayout android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <Button android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_alignParentLeft="true"
-                    android:textSize="18sp"
-                    android:background="@null"
-                    android:id="@+id/declartion_target_qunzu"
-                    android:layout_marginLeft="10dp"
-                    />
-            </RelativeLayout>
+            <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:textSize="15dp"
+                android:background="#f7f7f7"
+                android:layout_gravity="bottom"
+                android:id="@+id/declartion_target_haoyou"
+                android:text="好友"
+                />
+            <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:textSize="15dp"
+                android:background="#f7f7f7"
+                android:layout_gravity="bottom"
+                android:text="群组"
+                android:layout_marginLeft="@dimen/layout_margin_eight"
+                android:id="@+id/declartion_target_qunzu"
+                />
         </LinearLayout>
 
-        <View 
-			android:layout_width="match_parent"
-			android:layout_height="10dp"
-			android:background="@drawable/line_red_new"
-			android:layout_marginLeft="@dimen/layout_margin_five"
-			android:layout_marginRight="@dimen/layout_margin_five"
-			android:layout_marginBottom="@dimen/layout_margin_five"
-        	/>
+      <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="-8dp"
+          android:layout_marginRight="10dp"
+          android:background="@drawable/declaration_sendpurpos_redline" />
     </LinearLayout>
     
     <LinearLayout android:layout_gravity="bottom"

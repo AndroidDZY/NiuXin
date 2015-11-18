@@ -27,42 +27,44 @@ public class DeclarationSendpurposeChoiceActivity extends TabActivity{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.declaration_sendpurpose_choice);
-		init();
+		init();//好友、群组界面切换
+		initTab();//好友、群组字体变化	   
+
+	    
+	}
+	private void initTab() {
+		// TODO Auto-generated method stub
 		haoyouButton=(Button)findViewById(R.id.declartion_send_haoyou);
 		qunzuButton=(Button)findViewById(R.id.declartion_send_qunzu);
-		/*backButton=(Button)findViewById(R.id.declaration_sendpur_back);
-		selectallButton=(Button)findViewById(R.id.declaration_sendpur_selectall);
-		saveButton=(Button)findViewById(R.id.declaration_sendpur_save);
-		*/haoyouButton.setBackgroundResource(R.drawable.declaration_sendpurpos_haoyou);
-		qunzuButton.setText("群组");
 		
-		//好友界面
+		haoyouButton.setTextColor(0xffde4557); // 设置字体颜色红
+		haoyouButton.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
+		qunzuButton.setTextColor(0xff000000); // 设置字体颜色黑
+		qunzuButton.setBackgroundColor(0xfff7f7f7);// 设置无边框
+		
+		//点击好友标签字体变化
 		haoyouButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				haoyouButton.setBackgroundResource(R.drawable.declaration_sendpurpos_haoyou);
-				haoyouButton.setText(null);
-				qunzuButton.setText("群组");
-				qunzuButton.setBackgroundResource(0);
+
+			public void onClick(View view) {
+				haoyouButton.setTextColor(0xffde4557); // 设置字体颜色红
+				haoyouButton.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
+				qunzuButton.setTextColor(0xff000000); // 设置字体颜色黑
+				qunzuButton.setBackgroundColor(0xfff7f7f7);// 设置无边框
 				tabHost.setCurrentTabByTag("haoyou");
 			}
 		});
-		//群组界面
+		
+		//点击群组标签字体变化
 		qunzuButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				qunzuButton.setBackgroundResource(R.drawable.declaration_sendpurpos_qunzu);
-				haoyouButton.setText("好友");
-				haoyouButton.setBackgroundResource(0);
-				qunzuButton.setText(null);
+
+			public void onClick(View view) {
+				haoyouButton.setTextColor(0xff000000); 
+				haoyouButton.setBackgroundColor(0xfff7f7f7);// 设置无边框
+				qunzuButton.setTextColor(0xffde4557);
+				qunzuButton.setBackgroundResource(R.drawable.buttonstyle02);// 设置有边框
 				tabHost.setCurrentTabByTag("qunzu");
 			}
 		});
-	    
 	}
 	//界面切换
 	private void init() {
