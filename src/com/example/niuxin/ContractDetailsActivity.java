@@ -1,7 +1,11 @@
 package com.example.niuxin;
 
+import com.niuxin.util.Constants;
+import com.niuxin.util.SharePreferenceUtil;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -18,11 +22,16 @@ public class ContractDetailsActivity extends Activity {
 	private Button btnBack;
 	private TextView tvContract ,tvOperation, tvPrice, tvHandnum, tvPosition, tvMinnum, tvMaxnum, tvRemark, tvSenderName;
 	private ImageView ivPictureUrl, ivSenderHead;
+	private SuoluetuActivity suolue;
+	public Handler handler = new Handler();
+	private SharePreferenceUtil util = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_contract_details);
+		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		suolue = new SuoluetuActivity(this, handler);
 		
 		initView();
 	}

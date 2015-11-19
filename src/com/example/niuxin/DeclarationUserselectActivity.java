@@ -12,10 +12,13 @@ import java.util.List;
 
 
 import com.example.niuxin.HaoyouAdapter.ViewHolder;
+import com.niuxin.util.Constants;
+import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +39,18 @@ public class DeclarationUserselectActivity extends Activity{
 	private List<HashMap<String, Object>> list;
 	private HaoyouAdapter haoyouAdapter;
 	private int checkNum;
+	private SuoluetuActivity suolue;
+	public Handler handler = new Handler();
+	private SharePreferenceUtil util = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.declaration_sendpurpose_haoyou);
+		
+		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		suolue = new SuoluetuActivity(this, handler);
 		
 		backButton=(Button)findViewById(R.id.declaration_sendpur_haoyouback);
 		allButton=(Button)findViewById(R.id.declaration_sendpur_haoyouselectall);

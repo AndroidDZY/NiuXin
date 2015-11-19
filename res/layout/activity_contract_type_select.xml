@@ -3,17 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"  >
+    android:background="@color/bg_gray"  >
+    <!-- 顶部缩略图 -->
+    <include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/>
     <!-- 页面标题 -->
     <TextView 
         android:id="@+id/tv_contract_type_select"
+        android:layout_below="@id/include"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textColor="@color/white"
         android:text="合约类型选择"
         android:textSize="@dimen/textsize_big"
         android:background="@color/red"
-        android:padding="@dimen/layout_margin_five"
+        android:paddingLeft="@dimen/layout_margin_ten"
         android:textStyle="bold"
         android:gravity="center_vertical"/>
     <!-- 底部按钮部分 -->
@@ -46,11 +51,11 @@
             android:background="@color/red"
             />
     </LinearLayout>
-    <View 
+    <ImageView 
         android:id="@+id/v_contract_type_select"
 		android:layout_width="match_parent"
-		android:layout_height="10dp"
-		android:background="@drawable/line_red_new"
+		android:layout_height="wrap_content"
+		android:background="@drawable/declaration_sendpurpos_redline"
 		android:layout_marginLeft="@dimen/layout_margin_five"
 		android:layout_marginRight="@dimen/layout_margin_five"
 		android:layout_marginBottom="@dimen/layout_margin_five"
@@ -63,5 +68,6 @@
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
     	android:divider="@null"
+    	android:layout_marginTop="3dp"
      />
 </RelativeLayout>

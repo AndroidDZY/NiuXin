@@ -37,7 +37,8 @@ public class ContractTypeSelectActivity extends Activity {
 	private List<String> contractSelectNameList = new LinkedList<String>();
 	private Button btnBack;
 	private Button btnSave;
-	private Handler handler = new Handler();
+	private SuoluetuActivity suolue;
+	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
 	
 	
@@ -55,6 +56,8 @@ public class ContractTypeSelectActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.activity_contract_type_select);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		suolue = new SuoluetuActivity(this, handler);
+
 		initView();
 		
 

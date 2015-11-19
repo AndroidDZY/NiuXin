@@ -4,15 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"  >
+    <!-- 顶部缩略图 -->
+    <include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/>  
     <TextView 
         android:id="@+id/tv_declaration_remind_setting"
+        android:layout_below="@id/include"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="选择模板"
         android:textColor="@color/white"
         android:textSize="@dimen/textsize_big"
         android:background="@color/red"
-        android:padding="@dimen/layout_margin_five"
+        android:paddingLeft="@dimen/layout_margin_ten"
         android:textStyle="bold"
         android:gravity="center_vertical"/>
      <LinearLayout 
@@ -26,7 +31,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="返回"
-            android:textColor="@color/white"
+            android:textColor="@color/bottom_button_textcolor_default"
+            android:textSize="@dimen/textsize_middle"
             android:background="@color/red"/>
         <View 
             android:layout_width="1dp"
@@ -38,7 +44,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="全选"
-            android:textColor="@color/white"
+            android:textColor="@color/bottom_button_textcolor_default"
+            android:textSize="@dimen/textsize_middle"
             android:background="@color/red"
             />
         <View 
@@ -51,15 +58,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="删除"
-            android:textColor="@color/white"
+            android:textColor="@color/bottom_button_textcolor_default"
+            android:textSize="@dimen/textsize_middle"
             android:background="@color/red"
             />
     </LinearLayout>
-    <View 
+    <ImageView 
         android:id="@+id/v_declaration_remind_setting"
 		android:layout_width="match_parent"
-		android:layout_height="10dp"
-		android:background="@drawable/line_red_new"
+		android:layout_height="wrap_content"
+		android:background="@drawable/declaration_sendpurpos_redline"
 		android:layout_marginLeft="@dimen/layout_margin_five"
 		android:layout_marginRight="@dimen/layout_margin_five"
 		android:layout_marginBottom="@dimen/layout_margin_five"
@@ -71,6 +79,7 @@
      	android:layout_above="@id/v_declaration_remind_setting"
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
+    	android:layout_marginTop="3dp"
     	android:divider="@null"
      />
 </RelativeLayout>
