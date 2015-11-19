@@ -16,7 +16,9 @@ import com.niuxin.util.Constants;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -29,16 +31,21 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DeclarationUserselectActivity extends Activity{
 	private Button backButton,allButton,saveButton;
+	private ImageButton addImageButton;
 	private ListView listView;
 	//private ArrayList<String> list;
 	private List<HashMap<String, Object>> list;
 	private HaoyouAdapter haoyouAdapter;
 	private int checkNum;
+	EditText text = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -49,6 +56,7 @@ public class DeclarationUserselectActivity extends Activity{
 		backButton=(Button)findViewById(R.id.declaration_sendpur_haoyouback);
 		allButton=(Button)findViewById(R.id.declaration_sendpur_haoyouselectall);
 		saveButton=(Button)findViewById(R.id.declaration_sendpur_haoyousave);
+		addImageButton = (ImageButton)findViewById(R.id.declaration_sendpurpose_haoyou_imageview_add);
 		listView=(ListView)findViewById(R.id.declaration_sendpurpose_haoyou_list);
 		list=getData();
 		haoyouAdapter = new HaoyouAdapter(list,this);//创建一个适配器  
@@ -76,6 +84,51 @@ public class DeclarationUserselectActivity extends Activity{
                
             }  
         }); 
+		// 保存按钮
+		saveButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Toast toast = Toast.makeText(DeclarationUserselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
+				toast.show();
+			}
+		});
+		// 添加发送好友按钮
+		addImageButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				addModel();
+			}
+
+			private void addModel() {
+				// TODO Auto-generated method stub
+				View myView = LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);// 将layout对象转换为VIew对象
+				AlertDialog.Builder builder = new AlertDialog.Builder(DeclarationUserselectActivity.this);
+				builder.setTitle("添加好友");
+				builder.setView(myView);
+				text =  (EditText)myView.findViewById(R.id.et_tag_name);
+				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// 这里添加点击确定后的逻辑
+						// 这边要加新建的模板并在listview中新增
+						
+						Toast.makeText(DeclarationUserselectActivity.this, "添加好友成功", Toast.LENGTH_SHORT).show();
+						dialog.dismiss();// 对话框消失
+					}
+				});
+				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// 这里添加点击确定后的逻辑
+						// showDialog("你选择了取消");
+						dialog.dismiss();// 对话框消失
+					}
+				});
+				builder.create().show();
+			}
+		});
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

@@ -27,6 +27,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ public class DeclarationModelChoiceActivity extends Activity{
 	private ListView listView;
 	private List<HashMap<String, Object>> mData;  
     private Button buttonBack , saveButton ;
-	private ImageView addImageView;
+	private ImageButton addImageButton;
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
@@ -54,7 +55,7 @@ public class DeclarationModelChoiceActivity extends Activity{
 		buttonBack=(Button)findViewById(R.id.declaration_button_back);
 		//保存按钮
 		saveButton=(Button)findViewById(R.id.declaration_button_save);
-		addImageView=(ImageView)findViewById(R.id.declaration_imageview_add);
+		addImageButton=(ImageButton)findViewById(R.id.declaration_imageview_add);
 		mData = getData();
 		MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
 		listView=(ListView)findViewById(R.id.declaration_list_modelchoice);
@@ -93,7 +94,7 @@ public class DeclarationModelChoiceActivity extends Activity{
 			}
 		});
 		//添加模板按钮
-		addImageView.setOnClickListener(new OnClickListener() {
+		addImageButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {

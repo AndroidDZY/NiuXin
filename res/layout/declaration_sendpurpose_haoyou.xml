@@ -10,6 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <!-- 添加模板按钮 -->
+    	<ImageButton android:layout_marginLeft="50dp"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:background="@drawable/modeladd"
+        	android:layout_marginBottom="20dp"
+        	android:id="@+id/declaration_sendpurpose_haoyou_imageview_add"/>
         <ImageView android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -65,5 +72,7 @@
         android:dividerHeight="3dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="10dp"></ListView>
+   	
+
 </RelativeLayout>    
 
