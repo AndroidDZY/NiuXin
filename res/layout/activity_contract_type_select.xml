@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"  >
+    <!-- 页面标题 -->
     <TextView 
         android:id="@+id/tv_contract_type_select"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         android:padding="@dimen/layout_margin_five"
         android:textStyle="bold"
         android:gravity="center_vertical"/>
+    <!-- 底部按钮部分 -->
      <LinearLayout 
         android:id="@+id/lly_contract_type_select"
         android:layout_width="match_parent"
@@ -24,9 +26,10 @@
             android:id="@+id/btn_contract_type_select_back"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="返回"
-            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_middle"
+            android:textColor="@color/bottom_button_textcolor_default"
             android:background="@color/red"/>
         <View 
             android:layout_width="1dp"
@@ -36,9 +39,10 @@
             android:id="@+id/btn_contract_type_select_save"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="5"
             android:text="保存"
-            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_middle"
+            android:textColor="@color/bottom_button_textcolor_default"
             android:background="@color/red"
             />
     </LinearLayout>

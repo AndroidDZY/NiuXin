@@ -11,7 +11,7 @@
         android:paddingLeft="5dp"
     	android:layout_width="match_parent"
     	android:layout_height="40dp"
-    	android:hint="请输入标签名称"
+    	android:hint="请输入名称"
     	android:maxLength="10"
     	android:background="@drawable/edittext_03"
     	android:textColor="#000000"

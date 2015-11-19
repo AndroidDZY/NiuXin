@@ -82,10 +82,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
       
-        <View 
+        <ImageView 
 			android:layout_width="match_parent"
-			android:layout_height="10dp"
-			android:background="@drawable/line_red_new"
+			android:layout_height="wrap_content"
+			android:background="@drawable/declaration_sendpurpos_redline"
 			android:layout_marginLeft="@dimen/layout_margin_five"
 			android:layout_marginRight="@dimen/layout_margin_five"
 			android:layout_marginBottom="@dimen/layout_margin_five"

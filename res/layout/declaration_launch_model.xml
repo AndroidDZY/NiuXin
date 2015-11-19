@@ -2,58 +2,90 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent" 
     xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout 
+    <!-- 顶部缩略图 -->
+	<include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"
+		/>
+	
+	<!-- 底部按钮部分 -->
+	<LinearLayout 
+	    android:id="@+id/lly_decla_launch_model"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/bottom_btn_width"
+    	android:layout_alignParentBottom="true"
+    	android:orientation="horizontal"
+    	android:background="#de4557">
+    	<Button android:id="@+id/declaration_button_back"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="2"
+        	android:text="返回"
+        	android:textColor="@color/bottom_button_textcolor_default"
+        	android:background="@null"/>
+    	<View 
+    		android:layout_width="1dp"
+    		android:layout_height="match_parent"
+    		android:background="@color/white"/>
+    	<Button android:id="@+id/declaration_button_save"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="5"
+        	android:text="保存"
+        	android:background="@null"
+        	android:textColor="@color/bottom_button_textcolor_default"
+        	android:gravity="center"/>
+		</LinearLayout>
+		
+        <ImageView 
+            android:id="@+id/iv_decla_launch_model"
+            android:layout_above="@id/lly_decla_launch_model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/declaration_sendpurpos_redline"/>
+		
+	<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:layout_below="@id/include"
+    android:layout_above="@id/iv_decla_launch_model"
+    android:orientation="vertical" 
+    android:background="@color/bg_gray">
+    <!-- 页面标题 -->
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#de4557"
-        android:minHeight="25dp"
+        android:minHeight="40dp"
         >
 	    <TextView android:layout_marginLeft="10dp"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="选择模板"
+	        android:textStyle="bold"
 	        android:layout_gravity="center_vertical"
-	        android:textColor="#ffffff"
-	        android:textSize="16sp"/>
+	        android:textColor="@color/white"
+	        android:textSize="@dimen/textsize_big"/>
     </LinearLayout>
     
     <ListView
         android:id="@+id/declaration_list_modelchoice"
         android:layout_width="match_parent"
-        android:layout_height="200dp" >
+        android:layout_height="210dp"
+        android:layout_marginTop="3dp"
+        android:divider="@null" >
     </ListView>
     
-    <ImageView android:layout_marginLeft="20dp"
+    <!-- 添加模板按钮 -->
+    <ImageView android:layout_marginLeft="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/modeladd"
+        android:layout_marginTop="@dimen/layout_margin_eight"
         android:id="@+id/declaration_imageview_add"/>
+	</LinearLayout>
 
-</LinearLayout>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:layout_alignParentBottom="true"
-    android:orientation="horizontal"
-    android:background="#de4557">
-    <Button android:id="@+id/declaration_button_back"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="返回"
-        android:textColor="#ffffff"
-        android:background="@null"/>
-    <Button android:id="@+id/declaration_button_save"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:text="保存"
-        android:background="@null"
-        android:textColor="#ffffff"
-        android:gravity="center"/>
-</LinearLayout>
 
 </RelativeLayout>
