@@ -7,11 +7,11 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class ContractDetailsActivity extends Activity {
 	private ToggleButton togBtnCollect, togBtnShield;
@@ -96,4 +96,6 @@ public class ContractDetailsActivity extends Activity {
 			}
 		});
 	}
+	
+	
 }
