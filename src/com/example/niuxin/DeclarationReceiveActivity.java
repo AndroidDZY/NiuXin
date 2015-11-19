@@ -94,10 +94,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
 		getDate();
 	}
-	protected void onNewIntent(Intent intent) { 
-	    super.onNewIntent(intent); 
-	   
-	}
+
 	private void getDate() {
 		SearchAllThread thread = new SearchAllThread();
 		thread.start();
@@ -135,8 +132,9 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// TODO Auto-generated method stub
 				Intent intentList = new Intent(DeclarationReceiveActivity.this, ContractDetailsActivity.class);
+				intentList.putExtra("id", list.get(position).get("id").toString());
+				intentList.putExtra("senduserid", list.get(position).get("senderId").toString());
 				startActivity(intentList);
 			}
 		});

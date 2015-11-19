@@ -1,9 +1,19 @@
 package com.example.niuxin;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
+import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -19,12 +29,14 @@ import android.widget.ToggleButton;
 
 public class ContractDetailsActivity extends Activity {
 	private ToggleButton togBtnCollect, togBtnShield;
+	GetSource getSource = new GetSource();
 	private Button btnBack;
 	private TextView tvContract ,tvOperation, tvPrice, tvHandnum, tvPosition, tvMinnum, tvMaxnum, tvRemark, tvSenderName;
 	private ImageView ivPictureUrl, ivSenderHead;
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
+	String contract, operation, price, handnum, position, minnum, maxnum, remark, senduserimg;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +46,13 @@ public class ContractDetailsActivity extends Activity {
 		suolue = new SuoluetuActivity(this, handler);
 		
 		initView();
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		GroupThread gt = new GroupThread();
+		gt.start();
 	}
 	
 	/*
@@ -88,6 +107,10 @@ public class ContractDetailsActivity extends Activity {
 					//选中
 					Toast toast = Toast.makeText(ContractDetailsActivity.this, "屏蔽了该报单者", Toast.LENGTH_SHORT);
 					toast.show();
+					
+					FollowThread ft = new FollowThread(1);//1添加 2 删除
+					ft.start();
+					
 				}else{
 					//未选中
 					Toast toast = Toast.makeText(ContractDetailsActivity.this, "取消屏蔽", Toast.LENGTH_SHORT);
@@ -106,5 +129,158 @@ public class ContractDetailsActivity extends Activity {
 		});
 	}
 	
+	
+	
+	// 根据ID查看报单详细内容 ，真数据的时候调用下面的线程
+			class FollowThread extends Thread {
+				int type =0;
+				public  FollowThread(int type){
+					this.type = type;
+				}
+				@Override
+				public void run() {
+					
+					// 新建工具类，向服务器发送Http请求
+					HttpPostUtil postUtil = new HttpPostUtil();
+
+					// 向服务器发送数据，如果没有，可以不发送
+					JSONObject jsonObject = new JSONObject();
+					//获取发送报单的id
+					Intent intent=getIntent();
+					Long id=Long.valueOf(intent.getStringExtra("senduserid"));
+					try {
+						jsonObject.put("senduserid", id);	
+						jsonObject.put("userid", util.getId());	
+						
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}			
+					//设置发送的url 和服务器端的struts.xml文件对应
+					if(type==1){
+						postUtil.setUrl("/user/action_followUser.do");
+					}else
+						postUtil.setUrl("/user/action_unfollowUser.do");
+					//向服务器发送数据
+					JSONArray js = new JSONArray();
+					js.put(jsonObject);
+					postUtil.setRequest(js);
+					// 从服务器获取数据
+					String res = postUtil.run();	
+					if(res==null){
+						return;
+					}
+					// 对从服务器获取数据进行解析
+					JSONArray jsonArray = null;			
+					try {
+						jsonArray = new JSONArray(res);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}		
+						
+					
+		 
+					Runnable r = new Runnable() {
+						@Override
+						public void run() {													
+						}
+					};
+					handler.post(r);
+				}
+			}
+		
+	
+	
+	
+	
+	
+	
+	
+	// 根据ID查看报单详细内容 ，真数据的时候调用下面的线程
+		class GroupThread extends Thread {
+			@Override
+			public void run() {
+				// 新建工具类，向服务器发送Http请求
+				HttpPostUtil postUtil = new HttpPostUtil();
+
+				// 向服务器发送数据，如果没有，可以不发送
+				JSONObject jsonObject = new JSONObject();
+				//获取发送报单的id
+				Intent intent=getIntent();
+				Long id=Long.valueOf(intent.getStringExtra("id"));
+				try {
+					jsonObject.put("formid", id);			
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}			
+				//设置发送的url 和服务器端的struts.xml文件对应
+				postUtil.setUrl("/form/form_selectById.do");
+				//向服务器发送数据
+				JSONArray js = new JSONArray();
+				js.put(jsonObject);
+				postUtil.setRequest(js);
+				// 从服务器获取数据
+				String res = postUtil.run();	
+				if(res==null){
+					return;
+				}
+				// 对从服务器获取数据进行解析
+				JSONArray jsonArray = null;			
+				try {
+					jsonArray = new JSONArray(res);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}		
+					if (null != jsonArray) {
+						for (int i = 0; i < jsonArray.length(); i++) {
+						try {					
+							JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+							Map<String, Object> map = new HashMap<String, Object>();
+							// 发送表单用户的信息
+							String formid = myjObject.getString("id");// 表单id
+							 contract = myjObject.getString("contract");
+							 operation = myjObject.getString("operation");
+							 price = myjObject.getString("price");
+							 handnum = myjObject.getString("handnum");
+							 position = myjObject.getString("position");
+							String profit = myjObject.getString("profit");
+							 minnum = myjObject.getString("minnum");
+							 maxnum = myjObject.getString("maxnum");
+							// String remark = myjObject.getString("remark");
+							// String pictureurl =
+							// myjObject.getString("pictureurl");
+							// String audiourl = myjObject.getString("audiourl");
+							String date = myjObject.getString("date");
+							String week = myjObject.getString("week");
+							String time = myjObject.getString("time");
+							// String name = myjObject.getString("name");
+							int sendfromid = myjObject.getInt("sendfrom");
+							int collection = myjObject.getInt("collection");
+							senduserimg = myjObject.getString("img");
+							String sendusername = myjObject.getString("sendusername");
+						}catch (JSONException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				
+	 
+				Runnable r = new Runnable() {
+					@Override
+					public void run() {						
+						tvContract.setText(contract);//合约类型
+						tvOperation.setText(operation);//操作类型
+						tvPrice.setText(price);//价格
+						tvHandnum.setText(handnum);//手数
+						tvPosition.setText(position);//仓位
+						tvMinnum.setText(minnum);
+						tvMaxnum.setText(maxnum);
+						tvRemark.setText(remark);//备注
+						ivSenderHead.setImageResource(getSource.getResourceByReflect(senduserimg));//配图
+						ivPictureUrl.setImageResource(getSource.getResourceByReflect(senduserimg));//头像
+					}
+				};
+				handler.post(r);
+			}
+		}
 	
 }
