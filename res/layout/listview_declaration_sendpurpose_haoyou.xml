@@ -38,6 +38,5 @@
             android:background="@drawable/declaration_send_redline"/>
     </RelativeLayout>
     
-   
 
 </LinearLayout>

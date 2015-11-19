@@ -10,10 +10,10 @@
         android:layout_weight="1"
         >
     </LinearLayout>
-    <View 
+    <ImageView 
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@drawable/line_red_new"
+        android:layout_height="wrap_content"
+        android:background="@drawable/declaration_sendpurpos_redline"
         android:layout_marginLeft="@dimen/layout_margin_five"
         android:layout_marginRight="@dimen/layout_margin_five"/>
     <RelativeLayout 
@@ -31,11 +31,11 @@
             android:ellipsize="end"
             android:layout_centerHorizontal="true"
             />
-        <View 
+        <ImageView 
             android:id="@+id/view_declaration_bottom"
         	android:layout_width="match_parent"
-        	android:layout_height="10dp"
-        	android:background="@drawable/line_red_new"
+        	android:layout_height="wrap_content"
+        	android:background="@drawable/declaration_sendpurpos_redline"
         	android:layout_marginLeft="@dimen/layout_margin_five"
         	android:layout_marginRight="@dimen/layout_margin_five"
         	android:layout_alignParentBottom="true"/>

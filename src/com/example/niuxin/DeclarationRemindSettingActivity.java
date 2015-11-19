@@ -28,6 +28,8 @@ import android.widget.SimpleAdapter;
 public class DeclarationRemindSettingActivity extends Activity {
 	private ListView listView;
 	List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
+	private SuoluetuActivity suolue;
+	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
 	private int flag = 0;
 	private int flagDeclaration = 0;
@@ -36,13 +38,13 @@ public class DeclarationRemindSettingActivity extends Activity {
 	private int flagDeclarationTwo = 0;
 	private int flagDeclarationThree = 0;
 	private Button btnBack, btnSelectAll, btnDelete;
-	private Handler handler = new Handler();
 	SimpleAdapter adapter = null;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_declaration_remind_setting);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		suolue = new SuoluetuActivity(this, handler);
 		initView();
 		
 		/* 按钮点击事件

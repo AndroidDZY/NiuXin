@@ -101,8 +101,9 @@ public class DeclarationLaunchActivity extends Activity{
 				intent.putExtra("id", id);
 				intent.setClass(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
 				startActivity(intent);*/
-				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
-				startActivity(intent);
+				// 这边不需要跳转详细信息
+				/*Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
+				startActivity(intent);*/
 			}
 		});
 		

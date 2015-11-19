@@ -37,14 +37,16 @@ public class DeclarationDetailActivity extends Activity{
 	TextView purposeChoiced,contractType,operateType,modelChioced;
 	ImageView imageView;
 	List<Map<String, Object>> list=new ArrayList<Map<String, Object>>();
+	private SuoluetuActivity suolue;
+	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
-	private Handler handler = new Handler();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.declaration_launch_detail);
+		suolue = new SuoluetuActivity(this, handler);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		//数据初始化模板、合约类型、操作类型
 		modelChioced=(TextView)findViewById(R.id.detail_model_choice);

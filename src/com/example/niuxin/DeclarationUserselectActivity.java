@@ -12,10 +12,13 @@ import java.util.List;
 
 
 import com.example.niuxin.HaoyouAdapter.ViewHolder;
+import com.niuxin.util.Constants;
+import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

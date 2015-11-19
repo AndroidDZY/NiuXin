@@ -37,6 +37,7 @@ public class DeclarationSourceSelectActivity extends Activity {
 	private List<String> useridSelectListName = new LinkedList<String>();
 
 	private Button btnBack, btnSave;
+	private SuoluetuActivity suolue;
 	private Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
 	int selectAllmark = 0;
@@ -54,6 +55,8 @@ public class DeclarationSourceSelectActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_declaration_source_select);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		suolue = new SuoluetuActivity(this, handler);
+
 		initView();
 		 
 		btnBack.setOnClickListener(new OnClickListener() {

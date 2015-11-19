@@ -3,27 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+    <!-- 顶部缩略图 -->
+    <include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/>  
     <Button 
 	    android:id="@+id/btn_declaration_receive_back"
 	    android:layout_width="match_parent"
 	    android:layout_height="@dimen/bottom_btn_width"
 	    android:background="@color/red"
 	    android:text="返回"
-	    android:textColor="#FFDAB9"
+	    android:textColor="@color/bottom_button_textcolor_default"
+	    android:textSize="@dimen/textsize_middle"
 	    android:layout_alignParentBottom="true"/>  
-    <View 
+    <ImageView 
         android:id="@+id/v_declaration_receive"
 		android:layout_width="match_parent"
-		android:layout_height="10dp"
-		android:background="@drawable/line_red_new"
+		android:layout_height="wrap_content"
+		android:background="@drawable/declaration_sendpurpos_redline"
 		android:layout_marginLeft="@dimen/layout_margin_five"
 		android:layout_marginRight="@dimen/layout_margin_five"
 		android:layout_marginBottom="@dimen/layout_margin_five"
 		android:layout_above="@id/btn_declaration_receive_back"
         />
+    
     <LinearLayout 
         android:id="@+id/lly_declaration_receive"
         android:layout_width="match_parent"
+        android:layout_below="@id/include"
     	android:layout_height="wrap_content"
     	android:orientation="vertical">
     	<RelativeLayout 
@@ -34,13 +42,14 @@
     	    >
     	    <TextView 
     	    	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
+            	android:layout_height="40dp"
             	android:layout_centerVertical="true"
+            	android:gravity="center_vertical"
+            	android:layout_marginLeft="@dimen/layout_margin_ten"
             	android:text="提醒设置"
             	android:textColor="@color/white"
         		android:textSize="@dimen/textsize_big"
         		android:background="@color/red"
-        		android:padding="@dimen/layout_margin_ten"
         		android:textStyle="bold"/>
     	    <Button 
     	        android:id="@+id/btn_declarationreceive_setting"
@@ -155,10 +164,10 @@
         		android:textOff=""
         		android:textOn="" />
         </LinearLayout>
-        <View 
+        <ImageView 
 			android:layout_width="match_parent"
-			android:layout_height="10dp"
-			android:background="@drawable/line_red_new"
+			android:layout_height="wrap_content"
+			android:background="@drawable/declaration_sendpurpos_redline"
 			android:layout_marginLeft="@dimen/layout_margin_five"
 			android:layout_marginRight="@dimen/layout_margin_five"
 			android:layout_marginBottom="@dimen/layout_margin_five"

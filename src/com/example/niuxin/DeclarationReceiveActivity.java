@@ -33,6 +33,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class DeclarationReceiveActivity extends Activity implements OnClickListener {
+	private SuoluetuActivity suolue;
 	private Button btnSetting, btnSendFrom, btnType, btnBack;
 	private ToggleButton togBtnCollect;
 	private TextView tvContract, tvSendFrom;
@@ -107,6 +108,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.activity_declaration_receive);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		suolue = new SuoluetuActivity(this, handler);
 
 		initView();
 

@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.example.niuxin.QunzuAdapter.ViewHolder;
+import com.niuxin.util.Constants;
+import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
