@@ -39,7 +39,6 @@ import android.widget.Toast;
 
 public class DeclarationUserselectActivity extends Activity{
 	private Button backButton,allButton,saveButton;
-	private ImageButton addImageButton;
 	private ListView listView;
 	//private ArrayList<String> list;
 	private List<HashMap<String, Object>> list;
@@ -56,7 +55,6 @@ public class DeclarationUserselectActivity extends Activity{
 		backButton=(Button)findViewById(R.id.declaration_sendpur_haoyouback);
 		allButton=(Button)findViewById(R.id.declaration_sendpur_haoyouselectall);
 		saveButton=(Button)findViewById(R.id.declaration_sendpur_haoyousave);
-		addImageButton = (ImageButton)findViewById(R.id.declaration_sendpurpose_haoyou_imageview_add);
 		listView=(ListView)findViewById(R.id.declaration_sendpurpose_haoyou_list);
 		list=getData();
 		haoyouAdapter = new HaoyouAdapter(list,this);//创建一个适配器  
@@ -94,41 +92,7 @@ public class DeclarationUserselectActivity extends Activity{
 				toast.show();
 			}
 		});
-		// 添加发送好友按钮
-		addImageButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				addModel();
-			}
-
-			private void addModel() {
-				// TODO Auto-generated method stub
-				View myView = LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);// 将layout对象转换为VIew对象
-				AlertDialog.Builder builder = new AlertDialog.Builder(DeclarationUserselectActivity.this);
-				builder.setTitle("添加好友");
-				builder.setView(myView);
-				text =  (EditText)myView.findViewById(R.id.et_tag_name);
-				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击确定后的逻辑
-						// 这边要加新建的模板并在listview中新增
-						
-						Toast.makeText(DeclarationUserselectActivity.this, "添加好友成功", Toast.LENGTH_SHORT).show();
-						dialog.dismiss();// 对话框消失
-					}
-				});
-				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击确定后的逻辑
-						// showDialog("你选择了取消");
-						dialog.dismiss();// 对话框消失
-					}
-				});
-				builder.create().show();
-			}
-		});
+		// listview item点击监听
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

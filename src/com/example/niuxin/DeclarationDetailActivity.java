@@ -20,10 +20,12 @@ import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 /*
@@ -34,8 +36,10 @@ public class DeclarationDetailActivity extends Activity{
 	LinearLayout linearLayoutModelChoice,linearLayoutContactChoice,linearLayoutActiontype,detailsendchoice;
 	private Button backButton ,sendButton,saveButton;
 	EditText editTextPrice, editTextShoushu,editTextCangwei,editTextArea1,editTextArea2,editTextBeizhu;
-	TextView purposeChoiced,contractType,operateType,modelChioced;
+	TextView purposeChoiced,contractType,modelChioced;
 	ImageView imageView;
+	Spinner spinnerOperateType;
+	String[] operateTypeOrder = {"多开", "多平", "空开", "空平"};
 	List<Map<String, Object>> list=new ArrayList<Map<String, Object>>();
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
@@ -51,7 +55,9 @@ public class DeclarationDetailActivity extends Activity{
 		//数据初始化模板、合约类型、操作类型
 		modelChioced=(TextView)findViewById(R.id.detail_model_choice);
 		contractType=(TextView)findViewById(R.id.detail_contact_show);
-		operateType=(TextView)findViewById(R.id.detail_control_show);
+		spinnerOperateType=(Spinner)findViewById(R.id.detail_control_show);
+		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.decla_spinner, operateTypeOrder);   //此处加上自己的样式
+		spinnerOperateType.setAdapter(spinnerAdapter);
 		
 		linearLayoutModelChoice=(LinearLayout)findViewById(R.id.detail_model_control);
 		linearLayoutContactChoice=(LinearLayout)findViewById(R.id.detail_contact_type);
@@ -91,7 +97,7 @@ public class DeclarationDetailActivity extends Activity{
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("name", modelChioced);//模板名称
 		map.put("contract", contractType);//合约类型
-		map.put("operation", operateType);//操作类型
+		map.put("operation", spinnerOperateType);//操作类型
 		map.put("price", editTextPrice);//价格
 		map.put("handnum", editTextShoushu);//手数
 		map.put("position", editTextCangwei);//仓位
@@ -181,7 +187,7 @@ public class DeclarationDetailActivity extends Activity{
 			try {
 				jsonObject.put("name", modelChioced.getText());//模板名称
 				jsonObject.put("contract", contractType.getText());//合约类型
-				jsonObject.put("operation", operateType.getText());//操作类型
+//				jsonObject.put("operation", spinnerOperateType.getText());//操作类型
 				jsonObject.put("price", editTextPrice.getText());//价格
 				jsonObject.put("handnum", editTextShoushu.getText());//手数
 				jsonObject.put("position", editTextCangwei.getText());//仓位

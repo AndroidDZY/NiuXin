@@ -7,9 +7,10 @@
     <CheckBox  
         android:id="@+id/haoyou_item_cb"  
         android:layout_width="wrap_content"  
-        android:layout_height="wrap_content"  
+        android:layout_height="match_parent"  
         android:clickable="false"  
         android:focusable="false"  
+        style="@style/DeclaCustomCheckboxTheme2"
         android:focusableInTouchMode="false"  
         android:gravity="center_vertical" />
        
@@ -17,6 +18,7 @@
     <ImageView android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/decla_haoyouitem_touxiang"
+        android:layout_marginLeft="@dimen/layout_margin_eight"
         android:background="@drawable/detail_content_touxiang"/>
 
     <RelativeLayout 
