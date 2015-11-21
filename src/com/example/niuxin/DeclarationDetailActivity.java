@@ -94,7 +94,8 @@ public class DeclarationDetailActivity extends Activity{
 		editTextArea1.setSelection(text.length());
 		editTextArea2.setText(text);
 		editTextArea2.setSelection(text.length());
-		Map<String, Object> map=new HashMap<String, Object>();
+		contractType.setText("未选");
+		/*Map<String, Object> map=new HashMap<String, Object>();
 		map.put("name", modelChioced);//模板名称
 		map.put("contract", contractType);//合约类型
 		map.put("operation", spinnerOperateType);//操作类型
@@ -104,7 +105,7 @@ public class DeclarationDetailActivity extends Activity{
 		map.put("minnum", editTextArea1);//范围小
 		map.put("maxnum", editTextArea2);//范围大
 		map.put("remark", editTextBeizhu);//备注
-		list.add(map);
+		list.add(map);*/
 		//map.put("", imageView);//配图
 		//模板选择
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
@@ -122,8 +123,11 @@ public class DeclarationDetailActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(DeclarationDetailActivity.this,DeclarationContactChoiceActivity.class);
-				startActivity(intent);
+				Intent intent=new Intent();
+				intent.putExtra("contractText", contractType.getText());//获取合约类型的名称，传递过去
+				intent.setClass(DeclarationDetailActivity.this,DeclarationContactChoiceActivity.class);
+				startActivityForResult(intent, 10);
+				//startActivity(intent);
 			}
 		});
 		//发送目标选择
@@ -143,6 +147,9 @@ public class DeclarationDetailActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				Intent intent=new Intent();
+				intent.setClass(DeclarationDetailActivity.this, DeclarationLaunchActivity.class);
+				startActivity(intent);
 				finish();
 			}
 		});
@@ -172,6 +179,16 @@ public class DeclarationDetailActivity extends Activity{
 			}
 		});
 	}
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	// TODO Auto-generated method stub
+    	super.onActivityResult(requestCode, resultCode, data);
+    	if(requestCode == 10 && resultCode == 11)
+        {
+            String result_value = data.getStringExtra("contractText");
+            contractType.setText(result_value);
+        }
+    }
 	class SaveThread extends Thread {
 		private int type = 0;
 		public SaveThread(int type){
