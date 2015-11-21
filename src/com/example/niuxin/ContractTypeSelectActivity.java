@@ -161,8 +161,9 @@ public class ContractTypeSelectActivity extends Activity {
 				Intent intentType = new Intent(ContractTypeSelectActivity.this, DeclarationReceiveActivity.class);
 				intentType.putExtra("contract", result);
 				intentType.putExtra("contractName", resultName);
-				intentType.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(intentType);
+				
+				//startActivity(intentType);
+				setResult(11,intentType);
 				finish();
 			}
 		});
