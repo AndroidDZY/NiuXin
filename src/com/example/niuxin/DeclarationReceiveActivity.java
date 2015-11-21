@@ -50,47 +50,12 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	String sendtouseridlistName = "全选";
 	private TextView contractNameText;
 	private TextView sendtouserText;
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Intent intent = getIntent();
-		if (null != intent) {
-			String tempcontract = intent.getStringExtra("contract");
-			if (null == tempcontract || " " == tempcontract) {//如果什么都没选，就是全选
-				tempcontract = "-1";
-			}			
-			if (!contractlist.equals(tempcontract)) {//看选择后的，和原来的是不是一样
-				contractlist = tempcontract;//
-			}
-			
-			String tempcontractName = intent.getStringExtra("contractName");
-			if (null == tempcontractName || " " == tempcontractName) {//如果什么都没选，就是全选
-				tempcontractName = "全选";
-			}			
-			if (!contractNamelist.equals(tempcontractName)) {//看选择后的，和原来的是不是一样
-				contractNamelist = tempcontractName;//
-			}
-			contractNameText.setText(contractNamelist);
-			
-			
-			String tempsendtouserid = intent.getStringExtra("sendtouserid");
-			if (null == tempsendtouserid || " " == tempsendtouserid) {//如果什么都没选，就是全选
-				tempsendtouserid = "-1";
-			}			
-			if (!sendtouseridlist.equals(tempsendtouserid)) {//看选择后的，和原来的是不是一样
-				sendtouseridlist = tempsendtouserid;//
-			}
-			
-			String tempsendtouseridName = intent.getStringExtra("sendtouseridName");
-			if (null == tempsendtouseridName || " " == tempsendtouseridName) {//如果什么都没选，就是全选
-				tempsendtouseridName = "全选";
-			}			
-			if (!sendtouseridlistName.equals(tempsendtouseridName)) {//看选择后的，和原来的是不是一样
-				sendtouseridlistName = tempsendtouseridName;//
-			}
-			sendtouserText.setText(sendtouseridlistName);
-  
-		}
+		// Intent intent = getIntent();
+
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
 		getDate();
 	}
@@ -151,7 +116,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		btnSendFrom.setOnClickListener(this);
 		btnType.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
-		contractNameText = (TextView) findViewById(R.id.tv_declaration_receive_contract);	
+		contractNameText = (TextView) findViewById(R.id.tv_declaration_receive_contract);
 		sendtouserText = (TextView) findViewById(R.id.tv_declaration_receive_source);
 		tvContract = (TextView) findViewById(R.id.tv_declaration_receive_contract); // “合约类型”显示文本
 		tvSendFrom = (TextView) findViewById(R.id.tv_declaration_receive_source); // “报单来源”显示文本
@@ -190,12 +155,12 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			break;
 		case R.id.btn_declarationreceive_source:
 			Intent intentSource = new Intent(DeclarationReceiveActivity.this, DeclarationSourceSelectActivity.class);
-			
+			startActivityForResult(intentSource, 12);
 			startActivity(intentSource);
 			break;
 		case R.id.btn_declarationreceive_type:
 			Intent intentType = new Intent(DeclarationReceiveActivity.this, ContractTypeSelectActivity.class);
-			startActivity(intentType);
+			startActivityForResult(intentType, 10);
 			break;
 		case R.id.btn_declaration_receive_back:
 			finish();
@@ -203,6 +168,43 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		default:
 			break;
 		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		super.onActivityResult(requestCode, resultCode, intent);
+		if (null != intent) {
+			String tempcontract = intent.getStringExtra("contract");
+			if (tempcontract != null) {
+				if (!contractlist.equals(tempcontract)) {// 看选择后的，和原来的是不是一样
+					contractlist = tempcontract;//
+				}
+			}
+
+			String tempcontractName = intent.getStringExtra("contractName");
+			if (tempcontractName != null) {
+				if (!contractNamelist.equals(tempcontractName)) {// 看选择后的，和原来的是不是一样
+					contractNamelist = tempcontractName;//
+				}
+				contractNameText.setText(contractNamelist);
+			}
+
+			String tempsendtouserid = intent.getStringExtra("sendtouserid");
+			if (tempsendtouserid != null) {
+				if (!sendtouseridlist.equals(tempsendtouserid)) {// 看选择后的，和原来的是不是一样
+					sendtouseridlist = tempsendtouserid;//
+				}
+			}
+
+			String tempsendtouseridName = intent.getStringExtra("sendtouseridName");
+			if (tempsendtouseridName != null) {
+				if (!sendtouseridlistName.equals(tempsendtouseridName)) {// 看选择后的，和原来的是不是一样
+					sendtouseridlistName = tempsendtouseridName;//
+				}
+				sendtouserText.setText(sendtouseridlistName);
+			}
+		}
+
 	}
 
 	class SearchAllThread extends Thread {// 默认情况下，什么也没选择，得到的搜索结果。

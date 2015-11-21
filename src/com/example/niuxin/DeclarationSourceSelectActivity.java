@@ -99,9 +99,8 @@ public class DeclarationSourceSelectActivity extends Activity {
 				
 				Intent intentType = new Intent(DeclarationSourceSelectActivity.this, DeclarationReceiveActivity.class);
 				intentType.putExtra("sendtouserid", result);
-				intentType.putExtra("sendtouseridName", resultName);
-				intentType.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivityForResult(intentType,1);
+				intentType.putExtra("sendtouseridName", resultName);				
+				setResult(13,intentType);
 				finish();
 			}
 		});
