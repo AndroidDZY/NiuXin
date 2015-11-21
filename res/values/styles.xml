@@ -49,5 +49,9 @@
     <style name="DeclaCustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">  
     	<item name="android:button">@drawable/checkbox_style_declaration</item>  
 	</style>
+	
+    <style name="DeclaCustomCheckboxTheme2" parent="@android:style/Widget.CompoundButton.CheckBox">  
+    	<item name="android:button">@drawable/checkbox_bg1</item>  
+	</style>
        
 </resources>

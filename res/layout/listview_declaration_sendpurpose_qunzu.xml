@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
     android:orientation="horizontal" 
-    android:layout_marginLeft="2dp"
     >
-    <ImageView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <CheckBox  
+        android:id="@+id/qunzu_item_cb"  
+        android:layout_width="wrap_content"  
+        android:layout_height="match_parent"  
+        android:clickable="false"  
+        android:focusable="false"  
+        style="@style/DeclaCustomCheckboxTheme2"
+        android:focusableInTouchMode="false"  
+        android:gravity="center_vertical" />
+    <ImageView android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/layout_margin_eight"
         android:id="@+id/decla_qunzuitem_touxiang"
         android:background="@drawable/detail_content_touxiang"/>
 
     <RelativeLayout 
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:orientation="vertical" >
-
         <TextView android:layout_centerVertical="true"
             android:layout_width="match_parent"
             android:text="群组"
+            android:layout_marginLeft="@dimen/layout_margin_eight"
             android:layout_height="wrap_content"
             android:id="@+id/decla_qunzuitem_name"
-            android:textSize="16sp"/>
-        <ImageView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_middle"/>
+        <ImageView android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/declaration_send_redline"/>
+            android:background="@color/red"/>
     </RelativeLayout>
-     <CheckBox  
-        android:id="@+id/qunzu_item_cb"  
-        android:layout_width="wrap_content"  
-        android:layout_height="wrap_content"  
-        android:clickable="false"  
-        android:focusable="false"  
-        style="@style/DeclaCustomCheckboxTheme"
-        android:focusableInTouchMode="false"  
-        android:gravity="center_vertical" />
+
 
 </LinearLayout>

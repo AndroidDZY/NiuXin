@@ -100,7 +100,6 @@
     
     <!-- 选择模板 -->
     <LinearLayout android:id="@+id/detail_model_control"
-        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/layout_margin_five"
@@ -112,11 +111,23 @@
             android:orientation="vertical"
             android:layout_weight="3"
             >
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 	        <TextView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="选择模板"
 	            android:textSize="12sp"
 	           />
+	        <TextView android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_marginLeft="3dp"
+	            android:text="第一次填写完报单之后勾选下方保存模板，可以将内容和发送对象保存，之后再次发送至需要更改个别内容"
+	            android:gravity="bottom"
+	            android:textSize="5sp"
+	           />
+	        </LinearLayout>
 	        <View  
 	        android:layout_marginTop="5dp"
 	    	android:layout_width="150dp"  
@@ -219,6 +230,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:layout_marginRight="10dp">
+	        <!--  
 	        <TextView
 	            android:id="@+id/detail_control_show"
 	            android:layout_width="wrap_content"
@@ -227,6 +239,16 @@
 	            android:text="多开"
 	            android:layout_centerInParent="true"
 	            android:textSize="12sp" />
+	            -->
+            <Spinner
+            	android:id="@+id/detail_control_show"
+            	android:layout_width="wrap_content"
+            	android:layout_height="match_parent"
+            	android:background="@null"
+            	android:layout_centerInParent="true"
+            	android:gravity="center_vertical"
+            	android:layout_marginRight="5dp"
+				/>
 	        <ImageView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_alignParentRight="true"
@@ -509,6 +531,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/layout_margin_eight"
+      android:layout_marginBottom="@dimen/layout_margin_five"
       >
       <LinearLayout android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -531,7 +554,6 @@
 	              android:text="发送目标"/>
 	          <ImageView android:layout_width="wrap_content"
 	              android:layout_height="18dp"
-	              android:id="@+id/detail_image_beizhu"
 	              android:background="@drawable/decla_lanch_grey2"
 	              android:layout_marginBottom="5dp"/>
 	          <RelativeLayout android:layout_width="0dp"

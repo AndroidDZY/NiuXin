@@ -16,7 +16,9 @@ import com.niuxin.util.Constants;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -29,8 +31,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DeclarationUserselectActivity extends Activity{
 	private Button backButton,allButton,saveButton;
@@ -39,6 +44,7 @@ public class DeclarationUserselectActivity extends Activity{
 	private List<HashMap<String, Object>> list;
 	private HaoyouAdapter haoyouAdapter;
 	private int checkNum;
+	EditText text = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -76,6 +82,17 @@ public class DeclarationUserselectActivity extends Activity{
                
             }  
         }); 
+		// 保存按钮
+		saveButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Toast toast = Toast.makeText(DeclarationUserselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
+				toast.show();
+			}
+		});
+		// listview item点击监听
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
