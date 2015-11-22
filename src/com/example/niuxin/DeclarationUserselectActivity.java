@@ -11,6 +11,10 @@ import java.util.List;
 
 
 
+
+
+import java.util.Map;
+
 import com.example.niuxin.HaoyouAdapter.ViewHolder;
 import com.niuxin.util.Constants;
 import com.niuxin.util.SharePreferenceUtil;
@@ -19,6 +23,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -43,8 +48,10 @@ public class DeclarationUserselectActivity extends Activity{
 	//private ArrayList<String> list;
 	private List<HashMap<String, Object>> list;
 	private HaoyouAdapter haoyouAdapter;
-	private int checkNum;
+	private List<HashMap<String, Object>> beSelectedData = new ArrayList<HashMap<String, Object>>();    
+    private int checkNum;
 	EditText text = null;
+	List<String> haoyouList= new ArrayList<String>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -65,6 +72,10 @@ public class DeclarationUserselectActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				if (haoyouList!=null) {
+					Intent intent=new Intent();
+					intent.putStringArrayListExtra("haoyouList", (ArrayList<String>) haoyouList);
+				}
 				finish();
 			}
 		});
@@ -76,7 +87,9 @@ public class DeclarationUserselectActivity extends Activity{
                 for (int i = 0; i < list.size(); i++) {  
                     HaoyouAdapter.getIsSelected().put(i, true);  
                 }  
+                beSelectedData=list;
                 // 数量设为list的长度  
+                haoyouAdapter.notifyDataSetChanged();
                 checkNum = list.size();  
                 // 刷新listview和TextView的显示  
                
@@ -88,6 +101,14 @@ public class DeclarationUserselectActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				if (beSelectedData.size()!=0) {
+					//点击保存获取到相关数据
+					System.out.println(beSelectedData);
+					for (int i = 0; i < beSelectedData.size(); i++) {
+						String text=beSelectedData.get(i).get("username").toString();
+						haoyouList.add(text);
+					}
+				}
 				Toast toast = Toast.makeText(DeclarationUserselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
 				toast.show();
 			}
@@ -106,6 +127,10 @@ public class DeclarationUserselectActivity extends Activity{
                 // 将CheckBox的选中状况记录下来  
                 HaoyouAdapter.getIsSelected().put(arg2, holder.cb.isChecked());  
                 // 调整选定条目  
+                if (holder.cb.isChecked()) {
+					 System.out.println(list.get(arg2));
+					 beSelectedData.add(list.get(arg2));
+				}
                 if (holder.cb.isChecked() == true) {  
                     checkNum++;  
                 } else {  

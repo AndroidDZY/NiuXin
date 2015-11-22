@@ -113,8 +113,13 @@ public class DeclarationDetailActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(DeclarationDetailActivity.this,DeclarationModelChoiceActivity.class);
-				startActivity(intent);
+				Intent intent=new Intent();
+				intent.putExtra("modelText", modelChioced.getText());//获取合约类型的名称，传递过去
+				intent.setClass(DeclarationDetailActivity.this,DeclarationModelChoiceActivity.class);
+				startActivityForResult(intent, 12);
+				
+				/*Intent intent=new Intent(DeclarationDetailActivity.this,DeclarationModelChoiceActivity.class);
+				startActivity(intent);*/
 			}
 		});
 		//合约类型选择界面跳转
@@ -187,6 +192,11 @@ public class DeclarationDetailActivity extends Activity{
         {
             String result_value = data.getStringExtra("contractText");
             contractType.setText(result_value);
+        }
+    	if(requestCode == 12 && resultCode == 13)
+        {
+            String result_value = data.getStringExtra("modelText");
+            modelChioced.setText(result_value);
         }
     }
 	class SaveThread extends Thread {

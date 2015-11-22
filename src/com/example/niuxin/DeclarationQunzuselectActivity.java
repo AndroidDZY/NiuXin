@@ -56,8 +56,9 @@ public class DeclarationQunzuselectActivity extends Activity {
             public void onClick(View v) {  
                 // 遍历list的长度，将MyAdapter中的map值全部设为true  
                 for (int i = 0; i < list.size(); i++) {  
-                    HaoyouAdapter.getIsSelected().put(i, true);  
+                    QunzuAdapter.getIsSelected().put(i, true);  
                 }  
+                qunzuAdapter.notifyDataSetChanged();
                 // 数量设为list的长度  
                 checkNum = list.size();  
                 // 刷新listview和TextView的显示  

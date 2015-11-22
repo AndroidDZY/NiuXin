@@ -3,17 +3,25 @@ package com.example.niuxin;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.example.niuxin.DeclarationDetailActivity.SaveThread;
 import com.example.niuxin.HaoyouAdapter.ViewHolder;
 import com.example.niuxin.Tag_ManageActivity.AddThread;
 import com.example.niuxin.Tag_ManageActivity.DeleteThread;
 import com.niuxin.util.Constants;
+import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -42,7 +50,13 @@ public class DeclarationModelChoiceActivity extends Activity{
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
+	public static HashMap<Integer, Boolean> isSelected;
+	private List<HashMap<String, Object>> beSelectedData = new ArrayList<HashMap<String, Object>>();    
+    String modelChange=null;
+    String oldModelText;
 	EditText text = null;
+	String text1=null;
+	MyAdapter adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -56,29 +70,50 @@ public class DeclarationModelChoiceActivity extends Activity{
 		//保存按钮
 		saveButton=(Button)findViewById(R.id.declaration_button_save);
 		addImageButton=(ImageButton)findViewById(R.id.declaration_imageview_add);
+		if (beSelectedData.size() > 0) {  
+            beSelectedData.clear();  
+        } 
+        
 		mData = getData();
-		MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
+		init();
+		final MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
 		listView=(ListView)findViewById(R.id.declaration_list_modelchoice);
 		listView.setAdapter(adapter);
+		//模板选中监听
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				ViewHolder viewHolder=(ViewHolder) arg1.getTag(); 
-				viewHolder.checkBox.isChecked();
-                viewHolder.checkBox.toggle();// 
-                System.out.println("oooood");
+				for (int i = 0; i < mData.size(); i++) {
+		              isSelected.put(i, false);
+		          }
+				 beSelectedData.clear();
+				// beSelectedData.clear();
+				 System.out.println(beSelectedData+"111111111111111");
+				 ViewHolder holder = (ViewHolder) arg1.getTag();
+				 holder.checkBox.toggle();
+				 isSelected.put(arg2, holder.checkBox.isChecked());
+				 System.out.println(isSelected+"hao123"+arg2);
+				 adapter.notifyDataSetChanged();
+				 if (holder.checkBox.isChecked()) {
+					 beSelectedData.add(mData.get(arg2));
+				}
 			}
 		});
-		
 		//返回监听
 		buttonBack.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				if (text1!=null) {
+					Intent intent=new Intent();
+					intent.putExtra("modelText",text1.toString());
+					System.out.println(text1);
+					setResult(13,intent);
+				}
 				finish();
 			}
 		});
@@ -89,6 +124,13 @@ public class DeclarationModelChoiceActivity extends Activity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				//获取数据保存到数据库
+				if (beSelectedData.size()!=0) {
+					//点击保存获取到相关数据
+					System.out.println(beSelectedData);
+					Map<String, Object> map=beSelectedData.get(0);
+					Object contractType=map.get("modeltext");
+					text1=contractType.toString();
+				}
 				Toast toast = Toast.makeText(DeclarationModelChoiceActivity.this, "已保存", Toast.LENGTH_SHORT);
 				toast.show();
 			}
@@ -113,7 +155,8 @@ public class DeclarationModelChoiceActivity extends Activity{
 					public void onClick(DialogInterface dialog, int whichButton) {
 						// 这里添加点击确定后的逻辑
 						// 这边要加新建的模板并在listview中新增
-						
+						AddThread addThread = new AddThread();
+						addThread.start();
 						Toast.makeText(DeclarationModelChoiceActivity.this, "新建模板成功", Toast.LENGTH_SHORT).show();
 						dialog.dismiss();// 对话框消失
 					}
@@ -129,7 +172,24 @@ public class DeclarationModelChoiceActivity extends Activity{
 			}
 		});
 	}
-	
+	// 初始化设置所有checkbox都为未选择
+    public void init() {
+    	isSelected = new HashMap<Integer, Boolean>();
+        Intent intent=getIntent();
+    	String mText=intent.getStringExtra("modelText");
+    	for (int i = 0; i < mData.size(); i++) {//对合约类型进行循环，获取选中的初始化
+			Map<String, Object> map=new HashMap<String, Object>();
+			map=mData.get(i);
+			String contractText=map.get("modeltext").toString();
+			if (mText.equals(contractText)) {//如果传来的数据与其中的一条数据符合则设置checkbox为选中状态，获取到相应的数据
+				isSelected.put(i, true);
+				//beSelectedData=mData;
+				beSelectedData.add(mData.get(i));
+			}else {//不匹配则返回false
+				isSelected.put(i, false);
+			}
+		}
+    }
 	public class MyAdapter extends BaseAdapter {  
         private LayoutInflater mInflater;// 动态布局映射  
   
@@ -172,14 +232,12 @@ public class DeclarationModelChoiceActivity extends Activity{
                 // 取出holder  
                 holder = (ViewHolder) convertView.getTag();  
             } 
-        	//convertView = mInflater.inflate(R.layout.decla_detail_model, null);//根据布局文件实例化view 
-           // CheckBox checkBox=(CheckBox)convertView.findViewById(R.id.decla_checkbox);
-            holder.checkBox.setText(mData.get(position).get("checkBox").toString());
-            final EditText modelText = (EditText) convertView.findViewById(R.id.decla_textview_model);
+        	holder.checkBox.setText(mData.get(position).get("checkBox").toString());
+            holder.checkBox.setChecked(isSelected.get(position));
+            final TextView modelText = (TextView) convertView.findViewById(R.id.decla_textview_model);
             modelText.setText(mData.get(position).get("modeltext").toString());
-           // ImageView editButton=(ImageView)convertView.findViewById(R.id.decla_button_edit);
+            oldModelText=modelText.getText().toString();//获取到之前的模板的名称
             holder.editiImageView.setBackgroundResource(Integer.valueOf(mData.get(position).get("modeledit").toString()));
-           // ImageView delButton=(ImageView)convertView.findViewById(R.id.decla_button_del);
             holder.delImageView.setBackgroundResource(Integer.valueOf(mData.get(position).get("modeldelete").toString()));
             
             //重命名模板监听
@@ -188,7 +246,6 @@ public class DeclarationModelChoiceActivity extends Activity{
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					System.out.println("111111");
 					editModel();
 //					modelText.setFocusable(true);
 //					modelText.requestFocus();
@@ -205,7 +262,11 @@ public class DeclarationModelChoiceActivity extends Activity{
 						public void onClick(DialogInterface dialog, int whichButton) {
 							// 这里添加点击确定后的逻辑
 							// 这边要加改变模板的名字
-							
+							String mText=text.getText().toString();//获取编辑内容
+							modelText.setText(mText);//改编辑内容为编辑的内容
+							modelChange=modelText.getText().toString();
+							UpdateThread uThread = new UpdateThread();
+							uThread.start();
 							Toast.makeText(DeclarationModelChoiceActivity.this, "模板重命名成功", Toast.LENGTH_SHORT).show();
 							dialog.dismiss();// 对话框消失
 						}
@@ -245,6 +306,8 @@ public class DeclarationModelChoiceActivity extends Activity{
 							mData.remove(position);
 							MyAdapter.this.notifyDataSetChanged();
 							dialog.dismiss();// 对话框消失
+							DelThread delThread = new DelThread();
+							delThread.start();
 							Toast toast = Toast.makeText(DeclarationModelChoiceActivity.this, "模板已删除", Toast.LENGTH_SHORT);
 							toast.show();
 						}
@@ -261,7 +324,71 @@ public class DeclarationModelChoiceActivity extends Activity{
 			});
             return convertView;
 		}
-       
+        //编辑更新数据库中的模板名称
+        class UpdateThread extends Thread {
+    		@Override
+    		public void run() {
+    			// 新建工具类，向服务器发送Http请求
+    			HttpPostUtil postUtil = new HttpPostUtil();
+    			JSONArray jArray = new JSONArray();
+    			JSONObject jsonObject = new JSONObject();
+    			try {
+    				jsonObject.put("id", util.getId());//用户的ID
+    				jsonObject.put("name", modelChange);//模板名称
+    				jsonObject.put("oldName", oldModelText);//模板的旧名称,根据模板的旧名称查询相应的数据来更新数据
+    				System.out.println(jArray);
+    			} catch (JSONException e) {
+    				e.printStackTrace();
+    			}
+    			// 设置发送的url 和服务器端的struts.xml文件对应
+    			postUtil.setUrl("/form/form_updatetemplate.do");
+    			// 向服务器发送数据
+    			jArray.put(jsonObject);
+    			postUtil.setRequest(jArray);
+    			// 从服务器获取数据
+    			postUtil.run();
+    			Runnable r = new Runnable() {
+    				@Override
+    				public void run() {
+    					finish();
+    				}
+
+    			};
+    			handler.post(r);
+    		}
+    	}
+      //删除数据库中的模板名称
+        class DelThread extends Thread {
+    		@Override
+    		public void run() {
+    			// 新建工具类，向服务器发送Http请求
+    			HttpPostUtil postUtil = new HttpPostUtil();
+    			JSONArray jArray = new JSONArray();
+    			JSONObject jsonObject = new JSONObject();
+    			try {
+    				jsonObject.put("id", util.getId());//用户的ID
+    				jsonObject.put("oldName", oldModelText);//模板的旧名称,根据模板的名称和用户的id来查询相应的数据来删除数据
+    				System.out.println(jArray);
+    			} catch (JSONException e) {
+    				e.printStackTrace();
+    			}
+    			// 设置发送的url 和服务器端的struts.xml文件对应
+    			postUtil.setUrl("/form/form_deltemplate.do");
+    			// 向服务器发送数据
+    			jArray.put(jsonObject);
+				postUtil.setRequest(jArray);
+    			// 从服务器获取数据
+    			postUtil.run();
+    			Runnable r = new Runnable() {
+    				@Override
+    				public void run() {
+    					finish();
+    				}
+
+    			};
+    			handler.post(r);
+    		}
+    	}
     }
 	 public static class ViewHolder {  
          EditText editText;
@@ -292,5 +419,125 @@ public class DeclarationModelChoiceActivity extends Activity{
   
         return list;  
     }  
+	//启动线程从数据库中获取数据，获取模板的名称
+		class GroupThread extends Thread {
+			@Override
+			public void run() {
+				// 新建工具类，向服务器发送Http请求
+				HttpPostUtil postUtil = new HttpPostUtil();
 
+				// 向服务器发送数据，如果没有，可以不发送
+				JSONObject jsonObject = new JSONObject();
+				try {
+					
+					Integer id = util.getId();			
+					jsonObject.put("id", id);			
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}			
+				postUtil.setUrl("/form/form_selectFormBySend.do");//根据用户的ID查询自己的已经有的模板名称
+				//向服务器发送数据
+				JSONArray js = new JSONArray();
+				js.put(jsonObject);
+				postUtil.setRequest(js);
+				// 从服务器获取数据
+				String res = postUtil.run();	
+				if(res==null){
+					return;
+				}
+				// 对从服务器获取数据进行解析
+				JSONArray jsonArray = null;			
+				try {
+					jsonArray = new JSONArray(res);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}	
+				mData.clear();
+				//typelist.clear();
+				for (int i = 0; i < jsonArray.length(); i++) {				
+					try {
+						JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+						// 获取每一个对象中的值
+							HashMap<String, Object> map = new HashMap<String, Object>();
+							int id = myjObject.getInt("id");
+							String name = myjObject.getString("name");//模板名称
+							map.put("name", name);//R.drawable.head010
+							map.put("id", id);
+							//typelist.add(0);
+							mData.add(map);
+						}
+					 catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}/////////////////////////////解析数据完成
+				Runnable r = new Runnable() {
+					@Override
+					public void run() {
+					adapter.notifyDataSetChanged();	
+					}
+
+				};
+				handler.post(r);
+			}
+	}
+		//启动线程从数据库中获取数据，向数据库中插入一个新的模板
+				class AddThread extends Thread {
+					@Override
+					public void run() {
+						// 新建工具类，向服务器发送Http请求
+						HttpPostUtil postUtil = new HttpPostUtil();
+						// 向服务器发送数据，如果没有，可以不发送
+						JSONObject jsonObject = new JSONObject();
+						try {
+							
+							Integer id = util.getId();			
+							jsonObject.put("id", id);			
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}			
+						postUtil.setUrl("/form/form_insertTemplateBySend.do");//插入新的模板
+						//向服务器发送数据
+						JSONArray js = new JSONArray();
+						js.put(jsonObject);
+						postUtil.setRequest(js);
+						// 从服务器获取数据
+						String res = postUtil.run();	
+						if(res==null){
+							return;
+						}
+						// 对从服务器获取数据进行解析
+						JSONArray jsonArray = null;			
+						try {
+							jsonArray = new JSONArray(res);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}	
+						mData.clear();
+						//typelist.clear();
+						for (int i = 0; i < jsonArray.length(); i++) {				
+							try {
+								JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+								// 获取每一个对象中的值
+									HashMap<String, Object> map = new HashMap<String, Object>();
+									int id = myjObject.getInt("id");
+									String name = myjObject.getString("name");//模板名称
+									map.put("name", name);//R.drawable.head010
+									map.put("id", id);
+									//typelist.add(0);
+									mData.add(map);
+								}
+							 catch (JSONException e) {
+								e.printStackTrace();
+							}
+						}/////////////////////////////解析数据完成
+						Runnable r = new Runnable() {
+							@Override
+							public void run() {
+							adapter.notifyDataSetChanged();	
+							}
+
+						};
+						handler.post(r);
+					}
+			}
 }
