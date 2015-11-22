@@ -156,7 +156,6 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		case R.id.btn_declarationreceive_source:
 			Intent intentSource = new Intent(DeclarationReceiveActivity.this, DeclarationSourceSelectActivity.class);
 			startActivityForResult(intentSource, 12);
-			startActivity(intentSource);
 			break;
 		case R.id.btn_declarationreceive_type:
 			Intent intentType = new Intent(DeclarationReceiveActivity.this, ContractTypeSelectActivity.class);
