@@ -1,59 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:background="@color/bg_gray"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-    <TextView android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+    <!-- 顶部缩略图 -->
+    <include   
+		android:id="@+id/include"  
+		layout="@layout/suolue"/>
+    <!-- 页面标题 -->
+    <TextView 
+        android:id="@+id/tv_declaration_launch_contract"
+        android:paddingLeft="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="合约类型选择"
-        android:textSize="16sp"/>
-    <View  
-        android:layout_marginTop="5dp"
-    	android:layout_width="match_parent"  
-    	android:layout_height="1dp" 
-    	android:background="#de4557"/>
+        android:layout_below="@id/include"
+        android:textSize="@dimen/textsize_big"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@color/red"/>
+    
+        <!-- 底部按钮部分 -->
+    <LinearLayout 
+        android:id="@+id/lly_declaration_launch_contact"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_btn_width"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+	    <Button android:id="@+id/declaration_contact_button_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="返回"
+            android:textSize="@dimen/textsize_middle"
+            android:textColor="@color/bottom_button_textcolor_default"
+            android:background="@color/red"/>
+	    <View 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
+	    <Button android:id="@+id/declaration_contact_button_save"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="保存"
+            android:textSize="@dimen/textsize_middle"
+            android:textColor="@color/bottom_button_textcolor_default"
+            android:background="@color/red"/>
+    </LinearLayout>
+   <ImageView 
+        android:id="@+id/v_declaration_launch_contract"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/declaration_sendpurpos_redline"
+		android:layout_marginLeft="@dimen/layout_margin_five"
+		android:layout_marginRight="@dimen/layout_margin_five"
+		android:layout_marginBottom="@dimen/layout_margin_five"
+		android:layout_above="@id/lly_declaration_launch_contact"
+		/>
 
     <ListView
         android:id="@+id/declaration_list_contactchoice"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" >
+     	android:layout_below="@id/tv_declaration_launch_contract"
+     	android:layout_above="@id/v_declaration_launch_contract"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:divider="@null"
+    	android:layout_marginTop="3dp" >
     </ListView>
-    
-   <!--  <Button android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="添加"/> -->
-
-</LinearLayout>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:orientation="vertical">
-     <View  
-         android:layout_marginLeft="10dp"
-         android:layout_marginRight="10dp"
-        android:layout_width="match_parent"  
-    	android:layout_height="1dp" 
-    	android:background="#de4557"/>
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-	    <Button android:id="@+id/declaration_contact_button_back"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="返回"/>
-	    <Button android:id="@+id/declaration_contact_button_save"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="4"
-	        android:text="保存"
-	        android:gravity="center"/>
-    </LinearLayout>
-</LinearLayout>
-
 </RelativeLayout>

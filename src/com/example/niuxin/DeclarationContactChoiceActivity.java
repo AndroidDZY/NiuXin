@@ -7,12 +7,15 @@ import java.util.Map;
 
 import com.example.niuxin.DeclarationModelChoiceActivity.MyAdapter;
 import com.example.niuxin.HaoyouAdapter.ViewHolder;
+import com.niuxin.util.Constants;
+import com.niuxin.util.SharePreferenceUtil;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +38,17 @@ public class DeclarationContactChoiceActivity extends Activity{
     public static HashMap<Integer, Boolean> isSelected;
     private List<HashMap<String, Object>> beSelectedData = new ArrayList<HashMap<String, Object>>();    
     String text1=null;
+	private SuoluetuActivity suolue;
+	public Handler handler = new Handler();
+	private SharePreferenceUtil util = null;
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.declaration_launch_contact);
+		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
+		suolue = new SuoluetuActivity(this, handler);
 		//返回按钮
 				buttonBack=(Button)findViewById(R.id.declaration_contact_button_back);
 				//保存按钮
@@ -178,14 +186,14 @@ public class DeclarationContactChoiceActivity extends Activity{
 		        	ViewHolder holder=null;
 					if (convertView==null) {
 						holder=new ViewHolder();
-						convertView = mInflater.inflate(R.layout.decla_detail_contact, null);//根据布局文件实例化view 
+						convertView = mInflater.inflate(R.layout.listview_decla_detail_contact, null);//根据布局文件实例化view 
 						holder.checkBox=(CheckBox)convertView.findViewById(R.id.decla_contact_checkbox);
 						holder.contractText = (TextView) convertView.findViewById(R.id.decla_textview_contact);
 						convertView.setTag(holder);
 			        }else{
 			        	holder = (ViewHolder) convertView.getTag();
 			        }
-					holder.checkBox.setText(mData.get(position).get("checkBox").toString());
+//					holder.checkBox.setText(mData.get(position).get("checkBox").toString());
 		            holder.contractText.setText(mData.get(position).get("contractText").toString());
 		            holder.checkBox.setChecked(isSelected.get(position));
 		            return convertView;
@@ -198,7 +206,7 @@ public class DeclarationContactChoiceActivity extends Activity{
 		            
 		        for (int i = 1; i <= 3; i++) {  
 		            map = new HashMap<String, Object>();  
-		            map.put("checkBox",  i); //r.drawable 
+//		            map.put("checkBox",  i); //r.drawable 
 		            map.put("contractText", "合约"+i);  
 		            list.add(map);  
 		        }  
