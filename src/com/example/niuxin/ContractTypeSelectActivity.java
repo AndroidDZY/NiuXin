@@ -40,11 +40,19 @@ public class ContractTypeSelectActivity extends Activity {
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
-	
+	String contractlist = "-1";
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
+		
+		Intent intent = getIntent();		
+		if(null!=intent){
+			contractlist = intent.getStringExtra("contractlist");
+			if(null==contractlist)
+				contractlist = "-1";
+		}
+		
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
 		SearchThread thread = new SearchThread();
 		thread.start();
@@ -201,7 +209,10 @@ public class ContractTypeSelectActivity extends Activity {
 			}
 			if ( null!= list)
 				list.clear();
-			
+			String[] strsChecked = null;//被选中的id
+			if(!contractlist.equals("-1")){
+				strsChecked = contractlist.split(",");				
+			}
 			Map<String, Object> map1 = new HashMap<String, Object>();
 			map1.put("id", -1);
 			map1.put("type", "全选");
@@ -218,6 +229,14 @@ public class ContractTypeSelectActivity extends Activity {
 						map.put("id", id);
 						map.put("type", type);
 						map.put("flag", 0);
+						if(null!=strsChecked)
+						for(String str:strsChecked){
+							if(Integer.valueOf(str)==id){
+								map.put("flag", R.drawable.ic_declaration_selected);							
+								continue;
+							}else
+								map.put("flag", 0);
+						}
 						list.add(map);
 					} catch (JSONException e) {
 						e.printStackTrace();
