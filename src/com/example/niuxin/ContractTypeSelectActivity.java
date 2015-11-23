@@ -233,7 +233,7 @@ public class ContractTypeSelectActivity extends Activity {
 						for(String str:strsChecked){
 							if(Integer.valueOf(str)==id){
 								map.put("flag", R.drawable.ic_declaration_selected);							
-								continue;
+								break;
 							}else
 								map.put("flag", 0);
 						}

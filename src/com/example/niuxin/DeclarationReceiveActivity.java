@@ -155,12 +155,12 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			break;
 		case R.id.btn_declarationreceive_source:
 			Intent intentSource = new Intent(DeclarationReceiveActivity.this, DeclarationSourceSelectActivity.class);
-			intentSource.putExtra("contractlist", contractlist);
+			intentSource.putExtra("contractlist",  sendtouseridlist);
 			startActivityForResult(intentSource, 12);
 			break;
 		case R.id.btn_declarationreceive_type:
 			Intent intentType = new Intent(DeclarationReceiveActivity.this, ContractTypeSelectActivity.class);
-			intentType.putExtra("sendtouseridlist", sendtouseridlist);
+			intentType.putExtra("sendtouseridlist", contractlist);
 			startActivityForResult(intentType, 10);
 			break;
 		case R.id.btn_declaration_receive_back:

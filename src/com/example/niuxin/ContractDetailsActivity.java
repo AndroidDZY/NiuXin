@@ -90,10 +90,14 @@ public class ContractDetailsActivity extends Activity {
 					//选中
 					Toast toast = Toast.makeText(ContractDetailsActivity.this, "收藏了该报单者", Toast.LENGTH_SHORT);
 					toast.show();
+					FollowThread t = new FollowThread(1);
+					t.start();
 				}else{
 					//未选中
 					Toast toast = Toast.makeText(ContractDetailsActivity.this, "取消收藏", Toast.LENGTH_SHORT);
 					toast.show();
+					FollowThread t = new FollowThread(2);
+					t.start();
 				}
 			}
 		});
@@ -108,13 +112,15 @@ public class ContractDetailsActivity extends Activity {
 					Toast toast = Toast.makeText(ContractDetailsActivity.this, "屏蔽了该报单者", Toast.LENGTH_SHORT);
 					toast.show();
 					
-					FollowThread ft = new FollowThread(1);//1添加 2 删除
-					ft.start();
-					
+					ShieldThread s = new ShieldThread(1);
+					s.start();
 				}else{
 					//未选中
 					Toast toast = Toast.makeText(ContractDetailsActivity.this, "取消屏蔽", Toast.LENGTH_SHORT);
 					toast.show();
+					
+					ShieldThread s = new ShieldThread(2);
+					s.start();
 				}
 			}
 		});
@@ -189,8 +195,63 @@ public class ContractDetailsActivity extends Activity {
 			}
 		
 	
-	
-	
+	//屏蔽好友
+			class ShieldThread extends Thread {
+				int type =0;
+				public  ShieldThread(int type){
+					this.type = type;
+				}
+				@Override
+				public void run() {
+					
+					// 新建工具类，向服务器发送Http请求
+					HttpPostUtil postUtil = new HttpPostUtil();
+
+					// 向服务器发送数据，如果没有，可以不发送
+					JSONObject jsonObject = new JSONObject();
+					//获取发送报单的id
+					Intent intent=getIntent();
+					Long id=Long.valueOf(intent.getStringExtra("senduserid"));
+					try {
+						jsonObject.put("senduserid", id);	
+						jsonObject.put("userid", util.getId());	
+						
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}			
+					//设置发送的url 和服务器端的struts.xml文件对应
+					if(type==1){
+						postUtil.setUrl("/user/action_shieldUser.do");
+					}else
+						postUtil.setUrl("/user/action_unshieldUser.do");
+					//向服务器发送数据
+					JSONArray js = new JSONArray();
+					js.put(jsonObject);
+					postUtil.setRequest(js);
+					// 从服务器获取数据
+					String res = postUtil.run();	
+					if(res==null){
+						return;
+					}
+					// 对从服务器获取数据进行解析
+					JSONArray jsonArray = null;			
+					try {
+						jsonArray = new JSONArray(res);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}		
+						
+					
+		 
+					Runnable r = new Runnable() {
+						@Override
+						public void run() {													
+						}
+					};
+					handler.post(r);
+				}
+			}
+		
 	
 	
 	

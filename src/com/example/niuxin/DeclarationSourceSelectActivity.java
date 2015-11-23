@@ -215,7 +215,15 @@ public class DeclarationSourceSelectActivity extends Activity {
 			list.add(map1);
 			Map<String, Object> map2 = new HashMap<String, Object>();
 			map2.put("id", -2);
-			map2.put("flag", 0);
+			map2.put("flag", 0);			
+			if (null != strsChecked)
+				for (String str : strsChecked) {								
+					if (str.trim().equals("-2")) {
+						map2.put("flag", R.drawable.ic_declaration_selected);
+						break;
+					} else
+						map2.put("flag", 0);
+				}
 			map2.put("name", "已关注的报单者");
 			list.add(map2);
 			if (null != jsonArray) {
@@ -230,10 +238,10 @@ public class DeclarationSourceSelectActivity extends Activity {
 						map.put("name", name);
 						map.put("flag", 0);
 						if (null != strsChecked)
-							for (String str : strsChecked) {
-								if (Integer.valueOf(str) == id) {
+							for (String str : strsChecked) {								
+								if (Integer.valueOf(str.trim()) == id) {
 									map.put("flag", R.drawable.ic_declaration_selected);
-									continue;
+									break;
 								} else
 									map.put("flag", 0);
 							}
