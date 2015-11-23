@@ -1,7 +1,6 @@
 package com.example.niuxin;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -222,7 +221,12 @@ public class DeclarationDetailActivity extends Activity{
 				jsonObject.put("maxnum", editTextArea2.getText());//范围大
 				jsonObject.put("remark", editTextBeizhu.getText());//备注
 				jsonObject.put("sendfrom", util.getId());
+				jsonObject.put("pictureurl", "");
+				jsonObject.put("audiourl", "audiourl");
 				jsonObject.put("type", type);
+		/////////////////////////////////////////////////////////
+				jsonObject.put("sendtouser", "sendtouser");
+				
 				jArray.put(jsonObject);
 				//System.out.println(list);
 				System.out.println(jArray);
