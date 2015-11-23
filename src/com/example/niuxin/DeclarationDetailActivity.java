@@ -226,6 +226,7 @@ public class DeclarationDetailActivity extends Activity{
 				jsonObject.put("type", type);
 		/////////////////////////////////////////////////////////
 				jsonObject.put("sendtouser", "sendtouser");
+				jsonObject.put("sendtogroup", "sendtogroup");
 				
 				jArray.put(jsonObject);
 				//System.out.println(list);
