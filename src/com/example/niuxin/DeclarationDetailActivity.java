@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,60 +28,79 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 /*
  * 填写报单内容activity
  */
-public class DeclarationDetailActivity extends Activity{
-	
-	LinearLayout linearLayoutModelChoice,linearLayoutContactChoice,linearLayoutActiontype,detailsendchoice;
-	private Button backButton ,sendButton,saveButton;
-	EditText editTextPrice, editTextShoushu,editTextCangwei,editTextArea1,editTextArea2,editTextBeizhu;
-	TextView purposeChoiced,contractType,modelChioced;
+public class DeclarationDetailActivity extends Activity {
+
+	LinearLayout linearLayoutModelChoice, linearLayoutContactChoice, linearLayoutActiontype, detailsendchoice;
+	private Button backButton, sendButton, saveButton;
+	EditText editTextPrice, editTextShoushu, editTextCangwei, editTextArea1, editTextArea2, editTextBeizhu;
+	TextView purposeChoiced, contractType, modelChioced;
 	ImageView imageView;
 	Spinner spinnerOperateType;
-	String[] operateTypeOrder = {"多开", "多平", "空开", "空平"};
-	List<Map<String, Object>> list=new ArrayList<Map<String, Object>>();
+	String[] operateTypeOrder = { "多开", "多平", "空开", "空平" };
+	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
+	String OperateType = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.declaration_launch_detail);
 		suolue = new SuoluetuActivity(this, handler);
 		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
-		//数据初始化模板、合约类型、操作类型
-		modelChioced=(TextView)findViewById(R.id.detail_model_choice);
-		contractType=(TextView)findViewById(R.id.detail_contact_show);
-		spinnerOperateType=(Spinner)findViewById(R.id.detail_control_show);
-		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.decla_spinner, operateTypeOrder);   //此处加上自己的样式
+		// 数据初始化模板、合约类型、操作类型
+		modelChioced = (TextView) findViewById(R.id.detail_model_choice);
+		contractType = (TextView) findViewById(R.id.detail_contact_show);
+		spinnerOperateType = (Spinner) findViewById(R.id.detail_control_show);
+
+		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.decla_spinner, operateTypeOrder); // 此处加上自己的样式
 		spinnerOperateType.setAdapter(spinnerAdapter);
-		
-		linearLayoutModelChoice=(LinearLayout)findViewById(R.id.detail_model_control);
-		linearLayoutContactChoice=(LinearLayout)findViewById(R.id.detail_contact_type);
-		linearLayoutActiontype=(LinearLayout)findViewById(R.id.detail_action_type);
-		detailsendchoice=(LinearLayout)findViewById(R.id.detail_send_desti);
-		
-		backButton=(Button)findViewById(R.id.detail_button_back);//返回按钮
-		sendButton=(Button)findViewById(R.id.detail_button_send);//发送按钮
-		saveButton=(Button)findViewById(R.id.detail_button_save);//保存模板按钮
-		
-		//价格手数仓位止盈止损范围备注
-		editTextPrice=(EditText)findViewById(R.id.detail_edit_price);
-		editTextShoushu=(EditText)findViewById(R.id.detail_edit_shoushu);
-		editTextCangwei=(EditText)findViewById(R.id.detail_edit_cangwei);
-		editTextArea1=(EditText)findViewById(R.id.detail_edit_area1);
-		editTextArea2=(EditText)findViewById(R.id.detail_edit_area2);
-		editTextBeizhu=(EditText)findViewById(R.id.decla_lanch_detail_edit_beizhu);
-		//备注图片
-		imageView=(ImageView)findViewById(R.id.detail_image_beizhu);
-		purposeChoiced=(TextView)findViewById(R.id.detail_purpose_choiced);
+
+		spinnerOperateType.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+				OperateType = operateTypeOrder[arg2];
+				// 设置显示当前选择的项
+				arg0.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+
+		});
+
+		linearLayoutModelChoice = (LinearLayout) findViewById(R.id.detail_model_control);
+		linearLayoutContactChoice = (LinearLayout) findViewById(R.id.detail_contact_type);
+		linearLayoutActiontype = (LinearLayout) findViewById(R.id.detail_action_type);
+		detailsendchoice = (LinearLayout) findViewById(R.id.detail_send_desti);
+
+		backButton = (Button) findViewById(R.id.detail_button_back);// 返回按钮
+		sendButton = (Button) findViewById(R.id.detail_button_send);// 发送按钮
+		saveButton = (Button) findViewById(R.id.detail_button_save);// 保存模板按钮
+
+		// 价格手数仓位止盈止损范围备注
+		editTextPrice = (EditText) findViewById(R.id.detail_edit_price);
+		editTextShoushu = (EditText) findViewById(R.id.detail_edit_shoushu);
+		editTextCangwei = (EditText) findViewById(R.id.detail_edit_cangwei);
+		editTextArea1 = (EditText) findViewById(R.id.detail_edit_area1);
+		editTextArea2 = (EditText) findViewById(R.id.detail_edit_area2);
+		editTextBeizhu = (EditText) findViewById(R.id.decla_lanch_detail_edit_beizhu);
+		// 备注图片
+		imageView = (ImageView) findViewById(R.id.detail_image_beizhu);
+		purposeChoiced = (TextView) findViewById(R.id.detail_purpose_choiced);
 		purposeChoiced.setText("未选");
-		//设置监听事件
-		//模板选择跳转
-		String text="  ";
+		// 设置监听事件
+		// 模板选择跳转
+		String text = "  ";
 		editTextPrice.setText(text);
 		editTextPrice.setSelection(text.length());
 		editTextShoushu.setText(text);
@@ -94,85 +114,86 @@ public class DeclarationDetailActivity extends Activity{
 		editTextArea2.setText(text);
 		editTextArea2.setSelection(text.length());
 		contractType.setText("未选");
-		/*Map<String, Object> map=new HashMap<String, Object>();
-		map.put("name", modelChioced);//模板名称
-		map.put("contract", contractType);//合约类型
-		map.put("operation", spinnerOperateType);//操作类型
-		map.put("price", editTextPrice);//价格
-		map.put("handnum", editTextShoushu);//手数
-		map.put("position", editTextCangwei);//仓位
-		map.put("minnum", editTextArea1);//范围小
-		map.put("maxnum", editTextArea2);//范围大
-		map.put("remark", editTextBeizhu);//备注
-		list.add(map);*/
-		//map.put("", imageView);//配图
-		//模板选择
+		/*
+		 * Map<String, Object> map=new HashMap<String, Object>();
+		 * map.put("name", modelChioced);//模板名称 map.put("contract",
+		 * contractType);//合约类型 map.put("operation", spinnerOperateType);//操作类型
+		 * map.put("price", editTextPrice);//价格 map.put("handnum",
+		 * editTextShoushu);//手数 map.put("position", editTextCangwei);//仓位
+		 * map.put("minnum", editTextArea1);//范围小 map.put("maxnum",
+		 * editTextArea2);//范围大 map.put("remark", editTextBeizhu);//备注
+		 * list.add(map);
+		 */
+		// map.put("", imageView);//配图
+		// 模板选择
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent();
-				intent.putExtra("modelText", modelChioced.getText());//获取合约类型的名称，传递过去
-				intent.setClass(DeclarationDetailActivity.this,DeclarationModelChoiceActivity.class);
+				Intent intent = new Intent();
+				intent.putExtra("modelText", modelChioced.getText());// 获取合约类型的名称，传递过去
+				intent.setClass(DeclarationDetailActivity.this, DeclarationModelChoiceActivity.class);
 				startActivityForResult(intent, 12);
-				
-				/*Intent intent=new Intent(DeclarationDetailActivity.this,DeclarationModelChoiceActivity.class);
-				startActivity(intent);*/
+
+				/*
+				 * Intent intent=new Intent(DeclarationDetailActivity.this,
+				 * DeclarationModelChoiceActivity.class); startActivity(intent);
+				 */
 			}
 		});
-		//合约类型选择界面跳转
+		// 合约类型选择界面跳转
 		linearLayoutContactChoice.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent();
-				intent.putExtra("contractText", contractType.getText());//获取合约类型的名称，传递过去
-				intent.setClass(DeclarationDetailActivity.this,DeclarationContactChoiceActivity.class);
+				Intent intent = new Intent();
+				intent.putExtra("contractText", contractType.getText());// 获取合约类型的名称，传递过去
+				intent.setClass(DeclarationDetailActivity.this, DeclarationContactChoiceActivity.class);
 				startActivityForResult(intent, 10);
-				//startActivity(intent);
+				// startActivity(intent);
 			}
 		});
-		//发送目标选择
+		// 发送目标选择
 		detailsendchoice.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(DeclarationDetailActivity.this,DeclarationSendpurposeChoiceActivity.class);
+				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
 				startActivity(intent);
 				purposeChoiced.setText("已选");
 			}
 		});
-		//返回
+		// 返回
 		backButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent();
+				Intent intent = new Intent();
 				intent.setClass(DeclarationDetailActivity.this, DeclarationLaunchActivity.class);
 				startActivity(intent);
 				finish();
 			}
 		});
-		//发送
+		// 发送
 		sendButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				//获取数据，发送
+				// 获取数据，发送
 				SaveThread saveThread = new SaveThread(1);
 				saveThread.start();
 				Toast toast = Toast.makeText(DeclarationDetailActivity.this, "发送成功", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
-		//保存模板
+		// 保存模板
 		saveButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
@@ -183,53 +204,73 @@ public class DeclarationDetailActivity extends Activity{
 			}
 		});
 	}
+
 	@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	// TODO Auto-generated method stub
-    	super.onActivityResult(requestCode, resultCode, data);
-    	if(requestCode == 10 && resultCode == 11)
-        {
-            String result_value = data.getStringExtra("contractText");
-            contractType.setText(result_value);
-        }
-    	if(requestCode == 12 && resultCode == 13)
-        {
-            String result_value = data.getStringExtra("modelText");
-            modelChioced.setText(result_value);
-        }
-    }
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 10 && resultCode == 11) {
+			String result_value = data.getStringExtra("contractText");
+			contractType.setText(result_value);
+		}
+		if (requestCode == 12 && resultCode == 13) {
+			String result_value = data.getStringExtra("modelText");
+			modelChioced.setText(result_value);
+		}
+	}
+
 	class SaveThread extends Thread {
 		private int type = 0;
-		public SaveThread(int type){
+
+		public SaveThread(int type) {
 			this.type = type;
 		}
+
 		@Override
 		public void run() {
 			// 新建工具类，向服务器发送Http请求
 			HttpPostUtil postUtil = new HttpPostUtil();
 			JSONArray jArray = new JSONArray();
-	
+
 			JSONObject jsonObject = new JSONObject();
 			try {
-				jsonObject.put("name", modelChioced.getText());//模板名称
-				jsonObject.put("contract", contractType.getText());//合约类型
-//				jsonObject.put("operation", spinnerOperateType.getText());//操作类型
-				jsonObject.put("price", editTextPrice.getText());//价格
-				jsonObject.put("handnum", editTextShoushu.getText());//手数
-				jsonObject.put("position", editTextCangwei.getText());//仓位
-				jsonObject.put("minnum", editTextArea1.getText());//范围小
-				jsonObject.put("maxnum", editTextArea2.getText());//范围大
-				jsonObject.put("remark", editTextBeizhu.getText());//备注
+				
+				
+				jsonObject.put("name", "");// 模板名称
+				jsonObject.put("contract", 1);// 合约类型
+				jsonObject.put("operation", "多开");// 操作类型
+				jsonObject.put("price", 1);// 价格
+				jsonObject.put("handnum", 2);// 手数
+				jsonObject.put("position", 3);// 仓位
+				jsonObject.put("minnum", 4);// 范围小
+				jsonObject.put("maxnum",5);// 范围大
+				jsonObject.put("remark", 6666);// 备注
+				jsonObject.put("sendfrom", 22);
+				jsonObject.put("pictureurl", "/pp/a.jpg");
+				jsonObject.put("audiourl", "/pp/video.avi");
+				jsonObject.put("type", type);
+				jsonObject.put("sendtouser", "21,23");
+				jsonObject.put("sendtogroup", "1,2");
+
+				/*
+			//	jsonObject.put("name", modelChioced.getText());// 模板名称
+				jsonObject.put("contract", contractType.getText());// 合约类型
+				jsonObject.put("operation", OperateType);// 操作类型
+				jsonObject.put("price", editTextPrice.getText());// 价格
+				jsonObject.put("handnum", editTextShoushu.getText());// 手数
+				jsonObject.put("position", editTextCangwei.getText());// 仓位
+				jsonObject.put("minnum", editTextArea1.getText());// 范围小
+				jsonObject.put("maxnum", editTextArea2.getText());// 范围大
+				jsonObject.put("remark", editTextBeizhu.getText());// 备注
 				jsonObject.put("sendfrom", util.getId());
 				jsonObject.put("pictureurl", "");
-				jsonObject.put("audiourl", "audiourl");
+				jsonObject.put("audiourl", "");
 				jsonObject.put("type", type);
-		/////////////////////////////////////////////////////////
 				jsonObject.put("sendtouser", "sendtouser");
 				jsonObject.put("sendtogroup", "sendtogroup");
-				
+*/
 				jArray.put(jsonObject);
-				//System.out.println(list);
+				// System.out.println(list);
 				System.out.println(jArray);
 			} catch (JSONException e) {
 				e.printStackTrace();
