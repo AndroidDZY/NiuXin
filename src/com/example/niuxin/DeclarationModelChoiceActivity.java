@@ -2,6 +2,7 @@ package com.example.niuxin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ import android.widget.Toast;
 public class DeclarationModelChoiceActivity extends Activity {
 
 	private ListView listView;
-	private List<HashMap<String, Object>> mData;
+	private List<HashMap<String, Object>> mData = new LinkedList<HashMap<String, Object>>();
 	private Button buttonBack, saveButton;
 	private ImageButton addImageButton;
 	private SuoluetuActivity suolue;
