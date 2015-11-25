@@ -114,18 +114,28 @@ public class DeclarationDetailActivity extends Activity {
 		editTextArea2.setText(text);
 		editTextArea2.setSelection(text.length());
 		contractType.setText("未选");
-		/*
-		 * Map<String, Object> map=new HashMap<String, Object>();
-		 * map.put("name", modelChioced);//模板名称 map.put("contract",
-		 * contractType);//合约类型 map.put("operation", spinnerOperateType);//操作类型
-		 * map.put("price", editTextPrice);//价格 map.put("handnum",
-		 * editTextShoushu);//手数 map.put("position", editTextCangwei);//仓位
-		 * map.put("minnum", editTextArea1);//范围小 map.put("maxnum",
-		 * editTextArea2);//范围大 map.put("remark", editTextBeizhu);//备注
-		 * list.add(map);
-		 */
-		// map.put("", imageView);//配图
-		// 模板选择
+	/*Map<String, Object> map=new HashMap<String, Object>();
+		map.put("name", modelChioced);//模板名称
+		map.put("contract", contractType);//合约类型
+		map.put("operation", spinnerOperateType);//操作类型
+		map.put("price", editTextPrice);//价格
+		map.put("handnum", editTextShoushu);//手数
+		map.put("position", editTextCangwei);//仓位
+		map.put("minnum", editTextArea1);//范围小
+		map.put("maxnum", editTextArea2);//范围大
+		map.put("remark", editTextBeizhu);//备注
+		list.add(map);*/
+		//map.put("", imageView);//配图
+		
+		MyApplication	constantStatic=(MyApplication)getApplication();
+		List<String> qunzuList=constantStatic.getQunzuList();//获取到选择的群组发送目标
+		List<String> haoyouList= constantStatic.getHaoyouList();//获取到选择的好友发送目标名称
+		List<String> listAll=constantStatic.getSendList();//相加的名称
+		System.out.println(listAll+"发送目标");
+		if (listAll.size()!=0) {
+			purposeChoiced.setText("已选");
+		}
+		//模板选择
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -163,7 +173,7 @@ public class DeclarationDetailActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
 				startActivity(intent);
-				purposeChoiced.setText("已选");
+				
 			}
 		});
 		// 返回

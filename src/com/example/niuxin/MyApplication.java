@@ -1,6 +1,8 @@
 package com.example.niuxin;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.niuxin.client.Client;
 import com.niuxin.util.Constants;
@@ -17,7 +19,14 @@ public class MyApplication extends Application {
 	private LinkedList<RecentChatEntity> mRecentList;
 	private RecentChatAdapter mRecentAdapter;
 	private int recentNum = 0;
-
+    private  List<String> haoyouList;
+	
+    private  List<String> qunzuList;
+	
+	private List<String> sendList;
+	
+	
+	
 	@Override
 	public void onCreate() {
 		SharePreferenceUtil util = new SharePreferenceUtil(this,
@@ -27,7 +36,35 @@ public class MyApplication extends Application {
 		mRecentList = new LinkedList<RecentChatEntity>();
 		mRecentAdapter = new RecentChatAdapter(getApplicationContext(),
 				mRecentList);
+		haoyouList=new ArrayList<String>();
+		qunzuList=new ArrayList<String>();
+		sendList=new ArrayList<String>();
+		sendList.addAll(haoyouList);
+		sendList.addAll(qunzuList);
 		super.onCreate();
+	}
+    public List<String> getHaoyouList() {
+		return haoyouList;
+	}
+
+	public void setHaoyouList(List<String> haoyouList) {
+		this.haoyouList = haoyouList;
+	}
+
+	public List<String> getQunzuList() {
+		return qunzuList;
+	}
+
+	public void setQunzuList(List<String> qunzuList) {
+		this.qunzuList = qunzuList;
+	}
+
+	public List<String> getSendList() {
+		return sendList;
+	}
+
+	public void setSendList(List<String> sendList) {
+		this.sendList = sendList;
 	}
 
 	public Client getClient() {

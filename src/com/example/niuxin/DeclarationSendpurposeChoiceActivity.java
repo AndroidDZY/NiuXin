@@ -70,7 +70,7 @@ public class DeclarationSendpurposeChoiceActivity extends TabActivity{
 	private void init() {
 		// TODO Auto-generated method stub
 		tabHost=getTabHost();
-    	tabHost.addTab(tabHost.newTabSpec("haoyou").setIndicator("haoyou")
+		tabHost.addTab(tabHost.newTabSpec("haoyou").setIndicator("haoyou")
 				.setContent(new Intent(this, DeclarationUserselectActivity.class)));
     	tabHost.addTab(tabHost.newTabSpec("qunzu").setIndicator("qunzu")
 				.setContent(new Intent(this, DeclarationQunzuselectActivity.class)));
