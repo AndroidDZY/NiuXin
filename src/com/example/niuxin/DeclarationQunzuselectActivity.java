@@ -2,24 +2,31 @@ package com.example.niuxin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
-import com.example.niuxin.DeclarationUserselectActivity.MyAdapter;
-import com.example.niuxin.QunzuAdapter.ViewHolder;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.niuxin.util.Constants;
+import com.niuxin.util.GetSource;
+import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,7 +34,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class DeclarationQunzuselectActivity extends Activity {
 	
@@ -35,23 +41,27 @@ public class DeclarationQunzuselectActivity extends Activity {
 	private ListView listView;
 	public static HashMap<Integer, Boolean> isSelected;
 	//private ArrayList<String> list;
-	private List<HashMap<String, Object>> list;
+	private List<HashMap<String, Object>> list = new LinkedList<HashMap<String, Object>>();
 	private List<HashMap<String, Object>> beSelectedData = new ArrayList<HashMap<String, Object>>();
 	private QunzuAdapter qunzuAdapter;
+	 GetSource getSource = new GetSource();
+	 private SharePreferenceUtil util = null;
 	List<String> qunzuList= new ArrayList<String>();
 	private int checkNum;
+	  MyAdapter adapter ;
+	  private Handler handler = new Handler();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.declaration_sendpurpose_qunzu);
-		
+		util = new SharePreferenceUtil(this, Constants.SAVE_USER);
 		backButton=(Button)findViewById(R.id.declaration_sendpur_qunzuback);
 		allButton=(Button)findViewById(R.id.declaration_sendpur_qunzuselectall);
 		saveButton=(Button)findViewById(R.id.declaration_sendpur_qunzusave);
 		listView=(ListView)findViewById(R.id.declaration_sendpurpose_qunzu_list);
-		list=getData();
+	//	list=getData();
 		// 初始化isSelected的数据  
 				MyApplication	ap=(MyApplication)getApplication();
 				List<String> oldlist=ap.getQunzuList();
@@ -66,7 +76,7 @@ public class DeclarationQunzuselectActivity extends Activity {
 						}
 					}
 				}
-		final MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
+		 adapter = new MyAdapter(this);//创建一个适配器  
 		//qunzuAdapter = new QunzuAdapter(list,this);//创建一个适配器  
 		listView.setAdapter(adapter);
 		//返回
@@ -145,6 +155,10 @@ public class DeclarationQunzuselectActivity extends Activity {
                 }  
 			}
 		});
+		
+		
+		TestThread t = new TestThread();
+		t.start();
 	}
 
 	public class MyAdapter extends BaseAdapter {  
@@ -192,6 +206,7 @@ public class DeclarationQunzuselectActivity extends Activity {
 	        }
 			holder.tv.setText(list.get(position).get("qunzuname").toString());
 	        holder.im.setBackgroundResource(Integer.valueOf(list.get(position).get("touxiang").toString()));
+			if (null != isSelected)
 	        holder.cb.setChecked(isSelected.get(position));
             return convertView;
 		}  
@@ -217,4 +232,82 @@ public class DeclarationQunzuselectActivity extends Activity {
 	    }
 
 
+	 class TestThread extends Thread {
+			private Dialog mDialog = null;
+
+			@Override
+			public void run() {
+				// 新建工具类，向服务器发送Http请求
+				HttpPostUtil postUtil = new HttpPostUtil();
+
+				JSONObject jsonObject = new JSONObject();
+				try {
+					
+					Integer id = util.getId();			
+					jsonObject.put("id", id);			
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}		
+
+				/*
+				 * boolean isNetwork= postUtil.checkNetState(act); if(!isNetwork){
+				 * mDialog = DialogFactory.creatRequestDialog(act, "请检查网络连接");
+				 * mDialog.show(); return; }
+				 */
+
+				// 设置发送的url 和服务器端的struts.xml文件对应
+				postUtil.setUrl("/group/group_listTongxunlu.do");
+				// 不向服务器发送数据
+				//向服务器发送数据
+				JSONArray js = new JSONArray();
+				js.put(jsonObject);
+				postUtil.setRequest(js);
+
+				// 从服务器获取数据
+				String res = postUtil.run();
+				// 对从服务器获取数据进行解析
+				JSONArray jsonArray = null;
+				try {
+					jsonArray = new JSONArray(res);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				list.clear();
+				int j =0;
+				for (int i = 0; i < jsonArray.length(); i++) {
+					try {
+						JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+						HashMap<String, Object> map = new HashMap<String, Object>();
+						// 获取每一个对象中的值
+						int id = myjObject.getInt("id");
+						String title = myjObject.getString("name");
+						String img = myjObject.getString("img");
+						Integer chattype = myjObject.getInt("chattype");
+						
+						map.put("touxiang", getSource.getResourceByReflect(img)); //r.drawable 
+			            map.put("qunzuname", title);  						
+						map.put("id", id);
+						if(chattype==1){
+							list.add(map);
+							isSelected.put(j, false);
+							j++;
+						}
+							
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+				Runnable r = new Runnable() {
+					@Override
+					public void run() {
+					adapter.notifyDataSetChanged();
+					}
+
+				};
+				handler.post(r);
+			}
+		}
+		
+	 
+	 
 }
