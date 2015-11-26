@@ -255,7 +255,7 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("minnum", 4);// 范围小
 				jsonObject.put("maxnum",5);// 范围大
 				jsonObject.put("remark", 6666);// 备注
-				jsonObject.put("sendfrom", 22);
+				jsonObject.put("sendfrom", util.getId());
 				jsonObject.put("pictureurl", "/pp/a.jpg");
 				jsonObject.put("audiourl", "/pp/video.avi");
 				jsonObject.put("type", type);

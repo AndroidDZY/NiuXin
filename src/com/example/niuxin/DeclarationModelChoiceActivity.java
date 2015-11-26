@@ -47,13 +47,15 @@ public class DeclarationModelChoiceActivity extends Activity {
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
-	public static HashMap<Integer, Boolean> isSelected;
+	public static HashMap<Integer, Boolean> isSelected =new HashMap<Integer, Boolean>();;
 	private List<HashMap<String, Object>> beSelectedData = new ArrayList<HashMap<String, Object>>();
 	String modelChange = null;
 	String oldModelText;
 	EditText text = null;
 	String text1 = null;
 	MyAdapter adapter;
+	Integer deleteid;
+	Integer updateid;
 
 	@Override
 	protected void onResume() {
@@ -91,10 +93,12 @@ public class DeclarationModelChoiceActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				
 				// TODO Auto-generated method stub
-				for (int i = 0; i < mData.size(); i++) {
-					isSelected.put(i, false);
-				}
+				if(mData!=null)
+					for (int i = 0; i < mData.size(); i++) {
+						isSelected.put(i, false);
+					}
 				beSelectedData.clear();
 				// beSelectedData.clear();
 				System.out.println(beSelectedData + "111111111111111");
@@ -181,7 +185,6 @@ public class DeclarationModelChoiceActivity extends Activity {
 
 	// 初始化设置所有checkbox都为未选择
 	public void init() {
-		isSelected = new HashMap<Integer, Boolean>();
 		Intent intent = getIntent();
 		String mText = intent.getStringExtra("modelText");
 		if (null != mData) {
@@ -236,8 +239,6 @@ public class DeclarationModelChoiceActivity extends Activity {
 				// 导入布局并赋值给convertview
 				convertView = mInflater.inflate(R.layout.listview_decla_detail_model, null);// 根据布局文件实例化view
 				holder.editiImageView = (ImageView) convertView.findViewById(R.id.decla_button_edit);
-				// holder.editText =(EditText)
-				// convertView.findViewById(R.id.decla_textview_model);
 				holder.checkBox = (CheckBox) convertView.findViewById(R.id.decla_checkbox);
 				holder.delImageView = (ImageView) convertView.findViewById(R.id.decla_button_del);
 				// 为view设置标签
@@ -258,17 +259,12 @@ public class DeclarationModelChoiceActivity extends Activity {
 
 			// 重命名模板监听
 			holder.editiImageView.setOnClickListener(new OnClickListener() {
-
 				@Override
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					editModel();
-					// modelText.setFocusable(true);
-					// modelText.requestFocus();
+					editModel();					
 				}
 
 				private void editModel() {
-					// TODO Auto-generated method stub
 					View myView = LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);// 将layout对象转换为VIew对象
 					AlertDialog.Builder builder = new AlertDialog.Builder(DeclarationModelChoiceActivity.this);
 					builder.setTitle("模板重命名");
@@ -281,6 +277,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 							String mText = text.getText().toString();// 获取编辑内容
 							modelText.setText(mText);// 改编辑内容为编辑的内容
 							modelChange = modelText.getText().toString();
+							updateid = position;
 							UpdateThread uThread = new UpdateThread();
 							uThread.start();
 							Toast.makeText(DeclarationModelChoiceActivity.this, "模板重命名成功", Toast.LENGTH_SHORT).show();
@@ -300,16 +297,9 @@ public class DeclarationModelChoiceActivity extends Activity {
 
 			// 删除模板监听
 			holder.delImageView.setOnClickListener(new OnClickListener() {
-
 				@Override
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					System.out.println("iii");
-					deleteModel();
-					// mData.remove(position);
-					// MyAdapter.this.notifyDataSetChanged();
-					// MyAdapter.notifyDataSetChanged();
-					// listView.invalidate();
+					deleteModel();				
 				}
 
 				private void deleteModel() {
@@ -320,6 +310,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 					builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int whichButton) {
 							mData.remove(position);
+							deleteid = position;
 							MyAdapter.this.notifyDataSetChanged();
 							dialog.dismiss();// 对话框消失
 							DelThread delThread = new DelThread();
@@ -351,15 +342,15 @@ public class DeclarationModelChoiceActivity extends Activity {
 				JSONArray jArray = new JSONArray();
 				JSONObject jsonObject = new JSONObject();
 				try {
-					jsonObject.put("id", util.getId());// 用户的ID
-					jsonObject.put("name", modelChange);// 模板名称
-					jsonObject.put("oldName", oldModelText);// 模板的旧名称,根据模板的旧名称查询相应的数据来更新数据
+					jsonObject.put("id", updateid);
+					jsonObject.put("type", 2);
+					jsonObject.put("name", modelChange);// 新模板名称					
 					System.out.println(jArray);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 				// 设置发送的url 和服务器端的struts.xml文件对应
-				postUtil.setUrl("/form/form_updatetemplate.do");
+				postUtil.setUrl("/form/form_update.do");
 				// 向服务器发送数据
 				jArray.put(jsonObject);
 				postUtil.setRequest(jArray);
@@ -385,14 +376,13 @@ public class DeclarationModelChoiceActivity extends Activity {
 				JSONArray jArray = new JSONArray();
 				JSONObject jsonObject = new JSONObject();
 				try {
-					jsonObject.put("id", util.getId());// 用户的ID
-					jsonObject.put("oldName", oldModelText);// 模板的旧名称,根据模板的名称和用户的id来查询相应的数据来删除数据
-					System.out.println(jArray);
+					jsonObject.put("id", deleteid);// 用户的ID
+					jsonObject.put("type", 2);// 用户的ID			
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 				// 设置发送的url 和服务器端的struts.xml文件对应
-				postUtil.setUrl("/form/form_deltemplate.do");
+				postUtil.setUrl("/form/form_delete.do");
 				// 向服务器发送数据
 				jArray.put(jsonObject);
 				postUtil.setRequest(jArray);
@@ -403,42 +393,16 @@ public class DeclarationModelChoiceActivity extends Activity {
 					public void run() {
 						finish();
 					}
-
 				};
 				handler.post(r);
 			}
 		}
 	}
-
 	public static class ViewHolder {
 		EditText editText;
 		ImageView editiImageView;
 		ImageView delImageView;
 		CheckBox checkBox;
-	}
-
-	private List<HashMap<String, Object>> getData() {
-		// 新建一个集合类，用于存放多条数据
-		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
-		HashMap<String, Object> map = null;
-
-		map = new HashMap<String, Object>();
-		map.put("checkBox", ""); // r.drawable
-		map.put("modeltext", "无");
-		map.put("modeledit", R.drawable.modeledit);
-		map.put("modeldelete", R.drawable.modeldelete);
-		list.add(map);
-
-		for (int i = 1; i <= 3; i++) {
-			map = new HashMap<String, Object>();
-			map.put("checkBox", ""); // r.drawable
-			map.put("modeltext", "模板" + i);
-			map.put("modeledit", R.drawable.modeledit);
-			map.put("modeldelete", R.drawable.modeldelete);
-			list.add(map);
-		}
-
-		return list;
 	}
 
 	// 启动线程从数据库中获取数据，获取模板的名称
@@ -476,7 +440,16 @@ public class DeclarationModelChoiceActivity extends Activity {
 			}
 			if (null != mData)
 				mData.clear();
-			// typelist.clear();
+			HashMap<String, Object> map0 = null;
+			map0 = new HashMap<String, Object>();
+			map0.put("checkBox", ""); // r.drawable
+			map0.put("modeltext", "无");
+			map0.put("id", -1);
+			map0.put("modeledit", R.drawable.modeledit);
+			map0.put("modeldelete", R.drawable.modeldelete);
+			isSelected.put(0, false);
+			mData.add(map0);
+			
 			for (int i = 0; i < jsonArray.length(); i++) {
 				try {
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
@@ -484,9 +457,12 @@ public class DeclarationModelChoiceActivity extends Activity {
 					HashMap<String, Object> map = new HashMap<String, Object>();
 					int id = myjObject.getInt("id");
 					String name = myjObject.getString("name");// 模板名称
-					map.put("name", name);// R.drawable.head010
 					map.put("id", id);
-					// typelist.add(0);
+					map.put("checkBox", ""); // r.drawable
+					map.put("modeltext", name);
+					map.put("modeledit", R.drawable.modeledit);
+					map.put("modeldelete", R.drawable.modeldelete);
+					isSelected.put(i+1, false);
 					mData.add(map);
 				} catch (JSONException e) {
 					e.printStackTrace();
