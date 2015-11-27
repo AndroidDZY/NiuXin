@@ -3,13 +3,13 @@ package com.example.niuxin;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.niuxin.DeclarationModelChoiceActivity.MyAdapter;
 import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
@@ -22,8 +22,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -31,25 +31,23 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class DeclarationLaunchActivity extends Activity{
 	
 	private Button iDeclarationDetail, backButton;
 	private ListView listView;
 	private Spinner spinner;
-	private List<HashMap<String, Object>> mData;  
+	private List<HashMap<String, Object>> mData = new LinkedList<HashMap<String, Object>>();  
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
-	MyAdapter adapter;
-	String orderseq;
+	MyAdapter adapter = null ;
+	String orderseq = "按时间顺序查询";
 	String[] declaOrder = {"按时间顺序查询", "按合约类型查询", "按接收者查询"};
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -61,9 +59,9 @@ public class DeclarationLaunchActivity extends Activity{
 		iDeclarationDetail = (Button)findViewById(R.id.declaration_launch_detail);//"我要报单"按钮
 		backButton = (Button)findViewById(R.id.declaration_lanch_back);//返回按钮
 		
-		mData = getData();
+	//	mData = getData();
 		listView = (ListView)findViewById(R.id.declaration_tag);
-		MyAdapter adapter = new MyAdapter(this);//创建一个适配器  
+		 adapter = new MyAdapter(this);//创建一个适配器  
 		listView.setAdapter(adapter);
 		
 		spinner = (Spinner)findViewById(R.id.declaration_launch_paixu);  
@@ -77,7 +75,10 @@ public class DeclarationLaunchActivity extends Activity{
 				// TODO Auto-generated method stub
 				 String order=declaOrder[arg2];
 				 orderseq=order;
-				arg0.setVisibility(View.VISIBLE);
+				 arg0.setVisibility(View.VISIBLE);
+				 
+				 GroupThread g = new GroupThread();
+				 g.start();					
 			}
 
 			@Override
@@ -136,6 +137,10 @@ public class DeclarationLaunchActivity extends Activity{
 	protected void onResume() {
 		super.onResume();
 		suolue = new SuoluetuActivity(this, handler);
+		
+		GroupThread g = new GroupThread();
+		g.start();
+		
 	}
 	//适配器
 	public class MyAdapter extends BaseAdapter {  
@@ -148,7 +153,10 @@ public class DeclarationLaunchActivity extends Activity{
         // 决定ListView有几行可见  
         @Override  
         public int getCount() {  
-            return mData.size();// ListView的条目数  
+        	if(null!=mData)
+        		return mData.size();// ListView的条目数  
+        	else
+        		return 0;
         }  
   
         @Override  
@@ -202,14 +210,6 @@ public class DeclarationLaunchActivity extends Activity{
 				
 				@Override
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					System.out.println("111111111111111111111111111111111111111111111");
-					//获取发送报单的id真数据以后就调用此intent
-					/*Integer id=Integer.valueOf(cid.toString());
-					Intent intent=new Intent();
-					intent.putExtra("id", id);
-					intent.setClass(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);
-					*/
 					Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
 					startActivity(intent);
 				}
@@ -238,7 +238,7 @@ public class DeclarationLaunchActivity extends Activity{
         return list;  
     }  
 	//启动线程从数据库中获取数据
-	/*class GroupThread extends Thread {
+	class GroupThread extends Thread {
 		@SuppressLint("SimpleDateFormat")
 		@Override
 		public void run() {
@@ -279,10 +279,60 @@ public class DeclarationLaunchActivity extends Activity{
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}	
-			mData.clear();
+			if(mData!=null)
+				mData.clear();
 			//typelist.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {				
 				try {
+				/*	
+					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+					Map<String, Object> map = new HashMap<String, Object>();
+					// 发送表单用户的信息
+					String id = myjObject.getString("id");// 表单id
+					String contract = myjObject.getString("contract");
+					String operation = myjObject.getString("operation");
+					String price = myjObject.getString("price");
+					int handnum = myjObject.getInt("handnum");
+					String position = myjObject.getString("position");
+					String profit = myjObject.getString("profit");
+					// Double minnum = myjObject.getDouble("minnum");
+					// Double maxnum = myjObject.getDouble("maxnum");
+					// String remark = myjObject.getString("remark");
+					// String pictureurl =
+					// myjObject.getString("pictureurl");
+					// String audiourl = myjObject.getString("audiourl");
+					String date = myjObject.getString("date");
+					String week = myjObject.getString("week");
+					String time = myjObject.getString("time");
+					// String name = myjObject.getString("name");
+					int sendfromid = myjObject.getInt("sendfrom");
+					int collection = myjObject.getInt("collection");
+					String senduserimg = myjObject.getString("img");
+					String sendusername = myjObject.getString("sendusername");
+
+					map.put("contract", contract);
+					map.put("date", date);
+					map.put("week", week);
+					map.put("time", time);
+					map.put("operation", operation);
+					map.put("price", price);
+					map.put("handnum", handnum);
+					map.put("profit", profit);
+					map.put("position", position + "%");
+
+					map.put("senderHead", getSource.getResourceByReflect(senduserimg));
+					map.put("senderName", sendusername);
+					map.put("senderId", sendfromid);// 发送用户的id
+					map.put("id", id);// 表单id
+					if (collection == 0)
+						map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
+					else
+						map.put("isCollect", R.drawable.ic_declaration_star_pressed);
+					list.add(map);
+					
+					*/
+					//////////////////////////////////////////////////////
+					
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
 					// 获取每一个对象中的值
 						HashMap<String, Object> map = new HashMap<String, Object>();
@@ -292,11 +342,14 @@ public class DeclarationLaunchActivity extends Activity{
 						String price = myjObject.getString("price");//价格
 						String handnum = myjObject.getString("handnum");//手数
 						String position = myjObject.getString("position");//仓位
-						String update = myjObject.getString("update");//时间
+					//	String update = myjObject.getString("update");//时间
 						SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日周E HH时mm分");
-					    String  datetime=simpleDateFormat.format(update);
-					    String  date=datetime.substring(0,datetime.indexOf(" "));//获取日期
-					    String  time=datetime.substring(datetime.indexOf(" "));//获取时间
+					 //   String  datetime=simpleDateFormat.format(update);
+					  //  String  date=datetime.substring(0,datetime.indexOf(" "));//获取日期
+					 //   String  time=datetime.substring(datetime.indexOf(" "));//获取时间
+						String date = myjObject.getString("date");
+						String week = myjObject.getString("week");
+						String time = myjObject.getString("time");
 						//String yingli = myjObject.getString("");//盈利
 						map.put("contract", contract);//R.drawable.head010
 						map.put("id", id);
@@ -307,6 +360,7 @@ public class DeclarationLaunchActivity extends Activity{
 						map.put("position", position);
 						map.put("date", date);
 						map.put("time", time);
+						map.put("gainText", "1");
 						//typelist.add(0);
 						mData.add(map);
 					}
@@ -317,12 +371,12 @@ public class DeclarationLaunchActivity extends Activity{
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
-				adapter.notifyDataSetChanged();	
+					adapter.notifyDataSetChanged();	
 				}
 
 			};
 			handler.post(r);
 		}
-	}*/
+	}
 
 }
