@@ -1,9 +1,9 @@
 package com.example.niuxin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,9 +13,14 @@ import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -37,7 +42,7 @@ public class DeclarationDetailActivity extends Activity {
 	LinearLayout linearLayoutModelChoice, linearLayoutContactChoice, linearLayoutActiontype, detailsendchoice;
 	private Button backButton, sendButton, saveButton;
 	EditText editTextPrice, editTextShoushu, editTextCangwei, editTextArea1, editTextArea2, editTextBeizhu;
-	TextView purposeChoiced, contractType, modelChioced;
+	TextView purposeChoiced, contractType, modelChioced,picchoice;
 	ImageView imageView;
 	Spinner spinnerOperateType;
 	String[] operateTypeOrder = { "多开", "多平", "空开", "空平" };
@@ -45,8 +50,12 @@ public class DeclarationDetailActivity extends Activity {
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
-	String OperateType = "";
-
+	String operateType = null;
+	StringBuffer haoyouBuffer=new StringBuffer();//好友
+	StringBuffer qunzuBuffer=new StringBuffer();//群组
+	List<String> qunzuList=null;
+	List<String> haoyouList=null;
+	MyApplication	constantStatic=(MyApplication)getApplication();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -59,6 +68,7 @@ public class DeclarationDetailActivity extends Activity {
 		modelChioced = (TextView) findViewById(R.id.detail_model_choice);
 		contractType = (TextView) findViewById(R.id.detail_contact_show);
 		spinnerOperateType = (Spinner) findViewById(R.id.detail_control_show);
+		picchoice=(TextView)findViewById(R.id.decla_picchoice);
 
 		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.decla_spinner, operateTypeOrder); // 此处加上自己的样式
 		spinnerOperateType.setAdapter(spinnerAdapter);
@@ -67,7 +77,7 @@ public class DeclarationDetailActivity extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
-				OperateType = operateTypeOrder[arg2];
+				operateType = operateTypeOrder[arg2];
 				// 设置显示当前选择的项
 				arg0.setVisibility(View.VISIBLE);
 			}
@@ -98,6 +108,7 @@ public class DeclarationDetailActivity extends Activity {
 		imageView = (ImageView) findViewById(R.id.detail_image_beizhu);
 		purposeChoiced = (TextView) findViewById(R.id.detail_purpose_choiced);
 		purposeChoiced.setText("未选");
+		modelChioced.setText("未选");
 		// 设置监听事件
 		// 模板选择跳转
 		String text = "  ";
@@ -126,11 +137,36 @@ public class DeclarationDetailActivity extends Activity {
 		map.put("remark", editTextBeizhu);//备注
 		list.add(map);*/
 		//map.put("", imageView);//配图
+		/*
+		 * 根据模板的名称查询数据库中的数据。11.28号改动
+		 * */
+		SearchThread thread= new SearchThread();
+		thread.start();
 		
-		MyApplication	constantStatic=(MyApplication)getApplication();
-		List<String> qunzuList=constantStatic.getQunzuList();//获取到选择的群组发送目标
-		List<String> haoyouList= constantStatic.getHaoyouList();//获取到选择的好友发送目标名称
+		 qunzuList=constantStatic.getQunzuList();//获取到选择的群组发送目标
+		 haoyouList= constantStatic.getHaoyouList();//获取到选择的好友发送目标名称
 		List<String> listAll=constantStatic.getSendList();//相加的名称
+		//传过来的数据，转换成String，存入到数据库
+		//循环获取好友ID
+		if (haoyouList.size()!=0&&haoyouList!=null) {
+		    for (int i = 0; i < haoyouList.size(); i++) {
+				if (i==0) {
+					haoyouBuffer.append(haoyouList.get(i));
+				}else {
+					haoyouBuffer.append(","+haoyouList.get(i));
+				}
+			}
+		}
+		//循环获取群组id
+		if (qunzuList.size()!=0&&qunzuList!=null) {
+		    for (int i = 0; i < qunzuList.size(); i++) {
+				if (i==0) {
+					qunzuBuffer.append(qunzuList.get(i));
+				}else {
+					qunzuBuffer.append(","+qunzuList.get(i));
+				}
+			}
+		}
 		System.out.println(listAll+"发送目标");
 		if (listAll.size()!=0) {
 			purposeChoiced.setText("已选");
@@ -174,6 +210,19 @@ public class DeclarationDetailActivity extends Activity {
 				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
 				startActivity(intent);
 				
+			}
+		});
+		//选择配图
+		picchoice.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(
+						Intent.ACTION_PICK,
+						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				
+				startActivityForResult(intent, 16);
 			}
 		});
 		// 返回
@@ -227,6 +276,22 @@ public class DeclarationDetailActivity extends Activity {
 			String result_value = data.getStringExtra("modelText");
 			modelChioced.setText(result_value);
 		}
+		if (requestCode == 16 && resultCode == RESULT_OK && null != data) {
+			Uri selectedImage = data.getData();
+			String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+			Cursor cursor = getContentResolver().query(selectedImage,
+					filePathColumn, null, null, null);
+			cursor.moveToFirst();
+
+			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+			String picturePath = cursor.getString(columnIndex);
+			cursor.close();
+			
+			ImageView imageView = (ImageView) findViewById(R.id.detail_image_beizhu);
+			imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+		
+		}
 	}
 
 	class SaveThread extends Thread {
@@ -259,8 +324,8 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("pictureurl", "/pp/a.jpg");
 				jsonObject.put("audiourl", "/pp/video.avi");
 				jsonObject.put("type", type);
-				jsonObject.put("sendtouser", "21,23");
-				jsonObject.put("sendtogroup", "1,2");
+				jsonObject.put("sendtouser",haoyouBuffer);//改成string把id存入到数据库中
+				jsonObject.put("sendtogroup", qunzuBuffer);//改成string存入到数据库中
 
 				/*
 			//	jsonObject.put("name", modelChioced.getText());// 模板名称
@@ -301,5 +366,89 @@ public class DeclarationDetailActivity extends Activity {
 			handler.post(r);
 		}
 	}
+	//根据模板的名称获取模板的相关数据
+	class SearchThread extends Thread {
+		private Dialog mDialog = null;
 
+		@Override
+		public void run() {
+			// 新建工具类，向服务器发送Http请求
+			HttpPostUtil postUtil = new HttpPostUtil();
+
+			JSONObject jsonObject = new JSONObject();
+			try {
+                String modelName=modelChioced.getText().toString();//获取模板的名称
+				//Integer id = util.getId();
+				jsonObject.put("name", modelName);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+            // 设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/group/group_listTongxunlu.do");//数据请求
+			// 不向服务器发送数据
+			// 向服务器发送数据
+			JSONArray js = new JSONArray();
+			js.put(jsonObject);
+			postUtil.setRequest(js);
+
+			// 从服务器获取数据
+			String res = postUtil.run();
+			// 对从服务器获取数据进行解析
+			JSONArray jsonArray = null;
+			try {
+				jsonArray = new JSONArray(res);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			list.clear();
+			int j =0;
+			for (int i = 0; i < jsonArray.length(); i++) {
+				try {
+					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+					// 获取每一个对象中的值
+					//int id = myjObject.getInt("id");
+					String contract = myjObject.getString("contract");//合约类型
+					String operation = myjObject.getString("operation");//操作类型
+					Integer price = myjObject.getInt("price");//价格
+					Integer handnum = myjObject.getInt("handnum");//手数
+					Integer position = myjObject.getInt("position");//仓位
+					Integer minnum = myjObject.getInt("minnum");//最小范围
+					Integer maxnum = myjObject.getInt("maxnum");//最大范围
+					String remark = myjObject.getString("remark");//备注
+					//String sendfrom = myjObject.getString("sendfrom");
+					String sendtouser = myjObject.getString("sendtouser");//用户id
+					String sendtogroup = myjObject.getString("sendtogroup");//群组id
+					//String pictureurl = myjObject.getString("pictureurl");
+					//String audiourl = myjObject.getString("audiourl");
+					contractType.setText(contract);
+					operateType=operation;
+					editTextPrice.setText(price);
+					editTextShoushu.setText(handnum);
+					editTextCangwei.setText(position);
+					editTextArea1.setText(minnum);
+					editTextArea2.setText(maxnum);
+					editTextBeizhu.setText(remark);
+					List<String> hlist= new ArrayList<String>();
+					hlist=java.util.Arrays.asList(sendtouser);
+					constantStatic.setHaoyouList(hlist);
+					List<String> qList=java.util.Arrays.asList(sendtogroup);
+					constantStatic.setQunzuList(qList);
+					/*String[] haoText=sendtouser.split(",");
+					for (String str:haoText) {
+						hlist.add(str);
+					}*/
+					
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			Runnable r = new Runnable() {
+				@Override
+				public void run() {
+				}
+
+			};
+			handler.post(r);
+		}
+	}
 }

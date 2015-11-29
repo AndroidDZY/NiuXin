@@ -73,11 +73,16 @@ public class DeclarationUserselectActivity extends Activity {
 		// for (int i = 0; i < oldlist.size(); i++)
 		// String name=oldlist.get(i);
 		for (int j = 0; j < list.size(); j++) { // 循环匹配数据，如果有一样的数据则为选中状态
-			String username = list.get(j).get("username").toString();
+			String username = list.get(j).get("username").toString();//这里把username换成用户的id就行11.28号改动
+			Long id =Long.valueOf(list.get(j).get("id").toString());
 			isSelected.put(j, false);
 			for (int i = 0; i < oldlist.size(); i++) {
-				String name = oldlist.get(i);
-				if (username.equals(name)) {
+				//String name = oldlist.get(i);
+				/*if (username.equals(name)) {
+					isSelected.put(j, true);
+				}*/
+				Long haoyouId=Long.valueOf(oldlist.get(i).toString());//获取id，如果id相等则为选中状态
+				if (haoyouId==id) {
 					isSelected.put(j, true);
 				}
 			}
@@ -129,8 +134,9 @@ public class DeclarationUserselectActivity extends Activity {
 					// 点击保存获取到相关数据
 					System.out.println(beSelectedData);
 					for (int i = 0; i < beSelectedData.size(); i++) {
-						String text = beSelectedData.get(i).get("username").toString();
-						haoyouList.add(text);
+						//String text = beSelectedData.get(i).get("username").toString();
+						String id=beSelectedData.get(i).get("id").toString();//把这里换成获取id，11.28改动
+						haoyouList.add(id);
 					}
 					MyApplication appHaoyou = (MyApplication) getApplication();
 					appHaoyou.setHaoyouList(haoyouList);
@@ -231,6 +237,7 @@ public class DeclarationUserselectActivity extends Activity {
 			map = new HashMap<String, Object>();
 			map.put("touxiang", R.drawable.detail_content_touxiang); // r.drawable
 			map.put("username", "好友" + i);
+			map.put("id", i);
 			list.add(map);
 		}
 

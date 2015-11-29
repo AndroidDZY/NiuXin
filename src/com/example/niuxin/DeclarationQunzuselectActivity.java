@@ -68,10 +68,13 @@ public class DeclarationQunzuselectActivity extends Activity {
 				isSelected = new HashMap<Integer, Boolean>();
 				for (int j = 0; j < list.size(); j++) {  //循环匹配数据，如果有一样的数据则为选中状态
 					String qunzuname=list.get(j).get("qunzuname").toString();
+					//改成获取ID，11.28改动
+					Long qunzuId=Long.valueOf(list.get(j).get("id").toString());
 					isSelected.put(j, false);
 					for (int i = 0; i < oldlist.size(); i++) {
-						String name = oldlist.get(i);
-						if (qunzuname.equals(name)) {
+						//String name = oldlist.get(i);
+						Long id=Long.valueOf(oldlist.get(i));
+						if (qunzuId==id) {
 						  isSelected.put(j, true);
 						}
 					}
@@ -94,6 +97,7 @@ public class DeclarationQunzuselectActivity extends Activity {
 				finish();
 			}
 		});
+		//保存监听
 		saveButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -102,9 +106,13 @@ public class DeclarationQunzuselectActivity extends Activity {
 				if (beSelectedData.size()!=0) {
 					//点击保存获取到相关数据
 					System.out.println(beSelectedData);
+					//获取id，11.28改动
 					for (int i = 0; i < beSelectedData.size(); i++) {
-						String text=beSelectedData.get(i).get("qunzuname").toString();
-						qunzuList.add(text);
+						/*String text=beSelectedData.get(i).get("qunzuname").toString();
+						qunzuList.add(text);*/
+						//改成id
+						String id =beSelectedData.get(i).get("id").toString();
+						qunzuList.add(id);
 					}
 					MyApplication	appQunzu=(MyApplication)getApplication();
 					appQunzu.setQunzuList(qunzuList);
@@ -219,7 +227,8 @@ public class DeclarationQunzuselectActivity extends Activity {
 	        for (int i = 1; i <= 3; i++) {  
 	            map = new HashMap<String, Object>();  
 	            map.put("touxiang", R.drawable.detail_content_touxiang ); //r.drawable 
-	            map.put("qunzuname", "群组"+i);  
+	            map.put("qunzuname", "群组"+i);
+	            map.put("id", i);
 	            list.add(map);  
 	        }  
 	  
