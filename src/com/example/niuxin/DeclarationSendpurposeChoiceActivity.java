@@ -1,8 +1,16 @@
 package com.example.niuxin;
 
+import java.util.HashMap;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.example.niuxin.R.attr;
+import com.niuxin.util.HttpPostUtil;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -80,5 +88,11 @@ public class DeclarationSendpurposeChoiceActivity extends TabActivity{
 		super.onResume();
 		suolue = new SuoluetuActivity(this, handler);
 	}
+	
+	
+	
+	
+	
+	
 
 }

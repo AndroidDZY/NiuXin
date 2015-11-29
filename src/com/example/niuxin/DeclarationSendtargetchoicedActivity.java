@@ -21,12 +21,17 @@ public class DeclarationSendtargetchoicedActivity extends TabActivity{
 	Button haoyouButton, qunzuButton,backButton;
 	public Handler handler = new Handler();
 	private SuoluetuActivity suolue;
+	String intentuserlist = "";
+	String intentgrouplist = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.declaration_sendpurpose_choiced);
+		Intent in = getIntent();
+		intentuserlist = in.getStringExtra("intentuserlist");
+		intentgrouplist = in.getStringExtra("intentgrouplist");
 		init();//好友、群组界面切换
 		initTab();//好友、群组字体变化	    
 	}
@@ -80,10 +85,15 @@ public class DeclarationSendtargetchoicedActivity extends TabActivity{
 	private void init() {
 		// TODO Auto-generated method stub
 		tabHost=getTabHost();
+		Intent intentuser = new Intent(this, DeclarationUsershowActivity.class);
+		intentuser.putExtra("intentuser",  intentuserlist);
+		//intentuser.putExtra("intentgroup",  intentgrouplist);
     	tabHost.addTab(tabHost.newTabSpec("haoyou").setIndicator("haoyou")
-				.setContent(new Intent(this, DeclarationUsershowActivity.class)));
+				.setContent(intentuser));
+    	Intent intentgroup = new Intent(this, DeclarationQunzushowActivity.class);
+    	intentgroup.putExtra("intentgroup",  intentgrouplist);
     	tabHost.addTab(tabHost.newTabSpec("qunzu").setIndicator("qunzu")
-				.setContent(new Intent(this, DeclarationQunzushowActivity.class)));
+				.setContent(intentgroup));
     	/*//真数据的时候调用下面的，获取报单的id 传给查看发送目标界面
     	Intent intent=getIntent();
 		Long id=Long.valueOf(intent.getStringExtra("id"));
@@ -103,5 +113,11 @@ public class DeclarationSendtargetchoicedActivity extends TabActivity{
 		super.onResume();
 		suolue = new SuoluetuActivity(this, handler);
 	}
+	
+	
+	
+	
+	
+	
 
 }

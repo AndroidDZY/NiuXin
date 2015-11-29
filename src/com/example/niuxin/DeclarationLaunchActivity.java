@@ -47,7 +47,7 @@ public class DeclarationLaunchActivity extends Activity{
 	MyAdapter adapter = null ;
 	String orderseq = "按时间顺序查询";
 	String[] declaOrder = {"按时间顺序查询", "按合约类型查询", "按接收者查询"};
-	
+	int p=0;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
@@ -145,7 +145,6 @@ public class DeclarationLaunchActivity extends Activity{
 	//适配器
 	public class MyAdapter extends BaseAdapter {  
         private LayoutInflater mInflater;// 动态布局映射  
-  
         public MyAdapter(Context context) {  
             this.mInflater = LayoutInflater.from(context);  
         }  
@@ -170,8 +169,9 @@ public class DeclarationLaunchActivity extends Activity{
         }  
   //获取listview视图对象 
         @Override
-		public View getView(int position, View convertView, ViewGroup arg2) {
+		public View getView(final int position, View convertView, ViewGroup arg2) {
 			// TODO Auto-generated method stub
+      
         	convertView = mInflater.inflate(R.layout.listview_set_declaration, null);//根据布局文件实例化view 
         	//合约
         	TextView tagText=(TextView) convertView.findViewById(R.id.tv_declaration_contract_set);
@@ -206,11 +206,13 @@ public class DeclarationLaunchActivity extends Activity{
         	//点击查看发送对象
         	//对应的ID
         	//final Long cid=Long.valueOf(mData.get(position).get("id").toString());
-			sendtoText.setOnClickListener(new OnClickListener() {
-				
+			sendtoText.setOnClickListener(new OnClickListener() {				
 				@Override
 				public void onClick(View arg0) {
 					Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
+
+					intent.putExtra("intentuserlist", mData.get(position).get("sendtoUser").toString());
+					intent.putExtra("intentgrouplist", mData.get(position).get("sendtoGroup").toString());
 					startActivity(intent);
 				}
 			});
@@ -350,6 +352,9 @@ public class DeclarationLaunchActivity extends Activity{
 						String date = myjObject.getString("date");
 						String week = myjObject.getString("week");
 						String time = myjObject.getString("time");
+						String sendtoUser = myjObject.getString("sendtoUser");
+						String sendtoGroup = myjObject.getString("sendtoGroup");
+						
 						//String yingli = myjObject.getString("");//盈利
 						map.put("contract", contract);//R.drawable.head010
 						map.put("id", id);
@@ -361,6 +366,8 @@ public class DeclarationLaunchActivity extends Activity{
 						map.put("date", date);
 						map.put("time", time);
 						map.put("gainText", "1");
+						map.put("sendtoUser", sendtoUser);
+						map.put("sendtoGroup", sendtoGroup);
 						//typelist.add(0);
 						mData.add(map);
 					}
