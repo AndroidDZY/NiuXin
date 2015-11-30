@@ -59,9 +59,10 @@ public class DeclarationDetailActivity extends Activity {
 	StringBuffer qunzuBuffer=new StringBuffer();//群组
 	List<String> qunzuList=null;
 	List<String> haoyouList=null;
+	List<String> listAll=null;
 	Integer Templateid =-1;
 	String picturePath = "";
-	MyApplication	constantStatic=(MyApplication)getApplication();
+	MyApplication	constantStatic;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -113,7 +114,7 @@ public class DeclarationDetailActivity extends Activity {
 		// 备注图片
 		imageView = (ImageView) findViewById(R.id.detail_image_beizhu);
 		purposeChoiced = (TextView) findViewById(R.id.detail_purpose_choiced);
-		purposeChoiced.setText("未选");
+		//purposeChoiced.setText("未选");
 		modelChioced.setText("未选");
 		// 设置监听事件
 		// 模板选择跳转
@@ -146,14 +147,15 @@ public class DeclarationDetailActivity extends Activity {
 		/*
 		 * 根据模板的名称查询数据库中的数据。11.28号改动
 		 * */
-	
-		if(null!=constantStatic){
+	 
+		     constantStatic=(MyApplication)getApplication();
 			 qunzuList=constantStatic.getQunzuList();//获取到选择的群组发送目标
 			 haoyouList= constantStatic.getHaoyouList();//获取到选择的好友发送目标名称
-			List<String> listAll=constantStatic.getSendList();//相加的名称
+			 System.out.println(haoyouList+"好友机会");
+			 listAll=constantStatic.getSendList();//相加的名称
 			//传过来的数据，转换成String，存入到数据库
 			//循环获取好友ID
-			if (haoyouList.size()!=0&&haoyouList!=null) {
+			if (haoyouList!=null) {
 			    for (int i = 0; i < haoyouList.size(); i++) {
 					if (i==0) {
 						haoyouBuffer.append(haoyouList.get(i));
@@ -163,7 +165,7 @@ public class DeclarationDetailActivity extends Activity {
 				}
 			}
 			//循环获取群组id
-			if (qunzuList.size()!=0&&qunzuList!=null) {
+			if (qunzuList!=null) {
 			    for (int i = 0; i < qunzuList.size(); i++) {
 					if (i==0) {
 						qunzuBuffer.append(qunzuList.get(i));
@@ -173,12 +175,15 @@ public class DeclarationDetailActivity extends Activity {
 				}
 			}
 			System.out.println(listAll+"发送目标");
-			if (listAll.size()!=0) {
-				purposeChoiced.setText("已选");
-			}
+			
+		
+		 System.out.println(listAll+"12121212121212121212121");
+			
+		if (null==listAll) {
+			purposeChoiced.setText("未选");
+		}else {
+			purposeChoiced.setText("已选");
 		}
-		
-		
 		
 		
 		//模板选择

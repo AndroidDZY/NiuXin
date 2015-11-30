@@ -264,7 +264,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true" 
+        android:focusableInTouchMode="true">
         <LinearLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -287,9 +289,7 @@
             android:layout_weight="2"
             android:layout_marginTop="3dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="5dp"
-            android:focusable="true" 
-            android:focusableInTouchMode="true" >
+            android:layout_marginRight="5dp">
 	        <EditText
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -308,7 +308,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true" 
+        android:focusableInTouchMode="true">
+        
         <LinearLayout android:layout_width="0dp"
             android:layout_weight="3"
             android:orientation="vertical"
@@ -332,8 +335,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
-            android:focusable="true" 
-            android:focusableInTouchMode="true">
+            >
 	        <EditText
 	            android:id="@+id/detail_edit_shoushu"
 	            android:layout_width="wrap_content"
@@ -362,7 +364,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true" 
+        android:focusableInTouchMode="true">
         <LinearLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -381,8 +385,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="3dp"
-            android:focusable="true" 
-            android:focusableInTouchMode="true">
+            >
 	        <EditText
 	            android:id="@+id/detail_edit_cangwei"
 	            android:layout_width="wrap_content"
@@ -420,7 +423,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true" 
+        android:focusableInTouchMode="true">
         <TextView android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -571,7 +576,6 @@
 	              android:layout_weight="1">
 		          <TextView android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
-		              android:text="已选"
 		              android:id="@+id/detail_purpose_choiced"
 		              android:layout_marginTop="@dimen/layout_margin_five"
 		              android:layout_centerInParent="true"/>
