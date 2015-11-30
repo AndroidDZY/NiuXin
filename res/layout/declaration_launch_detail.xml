@@ -105,6 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/layout_margin_five"
         android:layout_marginLeft="@dimen/layout_margin_eight"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
         <LinearLayout 
             android:layout_width="0dp"
@@ -114,7 +115,7 @@
             >
             <LinearLayout 
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 	        <TextView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -122,11 +123,10 @@
 	            android:textSize="12sp"
 	           />
 	        <TextView android:layout_width="wrap_content"
-	            android:layout_height="match_parent"
+	            android:layout_height="wrap_content"
 	            android:layout_marginLeft="3dp"
 	            android:text="第一次填写完报单之后勾选下方保存模板，可以将内容和发送对象保存，之后再次发送至需要更改个别内容"
-	            android:gravity="bottom"
-	            android:textSize="5sp"
+	            android:textSize="6sp"
 	           />
 	        </LinearLayout>
 	        <View  
@@ -465,7 +465,6 @@
 	    	android:layout_width="150dp"  
 	    	android:layout_height="0.5dp" 
 	    	android:background="#cccccc"  />
-    
     <!-- 备注 -->
     <LinearLayout 
         android:layout_marginLeft="10dp"
@@ -482,12 +481,16 @@
             android:text="备注"/>
         <EditText android:layout_width="0dp"
             android:inputType="text"
+            android:paddingLeft="2dp"
             android:layout_marginTop="3dp"
             android:layout_marginLeft="2dp"
             android:layout_height="25dp"
             android:layout_weight="3"
             android:textSize="12sp"
             android:id="@+id/decla_lanch_detail_edit_beizhu"
+            android:hint="请在此处填写备注内容"
+            android:maxLength="40"
+            android:ellipsize="end"
             android:background="@drawable/decla_lanch_detail_beizhu"/>
     </LinearLayout>
     
@@ -527,7 +530,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/decla_lanch_luying"
+            android:background="@drawable/decla_lanch_luying_new"
             android:id="@+id/detail_button_luying"/>
     
   <!-- 发送目标 -->
@@ -546,7 +549,8 @@
              android:layout_height="wrap_content"
              android:layout_marginLeft="10dp"
              android:background="@drawable/decla_lanch_grey1"
-             android:layout_marginRight="10dp"/>
+             android:layout_marginRight="10dp"
+             />
 	     <LinearLayout 
 	          android:orientation="horizontal"
 	          android:layout_width="match_parent"
@@ -556,9 +560,10 @@
 	              android:layout_height="wrap_content"
 	              android:gravity="center"
 	              android:layout_weight="1"
-	              android:text="发送目标"/>
+	              android:text="发送目标"
+	              android:layout_marginTop="@dimen/layout_margin_five"/>
 	          <ImageView android:layout_width="wrap_content"
-	              android:layout_height="18dp"
+	              android:layout_height="20dp"
 	              android:background="@drawable/decla_lanch_grey2"
 	              android:layout_marginBottom="5dp"/>
 	          <RelativeLayout android:layout_width="0dp"
@@ -568,13 +573,15 @@
 		              android:layout_height="wrap_content"
 		              android:text="已选"
 		              android:id="@+id/detail_purpose_choiced"
+		              android:layout_marginTop="@dimen/layout_margin_five"
 		              android:layout_centerInParent="true"/>
 		           <ImageView android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
 			            android:layout_alignParentRight="true"
 			            android:layout_centerHorizontal="true"
 			            android:layout_marginRight="30dp"
-			            android:background="@drawable/decla_lanch_detail_jiantou"/>
+			            android:background="@drawable/decla_lanch_detail_jiantou"
+			            android:layout_marginTop="@dimen/layout_margin_five"/>
 	           </RelativeLayout>
 	      </LinearLayout>
 	   </LinearLayout>

@@ -1,6 +1,11 @@
 package com.niuxin.util;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 import org.apache.http.Header;
 
@@ -10,10 +15,12 @@ import com.loopj.android.http.RequestParams;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 public class PostPicture {
 
+	
 	public static void reg(final Context cont, Bitmap photodata, String regData) {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -30,8 +37,8 @@ public class PostPicture {
 			// photo=URLEncoder.encode(photo,"UTF-8");
 			RequestParams params = new RequestParams();
 			params.put("photo", photo);
-			params.put("name", "woshishishi");// 传输的字符数据
-			String url = "http://10.0.2.2:8080/IC_Server/servlet/RegisterServlet1";
+			params.put("name", "dingliang");// 传输的字符数据
+			String url = "http://192.168.3.191:8080/NiuXinServer/upload/upload_upload.do";
 
 			AsyncHttpClient client = new AsyncHttpClient();
 			client.post(url, params, new AsyncHttpResponseHandler() {				
@@ -42,8 +49,7 @@ public class PostPicture {
 
 				@Override
 				public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-					// TODO Auto-generated method stub
-					
+				
 				}
 			});
 

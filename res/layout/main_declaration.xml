@@ -63,7 +63,7 @@
                 	android:layout_centerInParent="true"
                 	android:text="我要报单"
                 	android:textColor="@color/white"
-                	android:textSize="@dimen/textsize_bbig"
+                	android:textSize="@dimen/textsize_big"
                 	android:background="@null"
                 	/> 
                 <TextView 
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="通过我们平台认证的操盘手，有能力将自己对操作分享给普通用户的资深期民"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textsize_ssmall"
+                    android:textSize="@dimen/textsize_sssmall"
                     android:layout_marginLeft="@dimen/layout_margin_eight"
                     android:layout_marginRight="@dimen/layout_margin_eight"/>
             </RelativeLayout>
@@ -90,7 +90,7 @@
                 	android:layout_height="wrap_content"
                 	android:text="接收报单"
                 	android:textColor="@color/white"
-                	android:textSize="@dimen/textsize_bbig"
+                	android:textSize="@dimen/textsize_big"
                 	android:background="@null"
                 	/>
             	<TextView 
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="普通期民，可以接受操盘手的实时报单，作为投资参考"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textsize_ssmall"
+                    android:textSize="@dimen/textsize_sssmall"
                     android:layout_marginLeft="@dimen/layout_margin_eight"
                     android:layout_marginRight="@dimen/layout_margin_eight"/>
             </RelativeLayout>
