@@ -14,6 +14,10 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:name="com.example.niuxin.MyApplication"
@@ -26,88 +30,123 @@
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.example.niuxin.LoginActivity"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            >
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
         <activity
             android:name="com.example.niuxin.RegisterActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-             >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
 
         <receiver android:name="com.niuxin.util.NetworkStateReceiver" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
         <service android:name="com.example.niuxin.GetMsgService" >
         </service>
-        
-         <activity android:name="com.example.niuxin.MainActivity"> </activity>
-        <activity android:name="com.example.niuxin.NiuxinActivity"></activity>
-        <activity android:name="com.example.niuxin.GunqunguangchangActivity"></activity>
-        <activity android:name="com.example.niuxin.GushiriliActivity"></activity>
-        <activity android:name="com.example.niuxin.MoreActivity"></activity>
-        <activity android:name="com.example.niuxin.LiaotianActivity"></activity>
-        <activity android:name="com.example.niuxin.TongxunluActivity"></activity>
-        <activity android:name="com.example.niuxin.PengyouquanActivity"></activity>
-        <activity android:name="com.example.niuxin.CreatequnActivity"></activity>
-        <activity android:name="com.example.niuxin.ChatActivity"></activity>
-        <activity android:name="com.example.niuxin.zixuan_addActivity"></activity>
-        <activity android:name="com.example.niuxin.CollectActivity"></activity>
-        <activity android:name="com.example.niuxin.ShareActivity"></activity>
-        <activity android:name="com.example.niuxin.Tag_ManageActivity"></activity>
-        <activity android:name="com.example.niuxin.SuoluetuActivity"></activity>
-        <activity android:name="com.example.niuxin.yaoqingchengyuanActivity"></activity>
 
-        <activity android:name="com.example.niuxin.kanpan_wudangActivity"></activity>
-        <activity android:name="com.example.niuxin.edit_zixuanActivity"></activity>
-        <activity android:name="com.example.niuxin.KlineActivity"></activity>
-        <activity android:name="com.example.niuxin.KlineDayActivity"></activity>
-        <activity android:name="com.example.niuxin.KlineSetActivity"></activity>
-
-        
-          <activity android:name="com.example.niuxin.ContactsDetailedActivity"></activity>
-        <activity android:name="com.example.niuxin.Chatlog_detailedActivity"></activity>
-        <activity android:name="com.example.niuxin.Collect_detailedActivity"></activity>
-        
-        <activity android:name="com.example.niuxin.FenleiActivity"></activity>
-        <activity android:name="com.example.niuxin.ShoucangActivity"></activity>
-        <activity android:name="com.example.niuxin.PaihangActivity"></activity>
-        <activity android:name="com.example.niuxin.SearchuserActivity"></activity>
-        <activity android:name="com.example.niuxin.SearchresultActivity"></activity>
-        <activity android:name="com.example.niuxin.SearchFriendActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationLaunchActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationReceiveActivity" ></activity>
-        <activity android:name="com.example.niuxin.DeclarationDetailActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationModelChoiceActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationContactChoiceActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationDetailContentActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationUserselectActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationSendpurposeChoiceActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationQunzuselectActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationQunzushowActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationUsershowActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationSendtargetchoicedActivity"></activity>
-        
-        
-        <activity android:name="com.example.niuxin.DeclarationRemindSettingActivity"></activity>
-        <activity android:name="com.example.niuxin.DeclarationSourceSelectActivity"></activity>
-        <activity android:name="com.example.niuxin.ContractTypeSelectActivity"></activity>
-        <activity android:name="com.example.niuxin.ContractDetailsActivity"></activity>
-      
-        
-
-        
-        
+        <activity android:name="com.example.niuxin.MainActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.NiuxinActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.GunqunguangchangActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.GushiriliActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.MoreActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.LiaotianActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.TongxunluActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.PengyouquanActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.CreatequnActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.ChatActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.zixuan_addActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.CollectActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.ShareActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.Tag_ManageActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.SuoluetuActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.yaoqingchengyuanActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.kanpan_wudangActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.edit_zixuanActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.KlineActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.KlineDayActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.KlineSetActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.ContactsDetailedActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.Chatlog_detailedActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.Collect_detailedActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.FenleiActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.ShoucangActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.PaihangActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.SearchuserActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.SearchresultActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.SearchFriendActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationLaunchActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationReceiveActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationDetailActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationModelChoiceActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationContactChoiceActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationDetailContentActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationUserselectActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationSendpurposeChoiceActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationQunzuselectActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationQunzushowActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationUsershowActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationSendtargetchoicedActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationRemindSettingActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.DeclarationSourceSelectActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.ContractTypeSelectActivity" >
+        </activity>
+        <activity android:name="com.example.niuxin.ContractDetailsActivity" >
+        </activity>
 
         <uses-library android:name="android.test.runner" />
     </application>
