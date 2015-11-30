@@ -10,10 +10,12 @@
     <dimen name="bottom_btn_width">33dp</dimen>
     <dimen name="top_title_width">33dp</dimen>
     
+    <dimen name="textsize_bbig">25sp</dimen>
     <dimen name="textsize_big">20sp</dimen>
     <dimen name="textsize_middle">15sp</dimen>
     <dimen name="textsize_small">12sp</dimen>
     <dimen name="textsize_ssmall">8sp</dimen>
+    <dimen name="textsize_sssmall">6sp</dimen>
     
 
 </resources>
