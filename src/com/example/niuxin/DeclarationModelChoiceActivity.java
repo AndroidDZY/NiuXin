@@ -56,6 +56,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 	MyAdapter adapter;
 	Integer deleteid;
 	Integer updateid;
+	Integer selectedid = -1;
 
 	@Override
 	protected void onResume() {
@@ -100,6 +101,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 						isSelected.put(i, false);
 					}
 				beSelectedData.clear();
+				selectedid = -1;
 				// beSelectedData.clear();
 				System.out.println(beSelectedData + "111111111111111");
 				ViewHolder holder = (ViewHolder) arg1.getTag();
@@ -109,6 +111,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 				adapter.notifyDataSetChanged();
 				if (holder.checkBox.isChecked()) {
 					beSelectedData.add(mData.get(arg2));
+					selectedid = arg2;
 				}
 			}
 		});
@@ -121,7 +124,8 @@ public class DeclarationModelChoiceActivity extends Activity {
 				if (text1 != null) {
 					Intent intent = new Intent();
 					intent.putExtra("modelText", text1.toString());
-					System.out.println(text1);
+					intent.putExtra("Templateid", selectedid);
+
 					setResult(13, intent);
 				}
 				finish();
