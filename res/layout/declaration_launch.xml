@@ -56,35 +56,35 @@
         <RelativeLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_margin_eight"
+            android:layout_marginRight="@dimen/layout_margin_eight"
             >
-            <LinearLayout 
+       		<TextView android:layout_height="wrap_content"
+               	android:layout_width="wrap_content"
+               	android:text="已完成报单"
+               	android:textSize="@dimen/textsize_small"
+               	android:textColor="@color/black"
+               	android:layout_alignParentLeft="true"
+               	android:layout_centerVertical="true"
+               	/>
+            <ImageView 
+                android:id="@+id/iv_declaration_launch_paixu"
             	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:orientation="horizontal"
-            	android:layout_centerInParent="true"
-            	android:gravity="center"
-            	>
-        		<TextView android:layout_height="wrap_content"
-                	android:layout_width="wrap_content"
-                	android:text="已完成报单"
-                	android:textSize="@dimen/textsize_small"
-                	android:textColor="@color/black"
-                	/>
-            	<Spinner
-                	android:id="@+id/declaration_launch_paixu"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:background="@null"
-                	android:layout_marginLeft="5dp"
-                	android:layout_marginRight="5dp"
-                	
-					/>
-             	<ImageView 
-             	    android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:background="@drawable/decla_lanch_jiantou"
-                	/>
-        	</LinearLayout> 
+               	android:layout_height="wrap_content"
+               	android:background="@drawable/decla_lanch_jiantou"
+               	android:layout_alignParentRight="true"
+               	android:layout_centerVertical="true"
+               	/>
+            <Spinner
+               	android:id="@+id/declaration_launch_paixu"
+               	android:layout_toLeftOf="@id/iv_declaration_launch_paixu"
+               	android:layout_width="wrap_content"
+               	android:layout_height="wrap_content"
+               	android:background="@null"
+               	android:layout_marginLeft="5dp"
+               	android:layout_marginRight="5dp"
+               	android:layout_centerVertical="true"
+				/>
         </RelativeLayout>
 
     	<ImageView 

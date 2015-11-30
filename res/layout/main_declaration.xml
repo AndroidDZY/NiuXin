@@ -49,23 +49,60 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             >
-            <Button 
-                android:id="@+id/declaration_rolelaunch"
+            <RelativeLayout 
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/btn_send_declaration"
-                /> 
-            <Button 
-                android:id="@+id/declaration_rolereceive"
+                android:orientation="vertical"
+                android:background="@drawable/bg_send_declaration">
+            	<Button 
+                	android:id="@+id/declaration_rolelaunch"
+					android:layout_width="wrap_content"
+                	android:layout_gravity="center"
+                	android:layout_height="wrap_content"
+                	android:layout_centerInParent="true"
+                	android:text="我要报单"
+                	android:textColor="@color/white"
+                	android:textSize="@dimen/textsize_big"
+                	android:background="@null"
+                	/> 
+                <TextView 
+                    android:layout_below="@id/declaration_rolelaunch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通过我们平台认证的操盘手，有能力将自己对操作分享给普通用户的资深期民"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_sssmall"
+                    android:layout_marginLeft="@dimen/layout_margin_eight"
+                    android:layout_marginRight="@dimen/layout_margin_eight"/>
+            </RelativeLayout>
+            <RelativeLayout 
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:orientation="vertical"
                 android:layout_marginLeft="@dimen/layout_margin_five"
-                android:background="@drawable/btn_receive_declaration"
-                />
+                android:background="@drawable/bg_receive_declaration">
+            	<Button 
+                	android:id="@+id/declaration_rolereceive"
+					android:layout_width="wrap_content"
+                	android:layout_centerInParent="true"
+                	android:layout_height="wrap_content"
+                	android:text="接收报单"
+                	android:textColor="@color/white"
+                	android:textSize="@dimen/textsize_big"
+                	android:background="@null"
+                	/>
+            	<TextView 
+            	    android:layout_below="@id/declaration_rolereceive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="普通期民，可以接受操盘手的实时报单，作为投资参考"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_sssmall"
+                    android:layout_marginLeft="@dimen/layout_margin_eight"
+                    android:layout_marginRight="@dimen/layout_margin_eight"/>
+            </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

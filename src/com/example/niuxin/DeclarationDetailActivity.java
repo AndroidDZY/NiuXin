@@ -243,9 +243,9 @@ public class DeclarationDetailActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent();
+				/*Intent intent = new Intent();
 				intent.setClass(DeclarationDetailActivity.this, DeclarationLaunchActivity.class);
-				startActivity(intent);
+				startActivity(intent);*/
 				finish();
 			}
 		});
