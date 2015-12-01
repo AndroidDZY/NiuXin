@@ -180,7 +180,7 @@ public class DeclarationDetailActivity extends Activity {
 		 System.out.println(listAll+"12121212121212121212121");
 			
 		if (null==listAll) {
-			purposeChoiced.setText("未选");
+			purposeChoiced.setText("选择");
 		}else {
 			purposeChoiced.setText("已选");
 		}
