@@ -3,17 +3,23 @@ package com.example.niuxin;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.http.Header;
+import org.apache.http.client.HttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.loopj.android.http.BinaryHttpResponseHandler;
 import com.niuxin.util.Constants;
 import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
+import com.niuxin.util.HttpPostUtilPic;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -53,6 +59,10 @@ public class ContractDetailsActivity extends Activity {
 		super.onResume();
 		GroupThread gt = new GroupThread();
 		gt.start();
+		
+		GetPicThread pic = new GetPicThread();
+		pic.start();
+
 	}
 	
 	/*
@@ -336,8 +346,50 @@ public class ContractDetailsActivity extends Activity {
 						tvMinnum.setText(minnum);
 						tvMaxnum.setText(maxnum);
 						tvRemark.setText(remark);//备注
-						ivSenderHead.setImageResource(getSource.getResourceByReflect(senduserimg));//配图
+					//	ivSenderHead.setImageResource(getSource.getResourceByReflect(senduserimg));//配图
 						ivPictureUrl.setImageResource(getSource.getResourceByReflect(senduserimg));//头像
+					}
+				};
+				handler.post(r);
+			}
+			
+
+		}
+		
+		
+		
+		
+		class GetPicThread extends Thread {
+			@Override
+			public void run() {
+				// 新建工具类，向服务器发送Http请求
+				HttpPostUtilPic postUtil = new HttpPostUtilPic();
+
+				// 向服务器发送数据，如果没有，可以不发送
+				JSONObject jsonObject = new JSONObject();
+				//获取发送报单的id
+				Intent intent=getIntent();
+				Long id=Long.valueOf(intent.getStringExtra("id"));
+				try {
+					jsonObject.put("formid", id);			
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}			
+				//设置发送的url 和服务器端的struts.xml文件对应
+				postUtil.setUrl("/upload/upload_download.do");
+				//向服务器发送数据
+				JSONArray js = new JSONArray();
+				js.put(jsonObject);
+				postUtil.setRequest(js);
+				// 从服务器获取数据
+				final byte[] pic = postUtil.run();	
+				
+				Runnable r = new Runnable() {
+					@Override
+					public void run() {										
+					//	ivPictureUrl.setImageResource(getSource.getResourceByReflect(senduserimg));//头像
+						Bitmap bp =BitmapFactory.decodeByteArray(pic, 0, pic.length);
+						ivPictureUrl.setImageBitmap(bp);
 					}
 				};
 				handler.post(r);
