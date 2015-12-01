@@ -302,56 +302,7 @@ public class DeclarationLaunchActivity extends Activity{
 				mData.clear();
 			//typelist.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {				
-				try {
-				/*	
-					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
-					Map<String, Object> map = new HashMap<String, Object>();
-					// 发送表单用户的信息
-					String id = myjObject.getString("id");// 表单id
-					String contract = myjObject.getString("contract");
-					String operation = myjObject.getString("operation");
-					String price = myjObject.getString("price");
-					int handnum = myjObject.getInt("handnum");
-					String position = myjObject.getString("position");
-					String profit = myjObject.getString("profit");
-					// Double minnum = myjObject.getDouble("minnum");
-					// Double maxnum = myjObject.getDouble("maxnum");
-					// String remark = myjObject.getString("remark");
-					// String pictureurl =
-					// myjObject.getString("pictureurl");
-					// String audiourl = myjObject.getString("audiourl");
-					String date = myjObject.getString("date");
-					String week = myjObject.getString("week");
-					String time = myjObject.getString("time");
-					// String name = myjObject.getString("name");
-					int sendfromid = myjObject.getInt("sendfrom");
-					int collection = myjObject.getInt("collection");
-					String senduserimg = myjObject.getString("img");
-					String sendusername = myjObject.getString("sendusername");
-
-					map.put("contract", contract);
-					map.put("date", date);
-					map.put("week", week);
-					map.put("time", time);
-					map.put("operation", operation);
-					map.put("price", price);
-					map.put("handnum", handnum);
-					map.put("profit", profit);
-					map.put("position", position + "%");
-
-					map.put("senderHead", getSource.getResourceByReflect(senduserimg));
-					map.put("senderName", sendusername);
-					map.put("senderId", sendfromid);// 发送用户的id
-					map.put("id", id);// 表单id
-					if (collection == 0)
-						map.put("isCollect", R.drawable.ic_declaration_star_unpressed);
-					else
-						map.put("isCollect", R.drawable.ic_declaration_star_pressed);
-					list.add(map);
-					
-					*/
-					//////////////////////////////////////////////////////
-					
+				try {				
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
 					// 获取每一个对象中的值
 						HashMap<String, Object> map = new HashMap<String, Object>();
@@ -361,11 +312,7 @@ public class DeclarationLaunchActivity extends Activity{
 						String price = myjObject.getString("price");//价格
 						String handnum = myjObject.getString("handnum");//手数
 						String position = myjObject.getString("position");//仓位
-					//	String update = myjObject.getString("update");//时间
-						SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日周E HH时mm分");
-					 //   String  datetime=simpleDateFormat.format(update);
-					  //  String  date=datetime.substring(0,datetime.indexOf(" "));//获取日期
-					 //   String  time=datetime.substring(datetime.indexOf(" "));//获取时间
+						SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日周E HH时mm分");	
 						String date = myjObject.getString("date");
 						String week = myjObject.getString("week");
 						String time = myjObject.getString("time");
