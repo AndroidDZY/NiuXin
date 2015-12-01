@@ -1,11 +1,6 @@
 package com.niuxin.util;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 import org.apache.http.Header;
 
@@ -15,7 +10,6 @@ import com.loopj.android.http.RequestParams;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 public class PostPicture {

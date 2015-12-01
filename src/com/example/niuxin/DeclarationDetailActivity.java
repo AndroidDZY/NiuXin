@@ -1,5 +1,7 @@
 package com.example.niuxin;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,7 +49,7 @@ public class DeclarationDetailActivity extends Activity {
 	LinearLayout linearLayoutModelChoice, linearLayoutContactChoice, linearLayoutActiontype, detailsendchoice;
 	private Button backButton, sendButton, saveButton;
 	EditText editTextPrice, editTextShoushu, editTextCangwei, editTextArea1, editTextArea2, editTextBeizhu;
-	TextView purposeChoiced, contractType, modelChioced,picchoice;
+	TextView purposeChoiced, contractType, modelChioced, picchoice;
 	ImageView imageView;
 	Spinner spinnerOperateType;
 	String[] operateTypeOrder = { "多开", "多平", "空开", "空平" };
@@ -55,13 +58,14 @@ public class DeclarationDetailActivity extends Activity {
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
 	String operateType = null;
-	StringBuffer haoyouBuffer=new StringBuffer();//好友
-	StringBuffer qunzuBuffer=new StringBuffer();//群组
-	List<String> qunzuList=null;
-	List<String> haoyouList=null;
-	Integer Templateid =-1;
+	StringBuffer haoyouBuffer = new StringBuffer();// 好友
+	StringBuffer qunzuBuffer = new StringBuffer();// 群组
+	List<String> qunzuList = null;
+	List<String> haoyouList = null;
+	Integer Templateid = -1;
 	String picturePath = "";
-	MyApplication	constantStatic=(MyApplication)getApplication();
+	MyApplication constantStatic = (MyApplication) getApplication();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -74,7 +78,7 @@ public class DeclarationDetailActivity extends Activity {
 		modelChioced = (TextView) findViewById(R.id.detail_model_choice);
 		contractType = (TextView) findViewById(R.id.detail_contact_show);
 		spinnerOperateType = (Spinner) findViewById(R.id.detail_control_show);
-		picchoice=(TextView)findViewById(R.id.decla_picchoice);
+		picchoice = (TextView) findViewById(R.id.decla_picchoice);
 
 		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.decla_spinner, operateTypeOrder); // 此处加上自己的样式
 		spinnerOperateType.setAdapter(spinnerAdapter);
@@ -131,57 +135,53 @@ public class DeclarationDetailActivity extends Activity {
 		editTextArea2.setText(text);
 		editTextArea2.setSelection(text.length());
 		contractType.setText("未选");
-	/*Map<String, Object> map=new HashMap<String, Object>();
-		map.put("name", modelChioced);//模板名称
-		map.put("contract", contractType);//合约类型
-		map.put("operation", spinnerOperateType);//操作类型
-		map.put("price", editTextPrice);//价格
-		map.put("handnum", editTextShoushu);//手数
-		map.put("position", editTextCangwei);//仓位
-		map.put("minnum", editTextArea1);//范围小
-		map.put("maxnum", editTextArea2);//范围大
-		map.put("remark", editTextBeizhu);//备注
-		list.add(map);*/
-		//map.put("", imageView);//配图
+		/*
+		 * Map<String, Object> map=new HashMap<String, Object>();
+		 * map.put("name", modelChioced);//模板名称 map.put("contract",
+		 * contractType);//合约类型 map.put("operation", spinnerOperateType);//操作类型
+		 * map.put("price", editTextPrice);//价格 map.put("handnum",
+		 * editTextShoushu);//手数 map.put("position", editTextCangwei);//仓位
+		 * map.put("minnum", editTextArea1);//范围小 map.put("maxnum",
+		 * editTextArea2);//范围大 map.put("remark", editTextBeizhu);//备注
+		 * list.add(map);
+		 */
+		// map.put("", imageView);//配图
 		/*
 		 * 根据模板的名称查询数据库中的数据。11.28号改动
-		 * */
-	
-		if(null!=constantStatic){
-			 qunzuList=constantStatic.getQunzuList();//获取到选择的群组发送目标
-			 haoyouList= constantStatic.getHaoyouList();//获取到选择的好友发送目标名称
-			List<String> listAll=constantStatic.getSendList();//相加的名称
-			//传过来的数据，转换成String，存入到数据库
-			//循环获取好友ID
-			if (haoyouList.size()!=0&&haoyouList!=null) {
-			    for (int i = 0; i < haoyouList.size(); i++) {
-					if (i==0) {
+		 */
+
+		if (null != constantStatic) {
+			qunzuList = constantStatic.getQunzuList();// 获取到选择的群组发送目标
+			haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
+			List<String> listAll = constantStatic.getSendList();// 相加的名称
+			// 传过来的数据，转换成String，存入到数据库
+			// 循环获取好友ID
+			if (haoyouList.size() != 0 && haoyouList != null) {
+				for (int i = 0; i < haoyouList.size(); i++) {
+					if (i == 0) {
 						haoyouBuffer.append(haoyouList.get(i));
-					}else {
-						haoyouBuffer.append(","+haoyouList.get(i));
+					} else {
+						haoyouBuffer.append("," + haoyouList.get(i));
 					}
 				}
 			}
-			//循环获取群组id
-			if (qunzuList.size()!=0&&qunzuList!=null) {
-			    for (int i = 0; i < qunzuList.size(); i++) {
-					if (i==0) {
+			// 循环获取群组id
+			if (qunzuList.size() != 0 && qunzuList != null) {
+				for (int i = 0; i < qunzuList.size(); i++) {
+					if (i == 0) {
 						qunzuBuffer.append(qunzuList.get(i));
-					}else {
-						qunzuBuffer.append(","+qunzuList.get(i));
+					} else {
+						qunzuBuffer.append("," + qunzuList.get(i));
 					}
 				}
 			}
-			System.out.println(listAll+"发送目标");
-			if (listAll.size()!=0) {
+			System.out.println(listAll + "发送目标");
+			if (listAll.size() != 0) {
 				purposeChoiced.setText("已选");
 			}
 		}
-		
-		
-		
-		
-		//模板选择
+
+		// 模板选择
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -189,7 +189,7 @@ public class DeclarationDetailActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.putExtra("modelText", modelChioced.getText());// 获取合约类型的名称，传递过去
-				
+
 				intent.setClass(DeclarationDetailActivity.this, DeclarationModelChoiceActivity.class);
 				startActivityForResult(intent, 12);
 
@@ -220,21 +220,20 @@ public class DeclarationDetailActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
 				startActivity(intent);
-				
+
 			}
 		});
-		//选择配图
+		// 选择配图
 		picchoice.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				
-				Intent intent = new Intent(
-						Intent.ACTION_PICK,
-						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);				
+
+				Intent intent = new Intent(Intent.ACTION_PICK,
+						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 				startActivityForResult(intent, 16);
-				
+
 			}
 		});
 		// 返回
@@ -243,9 +242,11 @@ public class DeclarationDetailActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				/*Intent intent = new Intent();
-				intent.setClass(DeclarationDetailActivity.this, DeclarationLaunchActivity.class);
-				startActivity(intent);*/
+				/*
+				 * Intent intent = new Intent();
+				 * intent.setClass(DeclarationDetailActivity.this,
+				 * DeclarationLaunchActivity.class); startActivity(intent);
+				 */
 				finish();
 			}
 		});
@@ -274,13 +275,12 @@ public class DeclarationDetailActivity extends Activity {
 				saveThread.start();
 			}
 		});
-		
-		
-		if(!contractType.getText().equals("未选")){
-			SearchThread thread= new SearchThread();
+
+		if (!contractType.getText().equals("未选")) {
+			SearchThread thread = new SearchThread();
 			thread.start();
 		}
-		
+
 	}
 
 	@Override
@@ -293,7 +293,7 @@ public class DeclarationDetailActivity extends Activity {
 		}
 		if (requestCode == 12 && resultCode == 13) {
 			String result_value = data.getStringExtra("modelText");
-			if(null!=data.getStringExtra("Templateid"))
+			if (null != data.getStringExtra("Templateid"))
 				Templateid = Integer.valueOf(data.getStringExtra("Templateid"));
 			modelChioced.setText(result_value);
 		}
@@ -301,38 +301,62 @@ public class DeclarationDetailActivity extends Activity {
 			Uri selectedImage = data.getData();
 			String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
-			Cursor cursor = getContentResolver().query(selectedImage,
-					filePathColumn, null, null, null);
+			Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
 			cursor.moveToFirst();
 			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-			 picturePath = cursor.getString(columnIndex);
-			cursor.close();			
+			picturePath = cursor.getString(columnIndex);
+			cursor.close();
 			ImageView imageView = (ImageView) findViewById(R.id.detail_image_beizhu);
-			//imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+			// imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 			imageView.setImageURI(selectedImage);
-			
-			PostPicture.reg(this, lessenUriImage(picturePath), "");
-			
+
+			PostPicture.reg(this, lessenUriImage(selectedImage), "");
+
 		}
 	}
-	  public final static Bitmap lessenUriImage(String path)
-	  { 
-	   BitmapFactory.Options options = new BitmapFactory.Options(); 
-	   options.inJustDecodeBounds = true; 
-	   Bitmap bitmap = BitmapFactory.decodeFile(path, options); //此时返回 bm 为空 
-	   options.inJustDecodeBounds = false; //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
-	   int be = (int)(options.outHeight / (float)320); 
-	   if (be <= 0) 
-	    be = 1;
-	   options.inSampleSize = be; //重新读入图片，注意此时已经把 options.inJustDecodeBounds 设回 false 了 
-	   bitmap=BitmapFactory.decodeFile(path,options); 
-	   bitmap= BitmapFactory.decodeFile(path);
-	   int w = bitmap.getWidth(); 
-	   int h = bitmap.getHeight(); 
-	   System.out.println(w+" "+h); //after zoom
-	   return bitmap;
-	  }
 
+	public  Bitmap lessenUriImage(Uri path) {
+		 Bitmap bitmap = null;
+		 Bitmap resizeBmp = null;
+		try {
+			bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), path);
+			int w = bitmap.getWidth();
+			int h = bitmap.getHeight();
+			float ws = (float)(320.0/w);
+			float hs = (float)(320.0/h);
+			 Matrix matrix = new Matrix(); 
+			  matrix.postScale(ws,hs); //长和宽放大缩小的比例
+			   resizeBmp = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		  return resizeBmp;
+		
+	/*
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		Bitmap bitmap = BitmapFactory.decodeFile(path, options); // 此时返回 bm 为空
+		options.inJustDecodeBounds = false; // 缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+		int be = (int) (options.outHeight / (float) 320);
+		if (be <= 0)
+			be = 1;
+		options.inSampleSize = be; // 重新读入图片，注意此时已经把 options.inJustDecodeBounds
+									// 设回 false 了
+		bitmap = BitmapFactory.decodeFile(path, options);
+		int w = bitmap.getWidth();
+		int h = bitmap.getHeight();
+		System.out.println(w + " " + h); // after zoom
+		
+		return bitmap;
+		*/
+		
+	}
 
 	class SaveThread extends Thread {
 		private int type = 0;
@@ -349,8 +373,7 @@ public class DeclarationDetailActivity extends Activity {
 
 			JSONObject jsonObject = new JSONObject();
 			try {
-				
-				
+
 				jsonObject.put("name", "");// 模板名称
 				jsonObject.put("contract", 1);// 合约类型
 				jsonObject.put("operation", "多开");// 操作类型
@@ -358,32 +381,31 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("handnum", 2);// 手数
 				jsonObject.put("position", 3);// 仓位
 				jsonObject.put("minnum", 4);// 范围小
-				jsonObject.put("maxnum",5);// 范围大
+				jsonObject.put("maxnum", 5);// 范围大
 				jsonObject.put("remark", 6666);// 备注
 				jsonObject.put("sendfrom", util.getId());
 				jsonObject.put("pictureurl", "/pp/a.jpg");
 				jsonObject.put("audiourl", "/pp/video.avi");
 				jsonObject.put("type", type);
-				jsonObject.put("sendtouser",haoyouBuffer);//改成string把id存入到数据库中
-				jsonObject.put("sendtogroup", qunzuBuffer);//改成string存入到数据库中
+				jsonObject.put("sendtouser", haoyouBuffer);// 改成string把id存入到数据库中
+				jsonObject.put("sendtogroup", qunzuBuffer);// 改成string存入到数据库中
 
 				/*
-			//	jsonObject.put("name", modelChioced.getText());// 模板名称
-				jsonObject.put("contract", contractType.getText());// 合约类型
-				jsonObject.put("operation", OperateType);// 操作类型
-				jsonObject.put("price", editTextPrice.getText());// 价格
-				jsonObject.put("handnum", editTextShoushu.getText());// 手数
-				jsonObject.put("position", editTextCangwei.getText());// 仓位
-				jsonObject.put("minnum", editTextArea1.getText());// 范围小
-				jsonObject.put("maxnum", editTextArea2.getText());// 范围大
-				jsonObject.put("remark", editTextBeizhu.getText());// 备注
-				jsonObject.put("sendfrom", util.getId());
-				jsonObject.put("pictureurl", "");
-				jsonObject.put("audiourl", "");
-				jsonObject.put("type", type);
-				jsonObject.put("sendtouser", "sendtouser");
-				jsonObject.put("sendtogroup", "sendtogroup");
-*/
+				 * // jsonObject.put("name", modelChioced.getText());// 模板名称
+				 * jsonObject.put("contract", contractType.getText());// 合约类型
+				 * jsonObject.put("operation", OperateType);// 操作类型
+				 * jsonObject.put("price", editTextPrice.getText());// 价格
+				 * jsonObject.put("handnum", editTextShoushu.getText());// 手数
+				 * jsonObject.put("position", editTextCangwei.getText());// 仓位
+				 * jsonObject.put("minnum", editTextArea1.getText());// 范围小
+				 * jsonObject.put("maxnum", editTextArea2.getText());// 范围大
+				 * jsonObject.put("remark", editTextBeizhu.getText());// 备注
+				 * jsonObject.put("sendfrom", util.getId());
+				 * jsonObject.put("pictureurl", ""); jsonObject.put("audiourl",
+				 * ""); jsonObject.put("type", type);
+				 * jsonObject.put("sendtouser", "sendtouser");
+				 * jsonObject.put("sendtogroup", "sendtogroup");
+				 */
 				jArray.put(jsonObject);
 				// System.out.println(list);
 				System.out.println(jArray);
@@ -406,7 +428,8 @@ public class DeclarationDetailActivity extends Activity {
 			handler.post(r);
 		}
 	}
-	//根据模板的名称获取模板的相关数据
+
+	// 根据模板的名称获取模板的相关数据
 	class SearchThread extends Thread {
 		private Dialog mDialog = null;
 
@@ -416,13 +439,13 @@ public class DeclarationDetailActivity extends Activity {
 			HttpPostUtil postUtil = new HttpPostUtil();
 
 			JSONObject jsonObject = new JSONObject();
-			try {              
+			try {
 				jsonObject.put("templateid", Templateid);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-            // 设置发送的url 和服务器端的struts.xml文件对应
-			postUtil.setUrl("/form/form_templateid.do");//数据请求
+			// 设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/form/form_templateid.do");// 数据请求
 			// 不向服务器发送数据
 			// 向服务器发送数据
 			JSONArray js = new JSONArray();
@@ -439,48 +462,49 @@ public class DeclarationDetailActivity extends Activity {
 				e.printStackTrace();
 			}
 			list.clear();
-			int j =0;
-			if(null!=jsonArray)
-			for (int i = 0; i < jsonArray.length(); i++) {
-				try {
-					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
-					// 获取每一个对象中的值
-					//int id = myjObject.getInt("id");
-					String contract = myjObject.getString("contract");//合约类型
-					String operation = myjObject.getString("operation");//操作类型
-					Integer price = myjObject.getInt("price");//价格
-					Integer handnum = myjObject.getInt("handnum");//手数
-					Integer position = myjObject.getInt("position");//仓位
-					Integer minnum = myjObject.getInt("minnum");//最小范围
-					Integer maxnum = myjObject.getInt("maxnum");//最大范围
-					String remark = myjObject.getString("remark");//备注
-					//String sendfrom = myjObject.getString("sendfrom");
-					String sendtouser = myjObject.getString("sendtouser");//用户id
-					String sendtogroup = myjObject.getString("sendtogroup");//群组id
-					//String pictureurl = myjObject.getString("pictureurl");
-					//String audiourl = myjObject.getString("audiourl");
-					contractType.setText(contract);
-					operateType=operation;
-					editTextPrice.setText(price);
-					editTextShoushu.setText(handnum);
-					editTextCangwei.setText(position);
-					editTextArea1.setText(minnum);
-					editTextArea2.setText(maxnum);
-					editTextBeizhu.setText(remark);
-					List<String> hlist= new ArrayList<String>();
-					hlist=java.util.Arrays.asList(sendtouser);
-					constantStatic.setHaoyouList(hlist);
-					List<String> qList=java.util.Arrays.asList(sendtogroup);
-					constantStatic.setQunzuList(qList);
-					/*String[] haoText=sendtouser.split(",");
-					for (String str:haoText) {
-						hlist.add(str);
-					}*/
-					
-				} catch (JSONException e) {
-					e.printStackTrace();
+			int j = 0;
+			if (null != jsonArray)
+				for (int i = 0; i < jsonArray.length(); i++) {
+					try {
+						JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+						// 获取每一个对象中的值
+						// int id = myjObject.getInt("id");
+						String contract = myjObject.getString("contract");// 合约类型
+						String operation = myjObject.getString("operation");// 操作类型
+						Integer price = myjObject.getInt("price");// 价格
+						Integer handnum = myjObject.getInt("handnum");// 手数
+						Integer position = myjObject.getInt("position");// 仓位
+						Integer minnum = myjObject.getInt("minnum");// 最小范围
+						Integer maxnum = myjObject.getInt("maxnum");// 最大范围
+						String remark = myjObject.getString("remark");// 备注
+						// String sendfrom = myjObject.getString("sendfrom");
+						String sendtouser = myjObject.getString("sendtouser");// 用户id
+						String sendtogroup = myjObject.getString("sendtogroup");// 群组id
+						// String pictureurl =
+						// myjObject.getString("pictureurl");
+						// String audiourl = myjObject.getString("audiourl");
+						contractType.setText(contract);
+						operateType = operation;
+						editTextPrice.setText(price);
+						editTextShoushu.setText(handnum);
+						editTextCangwei.setText(position);
+						editTextArea1.setText(minnum);
+						editTextArea2.setText(maxnum);
+						editTextBeizhu.setText(remark);
+						List<String> hlist = new ArrayList<String>();
+						hlist = java.util.Arrays.asList(sendtouser);
+						constantStatic.setHaoyouList(hlist);
+						List<String> qList = java.util.Arrays.asList(sendtogroup);
+						constantStatic.setQunzuList(qList);
+						/*
+						 * String[] haoText=sendtouser.split(","); for (String
+						 * str:haoText) { hlist.add(str); }
+						 */
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
-			}
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
