@@ -5,13 +5,14 @@
     android:orientation="horizontal"
     android:minHeight="85dp"
     android:gravity="bottom"
+    android:background="@color/bg_gray"
     >
     <!-- 白色矩形区域 -->
     <RelativeLayout 
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="85dp"
-        android:background="#ffffff"
+        android:background="@color/bg_gray"
         >
         <LinearLayout
             android:id="@+id/lly_list_declaration_set" 
