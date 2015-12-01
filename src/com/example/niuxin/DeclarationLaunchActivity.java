@@ -279,21 +279,21 @@ public class DeclarationLaunchActivity extends Activity{
 			try {
 				jsonArray = new JSONArray(res);
 				
-				//假数据
-				HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("contract", "qqwea");//R.drawable.head010
-				map.put("id", 31);
-				map.put("operation", "多平");
-				map.put("price", 11);
-				map.put("handnum", "3");
-				map.put("position", "5");
-				map.put("date", "9月12日");
-				map.put("time", "9:12");
-				map.put("gainText", "1");
-				map.put("sendtoUser", 2);
-				map.put("sendtoGroup", 4);
-				//typelist.add(0);
-				mData.add(map);
+//				//假数据
+//				HashMap<String, Object> map = new HashMap<String, Object>();
+//				map.put("contract", "qqwea");//R.drawable.head010
+//				map.put("id", 31);
+//				map.put("operation", "多平");
+//				map.put("price", 11);
+//				map.put("handnum", "3");
+//				map.put("position", "5");
+//				map.put("date", "9月12日");
+//				map.put("time", "9:12");
+//				map.put("gainText", "1");
+//				map.put("sendtoUser", 2);
+//				map.put("sendtoGroup", 4);
+//				//typelist.add(0);
+//				mData.add(map);
 				
 			} catch (JSONException e) {
 				e.printStackTrace();
