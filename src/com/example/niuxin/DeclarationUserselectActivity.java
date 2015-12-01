@@ -65,7 +65,7 @@ public class DeclarationUserselectActivity extends Activity {
 		allButton = (Button) findViewById(R.id.declaration_sendpur_haoyouselectall);
 		saveButton = (Button) findViewById(R.id.declaration_sendpur_haoyousave);
 		listView = (ListView) findViewById(R.id.declaration_sendpurpose_haoyou_list);
-		// list=getData();
+		list=getData();
 		// 初始化isSelected的数据
 		MyApplication ap = (MyApplication) getApplication();
 		List<String> oldlist = ap.getHaoyouList();
@@ -76,16 +76,19 @@ public class DeclarationUserselectActivity extends Activity {
 			String username = list.get(j).get("username").toString();//这里把username换成用户的id就行11.28号改动
 			Long id =Long.valueOf(list.get(j).get("id").toString());
 			isSelected.put(j, false);
-			for (int i = 0; i < oldlist.size(); i++) {
-				//String name = oldlist.get(i);
-				/*if (username.equals(name)) {
-					isSelected.put(j, true);
-				}*/
-				Long haoyouId=Long.valueOf(oldlist.get(i).toString());//获取id，如果id相等则为选中状态
-				if (haoyouId==id) {
-					isSelected.put(j, true);
+			if (oldlist!=null) {
+				for (int i = 0; i < oldlist.size(); i++) {
+					//String name = oldlist.get(i);
+					/*if (username.equals(name)) {
+						isSelected.put(j, true);
+					}*/
+					Long haoyouId=Long.valueOf(oldlist.get(i).toString());//获取id，如果id相等则为选中状态
+					if (haoyouId==id) {
+						isSelected.put(j, true);
+					}
 				}
 			}
+			
 		}
 
 		// haoyouAdapter = new HaoyouAdapter(list,this);//创建一个适配器
@@ -118,7 +121,7 @@ public class DeclarationUserselectActivity extends Activity {
 				}
 				beSelectedData = list;
 				// 数量设为list的长度
-				haoyouAdapter.notifyDataSetChanged();
+				adapter.notifyDataSetChanged();
 				checkNum = list.size();
 				// 刷新listview和TextView的显示
 
@@ -140,7 +143,12 @@ public class DeclarationUserselectActivity extends Activity {
 					}
 					MyApplication appHaoyou = (MyApplication) getApplication();
 					appHaoyou.setHaoyouList(haoyouList);
-					appHaoyou.getSendList().addAll(haoyouList);
+					System.out.println(haoyouList+"12212121212121");
+					if (appHaoyou.getSendList()==null) {
+						appHaoyou.setSendList(haoyouList);
+					}else{
+						appHaoyou.getSendList().addAll(haoyouList);
+					}
 				}
 				Toast toast = Toast.makeText(DeclarationUserselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
 				toast.show();

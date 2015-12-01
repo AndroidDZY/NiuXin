@@ -58,13 +58,16 @@ public class DeclarationDetailActivity extends Activity {
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
 	String operateType = null;
-	StringBuffer haoyouBuffer = new StringBuffer();// 好友
-	StringBuffer qunzuBuffer = new StringBuffer();// 群组
-	List<String> qunzuList = null;
-	List<String> haoyouList = null;
-	Integer Templateid = -1;
+
+
+	StringBuffer haoyouBuffer=new StringBuffer();//好友
+	StringBuffer qunzuBuffer=new StringBuffer();//群组
+	List<String> qunzuList=null;
+	List<String> haoyouList=null;
+	List<String> listAll=null;
+	Integer Templateid =-1;
 	String picturePath = "";
-	MyApplication constantStatic = (MyApplication) getApplication();
+	MyApplication	constantStatic;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +120,7 @@ public class DeclarationDetailActivity extends Activity {
 		// 备注图片
 		imageView = (ImageView) findViewById(R.id.detail_image_beizhu);
 		purposeChoiced = (TextView) findViewById(R.id.detail_purpose_choiced);
-		purposeChoiced.setText("未选");
+		//purposeChoiced.setText("未选");
 		modelChioced.setText("未选");
 		// 设置监听事件
 		// 模板选择跳转
@@ -146,42 +149,49 @@ public class DeclarationDetailActivity extends Activity {
 		 * list.add(map);
 		 */
 		// map.put("", imageView);//配图
-		/*
-		 * 根据模板的名称查询数据库中的数据。11.28号改动
-		 */
+		//\\
+		// * 根据模板的名称查询数据库中的数据。11.28号改动
 
-		if (null != constantStatic) {
-			qunzuList = constantStatic.getQunzuList();// 获取到选择的群组发送目标
-			haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
-			List<String> listAll = constantStatic.getSendList();// 相加的名称
-			// 传过来的数据，转换成String，存入到数据库
-			// 循环获取好友ID
-			if (haoyouList.size() != 0 && haoyouList != null) {
-				for (int i = 0; i < haoyouList.size(); i++) {
-					if (i == 0) {
+		 if (null != constantStatic) {
+		     constantStatic=(MyApplication)getApplication();
+			 qunzuList=constantStatic.getQunzuList();//获取到选择的群组发送目标
+			 haoyouList= constantStatic.getHaoyouList();//获取到选择的好友发送目标名称
+			 System.out.println(haoyouList+"好友机会");
+			 listAll=constantStatic.getSendList();//相加的名称
+			//传过来的数据，转换成String，存入到数据库
+			//循环获取好友ID
+			if (haoyouList!=null) {
+			    for (int i = 0; i < haoyouList.size(); i++) {
+					if (i==0) {
 						haoyouBuffer.append(haoyouList.get(i));
 					} else {
 						haoyouBuffer.append("," + haoyouList.get(i));
 					}
 				}
 			}
-			// 循环获取群组id
-			if (qunzuList.size() != 0 && qunzuList != null) {
-				for (int i = 0; i < qunzuList.size(); i++) {
-					if (i == 0) {
+
+			//循环获取群组id
+			if (qunzuList!=null) {
+			    for (int i = 0; i < qunzuList.size(); i++) {
+					if (i==0) {
 						qunzuBuffer.append(qunzuList.get(i));
 					} else {
 						qunzuBuffer.append("," + qunzuList.get(i));
 					}
 				}
 			}
-			System.out.println(listAll + "发送目标");
-			if (listAll.size() != 0) {
-				purposeChoiced.setText("已选");
-			}
-		}
 
-		// 模板选择
+			System.out.println(listAll+"发送目标");
+			
+		
+		 System.out.println(listAll+"12121212121212121212121");
+			
+		if (null==listAll) {
+			purposeChoiced.setText("选择");
+		}else {
+			purposeChoiced.setText("已选");
+		}
+		
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -280,7 +290,7 @@ public class DeclarationDetailActivity extends Activity {
 			SearchThread thread = new SearchThread();
 			thread.start();
 		}
-
+		 }
 	}
 
 	@Override

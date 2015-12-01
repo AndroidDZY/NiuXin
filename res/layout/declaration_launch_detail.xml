@@ -102,7 +102,7 @@
     <!-- 选择模板 -->
     <LinearLayout android:id="@+id/detail_model_control"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="@dimen/layout_margin_five"
         android:layout_marginLeft="@dimen/layout_margin_eight"
         android:gravity="center_vertical"
@@ -116,7 +116,8 @@
             <LinearLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 	        <TextView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="选择模板"
@@ -127,23 +128,26 @@
 	            android:layout_marginLeft="3dp"
 	            android:text="第一次填写完报单之后勾选下方保存模板，可以将内容和发送对象保存，之后再次发送至需要更改个别内容"
 	            android:textSize="6sp"
+	            android:gravity="center_vertical"
+	            android:layout_marginRight="20dp"
 	           />
 	        </LinearLayout>
-	        <View  
+	       <!--   <View  
 	        android:layout_marginTop="5dp"
 	    	android:layout_width="150dp"  
 	    	android:layout_height="0.5dp" 
-	    	android:background="#cccccc"  />
+	    	android:background="#cccccc"  />-->
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_marginRight="10dp">
 	        <TextView
 	            android:id="@+id/detail_model_choice"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_marginRight="5dp"
+	            android:layout_alignParentLeft="true"
 	            android:text="模板1"
 	            android:layout_centerInParent="true"
 	            android:textSize="12sp" />
@@ -155,6 +159,11 @@
 	            android:background="@drawable/decla_lanch_detail_jiantou"/>
         </RelativeLayout>
     </LinearLayout>
+     <View  
+	        android:layout_marginLeft="@dimen/layout_margin_eight"
+	    	android:layout_width="150dp"  
+	    	android:layout_height="0.5dp" 
+	    	android:background="#cccccc"  />
     
     <!-- 合约类型 -->
     <LinearLayout android:id="@+id/detail_contact_type"
@@ -183,7 +192,7 @@
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_marginRight="10dp">
 	        <TextView
 	            android:id="@+id/detail_contact_show"
@@ -191,6 +200,7 @@
 	            android:layout_height="wrap_content"
 	            android:layout_marginRight="5dp"
 	            android:layout_centerInParent="true"
+	            android:layout_alignParentLeft="true"
 	            android:textSize="12sp" />
 	        <ImageView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -228,8 +238,9 @@
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_marginRight="10dp">
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:baselineAligned="false">
 	        <!--  
 	        <TextView
 	            android:id="@+id/detail_control_show"
@@ -247,6 +258,7 @@
             	android:background="@null"
             	android:layout_centerInParent="true"
             	android:gravity="center_vertical"
+            	android:layout_alignParentLeft="true"
             	android:layout_marginRight="5dp"
 				/>
 	        <ImageView android:layout_width="wrap_content"
@@ -264,7 +276,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true" 
+        android:focusableInTouchMode="true">
         <LinearLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -284,20 +298,20 @@
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="5dp"
-            android:focusable="true" 
-            android:focusableInTouchMode="true" >
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp">
 	        <EditText
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_centerInParent="true"
+	            android:layout_alignParentLeft="true"
 	            android:background="@drawable/decla_baodan_yellow2"
-	            android:inputType="text"
+	            android:inputType="number"
 	            android:minWidth="60dp"
 	            android:textSize="12sp"
+	            android:maxLength="10"
 	            android:id="@+id/detail_edit_price"/>
         </RelativeLayout>  
     </LinearLayout>
@@ -308,7 +322,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true" 
+        android:focusableInTouchMode="true">
+        
         <LinearLayout android:layout_width="0dp"
             android:layout_weight="3"
             android:orientation="vertical"
@@ -327,23 +344,24 @@
 	    	android:background="#cccccc"  />
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="5dp"
-            android:focusable="true" 
-            android:focusableInTouchMode="true">
+            android:layout_marginRight="15dp"
+            >
 	        <EditText
 	            android:id="@+id/detail_edit_shoushu"
 	            android:layout_width="wrap_content"
 	            android:minWidth="50dp"
 	            android:background="@drawable/decla_baodan_yellow3"
 	            android:layout_centerInParent="true"
+	            android:layout_alignParentLeft="true"
 	            android:textSize="12sp"
 	            android:layout_marginRight="3dp"
 	            android:layout_height="wrap_content"
-	            android:inputType="text"
+	            android:inputType="number"
+	            android:maxLength="10"
 	            />
 	        <TextView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -362,7 +380,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true" 
+        android:focusableInTouchMode="true">
         <LinearLayout android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -376,22 +396,23 @@
 	            android:layout_alignParentLeft="true"/>
         </LinearLayout>
         <RelativeLayout android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="3dp"
-            android:focusable="true" 
-            android:focusableInTouchMode="true">
+            >
 	        <EditText
 	            android:id="@+id/detail_edit_cangwei"
 	            android:layout_width="wrap_content"
 	            android:minWidth="50dp"
-	            android:inputType="text"
+	            android:inputType="number"
 	            android:background="@drawable/decla_baodan_yellow3"
 	            android:layout_centerInParent="true"
+	            android:layout_alignParentLeft="true"
 	            android:textSize="12sp"
 	            android:layout_height="wrap_content"
+	            android:maxLength="3"
 	            android:layout_marginRight="3dp"/>
 	        <TextView 
 	            android:layout_alignBaseline="@+id/detail_edit_cangwei"
@@ -420,7 +441,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true" 
+        android:focusableInTouchMode="true">
         <TextView android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -527,10 +550,14 @@
         <Button 
             android:layout_marginTop="@dimen/layout_margin_eight"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/decla_lanch_luying_new"
+            android:text="按住录制语音备注"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_small"
+            android:gravity="center"
+            android:background="@drawable/bg_decla_lanch_luying"
             android:id="@+id/detail_button_luying"/>
     
   <!-- 发送目标 -->
@@ -563,17 +590,16 @@
 	              android:text="发送目标"
 	              android:layout_marginTop="@dimen/layout_margin_five"/>
 	          <ImageView android:layout_width="wrap_content"
-	              android:layout_height="20dp"
+	              android:layout_height="25dp"
 	              android:background="@drawable/decla_lanch_grey2"
 	              android:layout_marginBottom="5dp"/>
 	          <RelativeLayout android:layout_width="0dp"
 	              android:layout_height="wrap_content"
-	              android:layout_weight="1">
+	              android:layout_weight="1"
+	              android:layout_marginTop="@dimen/layout_margin_five">
 		          <TextView android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
-		              android:text="已选"
 		              android:id="@+id/detail_purpose_choiced"
-		              android:layout_marginTop="@dimen/layout_margin_five"
 		              android:layout_centerInParent="true"/>
 		           <ImageView android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
@@ -581,7 +607,7 @@
 			            android:layout_centerHorizontal="true"
 			            android:layout_marginRight="30dp"
 			            android:background="@drawable/decla_lanch_detail_jiantou"
-			            android:layout_marginTop="@dimen/layout_margin_five"/>
+			            />
 	           </RelativeLayout>
 	      </LinearLayout>
 	   </LinearLayout>

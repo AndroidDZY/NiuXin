@@ -36,11 +36,18 @@ public class MyApplication extends Application {
 		mRecentList = new LinkedList<RecentChatEntity>();
 		mRecentAdapter = new RecentChatAdapter(getApplicationContext(),
 				mRecentList);
-		haoyouList=new ArrayList<String>();
+		//haoyouList=new ArrayList<String>();
+		List<String> list= new ArrayList<String>();
+		list.add("123321121");
+		setHaoyouList(null);
+		setQunzuList(null);
+		setSendList(null);
+		/*
 		qunzuList=new ArrayList<String>();
 		sendList=new ArrayList<String>();
 		sendList.addAll(haoyouList);
 		sendList.addAll(qunzuList);
+		*/
 		super.onCreate();
 	}
     public List<String> getHaoyouList() {

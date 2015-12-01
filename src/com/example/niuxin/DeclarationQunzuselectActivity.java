@@ -61,7 +61,7 @@ public class DeclarationQunzuselectActivity extends Activity {
 		allButton=(Button)findViewById(R.id.declaration_sendpur_qunzuselectall);
 		saveButton=(Button)findViewById(R.id.declaration_sendpur_qunzusave);
 		listView=(ListView)findViewById(R.id.declaration_sendpurpose_qunzu_list);
-	//	list=getData();
+		list=getData();
 		// 初始化isSelected的数据  
 				MyApplication	ap=(MyApplication)getApplication();
 				List<String> oldlist=ap.getQunzuList();
@@ -71,13 +71,16 @@ public class DeclarationQunzuselectActivity extends Activity {
 					//改成获取ID，11.28改动
 					Long qunzuId=Long.valueOf(list.get(j).get("id").toString());
 					isSelected.put(j, false);
-					for (int i = 0; i < oldlist.size(); i++) {
-						//String name = oldlist.get(i);
-						Long id=Long.valueOf(oldlist.get(i));
-						if (qunzuId==id) {
-						  isSelected.put(j, true);
+					if (oldlist!=null) {
+						for (int i = 0; i < oldlist.size(); i++) {
+							//String name = oldlist.get(i);
+							Long id=Long.valueOf(oldlist.get(i));
+							if (qunzuId==id) {
+							  isSelected.put(j, true);
+							}
 						}
 					}
+					
 				}
 		 adapter = new MyAdapter(this);//创建一个适配器  
 		//qunzuAdapter = new QunzuAdapter(list,this);//创建一个适配器  
@@ -116,7 +119,11 @@ public class DeclarationQunzuselectActivity extends Activity {
 					}
 					MyApplication	appQunzu=(MyApplication)getApplication();
 					appQunzu.setQunzuList(qunzuList);
-					appQunzu.getSendList().addAll(qunzuList);
+					if (appQunzu.getSendList()==null) {
+						appQunzu.setSendList(qunzuList);
+					} else {
+						appQunzu.getSendList().addAll(qunzuList);
+					}
 				}
 				Toast toast = Toast.makeText(DeclarationQunzuselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
 				toast.show();
@@ -130,7 +137,7 @@ public class DeclarationQunzuselectActivity extends Activity {
                 for (int i = 0; i < list.size(); i++) {  
                     isSelected.put(i, true);  
                 }  
-                qunzuAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 beSelectedData=list;
                 // 数量设为list的长度  
                 checkNum = list.size();  
