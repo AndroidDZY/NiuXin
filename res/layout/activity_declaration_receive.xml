@@ -36,6 +36,7 @@
     	android:layout_height="wrap_content"
     	android:orientation="vertical">
     	<RelativeLayout 
+    	    android:id="@+id/rl_declarationreceive_setting"
     	    android:layout_width="match_parent"
     	    android:layout_height="wrap_content"
     	    android:background="@color/red"
@@ -68,12 +69,15 @@
             android:paddingLeft="@dimen/layout_margin_ten"
             android:paddingTop="@dimen/layout_margin_five"
 	    	android:text="展示筛选条件"
+	    	android:textSize="@dimen/textsize_small"
 	    	/>
 		<View 
             android:layout_width="200dp"
             android:layout_height="3dp"
+            android:layout_marginTop="@dimen/layout_margin_three"
             android:background="@drawable/line_gray_new"/>
 		<LinearLayout 
+		    android:id="@+id/ll_declarationreceive_source"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -85,13 +89,17 @@
                 android:layout_width="0dp"
                 android:layout_weight="12"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize_small"
                 android:text="报单来源"/>
             <TextView 
                 android:id="@+id/tv_declaration_receive_source"
                 android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="全选"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="@dimen/textsize_small"
                 />
             <Button 
                 android:id="@+id/btn_declarationreceive_source"
@@ -105,8 +113,10 @@
         <View 
             android:layout_width="200dp"
             android:layout_height="3dp"
+            android:layout_marginTop="@dimen/layout_margin_three"
             android:background="@drawable/line_gray_new"/>
         <LinearLayout 
+            android:id="@+id/ll_declarationreceive_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/layout_margin_ten"
@@ -118,13 +128,17 @@
                 android:layout_width="0dp"
                 android:layout_weight="12"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize_small"
                 android:text="合约类型"/>
             <TextView 
                 android:id="@+id/tv_declaration_receive_contract"
                 android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="全选"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="@dimen/textsize_small"
                 />
             <Button 
                 android:id="@+id/btn_declarationreceive_type"
@@ -138,6 +152,7 @@
         <View 
             android:layout_width="200dp"
             android:layout_height="3dp"
+            android:layout_marginTop="@dimen/layout_margin_three"
             android:background="@drawable/line_gray_new"/>
         <LinearLayout 
             android:layout_width="match_parent"
@@ -151,12 +166,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize_small"
                 android:text="只展示收藏报单"/>
             <ToggleButton
         		android:id="@+id/tog_btn_declaration_collect"
         		android:layout_width="50dp"
         		android:layout_height="30dp"
-        		android:layout_marginRight="20dp"
+        		android:layout_marginRight="35dp"
         		android:layout_gravity="center_horizontal"
         		android:background="@android:color/transparent"
         		android:button="@drawable/ios7_btn"

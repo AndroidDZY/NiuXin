@@ -26,7 +26,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +36,9 @@ import android.widget.ToggleButton;
 
 public class DeclarationReceiveActivity extends Activity implements OnClickListener {
 	private SuoluetuActivity suolue;
-	private Button btnSetting, btnSendFrom, btnType, btnBack;
+	private RelativeLayout rlSetting;
+	private LinearLayout llSendFrom, llType;
+	private Button btnBack;
 	private ToggleButton togBtnCollect;
 	private TextView tvContract, tvSendFrom;
 	private ListView lvDeclaration;
@@ -107,14 +111,14 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 
 	private void initView() {
 		// 获取各种控件
-		btnSetting = (Button) findViewById(R.id.btn_declarationreceive_setting); // “提醒设置”跳转按钮
-		btnSendFrom = (Button) findViewById(R.id.btn_declarationreceive_source); // “报单来源”跳转按钮
-		btnType = (Button) findViewById(R.id.btn_declarationreceive_type); // “合约类型”跳转按钮
+		rlSetting = (RelativeLayout) findViewById(R.id.rl_declarationreceive_setting); // “提醒设置”跳转按钮
+		llSendFrom = (LinearLayout) findViewById(R.id.ll_declarationreceive_source); // “报单来源”跳转按钮
+		llType = (LinearLayout) findViewById(R.id.ll_declarationreceive_type); // “合约类型”跳转按钮
 		btnBack = (Button) findViewById(R.id.btn_declaration_receive_back); // 返回按钮
 
-		btnSetting.setOnClickListener(this);
-		btnSendFrom.setOnClickListener(this);
-		btnType.setOnClickListener(this);
+		rlSetting.setOnClickListener(this);
+		llSendFrom.setOnClickListener(this);
+		llType.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		contractNameText = (TextView) findViewById(R.id.tv_declaration_receive_contract);
 		sendtouserText = (TextView) findViewById(R.id.tv_declaration_receive_source);
@@ -149,16 +153,16 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_declarationreceive_setting:
+		case R.id.rl_declarationreceive_setting:
 			Intent intentRemind = new Intent(DeclarationReceiveActivity.this, DeclarationRemindSettingActivity.class);
 			startActivity(intentRemind);
 			break;
-		case R.id.btn_declarationreceive_source:
+		case R.id.ll_declarationreceive_source:
 			Intent intentSource = new Intent(DeclarationReceiveActivity.this, DeclarationSourceSelectActivity.class);
 			intentSource.putExtra("contractlist",  sendtouseridlist);
 			startActivityForResult(intentSource, 12);
 			break;
-		case R.id.btn_declarationreceive_type:
+		case R.id.ll_declarationreceive_type:
 			Intent intentType = new Intent(DeclarationReceiveActivity.this, ContractTypeSelectActivity.class);
 			intentType.putExtra("sendtouseridlist", contractlist);
 			startActivityForResult(intentType, 10);
