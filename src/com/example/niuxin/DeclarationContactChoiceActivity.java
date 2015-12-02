@@ -126,11 +126,12 @@ public class DeclarationContactChoiceActivity extends Activity{
 						 holder.checkBox.toggle();
 						 isSelected.put(arg2, holder.checkBox.isChecked());
 						 System.out.println(isSelected+"hao123"+arg2);
-						 adapter.notifyDataSetChanged();
 						 if (holder.checkBox.isChecked()) {
 							 System.out.println(list.get(arg2));
 							 beSelectedData.add(list.get(arg2));
 						}
+						adapter.notifyDataSetChanged();
+						 
 					}
 				});
 			}
