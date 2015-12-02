@@ -316,7 +316,7 @@ public class ContractDetailsActivity extends Activity {
 							String profit = myjObject.getString("profit");
 							 minnum = myjObject.getString("minnum");
 							 maxnum = myjObject.getString("maxnum");
-							// String remark = myjObject.getString("remark");
+							  remark = myjObject.getString("remark");
 							// String pictureurl =
 							// myjObject.getString("pictureurl");
 							// String audiourl = myjObject.getString("audiourl");

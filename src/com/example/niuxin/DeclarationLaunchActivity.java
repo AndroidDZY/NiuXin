@@ -301,6 +301,7 @@ public class DeclarationLaunchActivity extends Activity{
 			if(mData!=null)
 				mData.clear();
 			//typelist.clear();
+			if(jsonArray!=null)
 			for (int i = 0; i < jsonArray.length(); i++) {				
 				try {				
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
