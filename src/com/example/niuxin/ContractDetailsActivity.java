@@ -371,7 +371,8 @@ public class ContractDetailsActivity extends Activity {
 				Intent intent=getIntent();
 				Long id=Long.valueOf(intent.getStringExtra("id"));
 				try {
-					jsonObject.put("formid", id);			
+					jsonObject.put("formid", id);	
+					jsonObject.put("type", 1);	
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}			

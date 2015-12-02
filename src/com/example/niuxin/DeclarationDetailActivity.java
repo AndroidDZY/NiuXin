@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
+import com.niuxin.util.HttpPostUtilPic;
 import com.niuxin.util.PostPicture;
 import com.niuxin.util.SharePreferenceUtil;
 
@@ -22,6 +23,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -289,6 +291,8 @@ public class DeclarationDetailActivity extends Activity {
 		if (!contractType.getText().equals("未选")) {
 			SearchThread thread = new SearchThread();
 			thread.start();
+			GetPicThread t = new GetPicThread();
+			t.start();
 		}
 		 }
 	}
@@ -527,4 +531,41 @@ public class DeclarationDetailActivity extends Activity {
 			handler.post(r);
 		}
 	}
+
+
+	class GetPicThread extends Thread {
+		@Override
+		public void run() {
+			// 新建工具类，向服务器发送Http请求
+			HttpPostUtilPic postUtil = new HttpPostUtilPic();
+
+			// 向服务器发送数据，如果没有，可以不发送
+			JSONObject jsonObject = new JSONObject();		
+			try {
+				jsonObject.put("formid", Templateid);	
+				jsonObject.put("type", 2);	
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}			
+			//设置发送的url 和服务器端的struts.xml文件对应
+			postUtil.setUrl("/upload/upload_download.do");
+			//向服务器发送数据
+			JSONArray js = new JSONArray();
+			js.put(jsonObject);
+			postUtil.setRequest(js);
+			// 从服务器获取数据
+			final byte[] pic = postUtil.run();	
+			
+			Runnable r = new Runnable() {
+				@Override
+				public void run() {										
+				//	ivPictureUrl.setImageResource(getSource.getResourceByReflect(senduserimg));//头像
+					Bitmap bp =BitmapFactory.decodeByteArray(pic, 0, pic.length);
+					imageView.setImageBitmap(bp);
+				}
+			};
+			handler.post(r);
+		}
+	}
+
 }
