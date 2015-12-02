@@ -32,7 +32,7 @@ public class PostPicture {
 			RequestParams params = new RequestParams();
 			params.put("photo", photo);
 			params.put("name", "dingliang");// 传输的字符数据
-			String url = "http://192.168.3.191:8080/NiuXinServer/upload/upload_upload.do";
+			String url = Constants.SERVER_IP+":"+"8080/NiuXinServer/upload/upload_upload.do";
 
 			AsyncHttpClient client = new AsyncHttpClient();
 			client.post(url, params, new AsyncHttpResponseHandler() {				

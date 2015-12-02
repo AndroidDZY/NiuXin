@@ -45,6 +45,7 @@ public class DeclarationContactChoiceActivity extends Activity{
 	public Handler handler = new Handler();
 	 MyAdapter adapter = null;
 	private SharePreferenceUtil util = null;
+	private Integer selectId=null;
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -77,7 +78,8 @@ public class DeclarationContactChoiceActivity extends Activity{
 						if (text1!=null) {
 							Intent intent=new Intent();
 							intent.putExtra("contractText",text1.toString());
-							System.out.println(text1);
+							intent.putExtra("selectContractId",beSelectedData.get(0).get("id").toString());
+
 							setResult(11,intent);
 						}
 						finish();

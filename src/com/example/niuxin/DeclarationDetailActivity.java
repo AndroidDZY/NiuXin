@@ -2,10 +2,12 @@ package com.example.niuxin;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,13 +18,10 @@ import com.niuxin.util.PostPicture;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -68,7 +67,8 @@ public class DeclarationDetailActivity extends Activity {
 	Integer Templateid =-1;
 	String picturePath = "";
 	MyApplication	constantStatic;
-
+	String pictureurl = "";
+	Integer selectContractId=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -300,6 +300,7 @@ public class DeclarationDetailActivity extends Activity {
 		if (requestCode == 10 && resultCode == 11) {
 			String result_value = data.getStringExtra("contractText");
 			contractType.setText(result_value);
+			selectContractId = Integer.valueOf(data.getStringExtra("selectContractId"));
 		}
 		if (requestCode == 12 && resultCode == 13) {
 			String result_value = data.getStringExtra("modelText");
@@ -319,7 +320,9 @@ public class DeclarationDetailActivity extends Activity {
 			ImageView imageView = (ImageView) findViewById(R.id.detail_image_beizhu);
 			// imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 			imageView.setImageURI(selectedImage);
-
+			SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMddHHmmss");
+			String date1 = format1.format(new Date(System.currentTimeMillis()));
+			pictureurl = date1+util.getId();
 			PostPicture.reg(this, lessenUriImage(selectedImage), "");
 
 		}
@@ -385,16 +388,16 @@ public class DeclarationDetailActivity extends Activity {
 			try {
 
 				jsonObject.put("name", "");// 模板名称
-				jsonObject.put("contract", 1);// 合约类型
-				jsonObject.put("operation", "多开");// 操作类型
-				jsonObject.put("price", 1);// 价格
-				jsonObject.put("handnum", 2);// 手数
-				jsonObject.put("position", 3);// 仓位
-				jsonObject.put("minnum", 4);// 范围小
-				jsonObject.put("maxnum", 5);// 范围大
-				jsonObject.put("remark", 6666);// 备注
+				jsonObject.put("contract", selectContractId);// 合约类型
+				jsonObject.put("operation", operateType);// 操作类型
+				jsonObject.put("price", editTextPrice.getText());// 价格
+				jsonObject.put("handnum", editTextShoushu.getText());// 手数
+				jsonObject.put("position", editTextCangwei.getText());// 仓位
+				jsonObject.put("minnum", editTextArea1.getText());// 范围小
+				jsonObject.put("maxnum", editTextArea2.getText());// 范围大
+				jsonObject.put("remark",  editTextBeizhu.getText());// 备注
 				jsonObject.put("sendfrom", util.getId());
-				jsonObject.put("pictureurl", "/pp/a.jpg");
+				jsonObject.put("pictureurl", pictureurl);
 				jsonObject.put("audiourl", "/pp/video.avi");
 				jsonObject.put("type", type);
 				jsonObject.put("sendtouser", haoyouBuffer);// 改成string把id存入到数据库中
