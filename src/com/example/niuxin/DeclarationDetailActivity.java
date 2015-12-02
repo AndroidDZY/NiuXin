@@ -154,7 +154,7 @@ public class DeclarationDetailActivity extends Activity {
 		//\\
 		// * 根据模板的名称查询数据库中的数据。11.28号改动
 
-		 if (null != constantStatic) {
+		 //if (null != constantStatic) {
 		     constantStatic=(MyApplication)getApplication();
 			 qunzuList=constantStatic.getQunzuList();//获取到选择的群组发送目标
 			 haoyouList= constantStatic.getHaoyouList();//获取到选择的好友发送目标名称
@@ -294,7 +294,7 @@ public class DeclarationDetailActivity extends Activity {
 			GetPicThread t = new GetPicThread();
 			t.start();
 		}
-		 }
+		 
 	}
 
 	@Override
