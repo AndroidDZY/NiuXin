@@ -309,7 +309,7 @@ public class DeclarationDetailActivity extends Activity {
 		}
 		if (requestCode == 12 && resultCode == 13) {
 			String result_value = data.getStringExtra("modelText");
-			String id = data.getStringExtra("selectedid");//{modelText=报单223333, selectedid=1}
+			Integer id = data.getIntExtra("selectedid", -2);//{modelText=报单223333, selectedid=1}
 			if (null != id)
 				Templateid = Integer.valueOf(id);
 				modelChioced.setText(result_value);
