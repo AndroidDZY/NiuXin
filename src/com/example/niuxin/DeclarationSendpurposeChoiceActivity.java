@@ -80,6 +80,11 @@ public class DeclarationSendpurposeChoiceActivity extends TabActivity{
 		tabHost=getTabHost();
 		tabHost.addTab(tabHost.newTabSpec("haoyou").setIndicator("haoyou")
 				.setContent(new Intent(this, DeclarationUserselectActivity.class)));
+		
+		//intent.putExtra("contractText",text1.toString());
+		//intent.putExtra("selectContractId",beSelectedData.get(0).get("id").toString());
+		//setResult(11,intent);
+		
     	tabHost.addTab(tabHost.newTabSpec("qunzu").setIndicator("qunzu")
 				.setContent(new Intent(this, DeclarationQunzuselectActivity.class)));
     }

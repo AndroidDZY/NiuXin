@@ -232,6 +232,7 @@ public class DeclarationDetailActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
 				startActivity(intent);
+				//startActivityForResult(intent, 19);
 
 			}
 		});
@@ -404,28 +405,11 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("pictureurl", pictureurl);
 				jsonObject.put("audiourl", "/pp/video.avi");
 				jsonObject.put("type", type);
-				jsonObject.put("sendtouser", haoyouBuffer);// 改成string把id存入到数据库中
-				jsonObject.put("sendtogroup", qunzuBuffer);// 改成string存入到数据库中
-
-				/*
-				 * // jsonObject.put("name", modelChioced.getText());// 模板名称
-				 * jsonObject.put("contract", contractType.getText());// 合约类型
-				 * jsonObject.put("operation", OperateType);// 操作类型
-				 * jsonObject.put("price", editTextPrice.getText());// 价格
-				 * jsonObject.put("handnum", editTextShoushu.getText());// 手数
-				 * jsonObject.put("position", editTextCangwei.getText());// 仓位
-				 * jsonObject.put("minnum", editTextArea1.getText());// 范围小
-				 * jsonObject.put("maxnum", editTextArea2.getText());// 范围大
-				 * jsonObject.put("remark", editTextBeizhu.getText());// 备注
-				 * jsonObject.put("sendfrom", util.getId());
-				 * jsonObject.put("pictureurl", ""); jsonObject.put("audiourl",
-				 * ""); jsonObject.put("type", type);
-				 * jsonObject.put("sendtouser", "sendtouser");
-				 * jsonObject.put("sendtogroup", "sendtogroup");
-				 */
-				jArray.put(jsonObject);
-				// System.out.println(list);
-				System.out.println(jArray);
+				jsonObject.put("sendtouser", "21,23");// 改成string把id存入到数据库中
+				jsonObject.put("sendtogroup", "1,2");// 改成string存入到数据库中
+				//jsonObject.put("sendtouser", haoyouBuffer);// 改成string把id存入到数据库中
+				//jsonObject.put("sendtogroup", qunzuBuffer);// 改成string存入到数据库中
+				jArray.put(jsonObject);			
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -458,11 +442,12 @@ public class DeclarationDetailActivity extends Activity {
 			JSONObject jsonObject = new JSONObject();
 			try {
 				jsonObject.put("templateid", Templateid);
+				jsonObject.put("userid", util.getId());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 			// 设置发送的url 和服务器端的struts.xml文件对应
-			postUtil.setUrl("/form/form_templateid.do");// 数据请求
+			postUtil.setUrl("/form/form_selectTemplateById.do");// 数据请求
 			// 不向服务器发送数据
 			// 向服务器发送数据
 			JSONArray js = new JSONArray();

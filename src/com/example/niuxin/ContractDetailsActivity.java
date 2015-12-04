@@ -43,6 +43,7 @@ public class ContractDetailsActivity extends Activity {
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
 	String contract, operation, price, handnum, position, minnum, maxnum, remark, senduserimg;
+	Integer isFollow,isShield;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -279,7 +280,9 @@ public class ContractDetailsActivity extends Activity {
 				Intent intent=getIntent();
 				Long id=Long.valueOf(intent.getStringExtra("id"));
 				try {
-					jsonObject.put("formid", id);			
+					jsonObject.put("formid", id);	
+					jsonObject.put("userid", util.getId());	
+					
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}			
@@ -328,6 +331,10 @@ public class ContractDetailsActivity extends Activity {
 							int collection = myjObject.getInt("collection");
 							senduserimg = myjObject.getString("img");
 							String sendusername = myjObject.getString("sendusername");
+
+							isFollow = myjObject.getInt("isFollow");
+							isShield = myjObject.getInt("isShield");
+							
 						}catch (JSONException e) {
 							e.printStackTrace();
 						}
@@ -348,6 +355,12 @@ public class ContractDetailsActivity extends Activity {
 						tvRemark.setText(remark);//备注
 					//	ivSenderHead.setImageResource(getSource.getResourceByReflect(senduserimg));//配图
 						ivPictureUrl.setImageResource(getSource.getResourceByReflect(senduserimg));//头像
+					
+						if(isFollow==1){
+							//选中
+							Toast toast = Toast.makeText(ContractDetailsActivity.this, "", Toast.LENGTH_SHORT);
+							toast.show();							
+						}					
 					}
 				};
 				handler.post(r);

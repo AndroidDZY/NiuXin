@@ -252,7 +252,8 @@ public class DeclarationLaunchActivity extends Activity{
 			try {
 				
 				Integer id = util.getId();			
-				jsonObject.put("id", id);			
+				jsonObject.put("id", id);	
+				jsonObject.put("userid", util.getId());	
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}			
