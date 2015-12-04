@@ -489,8 +489,8 @@ public class DeclarationDetailActivity extends Activity {
 						Integer maxnum = myjObject.getInt("maxnum");// 最大范围
 						String remark = myjObject.getString("remark");// 备注
 						// String sendfrom = myjObject.getString("sendfrom");
-						String sendtouser = myjObject.getString("sendtouser");// 用户id
-						String sendtogroup = myjObject.getString("sendtogroup");// 群组id
+						String sendtouser = myjObject.getString("sendtoUser");// 用户id
+						String sendtogroup = myjObject.getString("sendtoGroup");// 群组id
 						// String pictureurl =
 						// myjObject.getString("pictureurl");
 						// String audiourl = myjObject.getString("audiourl");
