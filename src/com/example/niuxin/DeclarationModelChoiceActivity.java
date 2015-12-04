@@ -111,7 +111,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 				adapter.notifyDataSetChanged();
 				if (holder.checkBox.isChecked()) {
 					beSelectedData.add(mData.get(arg2));
-					selectedid = arg2;
+					selectedid = (Integer) mData.get(arg2).get("id");
 				}
 			}
 		});
@@ -124,8 +124,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 				if (text1 != null) {
 					Intent intent = new Intent();
 					intent.putExtra("modelText", text1.toString());
-					intent.putExtra("Templateid", selectedid);
-
+					intent.putExtra("selectedid",selectedid);
 					setResult(13, intent);
 				}
 				finish();
