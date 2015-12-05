@@ -65,16 +65,27 @@ public class DeclarationUserselectActivity extends Activity {
 		allButton = (Button) findViewById(R.id.declaration_sendpur_haoyouselectall);
 		saveButton = (Button) findViewById(R.id.declaration_sendpur_haoyousave);
 		listView = (ListView) findViewById(R.id.declaration_sendpurpose_haoyou_list);
-		list=getData();
+		//list=getData();
 		// 初始化isSelected的数据
+		TestThread t = new TestThread();
+		t.start();
+		System.out.println(list+"list");
 		MyApplication ap = (MyApplication) getApplication();
+		//获取到之前已经选好的数据
 		List<String> oldlist = ap.getHaoyouList();
+		System.out.println(oldlist+"oldlist");
 
 		// for (int i = 0; i < oldlist.size(); i++)
 		// String name=oldlist.get(i);
+		
+		// haoyouAdapter = new HaoyouAdapter(list,this);//创建一个适配器
+		adapter = new MyAdapter(this);// 创建一个适配器
+		listView.setAdapter(adapter);
+		//进行for对数据进行匹配 如果id相等则为选中状态
 		for (int j = 0; j < list.size(); j++) { // 循环匹配数据，如果有一样的数据则为选中状态
 			String username = list.get(j).get("username").toString();//这里把username换成用户的id就行11.28号改动
 			Long id =Long.valueOf(list.get(j).get("id").toString());
+			System.out.println("id"+id);
 			isSelected.put(j, false);
 			if (oldlist!=null) {
 				for (int i = 0; i < oldlist.size(); i++) {
@@ -90,10 +101,6 @@ public class DeclarationUserselectActivity extends Activity {
 			}
 			
 		}
-
-		// haoyouAdapter = new HaoyouAdapter(list,this);//创建一个适配器
-		adapter = new MyAdapter(this);// 创建一个适配器
-		listView.setAdapter(adapter);
 		// 返回
 		backButton.setOnClickListener(new OnClickListener() {
 
@@ -142,6 +149,9 @@ public class DeclarationUserselectActivity extends Activity {
 						haoyouList.add(id);
 					}
 					MyApplication appHaoyou = (MyApplication) getApplication();
+					if (null!=appHaoyou.getHaoyouList()) {
+						appHaoyou.getHaoyouList().clear();
+					}
 					appHaoyou.setHaoyouList(haoyouList);
 					System.out.println(haoyouList+"12212121212121");
 					if (appHaoyou.getSendList()==null) {
@@ -166,6 +176,7 @@ public class DeclarationUserselectActivity extends Activity {
 				holder.cb.toggle();
 				// 将CheckBox的选中状况记录下来
 				isSelected.put(arg2, holder.cb.isChecked());
+				adapter.notifyDataSetChanged();
 				// 调整选定条目
 				if (holder.cb.isChecked()) {
 					System.out.println(list.get(arg2));
@@ -179,8 +190,7 @@ public class DeclarationUserselectActivity extends Activity {
 			}
 		});
 
-		TestThread t = new TestThread();
-		t.start();
+		
 	}
 
 	public class MyAdapter extends BaseAdapter {

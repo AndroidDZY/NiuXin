@@ -61,8 +61,10 @@ public class DeclarationQunzuselectActivity extends Activity {
 		allButton=(Button)findViewById(R.id.declaration_sendpur_qunzuselectall);
 		saveButton=(Button)findViewById(R.id.declaration_sendpur_qunzusave);
 		listView=(ListView)findViewById(R.id.declaration_sendpurpose_qunzu_list);
-		list=getData();
+		//list=getData();
 		// 初始化isSelected的数据  
+		TestThread t = new TestThread();
+		t.start();
 				MyApplication	ap=(MyApplication)getApplication();
 				List<String> oldlist=ap.getQunzuList();
 				isSelected = new HashMap<Integer, Boolean>();
@@ -118,6 +120,9 @@ public class DeclarationQunzuselectActivity extends Activity {
 						qunzuList.add(id);
 					}
 					MyApplication	appQunzu=(MyApplication)getApplication();
+					if (appQunzu.getQunzuList()!=null) {
+						appQunzu.getQunzuList().clear();
+					}
 					appQunzu.setQunzuList(qunzuList);
 					if (appQunzu.getSendList()==null) {
 						appQunzu.setSendList(qunzuList);
@@ -172,8 +177,6 @@ public class DeclarationQunzuselectActivity extends Activity {
 		});
 		
 		
-		TestThread t = new TestThread();
-		t.start();
 	}
 
 	public class MyAdapter extends BaseAdapter {  

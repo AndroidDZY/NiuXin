@@ -171,7 +171,6 @@ public class DeclarationDetailActivity extends Activity {
 					}
 				}
 			}
-
 			//循环获取群组id
 			if (qunzuList!=null) {
 			    for (int i = 0; i < qunzuList.size(); i++) {
@@ -416,8 +415,8 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("type", type);
 				jsonObject.put("sendtouser", "21,23");// 改成string把id存入到数据库中
 				jsonObject.put("sendtogroup", "1,2");// 改成string存入到数据库中
-				//jsonObject.put("sendtouser", haoyouBuffer);// 改成string把id存入到数据库中
-				//jsonObject.put("sendtogroup", qunzuBuffer);// 改成string存入到数据库中
+				//jsonObject.put("sendtouser", haoyouBuffer.toString());// 改成string把id存入到数据库中
+				//jsonObject.put("sendtogroup", qunzuBuffer.toString());// 改成string存入到数据库中
 				jArray.put(jsonObject);			
 			} catch (JSONException e) {
 				e.printStackTrace();
