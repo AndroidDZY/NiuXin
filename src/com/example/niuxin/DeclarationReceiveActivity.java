@@ -2,6 +2,7 @@ package com.example.niuxin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,23 +10,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.niuxin.DeclarationLaunchActivity.MyAdapter;
 import com.niuxin.util.Constants;
 import com.niuxin.util.GetSource;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -42,9 +49,11 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	private ToggleButton togBtnCollect;
 	private TextView tvContract, tvSendFrom;
 	private ListView lvDeclaration;
-	SimpleAdapter declarationAdapter = null;
+	MyAdapter declarationAdapter = null ;
+	private List<HashMap<String, Object>> mData = new LinkedList<HashMap<String, Object>>(); 
+	//SimpleAdapter declarationAdapter = null;
 	private Handler handler = new Handler();
-	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+//	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 	private SharePreferenceUtil util = null;
 	GetSource getSource = new GetSource();
 	int isCollect = 0;// 是否收藏
@@ -61,13 +70,13 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		// Intent intent = getIntent();
 
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
-		getDate();
+//		getDate();
 	}
 
-	private void getDate() {
-		SearchAllThread thread = new SearchAllThread();
-		thread.start();
-	}
+//	private void getDate() {
+//		SearchAllThread thread = new SearchAllThread();
+//		thread.start();
+//	}
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,8 +86,13 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		suolue = new SuoluetuActivity(this, handler);
 
 		initView();
+		
+		lvDeclaration = (ListView)findViewById(R.id.lv_declarationreceive);
+		declarationAdapter = new MyAdapter(this);//创建一个适配器  
+		 lvDeclaration.setAdapter(declarationAdapter);
+		 mData = getData();
 
-		// 获取ListView
+/*		// 获取ListView
 		// 创建适配器
 		// 第二个参数：list集合中的每一个Map对象对应生成一个列表项
 		// 第三个参数：表明使用listview_declaration.xml文件作为列表项组件
@@ -94,10 +108,10 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 						R.id.tv_declaration_amount, R.id.tv_declaration_profit, R.id.tv_declaration_position,
 						R.id.iv_declaration_sender_head, R.id.tv_declaration_sender_name,
 						R.id.iv_declaration_collect });
-		lvDeclaration.setAdapter(declarationAdapter);
+		lvDeclaration.setAdapter(declarationAdapter);*/
 
 		// listview item点击事件
-		lvDeclaration.setOnItemClickListener(new OnItemClickListener() {
+/*		lvDeclaration.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -106,7 +120,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				intentList.putExtra("senduserid", list.get(position).get("senderId").toString());
 				startActivity(intentList);
 			}
-		});
+		});*/
 	}
 
 	private void initView() {
@@ -137,17 +151,122 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					isCollect = 1;
 					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "只展示收藏报单", Toast.LENGTH_SHORT);
 					toast.show();
-					getDate();
+//					getDate();
 				} else {
 					// 未选中
 					isCollect = 0;
 					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "取消", Toast.LENGTH_SHORT);
 					toast.show();
-					getDate();
+//					getDate();
 				}
 			}
 		});
 	}
+	
+	//适配器
+	public class MyAdapter extends BaseAdapter {  
+        private LayoutInflater mInflater;// 动态布局映射  
+        public MyAdapter(Context context) {  
+            this.mInflater = LayoutInflater.from(context);  
+        }  
+  
+        // 决定ListView有几行可见  
+        @Override  
+        public int getCount() {  
+        	if(null!=mData)
+        		return mData.size();// ListView的条目数  
+        	else
+        		return 0;
+        }  
+  
+        @Override  
+        public Object getItem(int arg0) {  
+            return null;  
+        }  
+  
+        @Override  
+        public long getItemId(int arg0) {  
+            return 0;  
+        }  
+        
+        //获取listview视图对象 
+        @Override
+		public View getView(final int position, View convertView, ViewGroup arg2) {
+			// TODO Auto-generated method stub
+      
+        	convertView = mInflater.inflate(R.layout.listview_get_declaration, null);//根据布局文件实例化view 
+        	//合约
+        	TextView tagText=(TextView) convertView.findViewById(R.id.tv_declaration_contract_get);
+        	tagText.setText(mData.get(position).get("contract").toString());
+        	//日期
+        	TextView dateText=(TextView) convertView.findViewById(R.id.tv_declaration_date_get);
+        	dateText.setText(mData.get(position).get("date").toString());
+        	//星期
+        	//TextView weekText=(TextView) convertView.findViewById(R.id.tv_declaration_week_get);
+        	//timeText.setText(mData.get(position).get("timeText").toString());
+        	//时间
+        	TextView timeText=(TextView) convertView.findViewById(R.id.tv_declaration_time_get);
+        	timeText.setText(mData.get(position).get("time").toString());
+        	//操作类型
+        	TextView typeButton=(TextView) convertView.findViewById(R.id.tv_declaration_operation_type_get);
+        	typeButton.setText(mData.get(position).get("operation").toString());
+        	//价格
+        	TextView priceText=(TextView) convertView.findViewById(R.id.tv_declaration_cost_get);
+        	priceText.setText(mData.get(position).get("price").toString());
+        	//手数
+        	TextView handText=(TextView) convertView.findViewById(R.id.tv_declaration_amount_get);
+        	handText.setText(mData.get(position).get("handnum").toString());
+        	//盈利
+        	TextView gainText=(TextView) convertView.findViewById(R.id.tv_declaration_profit_get);
+        	gainText.setText(mData.get(position).get("gainText").toString());
+        	//仓位
+        	TextView spaceText=(TextView) convertView.findViewById(R.id.tv_declaration_position_get);
+        	spaceText.setText(mData.get(position).get("position").toString());
+        	//发送者名字
+        	TextView senderText=(TextView)convertView.findViewById(R.id.tv_declaration_sender_name);
+        	senderText.setText(mData.get(position).get("senderName").toString());
+        	//发送者头像
+        	ImageView senderHead=(ImageView)convertView.findViewById(R.id.iv_declaration_sender_head);
+//        	senderHead.setText(mData.get(position).get("senderHead").toString());
+        	//是否收藏该报单标志
+        	ImageView collection=(ImageView)convertView.findViewById(R.id.iv_declaration_collect);
+        	
+        	//点击查看发送对象
+        	//对应的ID
+        	//final Long cid=Long.valueOf(mData.get(position).get("id").toString());
+/*			sendtoText.setOnClickListener(new OnClickListener() {				
+				@Override
+				public void onClick(View arg0) {
+					Intent intent = new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
+
+					intent.putExtra("intentuserlist", mData.get(position).get("sendtoUser").toString());
+					intent.putExtra("intentgrouplist", mData.get(position).get("sendtoGroup").toString());
+					startActivity(intent);
+				}
+			});*/
+            return convertView;
+		}  
+    }
+	//获取数据
+	private List<HashMap<String, Object>> getData() {  
+        // 新建一个集合类，用于存放多条数据  从数据库中获取数据
+        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();  
+        HashMap<String, Object> map = null;  
+        for (int i = 1; i <= 3; i++) {  
+            map = new HashMap<String, Object>();  
+            map.put("contract", "合约IF1509" ); //r.drawable 
+            map.put("date", "2015年10月");  
+            map.put("time", "10:23");  
+            map.put("operation", "多平");  
+            map.put("price", "1234");  
+            map.put("handnum", "1111");  
+            map.put("gainText", "250");
+            map.put("position", "15%");
+            list.add(map);  
+        }  
+  
+        return list;  
+    }  
 
 	// 定义按钮点击事件
 	@Override
@@ -175,7 +294,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		}
 	}
 
-	@Override
+/*	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (null != intent) {
@@ -313,6 +432,6 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			};
 			handler.post(r);
 		}
-	}
+	}*/
 
 }

@@ -209,7 +209,7 @@ public class DeclarationLaunchActivity extends Activity{
 			sendtoText.setOnClickListener(new OnClickListener() {				
 				@Override
 				public void onClick(View arg0) {
-					Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
+					Intent intent = new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
 
 					intent.putExtra("intentuserlist", mData.get(position).get("sendtoUser").toString());
 					intent.putExtra("intentgrouplist", mData.get(position).get("sendtoGroup").toString());
