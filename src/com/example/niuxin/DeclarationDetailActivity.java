@@ -21,7 +21,9 @@ import com.niuxin.util.PostPicture;
 import com.niuxin.util.SharePreferenceUtil;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -31,6 +33,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -51,7 +54,7 @@ public class DeclarationDetailActivity extends Activity {
 
 	LinearLayout linearLayoutModelChoice, linearLayoutContactChoice, linearLayoutActiontype, detailsendchoice;
 	private Button backButton, sendButton, saveButton;
-	EditText editTextPrice, editTextShoushu, editTextCangwei, editTextArea1, editTextArea2, editTextBeizhu;
+	EditText editTextPrice, editTextShoushu, editTextCangwei, editTextArea1, editTextArea2, editTextBeizhu, modelText;
 	TextView purposeChoiced, contractType, modelChioced, picchoice;
 	ImageView imageView;
 	Spinner spinnerOperateType;
@@ -72,6 +75,7 @@ public class DeclarationDetailActivity extends Activity {
 	MyApplication constantStatic;
 	String pictureurl = "";
 	Integer selectContractId = null;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -288,6 +292,31 @@ public class DeclarationDetailActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
+				//保存模板后，提示输入模板名称
+				View myView = LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);// 将layout对象转换为VIew对象
+				AlertDialog.Builder builder = new AlertDialog.Builder(DeclarationDetailActivity.this);
+				builder.setTitle("新建模板");
+				builder.setView(myView);
+				modelText = (EditText) myView.findViewById(R.id.et_tag_name);
+				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// 这里添加点击确定后的逻辑
+						// 这边要加新建的模板并在listview中新增
+//						AddThread addThread = new AddThread();
+//						addThread.start();
+						Toast.makeText(DeclarationDetailActivity.this, "新建模板成功", Toast.LENGTH_SHORT).show();
+						dialog.dismiss();// 对话框消失
+					}
+				});
+				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// 这里添加点击确定后的逻辑
+						// showDialog("你选择了取消");
+						dialog.dismiss();// 对话框消失
+					}
+				});
+				builder.create().show();
+/**************************************************************************/				
 				String res = check();
 				if (res.equals("true")) {
 					Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模板已保存", Toast.LENGTH_SHORT);

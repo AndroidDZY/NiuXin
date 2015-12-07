@@ -43,7 +43,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 	private ListView listView;
 	private List<HashMap<String, Object>> mData = new LinkedList<HashMap<String, Object>>();
 	private Button buttonBack, saveButton;
-	private ImageButton addImageButton;
+//	private ImageButton addImageButton;
 	private SuoluetuActivity suolue;
 	public Handler handler = new Handler();
 	private SharePreferenceUtil util = null;
@@ -79,7 +79,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 		buttonBack = (Button) findViewById(R.id.declaration_button_back);
 		// 保存按钮
 		saveButton = (Button) findViewById(R.id.declaration_button_save);
-		addImageButton = (ImageButton) findViewById(R.id.declaration_imageview_add);
+//		addImageButton = (ImageButton) findViewById(R.id.declaration_imageview_add);
 		if (beSelectedData.size() > 0) {
 			beSelectedData.clear();
 		}
@@ -149,7 +149,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 			}
 		});
 		// 添加模板按钮
-		addImageButton.setOnClickListener(new OnClickListener() {
+/*		addImageButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -183,7 +183,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 				});
 				builder.create().show();
 			}
-		});
+		});  */
 	}
 
 	// 初始化设置所有checkbox都为未选择

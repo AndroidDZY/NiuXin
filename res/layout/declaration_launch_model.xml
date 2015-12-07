@@ -15,6 +15,7 @@
     	android:layout_height="@dimen/bottom_btn_width"
     	android:layout_alignParentBottom="true"
     	android:orientation="horizontal"
+    	android:gravity="center_vertical"
     	android:background="#de4557">
     	<Button android:id="@+id/declaration_button_back"
         	android:layout_width="0dp"
@@ -36,7 +37,7 @@
         	android:textSize="@dimen/textsize_middle"
         	android:background="@null"
         	android:textColor="@color/bottom_button_textcolor_default"
-        	android:gravity="center"/>
+        	/>
 		</LinearLayout>
 		
         <ImageView 
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_marginBottom="@dimen/layout_margin_five"
             android:background="@drawable/declaration_sendpurpos_redline"/>
 		
 	<LinearLayout 
@@ -54,7 +56,7 @@
     android:layout_below="@id/include"
     android:layout_above="@id/iv_decla_launch_model"
     android:orientation="vertical" 
-    android:background="@color/bg_gray">
+    >
     <!-- 页面标题 -->
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,18 +77,20 @@
     <ListView
         android:id="@+id/declaration_list_modelchoice"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="3dp"
         android:divider="@null" >
     </ListView>
     
     <!-- 添加模板按钮 -->
+    <!-- 
     <ImageButton android:layout_marginLeft="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/modeladd"
         android:layout_marginTop="@dimen/layout_margin_eight"
         android:id="@+id/declaration_imageview_add"/>
+         -->
 	</LinearLayout>
 
 
