@@ -123,9 +123,9 @@ public class DeclarationQunzuselectActivity extends Activity {
 				adapter.notifyDataSetChanged();
 				beSelectedData = list;
 				// 数量设为list的长度
-				checkNum = list.size();
+				checkNum = beSelectedData.size();
 				// 刷新listview和TextView的显示
-
+				adapter.notifyDataSetChanged();
 			}
 		});
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -295,6 +295,7 @@ public class DeclarationQunzuselectActivity extends Activity {
 					map.put("touxiang", getSource.getResourceByReflect(img)); // r.drawable
 					map.put("qunzuname", title);
 					map.put("id", id);
+					map.put("chattype", chattype);
 					if (chattype == 1) {
 						list.add(map);
 

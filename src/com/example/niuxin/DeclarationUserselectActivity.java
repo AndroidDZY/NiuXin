@@ -89,17 +89,21 @@ public class DeclarationUserselectActivity extends Activity {
 				for (int i = 0; i < list.size(); i++) {
 					isSelected.put(i, true);
 				}
+				
+			////////////////////////////有问题/////////////////////////////////////////////////////////////
 				beSelectedData = list;
+
 				// 数量设为list的长度
+				
+				checkNum = beSelectedData.size();	
 				adapter.notifyDataSetChanged();
-				checkNum = list.size();				
 			}
 		});
 		// 保存按钮，在保存按钮中把数据传到全局变量中
 		saveButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+				/////////////////////////////有问题///////////////////////////////////
 				if (beSelectedData.size() != 0) {
 					for (int i = 0; i < beSelectedData.size(); i++) {
 						String id=beSelectedData.get(i).get("id").toString();//把这里换成获取id，11.28改动
@@ -125,7 +129,7 @@ public class DeclarationUserselectActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				// TODO Auto-generated method stub
+				///////////////////////////////////////////////修改此函数
 				// 取得ViewHolder对象，这样就省去了通过层层的findViewById去实例化我们需要的cb实例的步骤
 				ViewHolder holder = (ViewHolder) arg1.getTag();
 				// 改变CheckBox的状态
@@ -198,6 +202,7 @@ public class DeclarationUserselectActivity extends Activity {
 			if (null != isSelected){
 				try{
 					//if(!(isSelected.get(position)))
+					///////////////////////////////////////////////////////////////////////////////////
 						holder.cb.setChecked(isSelected.get(position));
 				}catch(Exception e){
 					
@@ -289,6 +294,7 @@ public class DeclarationUserselectActivity extends Activity {
 					map.put("touxiang", getSource.getResourceByReflect(img)); // r.drawable
 					map.put("username", title);
 					map.put("id", id);
+					map.put("chattype", chattype);
 
 					if (chattype == 2) {
 						list.add(map);						
