@@ -197,7 +197,7 @@ public class DeclarationDetailActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.putExtra("modelText", modelChioced.getText());// 获取合约类型的名称，传递过去
-
+				
 				intent.setClass(DeclarationDetailActivity.this, DeclarationModelChoiceActivity.class);
 				startActivityForResult(intent, 12);
 
@@ -215,6 +215,7 @@ public class DeclarationDetailActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.putExtra("contractText", contractType.getText());// 获取合约类型的名称，传递过去
+				intent.putExtra("selectContractId", selectContractId);
 				intent.setClass(DeclarationDetailActivity.this, DeclarationContactChoiceActivity.class);
 				startActivityForResult(intent, 10);
 				// startActivity(intent);

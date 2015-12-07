@@ -93,18 +93,7 @@ public class DeclarationLaunchActivity extends Activity{
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO Auto-generated method stub
-				System.out.println("1111111111111");
-				//获取报单的id，通过id去显示报单详情，真数据的时候调用下面的代码
-				/*Integer id=Integer.valueOf(mData.get(arg2).get("id").toString());
-				Intent intent=new Intent();
-				intent.putExtra("id", id);
-				intent.setClass(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
-				startActivity(intent);*/
-				// 这边不需要跳转详细信息
-				/*Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailContentActivity.class);
-				startActivity(intent);*/
+					long arg3) {				
 			}
 		});
 		
@@ -219,26 +208,6 @@ public class DeclarationLaunchActivity extends Activity{
             return convertView;
 		}  
     }
-	//获取数据
-	private List<HashMap<String, Object>> getData() {  
-        // 新建一个集合类，用于存放多条数据  从数据库中获取数据
-        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();  
-        HashMap<String, Object> map = null;  
-        for (int i = 1; i <= 3; i++) {  
-            map = new HashMap<String, Object>();  
-            map.put("contract", "合约IF1509" ); //r.drawable 
-            map.put("date", "2015年10月周一");  
-            map.put("time", "10:23");  
-            map.put("operation", "多平");  
-            map.put("price", "1234");  
-            map.put("handnum", "1111");  
-            map.put("gainText", "250");
-            map.put("position", "15%");
-            list.add(map);  
-        }  
-  
-        return list;  
-    }  
 	//启动线程从数据库中获取数据
 	class GroupThread extends Thread {
 		@SuppressLint("SimpleDateFormat")

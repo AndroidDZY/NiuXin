@@ -195,7 +195,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map = mData.get(i);
 				String contractText = map.get("modeltext").toString();
-				if (mText.equals(contractText)) {// 如果传来的数据与其中的一条数据符合则设置checkbox为选中状态，获取到相应的数据
+				if (mText.trim().equals(contractText)) {// 如果传来的数据与其中的一条数据符合则设置checkbox为选中状态，获取到相应的数据
 					isSelected.put(i, true);
 					// beSelectedData=mData;
 					beSelectedData.add(mData.get(i));
@@ -474,6 +474,9 @@ public class DeclarationModelChoiceActivity extends Activity {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
+					
+					init();
+					
 					adapter.notifyDataSetChanged();
 				}
 
@@ -534,6 +537,7 @@ public class DeclarationModelChoiceActivity extends Activity {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
+					
 					adapter.notifyDataSetChanged();
 				}
 
