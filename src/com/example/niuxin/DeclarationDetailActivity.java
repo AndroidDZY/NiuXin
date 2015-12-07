@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.niuxin.util.Check;
 import com.niuxin.util.Constants;
 import com.niuxin.util.HttpPostUtil;
 import com.niuxin.util.HttpPostUtilPic;
@@ -272,12 +273,19 @@ public class DeclarationDetailActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				// 获取数据，发送
-				SaveThread saveThread = new SaveThread(1);
-				saveThread.start();
-				Toast toast = Toast.makeText(DeclarationDetailActivity.this, "发送成功", Toast.LENGTH_SHORT);
-				toast.show();
+				String res = check();
+				if(res.equals("true")){
+					// TODO Auto-generated method stub
+					// 获取数据，发送
+					SaveThread saveThread = new SaveThread(1);
+					saveThread.start();
+					Toast toast = Toast.makeText(DeclarationDetailActivity.this, "发送成功", Toast.LENGTH_SHORT);
+					toast.show();
+				}else{
+					Toast toast = Toast.makeText(DeclarationDetailActivity.this, res, Toast.LENGTH_SHORT);
+					toast.show();
+				}
+				
 			}
 		});
 		// 保存模板
@@ -285,11 +293,16 @@ public class DeclarationDetailActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+				String res = check();
+				if(res.equals("true")){
 				Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模板已保存", Toast.LENGTH_SHORT);
 				toast.show();
 				SaveThread saveThread = new SaveThread(2);
 				saveThread.start();
+				}else{
+					Toast toast = Toast.makeText(DeclarationDetailActivity.this, res, Toast.LENGTH_SHORT);
+					toast.show();
+				}
 			}
 		});
 
@@ -300,6 +313,82 @@ public class DeclarationDetailActivity extends Activity {
 //			t.start();
 //		}
 		 
+	}
+	private String check2(String res,String result){
+		if(!Check.isEmpty(res)){
+			return "未填写"+result;
+		}else{
+			try{
+				float aa = Float.valueOf(res);
+			}catch(Exception e){
+				return "只能填写数字";
+			}
+		}
+		
+		return "";
+	}
+	
+	private String check(){
+	
+		
+		if(null==selectContractId ){
+			return "合约类型未选择";
+		}
+		
+		
+		if(null==editTextPrice.getText() ){
+			return "未填写价格";
+		}
+		String price = editTextPrice.getText().toString();
+		String resprice = check2(price,"价格");
+		if(!resprice.equals("")){
+			return resprice;
+		}
+		
+		String handnum = editTextPrice.getText().toString();
+		if(!Check.isEmpty(handnum)){
+			return "未填写手数";
+		}else{
+			if(!Check.positiveInteger(handnum))
+				return "只能填写正整数";
+		}
+
+		
+		if(null==editTextCangwei.getText() ){
+			return "未填写仓位";
+		}
+		String position = editTextCangwei.getText().toString();
+		String resposition = check2(price,"仓位");
+		if(!resposition.equals("")){
+			return resposition;
+		}
+		
+		
+		if(null==editTextArea1.getText() ){
+			return "未填写止盈止损最小值";
+		}
+		String minnum = editTextCangwei.getText().toString();
+		String resminnum = check2(price,"止盈止损最小值");
+		if(!resminnum.equals("")){
+			return resminnum;
+		}
+		
+		
+		if(null==editTextArea2.getText() ){
+			return "未填写止盈止损最大值";
+		}
+		String maxnum = editTextArea2.getText().toString();
+		String resmaxnum = check2(price,"止盈止损最大值");
+		if(!resmaxnum.equals("")){
+			return resmaxnum;
+		}
+		
+		
+		if(null==haoyouBuffer || null== qunzuBuffer){
+			return "未选择好友或群组，二者至少选择一项！";
+		}
+	
+		return "true";
 	}
 
 	@Override
