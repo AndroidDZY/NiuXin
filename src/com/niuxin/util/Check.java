@@ -16,6 +16,11 @@ public class Check {
 	        Matcher isNum = pattern.matcher(res);
 	
 		return isNum.matches();
-	}
+	}	
+	public static boolean positive(String res) {//判断输入是否是正数
+		  Pattern pattern = Pattern.compile( "^((\\d+(\\.\\d+)?)|(0+(\\.0+)?))$");
+	       Matcher isNum = pattern.matcher(res);
 	
+		return isNum.matches();
+	}
 }
