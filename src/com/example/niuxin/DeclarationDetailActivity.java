@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -63,8 +64,8 @@ public class DeclarationDetailActivity extends Activity {
 
 	StringBuffer haoyouBuffer=new StringBuffer();//好友
 	StringBuffer qunzuBuffer=new StringBuffer();//群组
-	List<String> qunzuList=null;
-	List<String> haoyouList=null;
+	List<String> qunzuList= new LinkedList<String>();
+	List<String> haoyouList= new LinkedList<String>();
 	List<String> listAll=null;
 	Integer Templateid =-1;
 	String picturePath = "";
@@ -192,7 +193,7 @@ public class DeclarationDetailActivity extends Activity {
 		}else {
 			purposeChoiced.setText("已选");
 		}
-		
+	
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -230,8 +231,12 @@ public class DeclarationDetailActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
-				startActivity(intent);
-				//startActivityForResult(intent, 19);
+				//startActivity(intent);
+				if(purposeChoiced.getText().equals("选择")){
+					constantStatic.setHaoyouList(null);
+					constantStatic.setQunzuList(null);
+				}
+				startActivityForResult(intent, 19);
 
 			}
 		});
@@ -305,6 +310,39 @@ public class DeclarationDetailActivity extends Activity {
 			String result_value = data.getStringExtra("contractText");
 			contractType.setText(result_value);
 			selectContractId = Integer.valueOf(data.getStringExtra("selectContractId"));
+		}
+		if (requestCode == 19  ) {
+			 constantStatic=(MyApplication)getApplication();
+			 qunzuList=constantStatic.getQunzuList();//获取到选择的群组发送目标
+			 haoyouList= constantStatic.getHaoyouList();//获取到选择的好友发送目标名称
+			 System.out.println(haoyouList+"好友机会");
+			 listAll=constantStatic.getSendList();//相加的名称
+			//传过来的数据，转换成String，存入到数据库
+			//循环获取好友ID
+			if (haoyouList!=null) {
+			    for (int i = 0; i < haoyouList.size(); i++) {
+					if (i==0) {
+						haoyouBuffer.append(haoyouList.get(i));
+					} else {
+						haoyouBuffer.append("," + haoyouList.get(i));
+					}
+				}
+			}
+			//循环获取群组id
+			if (qunzuList!=null) {
+			    for (int i = 0; i < qunzuList.size(); i++) {
+					if (i==0) {
+						qunzuBuffer.append(qunzuList.get(i));
+					} else {
+						qunzuBuffer.append("," + qunzuList.get(i));
+					}
+				}
+			}
+		if (null==listAll) {
+			purposeChoiced.setText("选择");
+		}else {
+			purposeChoiced.setText("已选");
+		}
 		}
 		if (requestCode == 12 && resultCode == 13) {
 			String result_value = data.getStringExtra("modelText");
@@ -413,8 +451,8 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("pictureurl", pictureurl);
 				jsonObject.put("audiourl", "/pp/video.avi");
 				jsonObject.put("type", type);
-				jsonObject.put("sendtouser", "21,23");// 改成string把id存入到数据库中
-				jsonObject.put("sendtogroup", "1,2");// 改成string存入到数据库中
+				jsonObject.put("sendtouser", haoyouBuffer.toString());// 改成string把id存入到数据库中
+				jsonObject.put("sendtogroup", qunzuBuffer.toString());// 改成string存入到数据库中
 				//jsonObject.put("sendtouser", haoyouBuffer.toString());// 改成string把id存入到数据库中
 				//jsonObject.put("sendtogroup", qunzuBuffer.toString());// 改成string存入到数据库中
 				jArray.put(jsonObject);			
