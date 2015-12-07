@@ -52,6 +52,7 @@ public class DeclarationUserselectActivity extends Activity {
 	GetSource getSource = new GetSource();
 	private SharePreferenceUtil util = null;
 	MyAdapter adapter;
+	List<String> oldlist = null;
 
 	@SuppressLint("UseSparseArrays")
 	@Override
@@ -64,49 +65,18 @@ public class DeclarationUserselectActivity extends Activity {
 		backButton = (Button) findViewById(R.id.declaration_sendpur_haoyouback);
 		allButton = (Button) findViewById(R.id.declaration_sendpur_haoyouselectall);
 		saveButton = (Button) findViewById(R.id.declaration_sendpur_haoyousave);
-		listView = (ListView) findViewById(R.id.declaration_sendpurpose_haoyou_list);
-		list=getData();
-		// 初始化isSelected的数据
-		MyApplication ap = (MyApplication) getApplication();
-		List<String> oldlist = ap.getHaoyouList();
-
-		// for (int i = 0; i < oldlist.size(); i++)
-		// String name=oldlist.get(i);
-		for (int j = 0; j < list.size(); j++) { // 循环匹配数据，如果有一样的数据则为选中状态
-			String username = list.get(j).get("username").toString();//这里把username换成用户的id就行11.28号改动
-			Long id =Long.valueOf(list.get(j).get("id").toString());
-			isSelected.put(j, false);
-			if (oldlist!=null) {
-				for (int i = 0; i < oldlist.size(); i++) {
-					//String name = oldlist.get(i);
-					/*if (username.equals(name)) {
-						isSelected.put(j, true);
-					}*/
-					Long haoyouId=Long.valueOf(oldlist.get(i).toString());//获取id，如果id相等则为选中状态
-					if (haoyouId==id) {
-						isSelected.put(j, true);
-					}
-				}
-			}
-			
-		}
-
-		// haoyouAdapter = new HaoyouAdapter(list,this);//创建一个适配器
+		listView = (ListView) findViewById(R.id.declaration_sendpurpose_haoyou_list);		
 		adapter = new MyAdapter(this);// 创建一个适配器
 		listView.setAdapter(adapter);
-		// 返回
-		backButton.setOnClickListener(new OnClickListener() {
 
+		backButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				if (haoyouList != null) {
-					Intent intent = new Intent();
-					// intent.putStringArrayListExtra("haoyouList",
-					// (ArrayList<String>) haoyouList);
-					// System.out.println(haoyouList);
+					Intent intent = new Intent();					
 					intent.setClass(DeclarationUserselectActivity.this, DeclarationDetailActivity.class);
-					startActivity(intent);
+					setResult(20,intent);
 				}
 				finish();
 			}
@@ -122,28 +92,24 @@ public class DeclarationUserselectActivity extends Activity {
 				beSelectedData = list;
 				// 数量设为list的长度
 				adapter.notifyDataSetChanged();
-				checkNum = list.size();
-				// 刷新listview和TextView的显示
-
+				checkNum = list.size();				
 			}
 		});
 		// 保存按钮，在保存按钮中把数据传到全局变量中
 		saveButton.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				if (beSelectedData.size() != 0) {
-					// 点击保存获取到相关数据
-					System.out.println(beSelectedData);
 					for (int i = 0; i < beSelectedData.size(); i++) {
-						//String text = beSelectedData.get(i).get("username").toString();
 						String id=beSelectedData.get(i).get("id").toString();//把这里换成获取id，11.28改动
 						haoyouList.add(id);
 					}
 					MyApplication appHaoyou = (MyApplication) getApplication();
+					if (null!=appHaoyou.getHaoyouList()) {
+						appHaoyou.getHaoyouList().clear();
+					}
 					appHaoyou.setHaoyouList(haoyouList);
-					System.out.println(haoyouList+"12212121212121");
 					if (appHaoyou.getSendList()==null) {
 						appHaoyou.setSendList(haoyouList);
 					}else{
@@ -166,9 +132,9 @@ public class DeclarationUserselectActivity extends Activity {
 				holder.cb.toggle();
 				// 将CheckBox的选中状况记录下来
 				isSelected.put(arg2, holder.cb.isChecked());
+				adapter.notifyDataSetChanged();
 				// 调整选定条目
-				if (holder.cb.isChecked()) {
-					System.out.println(list.get(arg2));
+				if (holder.cb.isChecked()) {					
 					beSelectedData.add(list.get(arg2));
 				}
 				if (holder.cb.isChecked() == true) {
@@ -229,8 +195,15 @@ public class DeclarationUserselectActivity extends Activity {
 			}
 			holder.tv.setText(list.get(position).get("username").toString());
 			holder.im.setBackgroundResource(Integer.valueOf(list.get(position).get("touxiang").toString()));
-			if (null != isSelected)
-				holder.cb.setChecked(isSelected.get(position));
+			if (null != isSelected){
+				try{
+					//if(!(isSelected.get(position)))
+						holder.cb.setChecked(isSelected.get(position));
+				}catch(Exception e){
+					
+				}
+			}
+				
 			return convertView;
 		}
 	}
@@ -300,6 +273,9 @@ public class DeclarationUserselectActivity extends Activity {
 			}
 			list.clear();
 			int j =0;
+			MyApplication ap = (MyApplication) getApplication();
+			 oldlist = ap.getHaoyouList();	
+			 isSelected.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {
 				try {
 					JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
@@ -315,8 +291,20 @@ public class DeclarationUserselectActivity extends Activity {
 					map.put("id", id);
 
 					if (chattype == 2) {
-						list.add(map);
-						isSelected.put(j, false);
+						list.add(map);						
+						if (oldlist!=null) {
+							for (int m = 0; m < oldlist.size(); m++) {							
+								Integer haoyouId=Integer.valueOf(oldlist.get(m).toString());//获取id，如果id相等则为选中状态
+								if (haoyouId==id) {
+									isSelected.put(j, true);
+									break;
+								}else{
+									isSelected.put(j, false);
+								}
+							}
+						}else{
+							isSelected.put(j, false);
+						}
 						j++;
 					}
 
