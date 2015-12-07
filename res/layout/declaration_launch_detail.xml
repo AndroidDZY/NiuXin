@@ -308,7 +308,7 @@
 	            android:layout_centerInParent="true"
 	            android:layout_alignParentLeft="true"
 	            android:background="@drawable/decla_baodan_yellow2"
-	            android:inputType="number"
+	            android:inputType="numberDecimal"
 	            android:minWidth="60dp"
 	            android:textSize="12sp"
 	            android:maxLength="10"
@@ -406,7 +406,7 @@
 	            android:id="@+id/detail_edit_cangwei"
 	            android:layout_width="wrap_content"
 	            android:minWidth="50dp"
-	            android:inputType="number"
+	            android:inputType="numberDecimal"
 	            android:background="@drawable/decla_baodan_yellow3"
 	            android:layout_centerInParent="true"
 	            android:layout_alignParentLeft="true"
@@ -457,7 +457,7 @@
             <EditText android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:textSize="12sp"
                 android:id="@+id/detail_edit_area1"
                 android:layout_marginRight="2dp"
@@ -477,7 +477,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:background="@drawable/decla_baodan_yellow2"/> 
         </LinearLayout>
     </LinearLayout>

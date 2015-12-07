@@ -184,10 +184,6 @@ public class DeclarationDetailActivity extends Activity {
 			}
 		}
 
-		System.out.println(listAll + "发送目标");
-
-		System.out.println(listAll + "12121212121212121212121");
-
 		if (null == listAll) {
 			purposeChoiced.setText("选择");
 		} else {
@@ -305,26 +301,25 @@ public class DeclarationDetailActivity extends Activity {
 			}
 		});
 
-		// if (!contractType.getText().equals("未选")) {
-		// SearchThread thread = new SearchThread();
-		// thread.start();
-		// GetPicThread t = new GetPicThread();
-		// t.start();
-		// }
-
+	
 	}
 
 	private String check2(String res, String result) {
 		if (!Check.isEmpty(res)) {
 			return "未填写" + result;
 		} else {
-			if (!Check.positive(res)) {//先判断是不是正数
+			if (!Check.positive(res.trim())) {//先判断是不是正数
 				return "只能填写正浮点数,小数不超过两位";
 			}
-			String[] ress = res.split(".");
-			if(null!=ress[1]&&!ress[1].trim().equals("")){
-				if(ress[1].length()>1)
-					return "只能填写正浮点数,小数不超过两位";	
+			try{
+			String ress = res.trim().substring(res.trim().lastIndexOf("."));			
+			
+				if(null!=ress){
+					if(ress.length()>3||ress.length()<=1)
+						return "只能填写正浮点数,小数不超过两位";	
+				}
+			}catch(Exception e){
+				
 			}
 		}
 
@@ -346,12 +341,13 @@ public class DeclarationDetailActivity extends Activity {
 			return resprice;
 		}
 
-		String handnum = editTextPrice.getText().toString();
+		String handnum = editTextShoushu.getText().toString();
 		if (!Check.isEmpty(handnum)) {
 			return "未填写手数";
 		} else {
-			if (!Check.positiveInteger(handnum))
+			if (!Check.positiveInteger(handnum)){
 				return "只能填写正整数";
+			}	
 		}
 
 		if (null == editTextCangwei.getText()) {
@@ -362,7 +358,15 @@ public class DeclarationDetailActivity extends Activity {
 		if (!resposition.equals("")) {
 			return resposition;
 		}
+		Float aa = Float.valueOf(position);
+		 int retval1 = Float.compare(aa, (float) 0.0);
+		 int retval2 = Float.compare(aa, (float) 100);
+		if(retval1<0||retval2>0){
+			return "只能0到100之间";
+		}
 
+		
+		
 		if (null == editTextArea1.getText()) {
 			return "未填写止盈止损最小值";
 		}
@@ -372,6 +376,8 @@ public class DeclarationDetailActivity extends Activity {
 			return resminnum;
 		}
 
+		
+		
 		if (null == editTextArea2.getText()) {
 			return "未填写止盈止损最大值";
 		}
@@ -381,6 +387,7 @@ public class DeclarationDetailActivity extends Activity {
 			return resmaxnum;
 		}
 
+		
 		if (null == haoyouBuffer || null == qunzuBuffer) {
 			return "未选择好友或群组，二者至少选择一项！";
 		}
@@ -564,6 +571,7 @@ public class DeclarationDetailActivity extends Activity {
 	// 根据模板的名称获取模板的相关数据
 	class SearchThread extends Thread {
 		private Dialog mDialog = null;
+		private JSONArray jsonArray = null;
 
 		@Override
 		public void run() {
@@ -588,59 +596,63 @@ public class DeclarationDetailActivity extends Activity {
 			// 从服务器获取数据
 			String res = postUtil.run();
 			// 对从服务器获取数据进行解析
-			JSONArray jsonArray = null;
+		
 			try {
 				jsonArray = new JSONArray(res);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			list.clear();
-			int j = 0;
-			if (null != jsonArray)
-				for (int i = 0; i < jsonArray.length(); i++) {
-					try {
-						JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
-						// 获取每一个对象中的值
-						// int id = myjObject.getInt("id");
-						String contract = myjObject.getString("contract");// 合约类型
-						String operation = myjObject.getString("operation");// 操作类型
-						Integer price = myjObject.getInt("price");// 价格
-						Integer handnum = myjObject.getInt("handnum");// 手数
-						Integer position = myjObject.getInt("position");// 仓位
-						Integer minnum = myjObject.getInt("minnum");// 最小范围
-						Integer maxnum = myjObject.getInt("maxnum");// 最大范围
-						String remark = myjObject.getString("remark");// 备注
-						// String sendfrom = myjObject.getString("sendfrom");
-						String sendtouser = myjObject.getString("sendtoUser");// 用户id
-						String sendtogroup = myjObject.getString("sendtoGroup");// 群组id
-						// String pictureurl =
-						// myjObject.getString("pictureurl");
-						// String audiourl = myjObject.getString("audiourl");
-						contractType.setText(contract);
-						operateType = operation;
-						editTextPrice.setText(price);
-						editTextShoushu.setText(handnum);
-						editTextCangwei.setText(position);
-						editTextArea1.setText(minnum);
-						editTextArea2.setText(maxnum);
-						editTextBeizhu.setText(remark);
-						List<String> hlist = new ArrayList<String>();
-						hlist = java.util.Arrays.asList(sendtouser);
-						constantStatic.setHaoyouList(hlist);
-						List<String> qList = java.util.Arrays.asList(sendtogroup);
-						constantStatic.setQunzuList(qList);
-						/*
-						 * String[] haoText=sendtouser.split(","); for (String
-						 * str:haoText) { hlist.add(str); }
-						 */
-
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
+			
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
+					if (null != jsonArray)
+						for (int i = 0; i < jsonArray.length(); i++) {
+							try {
+								JSONObject myjObject = jsonArray.getJSONObject(i);// 获取每一个JsonObject对象
+								// 获取每一个对象中的值
+								// int id = myjObject.getInt("id");
+								String contract = myjObject.getString("contract");// 合约类型
+								Integer contractid = myjObject.getInt("contractid");// 合约类型
+								
+								String operation = myjObject.getString("operation");// 操作类型
+								String price = myjObject.getString("price");// 价格
+								String handnum = myjObject.getString("handnum");// 手数
+								String position = myjObject.getString("position");// 仓位
+								String minnum = myjObject.getString("minnum");// 最小范围
+								String maxnum = myjObject.getString("maxnum");// 最大范围
+								String remark = myjObject.getString("remark");// 备注
+								String sendtouser = myjObject.getString("sendtoUser");// 用户id
+								String sendtogroup = myjObject.getString("sendtoGroup");// 群组id
+								String picture = myjObject.getString("pictureurl");// 群组id
+							
+								
+								
+								contractType.setText(contract);
+								selectContractId = contractid;
+								operateType = operation;
+								editTextPrice.setText(price);
+								editTextShoushu.setText(handnum);
+								editTextCangwei.setText(position);
+								editTextArea1.setText(minnum);
+								editTextArea2.setText(maxnum);
+								editTextBeizhu.setText(remark);
+								List<String> hlist = new ArrayList<String>();
+								hlist = java.util.Arrays.asList(sendtouser);
+								constantStatic.setHaoyouList(hlist);
+								List<String> qList = java.util.Arrays.asList(sendtogroup);
+								constantStatic.setQunzuList(qList);	
+								if(null!=sendtouser&&!sendtouser.equals(""))
+									haoyouBuffer =  new StringBuffer(sendtouser);
+								if(null!=sendtogroup&&!sendtogroup.equals(""))
+								qunzuBuffer = new StringBuffer(sendtogroup);
+								
+								purposeChoiced.setText("已选");
+								pictureurl = picture;
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+						}
 				}
 
 			};
