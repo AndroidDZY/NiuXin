@@ -49,11 +49,11 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	private ToggleButton togBtnCollect;
 	private TextView tvContract, tvSendFrom;
 	private ListView lvDeclaration;
-	MyAdapter declarationAdapter = null ;
-	private List<HashMap<String, Object>> mData = new LinkedList<HashMap<String, Object>>(); 
-	//SimpleAdapter declarationAdapter = null;
+	//MyAdapter declarationAdapter = null ;
+	//private List<HashMap<String, Object>> mData = new LinkedList<HashMap<String, Object>>(); 
+	SimpleAdapter declarationAdapter = null;
 	private Handler handler = new Handler();
-//	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 	private SharePreferenceUtil util = null;
 	GetSource getSource = new GetSource();
 	int isCollect = 0;// 是否收藏
@@ -67,16 +67,16 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// Intent intent = getIntent();
+		Intent intent = getIntent();
 
 		// 准备从服务器端获取数据，显示listView。因为从服务器获取数据是一个耗时的操作，所以需要在线程中进行。下面代码新建了一个线程对象。
-//		getDate();
+		getDate();
 	}
 
-//	private void getDate() {
-//		SearchAllThread thread = new SearchAllThread();
-//		thread.start();
-//	}
+	private void getDate() {
+		SearchAllThread thread = new SearchAllThread();
+		thread.start();
+	}
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,12 +87,12 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 
 		initView();
 		
-		lvDeclaration = (ListView)findViewById(R.id.lv_declarationreceive);
+/*		lvDeclaration = (ListView)findViewById(R.id.lv_declarationreceive);
 		declarationAdapter = new MyAdapter(this);//创建一个适配器  
 		 lvDeclaration.setAdapter(declarationAdapter);
-		 mData = getData();
+		 mData = getData();  */
 
-/*		// 获取ListView
+		// 获取ListView
 		// 创建适配器
 		// 第二个参数：list集合中的每一个Map对象对应生成一个列表项
 		// 第三个参数：表明使用listview_declaration.xml文件作为列表项组件
@@ -108,10 +108,10 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 						R.id.tv_declaration_amount, R.id.tv_declaration_profit, R.id.tv_declaration_position,
 						R.id.iv_declaration_sender_head, R.id.tv_declaration_sender_name,
 						R.id.iv_declaration_collect });
-		lvDeclaration.setAdapter(declarationAdapter);*/
+		lvDeclaration.setAdapter(declarationAdapter);
 
 		// listview item点击事件
-/*		lvDeclaration.setOnItemClickListener(new OnItemClickListener() {
+		lvDeclaration.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -120,7 +120,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				intentList.putExtra("senduserid", list.get(position).get("senderId").toString());
 				startActivity(intentList);
 			}
-		});*/
+		});
 	}
 
 	private void initView() {
@@ -151,20 +151,20 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					isCollect = 1;
 					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "只展示收藏报单", Toast.LENGTH_SHORT);
 					toast.show();
-//					getDate();
+					getDate();
 				} else {
 					// 未选中
 					isCollect = 0;
 					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "取消", Toast.LENGTH_SHORT);
 					toast.show();
-//					getDate();
+					getDate();
 				}
 			}
 		});
 	}
 	
 	//适配器
-	public class MyAdapter extends BaseAdapter {  
+/*	public class MyAdapter extends BaseAdapter {  
         private LayoutInflater mInflater;// 动态布局映射  
         public MyAdapter(Context context) {  
             this.mInflater = LayoutInflater.from(context);  
@@ -234,7 +234,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
         	//点击查看发送对象
         	//对应的ID
         	//final Long cid=Long.valueOf(mData.get(position).get("id").toString());
-/*			sendtoText.setOnClickListener(new OnClickListener() {				
+			sendtoText.setOnClickListener(new OnClickListener() {				
 				@Override
 				public void onClick(View arg0) {
 					Intent intent = new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
@@ -243,12 +243,12 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 					intent.putExtra("intentgrouplist", mData.get(position).get("sendtoGroup").toString());
 					startActivity(intent);
 				}
-			});*/
+			});
             return convertView;
 		}  
-    }
+    }  */
 	//获取数据
-	private List<HashMap<String, Object>> getData() {  
+/*	private List<HashMap<String, Object>> getData() {  
         // 新建一个集合类，用于存放多条数据  从数据库中获取数据
         ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();  
         HashMap<String, Object> map = null;  
@@ -266,7 +266,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
         }  
   
         return list;  
-    }  
+    }  */
 
 	// 定义按钮点击事件
 	@Override
@@ -294,7 +294,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		}
 	}
 
-/*	@Override
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (null != intent) {
@@ -432,6 +432,6 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			};
 			handler.post(r);
 		}
-	}*/
+	}
 
 }
