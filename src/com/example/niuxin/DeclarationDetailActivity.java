@@ -322,7 +322,7 @@ public class DeclarationDetailActivity extends Activity {
 				return "只能填写正浮点数,小数不超过两位";
 			}
 			String[] ress = res.split(".");
-			if(null!=ress[2]&&!ress[2].trim().equals("")){
+			if(null!=ress[1]&&!ress[1].trim().equals("")){
 				if(ress[1].length()>1)
 					return "只能填写正浮点数,小数不超过两位";	
 			}
