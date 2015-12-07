@@ -201,7 +201,7 @@ public class DeclarationDetailActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.putExtra("modelText", modelChioced.getText());// 获取合约类型的名称，传递过去
-
+				
 				intent.setClass(DeclarationDetailActivity.this, DeclarationModelChoiceActivity.class);
 				startActivityForResult(intent, 12);
 
@@ -219,6 +219,7 @@ public class DeclarationDetailActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.putExtra("contractText", contractType.getText());// 获取合约类型的名称，传递过去
+				intent.putExtra("selectContractId", selectContractId);
 				intent.setClass(DeclarationDetailActivity.this, DeclarationContactChoiceActivity.class);
 				startActivityForResult(intent, 10);
 				// startActivity(intent);
@@ -291,38 +292,39 @@ public class DeclarationDetailActivity extends Activity {
 		saveButton.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
-				//保存模板后，提示输入模板名称
-				View myView = LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);// 将layout对象转换为VIew对象
-				AlertDialog.Builder builder = new AlertDialog.Builder(DeclarationDetailActivity.this);
-				builder.setTitle("新建模板");
-				builder.setView(myView);
-				modelText = (EditText) myView.findViewById(R.id.et_tag_name);
-				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击确定后的逻辑
-						// 这边要加新建的模板并在listview中新增
-//						AddThread addThread = new AddThread();
-//						addThread.start();
-						Toast.makeText(DeclarationDetailActivity.this, "新建模板成功", Toast.LENGTH_SHORT).show();
-						dialog.dismiss();// 对话框消失
-					}
-				});
-				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击确定后的逻辑
-						// showDialog("你选择了取消");
-						dialog.dismiss();// 对话框消失
-					}
-				});
-				builder.create().show();
-/**************************************************************************/				
+			public void onClick(View arg0) {				
 				String res = check();
 				if (res.equals("true")) {
-					Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模板已保存", Toast.LENGTH_SHORT);
-					toast.show();
-					SaveThread saveThread = new SaveThread(2);
-					saveThread.start();
+					//保存模板后，提示输入模板名称
+					View myView = LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);// 将layout对象转换为VIew对象
+					AlertDialog.Builder builder = new AlertDialog.Builder(DeclarationDetailActivity.this);
+					builder.setTitle("新建模板");
+					builder.setView(myView);
+					modelText = (EditText) myView.findViewById(R.id.et_tag_name);
+					builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							// 这里添加点击确定后的逻辑
+							// 这边要加新建的模板并在listview中新增
+//							AddThread addThread = new AddThread();
+//							addThread.start();
+							Toast.makeText(DeclarationDetailActivity.this, "新建模板成功", Toast.LENGTH_SHORT).show();
+							dialog.dismiss();// 对话框消失
+						}
+					});
+					builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							// 这里添加点击确定后的逻辑
+							// showDialog("你选择了取消");
+							dialog.dismiss();// 对话框消失
+						}
+					});
+					builder.create().show();
+/**************************************************************************/
+					
+//					Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模板已保存", Toast.LENGTH_SHORT);
+//					toast.show();
+//					SaveThread saveThread = new SaveThread(2);
+//					saveThread.start();
 				} else {
 					Toast toast = Toast.makeText(DeclarationDetailActivity.this, res, Toast.LENGTH_SHORT);
 					toast.show();

@@ -142,6 +142,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginRight="10dp">
+            <ImageView 
+                android:id="@+id/iv_detail_model_choice"
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentRight="true"
+	            android:layout_marginRight="15dp"
+	            android:layout_centerHorizontal="true"
+	            android:background="@drawable/decla_lanch_detail_jiantou"/>
 	        <TextView
 	            android:id="@+id/detail_model_choice"
 	            android:layout_width="wrap_content"
@@ -150,13 +158,10 @@
 	            android:layout_alignParentLeft="true"
 	            android:text="模板1"
 	            android:layout_centerInParent="true"
-	            android:textSize="12sp" />
-	        <ImageView android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentRight="true"
-	            android:layout_marginRight="15dp"
-	            android:layout_centerHorizontal="true"
-	            android:background="@drawable/decla_lanch_detail_jiantou"/>
+	            android:textSize="12sp"
+	            android:ellipsize="end"
+	            android:singleLine="true"
+	            android:layout_toLeftOf="@id/iv_detail_model_choice" />
         </RelativeLayout>
     </LinearLayout>
      <View  
@@ -194,6 +199,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginRight="10dp">
+	        <ImageView 
+	            android:id="@+id/iv_detail_contact_show"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentRight="true"
+	            android:layout_centerHorizontal="true"
+	            android:layout_marginRight="15dp"
+	            android:background="@drawable/decla_lanch_detail_jiantou"/>
 	        <TextView
 	            android:id="@+id/detail_contact_show"
 	            android:layout_width="wrap_content"
@@ -201,13 +214,10 @@
 	            android:layout_marginRight="5dp"
 	            android:layout_centerInParent="true"
 	            android:layout_alignParentLeft="true"
-	            android:textSize="12sp" />
-	        <ImageView android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentRight="true"
-	            android:layout_centerHorizontal="true"
-	            android:layout_marginRight="15dp"
-	            android:background="@drawable/decla_lanch_detail_jiantou"/>
+	            android:textSize="12sp"
+	            android:ellipsize="end"
+	            android:singleLine="true"
+	            android:layout_toLeftOf="@id/iv_detail_contact_show" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -311,7 +321,10 @@
 	            android:inputType="numberDecimal"
 	            android:minWidth="60dp"
 	            android:textSize="12sp"
-	            android:maxLength="10"
+	            android:maxLength="9"
+	            android:ellipsize="end"
+	            android:singleLine="true"
+	            android:paddingLeft="@dimen/layout_margin_three"
 	            android:id="@+id/detail_edit_price"/>
         </RelativeLayout>  
     </LinearLayout>
@@ -361,7 +374,10 @@
 	            android:layout_marginRight="3dp"
 	            android:layout_height="wrap_content"
 	            android:inputType="number"
-	            android:maxLength="10"
+	            android:maxLength="6"
+	            android:ellipsize="end"
+	            android:singleLine="true"
+	            android:paddingLeft="@dimen/layout_margin_three"
 	            />
 	        <TextView android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -412,7 +428,10 @@
 	            android:layout_alignParentLeft="true"
 	            android:textSize="12sp"
 	            android:layout_height="wrap_content"
-	            android:maxLength="3"
+	            android:maxLength="5"
+	            android:ellipsize="end"
+	            android:singleLine="true"
+	            android:paddingLeft="@dimen/layout_margin_three"
 	            android:layout_marginRight="3dp"/>
 	        <TextView 
 	            android:layout_alignBaseline="@+id/detail_edit_cangwei"
@@ -461,6 +480,10 @@
                 android:textSize="12sp"
                 android:id="@+id/detail_edit_area1"
                 android:layout_marginRight="2dp"
+                android:maxLength="9"
+	            android:ellipsize="end"
+	            android:singleLine="true"
+	            android:paddingLeft="@dimen/layout_margin_three"
                 android:background="@drawable/decla_baodan_yellow2"/>
             <View  
 		        android:layout_gravity="center"
@@ -478,6 +501,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="numberDecimal"
+                android:maxLength="9"
+	            android:ellipsize="end"
+	            android:singleLine="true"
+	            android:paddingLeft="@dimen/layout_margin_three"
                 android:background="@drawable/decla_baodan_yellow2"/> 
         </LinearLayout>
     </LinearLayout>
@@ -504,7 +531,6 @@
             android:text="备注"/>
         <EditText android:layout_width="0dp"
             android:inputType="text"
-            android:paddingLeft="2dp"
             android:layout_marginTop="3dp"
             android:layout_marginLeft="2dp"
             android:layout_height="25dp"
@@ -514,6 +540,7 @@
             android:hint="请在此处填写备注内容"
             android:maxLength="40"
             android:ellipsize="end"
+            android:paddingLeft="@dimen/layout_margin_three"
             android:background="@drawable/decla_lanch_detail_beizhu"/>
     </LinearLayout>
     
