@@ -98,10 +98,10 @@ public class DeclarationQunzuselectActivity extends Activity {
 						qunzuList.add(id);
 					}
 					MyApplication appQunzu = (MyApplication) getApplication();
-					if (appQunzu.getQunzuList() != null) {
+					if(null!=appQunzu.getQunzuList())
 						appQunzu.getQunzuList().clear();
-					}
 					appQunzu.setQunzuList(qunzuList);
+					
 					if (appQunzu.getSendList() == null) {
 						appQunzu.setSendList(qunzuList);
 					} else {

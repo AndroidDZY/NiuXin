@@ -234,8 +234,10 @@ public class DeclarationDetailActivity extends Activity {
 				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
 				// startActivity(intent);
 				if (purposeChoiced.getText().equals("选择")) {
-					constantStatic.setHaoyouList(null);
-					constantStatic.setQunzuList(null);
+					if(null!=constantStatic.getHaoyouList())
+						constantStatic.getHaoyouList().clear();
+					if(null!=constantStatic.getQunzuList())
+						constantStatic.getQunzuList().clear();
 				}
 				startActivityForResult(intent, 19);
 
@@ -462,7 +464,7 @@ public class DeclarationDetailActivity extends Activity {
 					}
 				}
 			}
-			if (null == listAll) {
+			if (null == listAll||listAll.size()==0) {
 				purposeChoiced.setText("选择");
 			} else {
 				purposeChoiced.setText("已选");

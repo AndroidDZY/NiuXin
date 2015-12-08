@@ -110,10 +110,10 @@ public class DeclarationUserselectActivity extends Activity {
 						haoyouList.add(id);
 					}
 					MyApplication appHaoyou = (MyApplication) getApplication();
-					if (null!=appHaoyou.getHaoyouList()) {
+					if(null!=appHaoyou.getHaoyouList())
 						appHaoyou.getHaoyouList().clear();
-					}
 					appHaoyou.setHaoyouList(haoyouList);
+					
 					if (appHaoyou.getSendList()==null) {
 						appHaoyou.setSendList(haoyouList);
 					}else{

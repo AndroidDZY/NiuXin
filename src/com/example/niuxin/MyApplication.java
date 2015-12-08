@@ -19,11 +19,11 @@ public class MyApplication extends Application {
 	private LinkedList<RecentChatEntity> mRecentList;
 	private RecentChatAdapter mRecentAdapter;
 	private int recentNum = 0;
-    private  List<String> haoyouList;
+    private  List<String> haoyouList = new LinkedList<String>();
 	
-    private  List<String> qunzuList;
+    private  List<String> qunzuList = new LinkedList<String>();
 	
-	private List<String> sendList;
+	private List<String> sendList = new LinkedList<String>();
 	
 	
 	
