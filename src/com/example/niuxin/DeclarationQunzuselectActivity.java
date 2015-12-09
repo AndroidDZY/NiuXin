@@ -2,8 +2,11 @@ package com.example.niuxin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,15 +45,17 @@ public class DeclarationQunzuselectActivity extends Activity {
 	public static HashMap<Integer, Boolean> isSelected = new HashMap<Integer, Boolean>();
 	// private ArrayList<String> list;
 	private List<HashMap<String, Object>> list = new LinkedList<HashMap<String, Object>>();
-	private List<HashMap<String, Object>> beSelectedData = new ArrayList<HashMap<String, Object>>();
-	private QunzuAdapter qunzuAdapter;
+//	private List<HashMap<String, Object>> beSelectedData = new ArrayList<HashMap<String, Object>>();
+	private QunzuAdapter qunzuAdapter = null;
 	GetSource getSource = new GetSource();
 	private SharePreferenceUtil util = null;
-	List<String> qunzuList = new ArrayList<String>();
-	private int checkNum;
+	Set<Integer> qunzuList = new HashSet<Integer>() ;
+//	private int checkNum;
 	MyAdapter adapter;
 	private Handler handler = new Handler();
-	List<String> oldlist;
+	Set<Integer> oldlist;
+	MyApplication appQunzu = null;
+//	int mark = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,24 +70,20 @@ public class DeclarationQunzuselectActivity extends Activity {
 		listView = (ListView) findViewById(R.id.declaration_sendpurpose_qunzu_list);
 		// list=getData();
 		// 初始化isSelected的数据
-
+		appQunzu = (MyApplication) getApplication();
+		oldlist = appQunzu.getQunzuList();
 		isSelected = new HashMap<Integer, Boolean>();
 		adapter = new MyAdapter(this);// 创建一个适配器
-		// qunzuAdapter = new QunzuAdapter(list,this);//创建一个适配器
 		listView.setAdapter(adapter);
 		// 返回
 		backButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				if (qunzuList != null) {
-					Intent intent = new Intent();
-					// intent.putStringArrayListExtra("qunzuList",
-					// (ArrayList<String>) qunzuList);
-					intent.setClass(DeclarationQunzuselectActivity.this, DeclarationDetailActivity.class);
-					setResult(20, intent);
-				}
+				// TODO Auto-generated method stub				
+				Intent intent = new Intent();
+				intent.setClass(DeclarationQunzuselectActivity.this, DeclarationDetailActivity.class);
+				setResult(20, intent);
 				finish();
 			}
 		});
@@ -91,23 +92,7 @@ public class DeclarationQunzuselectActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				if (beSelectedData.size() != 0) {
-					for (int i = 0; i < beSelectedData.size(); i++) {					
-						String id = beSelectedData.get(i).get("id").toString();
-						qunzuList.add(id);
-					}
-					MyApplication appQunzu = (MyApplication) getApplication();
-					if(null!=appQunzu.getQunzuList())
-						appQunzu.getQunzuList().clear();
-					appQunzu.setQunzuList(qunzuList);
-					
-					if (appQunzu.getSendList() == null) {
-						appQunzu.setSendList(qunzuList);
-					} else {
-						appQunzu.getSendList().addAll(qunzuList);
-					}
-				}
+				appQunzu.setQunzuList(qunzuList);
 				Toast toast = Toast.makeText(DeclarationQunzuselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
 				toast.show();
 			}
@@ -116,15 +101,14 @@ public class DeclarationQunzuselectActivity extends Activity {
 		allButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// 遍历list的长度，将MyAdapter中的map值全部设为true
-				for (int i = 0; i < list.size(); i++) {
-					isSelected.put(i, true);
-				}
-				adapter.notifyDataSetChanged();
-				beSelectedData = list;
-				// 数量设为list的长度
-				checkNum = beSelectedData.size();
-				// 刷新listview和TextView的显示
+				if(null!=qunzuList)
+					qunzuList.clear();
+				for(int i=0;i<list.size();i++){
+					if (Integer.valueOf(list.get(i).get("chattype").toString()) == 1){
+						qunzuList.add(Integer.valueOf(list.get(i).get("id").toString()));
+						isSelected.put(i, true);
+					}
+				}			
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -140,16 +124,11 @@ public class DeclarationQunzuselectActivity extends Activity {
 				// 将CheckBox的选中状况记录下来
 				isSelected.put(arg2, holder.cb.isChecked());
 				if (holder.cb.isChecked()) {
-					System.out.println(list.get(arg2));
-					beSelectedData.add(list.get(arg2));
-				}
-
-				// 调整选定条目
-				if (holder.cb.isChecked() == true) {
-					checkNum++;
+					qunzuList.add(Integer.valueOf(( list.get(arg2).get("id").toString())));
 				} else {
-					checkNum--;
+					qunzuList.remove(Integer.valueOf(list.get(arg2).get("id").toString()));
 				}
+			
 			}
 		});
 		TestThread t = new TestThread();
@@ -202,14 +181,11 @@ public class DeclarationQunzuselectActivity extends Activity {
 			}
 			holder.tv.setText(list.get(position).get("qunzuname").toString());
 			holder.im.setBackgroundResource(Integer.valueOf(list.get(position).get("touxiang").toString()));
-			if (null != isSelected){
-				try{
-				//	if(!(isSelected.get(position)))
-						holder.cb.setChecked(isSelected.get(position));
-				}catch(Exception e){
-					
+			if (null != isSelected) {
+				try {
+					holder.cb.setChecked(isSelected.get(position));
+				} catch (Exception e) {
 				}
-				
 			}
 			return convertView;
 		}
@@ -279,8 +255,8 @@ public class DeclarationQunzuselectActivity extends Activity {
 			}
 			list.clear();
 			int j = 0;
-			MyApplication ap = (MyApplication) getApplication();
-			oldlist = ap.getQunzuList();
+			// MyApplication ap = (MyApplication) getApplication();
+		
 			isSelected.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {
 				try {
@@ -298,23 +274,21 @@ public class DeclarationQunzuselectActivity extends Activity {
 					map.put("chattype", chattype);
 					if (chattype == 1) {
 						list.add(map);
-
+						isSelected.put(j, false);
 						if (oldlist != null) {
-							for (int m = 0; m < oldlist.size(); m++) {
-								Integer idold = Integer.valueOf(oldlist.get(m));
+							Iterator<Integer> oldlistiter = oldlist.iterator();
+							while (oldlistiter.hasNext()) {
+								Integer idold = oldlistiter.next();
 								if (idold == id) {
 									isSelected.put(j, true);
+									qunzuList.add(id);
 									break;
-								} else {
-									isSelected.put(j, false);
-								}
+								} 
 							}
-						} else{
-							isSelected.put(j, false);
-						}
+						} 
 						j++;
 					}
-					
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -322,7 +296,6 @@ public class DeclarationQunzuselectActivity extends Activity {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
-
 
 					adapter.notifyDataSetChanged();
 				}

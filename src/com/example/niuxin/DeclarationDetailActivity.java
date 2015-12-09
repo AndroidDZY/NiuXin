@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,9 +70,9 @@ public class DeclarationDetailActivity extends Activity {
 
 	StringBuffer haoyouBuffer = new StringBuffer();// 好友
 	StringBuffer qunzuBuffer = new StringBuffer();// 群组
-	List<String> qunzuList = new LinkedList<String>();
-	List<String> haoyouList = new LinkedList<String>();
-	List<String> listAll = null;
+	Set<Integer> qunzuList = new HashSet<Integer>();
+	Set<Integer> haoyouList = new HashSet<Integer>();
+	//Set<Integer> listAll = null;
 	Integer Templateid = -1;
 	String picturePath = "";
 	MyApplication constantStatic;
@@ -165,30 +168,35 @@ public class DeclarationDetailActivity extends Activity {
 		qunzuList = constantStatic.getQunzuList();// 获取到选择的群组发送目标
 		haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
 		System.out.println(haoyouList + "好友机会");
-		listAll = constantStatic.getSendList();// 相加的名称
+	//	listAll = constantStatic.getSendList();// 相加的名称
 		// 传过来的数据，转换成String，存入到数据库
 		// 循环获取好友ID
 		if (haoyouList != null) {
-			for (int i = 0; i < haoyouList.size(); i++) {
+			int i=0;
+			Iterator<Integer> oldlistiter = haoyouList.iterator();
+			while (oldlistiter.hasNext()) {		
 				if (i == 0) {
-					haoyouBuffer.append(haoyouList.get(i));
+					haoyouBuffer.append(oldlistiter.next());
+					i++;
 				} else {
-					haoyouBuffer.append("," + haoyouList.get(i));
+					haoyouBuffer.append("," + oldlistiter.next());
 				}
 			}
 		}
 		// 循环获取群组id
 		if (qunzuList != null) {
-			for (int i = 0; i < qunzuList.size(); i++) {
+			int i=0;
+			Iterator<Integer> oldlistiter = qunzuList.iterator();
+			while (oldlistiter.hasNext()) {		
 				if (i == 0) {
-					qunzuBuffer.append(qunzuList.get(i));
+					qunzuBuffer.append(oldlistiter.next());
 				} else {
-					qunzuBuffer.append("," + qunzuList.get(i));
+					qunzuBuffer.append("," + oldlistiter.next());
 				}
 			}
 		}
 
-		if (null == listAll) {
+		if (null == haoyouList && null==qunzuList) {
 			purposeChoiced.setText("选择");
 		} else {
 			purposeChoiced.setText("已选");
@@ -237,7 +245,7 @@ public class DeclarationDetailActivity extends Activity {
 					if(null!=constantStatic.getHaoyouList())
 						constantStatic.getHaoyouList().clear();
 					if(null!=constantStatic.getQunzuList())
-						constantStatic.getQunzuList().clear();
+						constantStatic.getQunzuList().clear();					
 				}
 				startActivityForResult(intent, 19);
 
@@ -440,31 +448,32 @@ public class DeclarationDetailActivity extends Activity {
 		if (requestCode == 19) {
 			constantStatic = (MyApplication) getApplication();
 			qunzuList = constantStatic.getQunzuList();// 获取到选择的群组发送目标
-			haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
-			System.out.println(haoyouList + "好友机会");
-			listAll = constantStatic.getSendList();// 相加的名称
-			// 传过来的数据，转换成String，存入到数据库
-			// 循环获取好友ID
+			haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称			
 			if (haoyouList != null) {
-				for (int i = 0; i < haoyouList.size(); i++) {
+				int i=0;
+				Iterator<Integer> oldlistiter = haoyouList.iterator();
+				while (oldlistiter.hasNext()) {		
 					if (i == 0) {
-						haoyouBuffer.append(haoyouList.get(i));
+						haoyouBuffer.append(oldlistiter.next());
+						i++;
 					} else {
-						haoyouBuffer.append("," + haoyouList.get(i));
+						haoyouBuffer.append("," + oldlistiter.next());
 					}
 				}
 			}
 			// 循环获取群组id
 			if (qunzuList != null) {
-				for (int i = 0; i < qunzuList.size(); i++) {
+				int i=0;
+				Iterator<Integer> oldlistiter = qunzuList.iterator();
+				while (oldlistiter.hasNext()) {		
 					if (i == 0) {
-						qunzuBuffer.append(qunzuList.get(i));
+						qunzuBuffer.append(oldlistiter.next());
 					} else {
-						qunzuBuffer.append("," + qunzuList.get(i));
+						qunzuBuffer.append("," + oldlistiter.next());
 					}
 				}
 			}
-			if (null == listAll||listAll.size()==0) {
+			if (null == haoyouList && null==qunzuList) {
 				purposeChoiced.setText("选择");
 			} else {
 				purposeChoiced.setText("已选");
@@ -670,15 +679,31 @@ public class DeclarationDetailActivity extends Activity {
 								editTextArea1.setText(minnum);
 								editTextArea2.setText(maxnum);
 								editTextBeizhu.setText(remark);
-								List<String> hlist = new ArrayList<String>();
-								hlist = java.util.Arrays.asList(sendtouser);
-								constantStatic.setHaoyouList(hlist);
-								List<String> qList = java.util.Arrays.asList(sendtogroup);
-								constantStatic.setQunzuList(qList);	
+							
+								if(null!=sendtouser){
+									if(null==constantStatic.getHaoyouList())
+										constantStatic.getHaoyouList().clear();
+									String[] aa = sendtouser.split(",");
+									for(int m =0;m<aa.length;m++){
+										Integer bb = Integer.valueOf(aa[m]);
+										constantStatic.getHaoyouList().add(bb);
+									}
+								}
+								if(null!=sendtogroup){
+									String[] aa = sendtogroup.split(",");
+									if(null==constantStatic.getQunzuList())
+										constantStatic.getQunzuList().clear();
+									for(int n =0;n<aa.length;n++){
+										Integer bb = Integer.valueOf(aa[n]);
+										constantStatic.getQunzuList().add(bb);
+									}
+								}
+								
+							
 								if(null!=sendtouser&&!sendtouser.equals(""))
 									haoyouBuffer =  new StringBuffer(sendtouser);
 								if(null!=sendtogroup&&!sendtogroup.equals(""))
-								qunzuBuffer = new StringBuffer(sendtogroup);
+									qunzuBuffer = new StringBuffer(sendtogroup);
 								
 								purposeChoiced.setText("已选");
 								pictureurl = picture;

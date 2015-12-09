@@ -2,8 +2,11 @@ package com.example.niuxin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,15 +47,14 @@ public class DeclarationUserselectActivity extends Activity {
 	private List<HashMap<String, Object>> list = new LinkedList<HashMap<String, Object>>();
 	private HaoyouAdapter haoyouAdapter;
 	public static HashMap<Integer, Boolean> isSelected = new HashMap<Integer, Boolean>();
-	private List<HashMap<String, Object>> beSelectedData = new ArrayList<HashMap<String, Object>>();
-	private int checkNum;
 	private Handler handler = new Handler();
 	EditText text = null;
-	List<String> haoyouList = new ArrayList<String>();
+	Set<Integer> haoyouList = new HashSet<Integer>();
 	GetSource getSource = new GetSource();
 	private SharePreferenceUtil util = null;
 	MyAdapter adapter;
-	List<String> oldlist = null;
+	Set<Integer> oldlist = null;
+	MyApplication appHaoyou = null;
 
 	@SuppressLint("UseSparseArrays")
 	@Override
@@ -68,68 +70,48 @@ public class DeclarationUserselectActivity extends Activity {
 		listView = (ListView) findViewById(R.id.declaration_sendpurpose_haoyou_list);		
 		adapter = new MyAdapter(this);// 创建一个适配器
 		listView.setAdapter(adapter);
-
+		appHaoyou = (MyApplication) getApplication();
+		//haoyouList = appHaoyou.getHaoyouList();
+		oldlist = appHaoyou.getHaoyouList();	
 		backButton.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				if (haoyouList != null) {
-					Intent intent = new Intent();					
-					intent.setClass(DeclarationUserselectActivity.this, DeclarationDetailActivity.class);
-					setResult(20,intent);
-				}
+			public void onClick(View arg0) {				
+				
+				Intent intent = new Intent();					
+				intent.setClass(DeclarationUserselectActivity.this, DeclarationDetailActivity.class);
+				setResult(20,intent);
+			
 				finish();
 			}
 		});
 		// 全选按钮的回调接口
 		allButton.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) {
-				// 遍历list的长度，将MyAdapter中的map值全部设为true
-				for (int i = 0; i < list.size(); i++) {
-					isSelected.put(i, true);
+			public void onClick(View v) {			
+				if(null!=haoyouList)
+					haoyouList.clear();
+				for(int i=0;i<list.size();i++){
+					if (Integer.valueOf(list.get(i).get("chattype").toString()) == 2){
+						haoyouList.add(Integer.valueOf(list.get(i).get("id").toString()));
+						isSelected.put(i, true);
+					}
 				}
-				
-			////////////////////////////有问题/////////////////////////////////////////////////////////////
-				beSelectedData = list;
-
-				// 数量设为list的长度
-				
-				checkNum = beSelectedData.size();	
 				adapter.notifyDataSetChanged();
 			}
 		});
 		// 保存按钮，在保存按钮中把数据传到全局变量中
 		saveButton.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View arg0) {
-				/////////////////////////////有问题///////////////////////////////////
-				if (beSelectedData.size() != 0) {
-					for (int i = 0; i < beSelectedData.size(); i++) {
-						String id=beSelectedData.get(i).get("id").toString();//把这里换成获取id，11.28改动
-						haoyouList.add(id);
-					}
-					MyApplication appHaoyou = (MyApplication) getApplication();
-					if(null!=appHaoyou.getHaoyouList())
-						appHaoyou.getHaoyouList().clear();
-					appHaoyou.setHaoyouList(haoyouList);
-					
-					if (appHaoyou.getSendList()==null) {
-						appHaoyou.setSendList(haoyouList);
-					}else{
-						appHaoyou.getSendList().addAll(haoyouList);
-					}
-				}
+			public void onClick(View arg0) {		
+				appHaoyou.setHaoyouList(haoyouList);
 				Toast toast = Toast.makeText(DeclarationUserselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
 		// listview item点击监听
 		listView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				///////////////////////////////////////////////修改此函数
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {				
 				// 取得ViewHolder对象，这样就省去了通过层层的findViewById去实例化我们需要的cb实例的步骤
 				ViewHolder holder = (ViewHolder) arg1.getTag();
 				// 改变CheckBox的状态
@@ -139,12 +121,9 @@ public class DeclarationUserselectActivity extends Activity {
 				adapter.notifyDataSetChanged();
 				// 调整选定条目
 				if (holder.cb.isChecked()) {					
-					beSelectedData.add(list.get(arg2));
-				}
-				if (holder.cb.isChecked() == true) {
-					checkNum++;
-				} else {
-					checkNum--;
+					haoyouList.add(Integer.valueOf((String)list.get(arg2).get("id").toString()));
+				}else{
+					haoyouList.remove(Integer.valueOf((String)list.get(arg2).get("id").toString()));				
 				}
 			}
 		});
@@ -200,10 +179,8 @@ public class DeclarationUserselectActivity extends Activity {
 			holder.tv.setText(list.get(position).get("username").toString());
 			holder.im.setBackgroundResource(Integer.valueOf(list.get(position).get("touxiang").toString()));
 			if (null != isSelected){
-				try{
-					//if(!(isSelected.get(position)))
-					///////////////////////////////////////////////////////////////////////////////////
-						holder.cb.setChecked(isSelected.get(position));
+				try{				
+					holder.cb.setChecked(isSelected.get(position));
 				}catch(Exception e){
 					
 				}
@@ -213,23 +190,7 @@ public class DeclarationUserselectActivity extends Activity {
 		}
 	}
 
-	// 获取数据
-	private List<HashMap<String, Object>> getData() {
-		// 新建一个集合类，用于存放多条数据 从数据库中获取数据
-		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
-		HashMap<String, Object> map = null;
-
-		for (int i = 1; i <= 3; i++) {
-			map = new HashMap<String, Object>();
-			map.put("touxiang", R.drawable.detail_content_touxiang); // r.drawable
-			map.put("username", "好友" + i);
-			map.put("id", i);
-			list.add(map);
-		}
-
-		return list;
-	}
-
+	
 	public static class ViewHolder {
 		TextView tv;
 		ImageView im;
@@ -278,8 +239,8 @@ public class DeclarationUserselectActivity extends Activity {
 			}
 			list.clear();
 			int j =0;
-			MyApplication ap = (MyApplication) getApplication();
-			 oldlist = ap.getHaoyouList();	
+			
+			 
 			 isSelected.clear();
 			for (int i = 0; i < jsonArray.length(); i++) {
 				try {
@@ -295,21 +256,20 @@ public class DeclarationUserselectActivity extends Activity {
 					map.put("username", title);
 					map.put("id", id);
 					map.put("chattype", chattype);
-
+					
 					if (chattype == 2) {
-						list.add(map);						
+						list.add(map);	
+						isSelected.put(j, false);
 						if (oldlist!=null) {
-							for (int m = 0; m < oldlist.size(); m++) {							
-								Integer haoyouId=Integer.valueOf(oldlist.get(m).toString());//获取id，如果id相等则为选中状态
+							Iterator<Integer> oldlistiter = oldlist.iterator();
+							while (oldlistiter.hasNext()) {							
+								Integer haoyouId= oldlistiter.next();  
 								if (haoyouId==id) {
 									isSelected.put(j, true);
+									haoyouList.add(id);
 									break;
-								}else{
-									isSelected.put(j, false);
 								}
 							}
-						}else{
-							isSelected.put(j, false);
 						}
 						j++;
 					}
