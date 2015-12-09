@@ -149,28 +149,11 @@ public class DeclarationDetailActivity extends Activity {
 		editTextArea2.setText(text);
 		editTextArea2.setSelection(text.length());
 		contractType.setText("未选");
-		/*
-		 * Map<String, Object> map=new HashMap<String, Object>();
-		 * map.put("name", modelChioced);//模板名称 map.put("contract",
-		 * contractType);//合约类型 map.put("operation", spinnerOperateType);//操作类型
-		 * map.put("price", editTextPrice);//价格 map.put("handnum",
-		 * editTextShoushu);//手数 map.put("position", editTextCangwei);//仓位
-		 * map.put("minnum", editTextArea1);//范围小 map.put("maxnum",
-		 * editTextArea2);//范围大 map.put("remark", editTextBeizhu);//备注
-		 * list.add(map);
-		 */
-		// map.put("", imageView);//配图
-		// \\
-		// * 根据模板的名称查询数据库中的数据。11.28号改动
-
-		// if (null != constantStatic) {
+		
 		constantStatic = (MyApplication) getApplication();
 		qunzuList = constantStatic.getQunzuList();// 获取到选择的群组发送目标
 		haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
-		System.out.println(haoyouList + "好友机会");
-	//	listAll = constantStatic.getSendList();// 相加的名称
-		// 传过来的数据，转换成String，存入到数据库
-		// 循环获取好友ID
+
 		if (haoyouList != null) {
 			int i=0;
 			Iterator<Integer> oldlistiter = haoyouList.iterator();
@@ -203,20 +186,15 @@ public class DeclarationDetailActivity extends Activity {
 		}
 
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
-
+			//模版选择界面跳转
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.putExtra("modelText", modelChioced.getText());// 获取合约类型的名称，传递过去
+				intent.putExtra("modelText", modelChioced.getText());
 				
 				intent.setClass(DeclarationDetailActivity.this, DeclarationModelChoiceActivity.class);
 				startActivityForResult(intent, 12);
-
-				/*
-				 * Intent intent=new Intent(DeclarationDetailActivity.this,
-				 * DeclarationModelChoiceActivity.class); startActivity(intent);
-				 */
 			}
 		});
 		// 合约类型选择界面跳转
@@ -229,8 +207,7 @@ public class DeclarationDetailActivity extends Activity {
 				intent.putExtra("contractText", contractType.getText());// 获取合约类型的名称，传递过去
 				intent.putExtra("selectContractId", selectContractId);
 				intent.setClass(DeclarationDetailActivity.this, DeclarationContactChoiceActivity.class);
-				startActivityForResult(intent, 10);
-				// startActivity(intent);
+				startActivityForResult(intent, 10);				
 			}
 		});
 		// 发送目标选择
@@ -238,9 +215,7 @@ public class DeclarationDetailActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
-				// startActivity(intent);
 				if (purposeChoiced.getText().equals("选择")) {
 					if(null!=constantStatic.getHaoyouList())
 						constantStatic.getHaoyouList().clear();
@@ -255,9 +230,7 @@ public class DeclarationDetailActivity extends Activity {
 		picchoice.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-
+			public void onClick(View arg0) {				
 				Intent intent = new Intent(Intent.ACTION_PICK,
 						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 				startActivityForResult(intent, 16);
@@ -268,13 +241,7 @@ public class DeclarationDetailActivity extends Activity {
 		backButton.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				/*
-				 * Intent intent = new Intent();
-				 * intent.setClass(DeclarationDetailActivity.this,
-				 * DeclarationLaunchActivity.class); startActivity(intent);
-				 */
+			public void onClick(View arg0) {				
 				finish();
 			}
 		});
@@ -284,9 +251,7 @@ public class DeclarationDetailActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				String res = check();
-				if (res.equals("true")) {
-					// TODO Auto-generated method stub
-					// 获取数据，发送
+				if (res.equals("true")) {				
 					SaveThread saveThread = new SaveThread(1);
 					saveThread.start();
 					Toast toast = Toast.makeText(DeclarationDetailActivity.this, "发送成功", Toast.LENGTH_SHORT);
@@ -313,12 +278,21 @@ public class DeclarationDetailActivity extends Activity {
 					modelText = (EditText) myView.findViewById(R.id.et_tag_name);
 					builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int whichButton) {
-							// 这里添加点击确定后的逻辑
-							// 这边要加新建的模板并在listview中新增
-//							AddThread addThread = new AddThread();
-//							addThread.start();
-							Toast.makeText(DeclarationDetailActivity.this, "新建模板成功", Toast.LENGTH_SHORT).show();
-							dialog.dismiss();// 对话框消失
+							
+							if(null==modelText.getText()||null==modelText.getText().toString()||(modelText.getText().toString().trim().equals(""))){
+								Toast toast = Toast.makeText(DeclarationDetailActivity.this, "未填写模版名称", Toast.LENGTH_SHORT);
+								toast.show();
+								return;
+							}	
+							if(modelText.getText().toString().trim().length()>9){
+								Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模版名称长度不能大于10个字符", Toast.LENGTH_SHORT);
+								toast.show();
+								return;
+							}
+							Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模板已保存", Toast.LENGTH_SHORT);
+							toast.show();
+							SaveThread saveThread = new SaveThread(2);
+							saveThread.start();
 						}
 					});
 					builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -329,12 +303,6 @@ public class DeclarationDetailActivity extends Activity {
 						}
 					});
 					builder.create().show();
-/**************************************************************************/
-					
-//					Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模板已保存", Toast.LENGTH_SHORT);
-//					toast.show();
-//					SaveThread saveThread = new SaveThread(2);
-//					saveThread.start();
 				} else {
 					Toast toast = Toast.makeText(DeclarationDetailActivity.this, res, Toast.LENGTH_SHORT);
 					toast.show();
@@ -579,16 +547,14 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("minnum", editTextArea1.getText());// 范围小
 				jsonObject.put("maxnum", editTextArea2.getText());// 范围大
 				jsonObject.put("remark", editTextBeizhu.getText());// 备注
+				jsonObject.put("name", modelText.getText());				
 				jsonObject.put("sendfrom", util.getId());
 				jsonObject.put("pictureurl", pictureurl);
 				jsonObject.put("audiourl", "/pp/video.avi");
 				jsonObject.put("type", type);
 				jsonObject.put("sendtouser", haoyouBuffer.toString());// 改成string把id存入到数据库中
 				jsonObject.put("sendtogroup", qunzuBuffer.toString());// 改成string存入到数据库中
-				// jsonObject.put("sendtouser", haoyouBuffer.toString());//
-				// 改成string把id存入到数据库中
-				// jsonObject.put("sendtogroup", qunzuBuffer.toString());//
-				// 改成string存入到数据库中
+				
 				jArray.put(jsonObject);
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -667,9 +633,7 @@ public class DeclarationDetailActivity extends Activity {
 								String sendtouser = myjObject.getString("sendtoUser");// 用户id
 								String sendtogroup = myjObject.getString("sendtoGroup");// 群组id
 								String picture = myjObject.getString("pictureurl");// 群组id
-							
-								
-								
+
 								contractType.setText(contract);
 								selectContractId = contractid;
 								operateType = operation;
@@ -698,8 +662,6 @@ public class DeclarationDetailActivity extends Activity {
 										constantStatic.getQunzuList().add(bb);
 									}
 								}
-								
-							
 								if(null!=sendtouser&&!sendtouser.equals(""))
 									haoyouBuffer =  new StringBuffer(sendtouser);
 								if(null!=sendtogroup&&!sendtogroup.equals(""))

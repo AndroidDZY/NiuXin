@@ -79,35 +79,26 @@ public class DeclarationModelChoiceActivity extends Activity {
 		buttonBack = (Button) findViewById(R.id.declaration_button_back);
 		// 保存按钮
 		saveButton = (Button) findViewById(R.id.declaration_button_save);
-//		addImageButton = (ImageButton) findViewById(R.id.declaration_imageview_add);
 		if (beSelectedData.size() > 0) {
 			beSelectedData.clear();
 		}
-
-		// mData = getData();
 		init();
 		adapter = new MyAdapter(this);// 创建一个适配器
 		listView = (ListView) findViewById(R.id.declaration_list_modelchoice);
 		listView.setAdapter(adapter);
 		// 模板选中监听
 		listView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				
-				// TODO Auto-generated method stub
 				if(mData!=null)
 					for (int i = 0; i < mData.size(); i++) {
 						isSelected.put(i, false);
 					}
 				beSelectedData.clear();
-				selectedid = -1;
-				// beSelectedData.clear();
-				System.out.println(beSelectedData + "111111111111111");
+				selectedid = -1;				
 				ViewHolder holder = (ViewHolder) arg1.getTag();
 				holder.checkBox.toggle();
 				isSelected.put(arg2, holder.checkBox.isChecked());
-				System.out.println(isSelected + "hao123" + arg2);
 				adapter.notifyDataSetChanged();
 				if (holder.checkBox.isChecked()) {
 					beSelectedData.add(mData.get(arg2));
@@ -135,11 +126,8 @@ public class DeclarationModelChoiceActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				// 获取数据保存到数据库
 				if (beSelectedData.size() != 0) {
-					// 点击保存获取到相关数据
-					System.out.println(beSelectedData);
 					Map<String, Object> map = beSelectedData.get(0);
 					Object contractType = map.get("modeltext");
 					text1 = contractType.toString();
@@ -148,42 +136,6 @@ public class DeclarationModelChoiceActivity extends Activity {
 				toast.show();
 			}
 		});
-		// 添加模板按钮
-/*		addImageButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				addModel();
-			}
-
-			private void addModel() {
-				// TODO Auto-generated method stub
-				View myView = LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);// 将layout对象转换为VIew对象
-				AlertDialog.Builder builder = new AlertDialog.Builder(DeclarationModelChoiceActivity.this);
-				builder.setTitle("新建模板");
-				builder.setView(myView);
-				text = (EditText) myView.findViewById(R.id.et_tag_name);
-				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击确定后的逻辑
-						// 这边要加新建的模板并在listview中新增
-						AddThread addThread = new AddThread();
-						addThread.start();
-						Toast.makeText(DeclarationModelChoiceActivity.this, "新建模板成功", Toast.LENGTH_SHORT).show();
-						dialog.dismiss();// 对话框消失
-					}
-				});
-				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// 这里添加点击确定后的逻辑
-						// showDialog("你选择了取消");
-						dialog.dismiss();// 对话框消失
-					}
-				});
-				builder.create().show();
-			}
-		});  */
 	}
 
 	// 初始化设置所有checkbox都为未选择
@@ -277,6 +229,17 @@ public class DeclarationModelChoiceActivity extends Activity {
 						public void onClick(DialogInterface dialog, int whichButton) {
 							// 这里添加点击确定后的逻辑
 							// 这边要加改变模板的名字
+							if(null==text.getText()||null==text.getText().toString()||text.getText().toString().trim().equals("")){
+								Toast toast = Toast.makeText(DeclarationModelChoiceActivity.this, "未填写模版名称", Toast.LENGTH_SHORT);
+								toast.show();
+								return;
+							}	
+							if(text.getText().toString().trim().length()>9){
+								Toast toast = Toast.makeText(DeclarationModelChoiceActivity.this, "模版名称长度不能大于10个字符", Toast.LENGTH_SHORT);
+								toast.show();
+								return;
+							}
+							
 							String mText = text.getText().toString();// 获取编辑内容
 							modelText.setText(mText);// 改编辑内容为编辑的内容
 							modelChange = modelText.getText().toString();
@@ -312,6 +275,14 @@ public class DeclarationModelChoiceActivity extends Activity {
 					builder.setMessage("确定要删除该模板吗？");
 					builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int whichButton) {
+							
+							if(position==0){
+								Toast toast = Toast.makeText(DeclarationModelChoiceActivity.this, "该选项无法删除",
+										Toast.LENGTH_SHORT);
+								toast.show();
+								return;
+							}
+							
 							mData.remove(position);
 							deleteid = position;
 							MyAdapter.this.notifyDataSetChanged();
@@ -414,11 +385,9 @@ public class DeclarationModelChoiceActivity extends Activity {
 		public void run() {
 			// 新建工具类，向服务器发送Http请求
 			HttpPostUtil postUtil = new HttpPostUtil();
-
 			// 向服务器发送数据，如果没有，可以不发送
 			JSONObject jsonObject = new JSONObject();
 			try {
-
 				Integer id = util.getId();
 				jsonObject.put("id", id);
 			} catch (JSONException e) {

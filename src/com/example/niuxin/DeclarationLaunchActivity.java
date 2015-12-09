@@ -101,9 +101,7 @@ public class DeclarationLaunchActivity extends Activity{
 		iDeclarationDetail.setOnClickListener(new OnClickListener() {
 			
 			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("1111111111111");
+			public void onClick(View arg0) {			
 				Intent intent =new Intent(DeclarationLaunchActivity.this ,DeclarationDetailActivity.class);
 				startActivity(intent);
 			}
@@ -114,7 +112,6 @@ public class DeclarationLaunchActivity extends Activity{
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
