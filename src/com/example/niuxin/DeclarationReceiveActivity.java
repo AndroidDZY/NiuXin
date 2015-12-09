@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
@@ -63,7 +64,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	String sendtouseridlistName = "全选";
 	private TextView contractNameText;
 	private TextView sendtouserText;
-
+	MyAdapter adapter = null ;
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -108,7 +109,8 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 						R.id.tv_declaration_amount, R.id.tv_declaration_profit, R.id.tv_declaration_position,
 						R.id.iv_declaration_sender_head, R.id.tv_declaration_sender_name,
 						R.id.iv_declaration_collect });
-		lvDeclaration.setAdapter(declarationAdapter);
+		adapter = new MyAdapter(this);//创建一个适配器  
+		lvDeclaration.setAdapter(adapter);
 
 		// listview item点击事件
 		lvDeclaration.setOnItemClickListener(new OnItemClickListener() {
@@ -164,7 +166,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 	}
 	
 	//适配器
-/*	public class MyAdapter extends BaseAdapter {  
+	public class MyAdapter extends BaseAdapter {  
         private LayoutInflater mInflater;// 动态布局映射  
         public MyAdapter(Context context) {  
             this.mInflater = LayoutInflater.from(context);  
@@ -173,8 +175,8 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
         // 决定ListView有几行可见  
         @Override  
         public int getCount() {  
-        	if(null!=mData)
-        		return mData.size();// ListView的条目数  
+        	if(null!=list)
+        		return list.size();// ListView的条目数  
         	else
         		return 0;
         }  
@@ -188,65 +190,87 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
         public long getItemId(int arg0) {  
             return 0;  
         }  
-        
+        /*
+         * adapter改动 ，点击adapter获取选中效果
+         * */
         //获取listview视图对象 
         @Override
 		public View getView(final int position, View convertView, ViewGroup arg2) {
 			// TODO Auto-generated method stub
-      
         	convertView = mInflater.inflate(R.layout.listview_get_declaration, null);//根据布局文件实例化view 
         	//合约
         	TextView tagText=(TextView) convertView.findViewById(R.id.tv_declaration_contract_get);
-        	tagText.setText(mData.get(position).get("contract").toString());
+        	tagText.setText(list.get(position).get("contract").toString());
         	//日期
         	TextView dateText=(TextView) convertView.findViewById(R.id.tv_declaration_date_get);
-        	dateText.setText(mData.get(position).get("date").toString());
-        	//星期
-        	//TextView weekText=(TextView) convertView.findViewById(R.id.tv_declaration_week_get);
-        	//timeText.setText(mData.get(position).get("timeText").toString());
-        	//时间
+        	dateText.setText(list.get(position).get("date").toString());
+        	/*//星期
+        	TextView weekdateText=(TextView) convertView.findViewById(R.id.tv_declaration_week);
+        	weekdateText.setText(list.get(position).get("week").toString());
+        	*///时间
         	TextView timeText=(TextView) convertView.findViewById(R.id.tv_declaration_time_get);
-        	timeText.setText(mData.get(position).get("time").toString());
+        	timeText.setText(list.get(position).get("time").toString());
         	//操作类型
         	TextView typeButton=(TextView) convertView.findViewById(R.id.tv_declaration_operation_type_get);
-        	typeButton.setText(mData.get(position).get("operation").toString());
+        	typeButton.setText(list.get(position).get("operation").toString());
         	//价格
         	TextView priceText=(TextView) convertView.findViewById(R.id.tv_declaration_cost_get);
-        	priceText.setText(mData.get(position).get("price").toString());
+        	priceText.setText(list.get(position).get("price").toString());
         	//手数
         	TextView handText=(TextView) convertView.findViewById(R.id.tv_declaration_amount_get);
-        	handText.setText(mData.get(position).get("handnum").toString());
+        	handText.setText(list.get(position).get("handnum").toString());
         	//盈利
         	TextView gainText=(TextView) convertView.findViewById(R.id.tv_declaration_profit_get);
-        	gainText.setText(mData.get(position).get("gainText").toString());
+        	gainText.setText(list.get(position).get("profit").toString());
         	//仓位
         	TextView spaceText=(TextView) convertView.findViewById(R.id.tv_declaration_position_get);
-        	spaceText.setText(mData.get(position).get("position").toString());
+        	spaceText.setText(list.get(position).get("position").toString());
         	//发送者名字
-        	TextView senderText=(TextView)convertView.findViewById(R.id.tv_declaration_sender_name);
-        	senderText.setText(mData.get(position).get("senderName").toString());
+        	TextView senderText=(TextView)convertView.findViewById(R.id.tv_declaration_sender_name_get);
+        	senderText.setText(list.get(position).get("senderName").toString());
         	//发送者头像
-        	ImageView senderHead=(ImageView)convertView.findViewById(R.id.iv_declaration_sender_head);
-//        	senderHead.setText(mData.get(position).get("senderHead").toString());
+        	ImageView senderHead=(ImageView)convertView.findViewById(R.id.iv_declaration_sender_head_get);
+        	senderHead.setBackgroundResource(Integer.valueOf(list.get(position).get("senderHead").toString()));
         	//是否收藏该报单标志
-        	ImageView collection=(ImageView)convertView.findViewById(R.id.iv_declaration_collect);
-        	
+        	final CheckBox isCollect=(CheckBox)convertView.findViewById(R.id.iv_declaration_collect_ck);
+        	isCollect.setBackgroundResource(Integer.valueOf(list.get(position).get("isCollect").toString()));
+        	int i=R.drawable.ic_declaration_star_pressed;
+        	//int j=R.drawable.ic_declaration_star_unpressed;
+        	if (Integer.valueOf(list.get(position).get("isCollect").toString())==i) {
+				isCollect.isChecked();
+			}
+        	isCollect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
+				@Override
+				public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+					// TODO Auto-generated method stub
+					if (arg1) {
+						isCollect.setBackgroundResource(R.drawable.ic_declaration_star_pressed);
+						//这里向数据库更新数据 ，选中状态收藏成功
+						
+						Toast.makeText(DeclarationReceiveActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+					}else {
+						isCollect.setBackgroundResource(R.drawable.ic_declaration_star_unpressed);
+					}
+				}
+			});
+        	/*collection.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					collection.toggle();
+					if (collection.isChecked()) {
+						collection.setBackgroundResource(R.drawable.ic_declaration_star_pressed);
+					}
+				}
+			});*/
         	//点击查看发送对象
         	//对应的ID
         	//final Long cid=Long.valueOf(mData.get(position).get("id").toString());
-			sendtoText.setOnClickListener(new OnClickListener() {				
-				@Override
-				public void onClick(View arg0) {
-					Intent intent = new Intent(DeclarationLaunchActivity.this ,DeclarationSendtargetchoicedActivity.class);//查看发送目标
-
-					intent.putExtra("intentuserlist", mData.get(position).get("sendtoUser").toString());
-					intent.putExtra("intentgrouplist", mData.get(position).get("sendtoGroup").toString());
-					startActivity(intent);
-				}
-			});
-            return convertView;
+			return convertView;
 		}  
-    }  */
+    }  
 	//获取数据
 /*	private List<HashMap<String, Object>> getData() {  
         // 新建一个集合类，用于存放多条数据  从数据库中获取数据
