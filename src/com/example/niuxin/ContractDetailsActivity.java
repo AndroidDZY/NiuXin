@@ -45,6 +45,7 @@ public class ContractDetailsActivity extends Activity {
 	private SharePreferenceUtil util = null;
 	String contract, operation, price, handnum, position, minnum, maxnum, remark, senduserimg;
 	Integer isFollow, isShield;
+	int mark=0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,7 @@ public class ContractDetailsActivity extends Activity {
 		togBtnCollect = (ToggleButton) findViewById(R.id.tog_btn_collect); // “收藏该报单者”按钮
 		togBtnShield = (ToggleButton) findViewById(R.id.tog_btn_shield); // “屏蔽该报单者”按钮
 		btnBack = (Button) findViewById(R.id.btn_contract_details_back); // “返回”按钮
+	
 		// 收藏报单者切换按钮
 		togBtnCollect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
@@ -104,10 +106,13 @@ public class ContractDetailsActivity extends Activity {
 				// TODO Auto-generated method stub
 				if (isChecked) {
 					// 选中
-					Toast toast = Toast.makeText(ContractDetailsActivity.this, "收藏了该报单者", Toast.LENGTH_SHORT);
-					toast.show();
-					FollowThread t = new FollowThread(1);
-					t.start();
+					if(mark!=-1){
+						Toast toast = Toast.makeText(ContractDetailsActivity.this, "收藏了该报单者", Toast.LENGTH_SHORT);
+						toast.show();
+						FollowThread t = new FollowThread(1);
+						t.start();
+					}
+					mark++;
 				} else {
 					// 未选中
 					Toast toast = Toast.makeText(ContractDetailsActivity.this, "取消收藏", Toast.LENGTH_SHORT);
@@ -397,11 +402,9 @@ public class ContractDetailsActivity extends Activity {
 					tvRemark.setText(remark);// 备注
 					// ivSenderHead.setImageResource(getSource.getResourceByReflect(senduserimg));//配图
 					ivPictureUrl.setImageResource(getSource.getResourceByReflect(senduserimg));// 头像
-
 					if (isFollow == 1) {
-						// 选中
-						Toast toast = Toast.makeText(ContractDetailsActivity.this, "", Toast.LENGTH_SHORT);
-						toast.show();
+						mark=-1;
+						togBtnCollect.setChecked(true);
 					}
 				}
 			};
