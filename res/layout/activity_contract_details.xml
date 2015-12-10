@@ -286,8 +286,9 @@
                 android:id="@+id/iv_contract_details_pictureurl"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_declaration_map"/>
+                android:layout_marginLeft="20dp" />
+              <!--  android:src="@drawable/ic_declaration_map" /> --> 
+               
         </LinearLayout>
         <Button 
             android:layout_width="match_parent"

@@ -270,51 +270,7 @@ public class ContractDetailsActivity extends Activity {
 		}
 	}
 
-	// 是否收藏报单
-	class CollectionThread extends Thread {
-		private Integer formid;
-		private Integer iscollection;
-
-		public CollectionThread(Integer formid, Integer iscollection) {
-			this.formid = formid;
-			this.iscollection = iscollection;
-		}
-
-		@Override
-		public void run() {
-			// 新建工具类，向服务器发送Http请求
-			HttpPostUtil postUtil = new HttpPostUtil();
-
-			// 向服务器发送数据，如果没有，可以不发送
-			JSONObject jsonObject = new JSONObject();
-			// 获取发送报单的id
-
-			try {
-				jsonObject.put("formid", formid);
-				jsonObject.put("iscollection", iscollection); // 1收藏 0不收藏
-
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			// 设置发送的url 和服务器端的struts.xml文件对应
-			postUtil.setUrl("/form/form_collectionForm.do");
-			// 向服务器发送数据
-			JSONArray js = new JSONArray();
-			js.put(jsonObject);
-			postUtil.setRequest(js);
-			// 从服务器获取数据
-			String res = postUtil.run();
-
-			Runnable r = new Runnable() {
-				@Override
-				public void run() {
-				}
-			};
-			handler.post(r);
-		}
-
-	}
-
+	
 	// 根据ID查看报单详细内容 ，真数据的时候调用下面的线程
 	class GroupThread extends Thread {
 		@Override
@@ -400,8 +356,8 @@ public class ContractDetailsActivity extends Activity {
 					tvMinnum.setText(minnum);
 					tvMaxnum.setText(maxnum);
 					tvRemark.setText(remark);// 备注
-					// ivSenderHead.setImageResource(getSource.getResourceByReflect(senduserimg));//配图
-					ivPictureUrl.setImageResource(getSource.getResourceByReflect(senduserimg));// 头像
+					 ivSenderHead.setImageResource(getSource.getResourceByReflect(senduserimg));//配图
+					//ivPictureUrl.setImageResource(getSource.getResourceByReflect(senduserimg));// 头像
 					if (isFollow == 1) {
 						mark=-1;
 						togBtnCollect.setChecked(true);

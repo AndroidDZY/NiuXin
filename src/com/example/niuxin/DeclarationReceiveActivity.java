@@ -234,63 +234,52 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
         	//是否收藏该报单标志
         	final CheckBox isCollect=(CheckBox)convertView.findViewById(R.id.iv_declaration_collect_ck);
         	isCollect.setBackgroundResource(Integer.valueOf(list.get(position).get("isCollect").toString()));
-        	int i=R.drawable.ic_declaration_star_pressed;
-        	//int j=R.drawable.ic_declaration_star_unpressed;
-        	if (Integer.valueOf(list.get(position).get("isCollect").toString())==i) {
-				isCollect.isChecked();
-			}
+        	
         	isCollect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				
 				@Override
 				public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-					// TODO Auto-generated method stub
-					if (arg1) {
+					int aa = Integer.valueOf(list.get(position).get("isCollect").toString());
+					Boolean currentstatus =( Integer.valueOf(list.get(position).get("isCollect").toString())==R.drawable.ic_declaration_star_pressed);
+					Boolean choicestatus = isCollect.isChecked();
+					
+					if (currentstatus==true&&choicestatus==true) {//如果现在是选择的状态并且将要选中的状态也是选中 则取消收藏
+		        		isCollect.setBackgroundResource(R.drawable.ic_declaration_star_unpressed);
+						CollectionThread c =  new CollectionThread(Integer.valueOf(list.get(position).get("id").toString()),0);
+						c.start();
+						list.get(position).put("isCollect",R.drawable.ic_declaration_star_unpressed) ;
+						Toast.makeText(DeclarationReceiveActivity.this, "取消收藏成功", Toast.LENGTH_SHORT).show();
+						return ;
+					}
+					if(currentstatus==false&&choicestatus==false) {//如果现在是未选择的状态并且将要选中的状态也是未选中 则收藏
+		        		isCollect.setBackgroundResource(R.drawable.ic_declaration_star_pressed);
+						CollectionThread c =  new CollectionThread(Integer.valueOf(list.get(position).get("id").toString()),1);
+						c.start();
+						list.get(position).put("isCollect",R.drawable.ic_declaration_star_pressed) ;
+						Toast.makeText(DeclarationReceiveActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+						return ;
+					}
+					if(choicestatus){//如果已经收藏了，就取消收藏
 						isCollect.setBackgroundResource(R.drawable.ic_declaration_star_pressed);
 						//这里向数据库更新数据 ，选中状态收藏成功
-						
+						CollectionThread c =  new CollectionThread(Integer.valueOf(list.get(position).get("id").toString()),1);
+						c.start();
+						list.get(position).put("isCollect",R.drawable.ic_declaration_star_pressed) ;
 						Toast.makeText(DeclarationReceiveActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
-					}else {
+						return;
+					}else{
 						isCollect.setBackgroundResource(R.drawable.ic_declaration_star_unpressed);
+						CollectionThread c =  new CollectionThread(Integer.valueOf(list.get(position).get("id").toString()),0);
+						c.start();
+						list.get(position).put("isCollect",R.drawable.ic_declaration_star_unpressed) ;
+						Toast.makeText(DeclarationReceiveActivity.this, "取消收藏成功", Toast.LENGTH_SHORT).show();
+						return;
 					}
 				}
 			});
-        	/*collection.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					collection.toggle();
-					if (collection.isChecked()) {
-						collection.setBackgroundResource(R.drawable.ic_declaration_star_pressed);
-					}
-				}
-			});*/
-        	//点击查看发送对象
-        	//对应的ID
-        	//final Long cid=Long.valueOf(mData.get(position).get("id").toString());
 			return convertView;
 		}  
     }  
-	//获取数据
-/*	private List<HashMap<String, Object>> getData() {  
-        // 新建一个集合类，用于存放多条数据  从数据库中获取数据
-        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();  
-        HashMap<String, Object> map = null;  
-        for (int i = 1; i <= 3; i++) {  
-            map = new HashMap<String, Object>();  
-            map.put("contract", "合约IF1509" ); //r.drawable 
-            map.put("date", "2015年10月");  
-            map.put("time", "10:23");  
-            map.put("operation", "多平");  
-            map.put("price", "1234");  
-            map.put("handnum", "1111");  
-            map.put("gainText", "250");
-            map.put("position", "15%");
-            list.add(map);  
-        }  
-  
-        return list;  
-    }  */
 
 	// 定义按钮点击事件
 	@Override
@@ -354,6 +343,50 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		}
 
 	}
+	// 是否收藏报单
+		class CollectionThread extends Thread {
+			private Integer formid;
+			private Integer iscollection;
+
+			public CollectionThread(Integer formid, Integer iscollection) {
+				this.formid = formid;
+				this.iscollection = iscollection;
+			}
+
+			@Override
+			public void run() {
+				// 新建工具类，向服务器发送Http请求
+				HttpPostUtil postUtil = new HttpPostUtil();
+
+				// 向服务器发送数据，如果没有，可以不发送
+				JSONObject jsonObject = new JSONObject();
+				// 获取发送报单的id
+
+				try {
+					jsonObject.put("formid", formid);
+					jsonObject.put("iscollection", iscollection); // 1收藏 0不收藏
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				// 设置发送的url 和服务器端的struts.xml文件对应
+				postUtil.setUrl("/form/form_collectionForm.do");
+				// 向服务器发送数据
+				JSONArray js = new JSONArray();
+				js.put(jsonObject);
+				postUtil.setRequest(js);
+				// 从服务器获取数据
+				String res = postUtil.run();
+
+				Runnable r = new Runnable() {
+					@Override
+					public void run() {
+					}
+				};
+				handler.post(r);
+			}
+
+		}
 
 	class SearchAllThread extends Thread {// 默认情况下，什么也没选择，得到的搜索结果。
 		@Override
