@@ -178,12 +178,8 @@ public class DeclarationDetailActivity extends Activity {
 				}
 			}
 		}
-
-		if (null == haoyouList && null==qunzuList) {
-			purposeChoiced.setText("选择");
-		} else {
-			purposeChoiced.setText("已选");
-		}
+		purposeChoiced.setText("选择");
+		
 
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
 			//模版选择界面跳转
@@ -355,7 +351,7 @@ public class DeclarationDetailActivity extends Activity {
 			return "未填写手数";
 		} else {
 			if (!Check.positiveInteger(handnum)){
-				return "只能填写正整数";
+				return "手数只能填写正整数";
 			}	
 		}
 
@@ -441,7 +437,7 @@ public class DeclarationDetailActivity extends Activity {
 					}
 				}
 			}
-			if (null == haoyouList && null==qunzuList) {
+			if ((null == haoyouList && null==qunzuList)||(haoyouList.size()==0&&qunzuList.size()==0)) {
 				purposeChoiced.setText("选择");
 			} else {
 				purposeChoiced.setText("已选");
@@ -547,7 +543,10 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("minnum", editTextArea1.getText());// 范围小
 				jsonObject.put("maxnum", editTextArea2.getText());// 范围大
 				jsonObject.put("remark", editTextBeizhu.getText());// 备注
-				jsonObject.put("name", modelText.getText());				
+				if(null!=modelText)
+					jsonObject.put("name", modelText.getText());
+				else
+					jsonObject.put("name", "");
 				jsonObject.put("sendfrom", util.getId());
 				jsonObject.put("pictureurl", pictureurl);
 				jsonObject.put("audiourl", "/pp/video.avi");

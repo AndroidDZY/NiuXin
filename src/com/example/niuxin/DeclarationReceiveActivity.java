@@ -151,15 +151,16 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 				if (isChecked) {
 					// 选中
 					isCollect = 1;
-					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "只展示收藏报单", Toast.LENGTH_SHORT);
-					toast.show();
 					getDate();
+					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "只展示收藏报单", Toast.LENGTH_SHORT);
+					toast.show();					
 				} else {
 					// 未选中
 					isCollect = 0;
+					getDate();
 					Toast toast = Toast.makeText(DeclarationReceiveActivity.this, "取消", Toast.LENGTH_SHORT);
 					toast.show();
-					getDate();
+					
 				}
 			}
 		});
@@ -483,7 +484,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
-					declarationAdapter.notifyDataSetChanged();
+					adapter.notifyDataSetChanged();
 				}
 
 			};

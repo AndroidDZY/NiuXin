@@ -13,13 +13,13 @@ public class Check {
 	
 	public static boolean positiveInteger(String res) {//判断输入是否是正整数
 		  Pattern pattern = Pattern.compile( "^[0-9]*[1-9][0-9]*$");
-	        Matcher isNum = pattern.matcher(res);
+	        Matcher isNum = pattern.matcher(res.trim());
 	
 		return isNum.matches();
 	}	
 	public static boolean positive(String res) {//判断输入是否是正数
 		  Pattern pattern = Pattern.compile( "^((\\d+(\\.\\d+)?)|(0+(\\.0+)?))$");
-	       Matcher isNum = pattern.matcher(res);
+	       Matcher isNum = pattern.matcher(res.trim());
 	
 		return isNum.matches();
 	}
