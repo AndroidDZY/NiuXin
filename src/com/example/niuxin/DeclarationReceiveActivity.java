@@ -100,6 +100,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 		// 第四个参数：决定提取Map<String, Object>对象中的哪些key对应的value来生成列表项
 		// 第五个参数：决定使用listview_declaration.xml文件中的哪些组件来填充列表项
 		lvDeclaration = (ListView) findViewById(R.id.lv_declarationreceive);
+		/*
 		declarationAdapter = new SimpleAdapter(this, list, R.layout.listview_get_declaration,
 				new String[] { "contract", "date", "week", "time", "operation", "price", "handnum", "profit",
 						"position", "senderHead", "senderName", "isCollect" },
@@ -109,6 +110,7 @@ public class DeclarationReceiveActivity extends Activity implements OnClickListe
 						R.id.tv_declaration_amount, R.id.tv_declaration_profit, R.id.tv_declaration_position,
 						R.id.iv_declaration_sender_head, R.id.tv_declaration_sender_name,
 						R.id.iv_declaration_collect });
+						*/
 		adapter = new MyAdapter(this);//创建一个适配器  
 		lvDeclaration.setAdapter(adapter);
 
