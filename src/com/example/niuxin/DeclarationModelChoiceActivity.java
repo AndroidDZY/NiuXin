@@ -131,9 +131,18 @@ public class DeclarationModelChoiceActivity extends Activity {
 					Map<String, Object> map = beSelectedData.get(0);
 					Object contractType = map.get("modeltext");
 					text1 = contractType.toString();
+					
+					if (text1 != null) {
+						Intent intent = new Intent();
+						intent.putExtra("modelText", text1.toString());
+						intent.putExtra("selectedid",selectedid);
+						setResult(13, intent);
+					}
+					finish();
 				}
-				Toast toast = Toast.makeText(DeclarationModelChoiceActivity.this, "已保存", Toast.LENGTH_SHORT);
-				toast.show();
+				else {
+					Toast.makeText(getApplicationContext(), "你没有选择模板类型！请选择", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}

@@ -26,6 +26,7 @@ public class MyApplication extends Application {
 	private int recentNum = 0;
     private  Set<Integer> haoyouList = new HashSet<Integer>();	
     private  Set<Integer> qunzuList = new HashSet<Integer>();
+    private Boolean isSave = false;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -107,5 +108,15 @@ public class MyApplication extends Application {
 
 	public void setRecentNum(int recentNum) {
 		this.recentNum = recentNum;
+	}
+
+
+	public Boolean getIsSave() {
+		return isSave;
+	}
+
+
+	public void setIsSave(Boolean isSave) {
+		this.isSave = isSave;
 	}
 }

@@ -72,13 +72,12 @@ public class DeclarationDetailActivity extends Activity {
 	StringBuffer qunzuBuffer = new StringBuffer();// 群组
 	Set<Integer> qunzuList = new HashSet<Integer>();
 	Set<Integer> haoyouList = new HashSet<Integer>();
-	//Set<Integer> listAll = null;
+	// Set<Integer> listAll = null;
 	Integer Templateid = -1;
 	String picturePath = "";
 	MyApplication constantStatic;
 	String pictureurl = "";
 	Integer selectContractId = null;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -149,15 +148,15 @@ public class DeclarationDetailActivity extends Activity {
 		editTextArea2.setText(text);
 		editTextArea2.setSelection(text.length());
 		contractType.setText("未选");
-		
+
 		constantStatic = (MyApplication) getApplication();
 		qunzuList = constantStatic.getQunzuList();// 获取到选择的群组发送目标
 		haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
 
 		if (haoyouList != null) {
-			int i=0;
+			int i = 0;
 			Iterator<Integer> oldlistiter = haoyouList.iterator();
-			while (oldlistiter.hasNext()) {		
+			while (oldlistiter.hasNext()) {
 				if (i == 0) {
 					haoyouBuffer.append(oldlistiter.next());
 					i++;
@@ -168,9 +167,9 @@ public class DeclarationDetailActivity extends Activity {
 		}
 		// 循环获取群组id
 		if (qunzuList != null) {
-			int i=0;
+			int i = 0;
 			Iterator<Integer> oldlistiter = qunzuList.iterator();
-			while (oldlistiter.hasNext()) {		
+			while (oldlistiter.hasNext()) {
 				if (i == 0) {
 					qunzuBuffer.append(oldlistiter.next());
 				} else {
@@ -179,16 +178,15 @@ public class DeclarationDetailActivity extends Activity {
 			}
 		}
 		purposeChoiced.setText("选择");
-		
 
 		linearLayoutModelChoice.setOnClickListener(new OnClickListener() {
-			//模版选择界面跳转
+			// 模版选择界面跳转
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.putExtra("modelText", modelChioced.getText());
-				
+
 				intent.setClass(DeclarationDetailActivity.this, DeclarationModelChoiceActivity.class);
 				startActivityForResult(intent, 12);
 			}
@@ -203,7 +201,7 @@ public class DeclarationDetailActivity extends Activity {
 				intent.putExtra("contractText", contractType.getText());// 获取合约类型的名称，传递过去
 				intent.putExtra("selectContractId", selectContractId);
 				intent.setClass(DeclarationDetailActivity.this, DeclarationContactChoiceActivity.class);
-				startActivityForResult(intent, 10);				
+				startActivityForResult(intent, 10);
 			}
 		});
 		// 发送目标选择
@@ -213,10 +211,10 @@ public class DeclarationDetailActivity extends Activity {
 			public void onClick(View arg0) {
 				Intent intent = new Intent(DeclarationDetailActivity.this, DeclarationSendpurposeChoiceActivity.class);
 				if (purposeChoiced.getText().equals("选择")) {
-					if(null!=constantStatic.getHaoyouList())
+					if (null != constantStatic.getHaoyouList())
 						constantStatic.getHaoyouList().clear();
-					if(null!=constantStatic.getQunzuList())
-						constantStatic.getQunzuList().clear();					
+					if (null != constantStatic.getQunzuList())
+						constantStatic.getQunzuList().clear();
 				}
 				startActivityForResult(intent, 19);
 
@@ -226,7 +224,7 @@ public class DeclarationDetailActivity extends Activity {
 		picchoice.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {				
+			public void onClick(View arg0) {
 				Intent intent = new Intent(Intent.ACTION_PICK,
 						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 				startActivityForResult(intent, 16);
@@ -237,7 +235,7 @@ public class DeclarationDetailActivity extends Activity {
 		backButton.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {				
+			public void onClick(View arg0) {
 				finish();
 			}
 		});
@@ -247,7 +245,7 @@ public class DeclarationDetailActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				String res = check();
-				if (res.equals("true")) {				
+				if (res.equals("true")) {
 					SaveThread saveThread = new SaveThread(1);
 					saveThread.start();
 					Toast toast = Toast.makeText(DeclarationDetailActivity.this, "发送成功", Toast.LENGTH_SHORT);
@@ -263,10 +261,10 @@ public class DeclarationDetailActivity extends Activity {
 		saveButton.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {				
+			public void onClick(View arg0) {
 				String res = check();
 				if (res.equals("true")) {
-					//保存模板后，提示输入模板名称
+					// 保存模板后，提示输入模板名称
 					View myView = LayoutInflater.from(getApplication()).inflate(R.layout.edittextview, null);// 将layout对象转换为VIew对象
 					AlertDialog.Builder builder = new AlertDialog.Builder(DeclarationDetailActivity.this);
 					builder.setTitle("新建模板");
@@ -274,14 +272,17 @@ public class DeclarationDetailActivity extends Activity {
 					modelText = (EditText) myView.findViewById(R.id.et_tag_name);
 					builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int whichButton) {
-							
-							if(null==modelText.getText()||null==modelText.getText().toString()||(modelText.getText().toString().trim().equals(""))){
-								Toast toast = Toast.makeText(DeclarationDetailActivity.this, "未填写模版名称", Toast.LENGTH_SHORT);
+
+							if (null == modelText.getText() || null == modelText.getText().toString()
+									|| (modelText.getText().toString().trim().equals(""))) {
+								Toast toast = Toast.makeText(DeclarationDetailActivity.this, "未填写模版名称",
+										Toast.LENGTH_SHORT);
 								toast.show();
 								return;
-							}	
-							if(modelText.getText().toString().trim().length()>9){
-								Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模版名称长度不能大于10个字符", Toast.LENGTH_SHORT);
+							}
+							if (modelText.getText().toString().trim().length() > 9) {
+								Toast toast = Toast.makeText(DeclarationDetailActivity.this, "模版名称长度不能大于10个字符",
+										Toast.LENGTH_SHORT);
 								toast.show();
 								return;
 							}
@@ -306,25 +307,24 @@ public class DeclarationDetailActivity extends Activity {
 			}
 		});
 
-	
 	}
 
 	private String check2(String res, String result) {
 		if (!Check.isEmpty(res)) {
 			return "未填写" + result;
 		} else {
-			if (!Check.positive(res.trim())) {//先判断是不是正数
+			if (!Check.positive(res.trim())) {// 先判断是不是正数
 				return "只能填写正浮点数,小数不超过两位";
 			}
-			try{
-			String ress = res.trim().substring(res.trim().lastIndexOf("."));			
-			
-				if(null!=ress){
-					if(ress.length()>3||ress.length()<=1)
-						return "只能填写正浮点数,小数不超过两位";	
+			try {
+				String ress = res.trim().substring(res.trim().lastIndexOf("."));
+
+				if (null != ress) {
+					if (ress.length() > 3 || ress.length() <= 1)
+						return "只能填写正浮点数,小数不超过两位";
 				}
-			}catch(Exception e){
-				
+			} catch (Exception e) {
+
 			}
 		}
 
@@ -346,53 +346,65 @@ public class DeclarationDetailActivity extends Activity {
 			return resprice;
 		}
 
-		String handnum = editTextShoushu.getText().toString();
-		if (!Check.isEmpty(handnum)) {
-			return "未填写手数";
-		} else {
-			if (!Check.positiveInteger(handnum)){
-				return "手数只能填写正整数";
-			}	
+		/*
+		 * String handnum = editTextShoushu.getText().toString(); if
+		 * (!Check.isEmpty(handnum)) { return "未填写手数"; } else { if
+		 * (!Check.positiveInteger(handnum)){ return "手数只能填写正整数"; } }
+		 */
+		if (null != editTextCangwei.getText().toString()) {
+			String position = editTextCangwei.getText().toString().trim();
+			Float aa = -1f;
+			try {
+				aa = Float.valueOf(position);
+			} catch (Exception e) {
+			}
+			int retval1 = Float.compare(aa, (float) 0.0);
+			int retval2 = Float.compare(aa, (float) 100);
+			if (retval1 < 0 || retval2 > 0) {
+				return "只能0到100之间";
+			}
 		}
 
-		if (null == editTextCangwei.getText()) {
-			return "未填写仓位";
-		}
-		String position = editTextCangwei.getText().toString();
-		String resposition = check2(position, "仓位");
-		if (!resposition.equals("")) {
-			return resposition;
-		}
-		Float aa = Float.valueOf(position);
-		 int retval1 = Float.compare(aa, (float) 0.0);
-		 int retval2 = Float.compare(aa, (float) 100);
-		if(retval1<0||retval2>0){
-			return "只能0到100之间";
+		if (null == editTextArea1.getText() || null == editTextArea2.getText()) {
+
+			if (null != editTextArea1.getText() && null != editTextArea2.getText()) {
+				String minnum = editTextCangwei.getText().toString();
+				String resminnum = check2(minnum, "未填写止盈止损最小值");
+				if (!resminnum.equals("")) {
+					return resminnum;
+				}
+
+				if (null == editTextArea2.getText()) {
+					return "未填写止盈止损最大值";
+				}
+				String maxnum = editTextArea2.getText().toString();
+				String resmaxnum = check2(maxnum, "止盈止损最大值");
+				if (!resmaxnum.equals("")) {
+					return resmaxnum;
+				}
+
+				Integer min = Integer.valueOf(minnum.trim());
+				Integer max = Integer.valueOf(maxnum.trim());
+				if (min >= max) {
+					return "止盈止损最小值应该小于止盈止损最大值";
+				}
+			}
 		}
 
-		
-		
-		if (null == editTextArea1.getText()) {
-			return "未填写止盈止损最小值";
-		}
-		String minnum = editTextCangwei.getText().toString();
-		String resminnum = check2(minnum, "止盈止损最小值");
-		if (!resminnum.equals("")) {
-			return resminnum;
-		}
+		/*
+		 * if (null == editTextArea1.getText()) { return "未填写止盈止损最小值"; } String
+		 * minnum = editTextCangwei.getText().toString(); String resminnum =
+		 * check2(minnum, "止盈止损最小值"); if (!resminnum.equals("")) { return
+		 * resminnum; }
+		 * 
+		 * 
+		 * 
+		 * if (null == editTextArea2.getText()) { return "未填写止盈止损最大值"; } String
+		 * maxnum = editTextArea2.getText().toString(); String resmaxnum =
+		 * check2(maxnum, "止盈止损最大值"); if (!resmaxnum.equals("")) { return
+		 * resmaxnum; }
+		 */
 
-		
-		
-		if (null == editTextArea2.getText()) {
-			return "未填写止盈止损最大值";
-		}
-		String maxnum = editTextArea2.getText().toString();
-		String resmaxnum = check2(maxnum, "止盈止损最大值");
-		if (!resmaxnum.equals("")) {
-			return resmaxnum;
-		}
-
-		
 		if (null == haoyouBuffer || null == qunzuBuffer) {
 			return "未选择好友或群组，二者至少选择一项！";
 		}
@@ -412,11 +424,11 @@ public class DeclarationDetailActivity extends Activity {
 		if (requestCode == 19) {
 			constantStatic = (MyApplication) getApplication();
 			qunzuList = constantStatic.getQunzuList();// 获取到选择的群组发送目标
-			haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称			
+			haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
 			if (haoyouList != null) {
-				int i=0;
+				int i = 0;
 				Iterator<Integer> oldlistiter = haoyouList.iterator();
-				while (oldlistiter.hasNext()) {		
+				while (oldlistiter.hasNext()) {
 					if (i == 0) {
 						haoyouBuffer.append(oldlistiter.next());
 						i++;
@@ -427,9 +439,9 @@ public class DeclarationDetailActivity extends Activity {
 			}
 			// 循环获取群组id
 			if (qunzuList != null) {
-				int i=0;
+				int i = 0;
 				Iterator<Integer> oldlistiter = qunzuList.iterator();
-				while (oldlistiter.hasNext()) {		
+				while (oldlistiter.hasNext()) {
 					if (i == 0) {
 						qunzuBuffer.append(oldlistiter.next());
 					} else {
@@ -437,7 +449,7 @@ public class DeclarationDetailActivity extends Activity {
 					}
 				}
 			}
-			if ((null == haoyouList && null==qunzuList)||(haoyouList.size()==0&&qunzuList.size()==0)) {
+			if ((null == haoyouList && null == qunzuList) || (haoyouList.size() == 0 && qunzuList.size() == 0)) {
 				purposeChoiced.setText("选择");
 			} else {
 				purposeChoiced.setText("已选");
@@ -543,7 +555,7 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("minnum", editTextArea1.getText());// 范围小
 				jsonObject.put("maxnum", editTextArea2.getText());// 范围大
 				jsonObject.put("remark", editTextBeizhu.getText());// 备注
-				if(null!=modelText)
+				if (null != modelText)
 					jsonObject.put("name", modelText.getText());
 				else
 					jsonObject.put("name", "");
@@ -553,7 +565,7 @@ public class DeclarationDetailActivity extends Activity {
 				jsonObject.put("type", type);
 				jsonObject.put("sendtouser", haoyouBuffer.toString());// 改成string把id存入到数据库中
 				jsonObject.put("sendtogroup", qunzuBuffer.toString());// 改成string存入到数据库中
-				
+
 				jArray.put(jsonObject);
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -567,7 +579,7 @@ public class DeclarationDetailActivity extends Activity {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
-					finish();
+				//	finish();
 				}
 
 			};
@@ -603,13 +615,13 @@ public class DeclarationDetailActivity extends Activity {
 			// 从服务器获取数据
 			String res = postUtil.run();
 			// 对从服务器获取数据进行解析
-		
+
 			try {
 				jsonArray = new JSONArray(res);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			
+
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
@@ -621,7 +633,7 @@ public class DeclarationDetailActivity extends Activity {
 								// int id = myjObject.getInt("id");
 								String contract = myjObject.getString("contract");// 合约类型
 								Integer contractid = myjObject.getInt("contractid");// 合约类型
-								
+
 								String operation = myjObject.getString("operation");// 操作类型
 								String price = myjObject.getString("price");// 价格
 								String handnum = myjObject.getString("handnum");// 手数
@@ -642,30 +654,30 @@ public class DeclarationDetailActivity extends Activity {
 								editTextArea1.setText(minnum);
 								editTextArea2.setText(maxnum);
 								editTextBeizhu.setText(remark);
-							
-								if(null!=sendtouser){
-									if(null==constantStatic.getHaoyouList())
+
+								if (null != sendtouser) {
+									if (null == constantStatic.getHaoyouList())
 										constantStatic.getHaoyouList().clear();
 									String[] aa = sendtouser.split(",");
-									for(int m =0;m<aa.length;m++){
+									for (int m = 0; m < aa.length; m++) {
 										Integer bb = Integer.valueOf(aa[m]);
 										constantStatic.getHaoyouList().add(bb);
 									}
 								}
-								if(null!=sendtogroup){
+								if (null != sendtogroup) {
 									String[] aa = sendtogroup.split(",");
-									if(null==constantStatic.getQunzuList())
+									if (null == constantStatic.getQunzuList())
 										constantStatic.getQunzuList().clear();
-									for(int n =0;n<aa.length;n++){
+									for (int n = 0; n < aa.length; n++) {
 										Integer bb = Integer.valueOf(aa[n]);
 										constantStatic.getQunzuList().add(bb);
 									}
 								}
-								if(null!=sendtouser&&!sendtouser.equals(""))
-									haoyouBuffer =  new StringBuffer(sendtouser);
-								if(null!=sendtogroup&&!sendtogroup.equals(""))
+								if (null != sendtouser && !sendtouser.equals(""))
+									haoyouBuffer = new StringBuffer(sendtouser);
+								if (null != sendtogroup && !sendtogroup.equals(""))
 									qunzuBuffer = new StringBuffer(sendtogroup);
-								
+
 								purposeChoiced.setText("已选");
 								pictureurl = picture;
 							} catch (JSONException e) {

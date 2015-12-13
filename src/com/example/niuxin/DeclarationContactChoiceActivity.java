@@ -106,7 +106,17 @@ public class DeclarationContactChoiceActivity extends Activity {
 					Map<String, Object> map = beSelectedData.get(0);
 					Object contractType = map.get("contractText");
 					text1 = contractType.toString();
-					Toast.makeText(getApplicationContext(), "保存成功", Toast.LENGTH_SHORT).show();
+				//	Toast.makeText(getApplicationContext(), "保存成功", Toast.LENGTH_SHORT).show();
+					
+					if (text1 != null) {
+						Intent intent = new Intent();
+						intent.putExtra("contractText", text1.toString());
+						intent.putExtra("selectContractId", beSelectedData.get(0).get("id").toString());
+
+						setResult(11, intent);
+					}
+					finish();
+					
 				} else {
 					Toast.makeText(getApplicationContext(), "你没有选择合约类型！请选择", Toast.LENGTH_SHORT).show();
 				}

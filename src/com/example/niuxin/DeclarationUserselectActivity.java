@@ -75,7 +75,13 @@ public class DeclarationUserselectActivity extends Activity {
 		oldlist = appHaoyou.getHaoyouList();	
 		backButton.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View arg0) {				
+			public void onClick(View arg0) {	
+				
+				if(!appHaoyou.getIsSave()){//如果状态没设置成true 就清空
+					appHaoyou.getQunzuList().clear();
+					appHaoyou.getHaoyouList().clear();
+				}
+				appHaoyou.setIsSave(false);
 				
 				Intent intent = new Intent();					
 				intent.setClass(DeclarationUserselectActivity.this, DeclarationDetailActivity.class);
@@ -88,24 +94,41 @@ public class DeclarationUserselectActivity extends Activity {
 		allButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {			
-				if(null!=haoyouList)
+				if(null!=haoyouList){
 					haoyouList.clear();
+					appHaoyou.setHaoyouList(haoyouList);
+				}
 				for(int i=0;i<list.size();i++){
 					if (Integer.valueOf(list.get(i).get("chattype").toString()) == 2){
 						haoyouList.add(Integer.valueOf(list.get(i).get("id").toString()));
+						appHaoyou.setHaoyouList(haoyouList);
 						isSelected.put(i, true);
 					}
 				}
+				appHaoyou.setIsSave(false);
 				adapter.notifyDataSetChanged();
 			}
 		});
 		// 保存按钮，在保存按钮中把数据传到全局变量中
 		saveButton.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View arg0) {		
-				appHaoyou.setHaoyouList(haoyouList);
-				Toast toast = Toast.makeText(DeclarationUserselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
-				toast.show();
+			public void onClick(View arg0) {						
+				appHaoyou.setIsSave(true);
+				
+				if(!appHaoyou.getIsSave()){//如果状态没设置成true 就清空
+					appHaoyou.getQunzuList().clear();
+					appHaoyou.getHaoyouList().clear();
+				}
+				appHaoyou.setIsSave(false);
+				
+				Intent intent = new Intent();					
+				intent.setClass(DeclarationUserselectActivity.this, DeclarationDetailActivity.class);
+				setResult(20,intent);
+			
+				finish();
+				
+			//	Toast toast = Toast.makeText(DeclarationUserselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
+			//	toast.show();
 			}
 		});
 		// listview item点击监听
@@ -122,9 +145,13 @@ public class DeclarationUserselectActivity extends Activity {
 				// 调整选定条目
 				if (holder.cb.isChecked()) {					
 					haoyouList.add(Integer.valueOf((String)list.get(arg2).get("id").toString()));
+					appHaoyou.setHaoyouList(haoyouList);
 				}else{
-					haoyouList.remove(Integer.valueOf((String)list.get(arg2).get("id").toString()));				
+					haoyouList.remove(Integer.valueOf((String)list.get(arg2).get("id").toString()));
+					appHaoyou.setHaoyouList(haoyouList);
 				}
+				
+				appHaoyou.setIsSave(false);
 			}
 		});
 
@@ -267,6 +294,8 @@ public class DeclarationUserselectActivity extends Activity {
 								if (haoyouId==id) {
 									isSelected.put(j, true);
 									haoyouList.add(id);
+									appHaoyou.setHaoyouList(haoyouList);
+									appHaoyou.setIsSave(true);
 									break;
 								}
 							}

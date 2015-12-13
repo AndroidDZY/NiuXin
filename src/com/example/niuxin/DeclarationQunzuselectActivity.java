@@ -80,6 +80,13 @@ public class DeclarationQunzuselectActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
+				if(!appQunzu.getIsSave()){//如果状态没设置成true 就清空
+					appQunzu.getQunzuList().clear();
+					appQunzu.getHaoyouList().clear();
+				}
+				appQunzu.setIsSave(false);
+				
+				
 				// TODO Auto-generated method stub				
 				Intent intent = new Intent();
 				intent.setClass(DeclarationQunzuselectActivity.this, DeclarationDetailActivity.class);
@@ -92,23 +99,42 @@ public class DeclarationQunzuselectActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				appQunzu.setQunzuList(qunzuList);
-				Toast toast = Toast.makeText(DeclarationQunzuselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
-				toast.show();
+				
+				appQunzu.setIsSave(true);
+				
+				if(!appQunzu.getIsSave()){//如果状态没设置成true 就清空
+					appQunzu.getQunzuList().clear();
+					appQunzu.getHaoyouList().clear();
+				}
+				appQunzu.setIsSave(false);
+				
+				
+				// TODO Auto-generated method stub				
+				Intent intent = new Intent();
+				intent.setClass(DeclarationQunzuselectActivity.this, DeclarationDetailActivity.class);
+				setResult(20, intent);
+				finish();
+				
+			//	Toast toast = Toast.makeText(DeclarationQunzuselectActivity.this, "保存成功", Toast.LENGTH_SHORT);
+			//	toast.show();
 			}
 		});
 		// 全选按钮的回调接口
 		allButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(null!=qunzuList)
+				if(null!=qunzuList){
 					qunzuList.clear();
+					appQunzu.setQunzuList(qunzuList);
+				}
 				for(int i=0;i<list.size();i++){
 					if (Integer.valueOf(list.get(i).get("chattype").toString()) == 1){
 						qunzuList.add(Integer.valueOf(list.get(i).get("id").toString()));
+						appQunzu.setQunzuList(qunzuList);
 						isSelected.put(i, true);
 					}
-				}			
+				}		
+				appQunzu.setIsSave(false);
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -125,10 +151,12 @@ public class DeclarationQunzuselectActivity extends Activity {
 				isSelected.put(arg2, holder.cb.isChecked());
 				if (holder.cb.isChecked()) {
 					qunzuList.add(Integer.valueOf(( list.get(arg2).get("id").toString())));
+					appQunzu.setQunzuList(qunzuList);
 				} else {
 					qunzuList.remove(Integer.valueOf(list.get(arg2).get("id").toString()));
+					appQunzu.setQunzuList(qunzuList);
 				}
-			
+				appQunzu.setIsSave(false);
 			}
 		});
 		TestThread t = new TestThread();
@@ -282,6 +310,8 @@ public class DeclarationQunzuselectActivity extends Activity {
 								if (idold == id) {
 									isSelected.put(j, true);
 									qunzuList.add(id);
+									appQunzu.setQunzuList(qunzuList);
+									appQunzu.setIsSave(true);
 									break;
 								} 
 							}
