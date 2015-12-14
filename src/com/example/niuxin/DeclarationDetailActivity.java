@@ -365,7 +365,7 @@ public class DeclarationDetailActivity extends Activity {
 			}
 		}
 
-		if (null == editTextArea1.getText() || null == editTextArea2.getText()) {
+		if (null != editTextArea1.getText() || null != editTextArea2.getText()) {
 
 			if (null != editTextArea1.getText() && null != editTextArea2.getText()) {
 				String minnum = editTextCangwei.getText().toString();
