@@ -376,6 +376,7 @@
 	            android:inputType="number"
 	            android:maxLength="6"
 	            android:ellipsize="end"
+	            android:hint="选填"
 	            android:singleLine="true"
 	            android:paddingLeft="@dimen/layout_margin_three"
 	            />
@@ -430,6 +431,7 @@
 	            android:layout_height="wrap_content"
 	            android:maxLength="5"
 	            android:ellipsize="end"
+	            android:hint="选填"
 	            android:singleLine="true"
 	            android:paddingLeft="@dimen/layout_margin_three"
 	            android:layout_marginRight="3dp"/>
@@ -562,7 +564,7 @@
         android:orientation="horizontal">
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="配图"
+            android:text="配图(选填)"
             android:id="@+id/decla_picchoice"
             android:textSize="12sp"/>
         <ImageView android:layout_width="60dp"

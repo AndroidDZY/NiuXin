@@ -2,7 +2,7 @@
 <resources>
 
     <string name="search">搜索</string>
-    <string name="search_zx">请输入股票代码/简拼</string>
+    <string name="search_zx">请输入合约名称/简拼</string>
     <string name="search_qun">请输入名称、关键字或股票代码</string>
     <string name="app_name">Niuxin</string>
     <string name="action_settings">Settings</string>

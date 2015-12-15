@@ -14,7 +14,7 @@
             android:text="为您推荐"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:textSize="16sp" />
         <android.support.v4.view.ViewPager
 	        android:id="@+id/myviewpager1"
@@ -38,7 +38,7 @@
             android:text="24小时最热"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:textSize="16sp" />
         <android.support.v4.view.ViewPager
 	        android:id="@+id/myviewpager2"
@@ -61,7 +61,7 @@
             android:text="人气学堂"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:textSize="16sp" />
         <android.support.v4.view.ViewPager
 	        android:id="@+id/myviewpager3"

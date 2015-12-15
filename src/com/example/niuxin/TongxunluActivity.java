@@ -186,7 +186,7 @@ public class TongxunluActivity extends Activity {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("image", R.drawable.tongxunlu01);
-		map.put("title", "添加自选股");
+		map.put("title", "添加自选");
 		list.add(map);
 
 		map = new HashMap<String, Object>();

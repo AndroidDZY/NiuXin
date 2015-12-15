@@ -134,8 +134,8 @@ public class DeclarationDetailActivity extends Activity {
 		modelChioced.setText("未选");
 		// 设置监听事件
 		// 模板选择跳转
-		String text = "  ";
-		editTextPrice.setText(text);
+		
+		/*editTextPrice.setText(text);
 		editTextPrice.setSelection(text.length());
 		editTextShoushu.setText(text);
 		editTextShoushu.setSelection(text.length());
@@ -146,7 +146,7 @@ public class DeclarationDetailActivity extends Activity {
 		editTextArea1.setText(text);
 		editTextArea1.setSelection(text.length());
 		editTextArea2.setText(text);
-		editTextArea2.setSelection(text.length());
+		editTextArea2.setSelection(text.length());*/
 		contractType.setText("未选");
 
 		constantStatic = (MyApplication) getApplication();
