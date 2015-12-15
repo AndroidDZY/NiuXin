@@ -155,7 +155,7 @@ public class zixuan_addActivity extends Activity {
 					Map<String, Object> map = new HashMap<String, Object>();
 					// 获取每一个对象中的值
 					int id = myjObject.getInt("id");
-					String number = myjObject.getString("number");
+					String number = myjObject.getString("type");
 					String name = myjObject.getString("name");
 					map.put("id", id);
 					map.put("number", number);
@@ -232,7 +232,7 @@ public class zixuan_addActivity extends Activity {
 					Map<String, Object> map = new HashMap<String, Object>();
 					// 获取每一个对象中的值
 					int id = myjObject.getInt("id");
-					String number = myjObject.getString("number");
+					String number = myjObject.getString("type");
 					String name = myjObject.getString("name");
 					map.put("id", id);
 					map.put("number", number);

@@ -154,6 +154,7 @@ public class DeclarationDetailActivity extends Activity {
 		haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
 
 		if (haoyouList != null) {
+			haoyouBuffer.delete(0,haoyouBuffer.length());
 			int i = 0;
 			Iterator<Integer> oldlistiter = haoyouList.iterator();
 			while (oldlistiter.hasNext()) {
@@ -167,11 +168,13 @@ public class DeclarationDetailActivity extends Activity {
 		}
 		// 循环获取群组id
 		if (qunzuList != null) {
+			qunzuBuffer.delete(0,qunzuBuffer.length());
 			int i = 0;
 			Iterator<Integer> oldlistiter = qunzuList.iterator();
 			while (oldlistiter.hasNext()) {
 				if (i == 0) {
 					qunzuBuffer.append(oldlistiter.next());
+					i++;
 				} else {
 					qunzuBuffer.append("," + oldlistiter.next());
 				}
@@ -429,6 +432,7 @@ public class DeclarationDetailActivity extends Activity {
 			qunzuList = constantStatic.getQunzuList();// 获取到选择的群组发送目标
 			haoyouList = constantStatic.getHaoyouList();// 获取到选择的好友发送目标名称
 			if (haoyouList != null) {
+				haoyouBuffer.delete(0,haoyouBuffer.length());
 				int i = 0;
 				Iterator<Integer> oldlistiter = haoyouList.iterator();
 				while (oldlistiter.hasNext()) {
@@ -442,11 +446,13 @@ public class DeclarationDetailActivity extends Activity {
 			}
 			// 循环获取群组id
 			if (qunzuList != null) {
+				qunzuBuffer.delete(0,qunzuBuffer.length());
 				int i = 0;
 				Iterator<Integer> oldlistiter = qunzuList.iterator();
 				while (oldlistiter.hasNext()) {
 					if (i == 0) {
 						qunzuBuffer.append(oldlistiter.next());
+						i++;
 					} else {
 						qunzuBuffer.append("," + oldlistiter.next());
 					}
