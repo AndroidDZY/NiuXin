@@ -484,6 +484,7 @@
                 android:layout_marginRight="2dp"
                 android:maxLength="9"
 	            android:ellipsize="end"
+	            android:hint="选填"
 	            android:singleLine="true"
 	            android:paddingLeft="@dimen/layout_margin_three"
                 android:background="@drawable/decla_baodan_yellow2"/>
@@ -504,6 +505,7 @@
                 android:layout_weight="1"
                 android:inputType="numberDecimal"
                 android:maxLength="9"
+                android:hint="选填"
 	            android:ellipsize="end"
 	            android:singleLine="true"
 	            android:paddingLeft="@dimen/layout_margin_three"
