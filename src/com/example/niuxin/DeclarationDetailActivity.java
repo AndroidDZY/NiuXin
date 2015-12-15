@@ -346,11 +346,14 @@ public class DeclarationDetailActivity extends Activity {
 			return resprice;
 		}
 
-		/*
-		 * String handnum = editTextShoushu.getText().toString(); if
-		 * (!Check.isEmpty(handnum)) { return "未填写手数"; } else { if
-		 * (!Check.positiveInteger(handnum)){ return "手数只能填写正整数"; } }
-		 */
+		if (null != editTextShoushu.getText().toString()) {
+			String handnum = editTextShoushu.getText().toString().trim();
+			if (!Check.positiveInteger(handnum)) {
+				return "手数只能填写正整数";
+			}
+
+		}
+
 		if (null != editTextCangwei.getText().toString()) {
 			String position = editTextCangwei.getText().toString().trim();
 			Float aa = -1f;
@@ -368,7 +371,7 @@ public class DeclarationDetailActivity extends Activity {
 		if (null != editTextArea1.getText() || null != editTextArea2.getText()) {
 
 			if (null != editTextArea1.getText() && null != editTextArea2.getText()) {
-				String minnum = editTextCangwei.getText().toString();
+				String minnum = editTextArea1.getText().toString();
 				String resminnum = check2(minnum, "未填写止盈止损最小值");
 				if (!resminnum.equals("")) {
 					return resminnum;
@@ -579,7 +582,7 @@ public class DeclarationDetailActivity extends Activity {
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
-				//	finish();
+					// finish();
 				}
 
 			};
