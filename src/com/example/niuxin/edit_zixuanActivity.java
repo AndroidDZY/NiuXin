@@ -153,7 +153,7 @@ public class edit_zixuanActivity extends Activity {
 					map.put("id", myjObject.getInt("id"));
 					map.put("img_edit_flag", edit_flag);
 					map.put("edit_name", myjObject.getString("name"));
-					map.put("edit_num", myjObject.getString("number"));
+					map.put("edit_num", myjObject.getString("type"));
 					map.put("img_edit_top", R.drawable.edit_top);
 					map.put("img_edit_move", R.drawable.edit_move);
 					list.add(map);
