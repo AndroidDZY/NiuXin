@@ -357,7 +357,7 @@ public class DeclarationDetailActivity extends Activity {
 
 		}*/
 
-		/*if (null != editTextCangwei.getText().toString()) {
+		if (null != editTextCangwei.getText().toString()) {
 			String position = editTextCangwei.getText().toString().trim();
 			Float aa = -1f;
 			try {
@@ -369,7 +369,7 @@ public class DeclarationDetailActivity extends Activity {
 			if (retval1 < 0 || retval2 > 0) {
 				return "只能0到100之间";
 			}
-		}*/
+		}
 
 		/*if (null != editTextArea1.getText() || null != editTextArea2.getText()) {
 
