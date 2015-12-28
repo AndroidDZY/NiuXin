@@ -388,7 +388,7 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 	private void send() {
 		// TODO Auto-generated method stub
 		String contString = mEditText.getText().toString();
-		if (contString.length() > 0) {
+		if (contString!=null&&contString.length() > 0) {
 			ChatMsgEntity entity = new ChatMsgEntity();
 			entity.setDate(MyDate.getDateEN());
 			entity.setName("");
@@ -452,15 +452,21 @@ public class ChatActivity extends MyActivity implements OnClickListener {
 		switch (msg.getType()) {
 		case MESSAGE:
 			TextMessage tm = (TextMessage) msg.getObject();
+			Integer fromuserid =  msg.getFromUser();
 			if (msg.getFromUser() == util.getId()) {
 				return;
 			}
 
 			String message = tm.getMessage();
+			
 			ChatMsgEntity entity = new ChatMsgEntity(util.getUserName(), MyDate.getDateEN(), message, msg.getImg(),
 					true);// 收到的消息
 			if (msg.getFromUser() != util.getId() || msg.getFromUser() == 0) {// 如果是正在聊天的好友的消息，或者是服务器的消息
 
+				if(fromuserid!=null&&fromuserid==-1){//不是互相好友的时候，撤回上一条信息。
+					mDataArrays.remove(mDataArrays.size()-1);
+				}
+				
 				messageDB.saveMsg(util.getId(), entity);
 				mDataArrays.add(entity);
 				mAdapter.notifyDataSetChanged();
