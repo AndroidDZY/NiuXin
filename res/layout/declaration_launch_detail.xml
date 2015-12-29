@@ -429,7 +429,7 @@
 	            android:layout_alignParentLeft="true"
 	            android:textSize="12sp"
 	            android:layout_height="wrap_content"
-	            android:maxLength="5"
+	            android:maxLength="6"
 	            android:ellipsize="end"
 	            android:hint="选填"
 	            android:singleLine="true"

@@ -367,7 +367,7 @@ public class DeclarationDetailActivity extends Activity {
 			int retval1 = Float.compare(aa, (float) 0.0);
 			int retval2 = Float.compare(aa, (float) 100);
 			if (retval1 < 0 || retval2 > 0) {
-				return "只能0到100之间";
+				return "仓位只能0到100之间";
 			}
 		}
 
