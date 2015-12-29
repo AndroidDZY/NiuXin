@@ -21,11 +21,11 @@
 	</string-array>  
 	
 	<string-array name="qun_condition">  
+	    <item>大于等于1</item>  
     	<item>大于等于2</item>  
     	<item>大于等于3</item>  
     	<item>大于等于4</item>  
-    	<item>大于等于5</item> 
-    	<item>大于等于1</item>  
+    	<item>大于等于5</item>  	
 	</string-array> 
 	
 	<string-array name="qun_charge">  

@@ -167,7 +167,7 @@ public class FenleiActivity extends Activity {
 		textView2_people2.setText("12/25");
         //24小时最热，第一组数据
 		textView3_title1.setText("国际经济形势分析");
-		textView3_summary1.setText("综合分析国际经济形势，指导期货投资");
+		textView3_summary1.setText("综合分析国际经济形势");
 		textView3_type1.setText("板块");
 		textView3_people1.setText("98/100");
         //24小时最热，第二组数据

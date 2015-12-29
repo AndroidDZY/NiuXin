@@ -349,13 +349,13 @@ public class DeclarationDetailActivity extends Activity {
 			return resprice;
 		}
 
-		if (null != editTextShoushu.getText().toString()) {
+		/*if (null != editTextShoushu.getText().toString()) {
 			String handnum = editTextShoushu.getText().toString().trim();
 			if (!Check.positiveInteger(handnum)) {
 				return "手数只能填写正整数";
 			}
 
-		}
+		}*/
 
 		if (null != editTextCangwei.getText().toString()) {
 			String position = editTextCangwei.getText().toString().trim();
@@ -371,7 +371,7 @@ public class DeclarationDetailActivity extends Activity {
 			}
 		}
 
-		if (null != editTextArea1.getText() || null != editTextArea2.getText()) {
+		/*if (null != editTextArea1.getText() || null != editTextArea2.getText()) {
 
 			if (null != editTextArea1.getText() && null != editTextArea2.getText()) {
 				String minnum = editTextArea1.getText().toString();
@@ -395,6 +395,20 @@ public class DeclarationDetailActivity extends Activity {
 					return "止盈止损最小值应该小于止盈止损最大值";
 				}
 			}
+		}*/
+		String area1=editTextArea1.getText().toString();
+		if (null!=area1&&!"".equals(area1)) {
+			String area2=editTextArea2.getText().toString();
+			if (area2==null||"".equals(area2)) {
+				return "请填写止盈止损最大范围";
+			}else if (area2!=null&&!"".equals(area2)) {
+				Double min=Double.valueOf(editTextArea1.getText().toString());
+				Double max=Double.valueOf(area2);
+				if (min>=max) {
+					return "止盈止损最小值应该小于止盈止损最大值";
+				}
+			}
+			
 		}
 
 		/*
@@ -411,7 +425,12 @@ public class DeclarationDetailActivity extends Activity {
 		 * resmaxnum; }
 		 */
 
-		if (null == haoyouBuffer || null == qunzuBuffer) {
+		/*if (null == haoyouBuffer || null == qunzuBuffer) {
+			return "未选择好友或群组，二者至少选择一项！";
+		}*/
+		String haoyou=haoyouBuffer.toString();
+		String qunzu=qunzuBuffer.toString();
+		if ((null==haoyou||"".equals(haoyou))&&(null==qunzu||"".equals(qunzu))) {
 			return "未选择好友或群组，二者至少选择一项！";
 		}
 
