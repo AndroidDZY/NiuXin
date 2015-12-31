@@ -248,7 +248,7 @@ public class DeclarationUserselectActivity extends Activity {
 			 */
 
 			// 设置发送的url 和服务器端的struts.xml文件对应
-			postUtil.setUrl("/group/group_listTongxunlu.do");
+			postUtil.setUrl("/group/group_listTongxunlu2.do");
 			// 不向服务器发送数据
 			// 向服务器发送数据
 			JSONArray js = new JSONArray();
